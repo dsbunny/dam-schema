@@ -1,0 +1,22 @@
+{
+	"name": "@dsbunny/dam-schema",
+	"version": "11.1.0",
+	"description": "ZOD schema for the DAM",
+	"type": "module",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"author": "Steve-o <fnjordy@gmail.com>",
+	"license": "MIT",
+	"private": false,
+	"scripts": {
+		"build": "tsc",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"dependencies": {
+		"zod": "^3.23.8",
+		"@dsbunny/metadata": "git://github.com/dsbunny/metadata.git#6bc54f5"
+	},
+	"devDependencies": {
+		"typescript": "^5.5.3"
+	}
+}
