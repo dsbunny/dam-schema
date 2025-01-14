@@ -3983,6 +3983,7 @@ export declare const AssetBase: z.ZodObject<{
                 tags?: Record<string, string | number> | undefined;
             };
         }>;
+        codecs: z.ZodOptional<z.ZodString>;
         hint: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"hint">;
             poster: z.ZodArray<z.ZodObject<{
@@ -4130,6 +4131,7 @@ export declare const AssetBase: z.ZodObject<{
                 quality: "medium" | "high";
             }[];
         } | undefined;
+        codecs?: string | undefined;
     }, {
         type: "video";
         file: {
@@ -4233,6 +4235,7 @@ export declare const AssetBase: z.ZodObject<{
                 quality: "medium" | "high";
             }[];
         } | undefined;
+        codecs?: string | undefined;
     }>, z.ZodObject<z.objectUtil.extendShape<{
         type: z.ZodLiteral<"base">;
         file: z.ZodObject<{
@@ -7346,6 +7349,7 @@ export declare const AssetBase: z.ZodObject<{
                 quality: "medium" | "high";
             }[];
         } | undefined;
+        codecs?: string | undefined;
     } | {
         type: "rejected";
         file: {
@@ -8361,6 +8365,7 @@ export declare const AssetBase: z.ZodObject<{
                 quality: "medium" | "high";
             }[];
         } | undefined;
+        codecs?: string | undefined;
     } | {
         type: "rejected";
         file: {
@@ -12731,6 +12736,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 tags?: Record<string, string | number> | undefined;
             };
         }>;
+        codecs: z.ZodOptional<z.ZodString>;
         hint: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"hint">;
             poster: z.ZodArray<z.ZodObject<{
@@ -12878,6 +12884,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 quality: "medium" | "high";
             }[];
         } | undefined;
+        codecs?: string | undefined;
     }, {
         type: "video";
         file: {
@@ -12981,6 +12988,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 quality: "medium" | "high";
             }[];
         } | undefined;
+        codecs?: string | undefined;
     }>, z.ZodObject<z.objectUtil.extendShape<{
         type: z.ZodLiteral<"base">;
         file: z.ZodObject<{
@@ -16105,6 +16113,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 quality: "medium" | "high";
             }[];
         } | undefined;
+        codecs?: string | undefined;
     } | {
         type: "rejected";
         file: {
@@ -17127,6 +17136,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 quality: "medium" | "high";
             }[];
         } | undefined;
+        codecs?: string | undefined;
     } | {
         type: "rejected";
         file: {
@@ -21467,6 +21477,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 tags?: Record<string, string | number> | undefined;
             };
         }>;
+        codecs: z.ZodOptional<z.ZodString>;
         hint: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"hint">;
             poster: z.ZodArray<z.ZodObject<{
@@ -21614,6 +21625,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 quality: "medium" | "high";
             }[];
         } | undefined;
+        codecs?: string | undefined;
     }, {
         type: "video";
         file: {
@@ -21717,6 +21729,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 quality: "medium" | "high";
             }[];
         } | undefined;
+        codecs?: string | undefined;
     }>, z.ZodObject<z.objectUtil.extendShape<{
         type: z.ZodLiteral<"base">;
         file: z.ZodObject<{
@@ -24830,6 +24843,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 quality: "medium" | "high";
             }[];
         } | undefined;
+        codecs?: string | undefined;
     } | {
         type: "rejected";
         file: {
@@ -25845,6 +25859,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 quality: "medium" | "high";
             }[];
         } | undefined;
+        codecs?: string | undefined;
     } | {
         type: "rejected";
         file: {
@@ -27017,6 +27032,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 quality: "medium" | "high";
             }[];
         } | undefined;
+        codecs?: string | undefined;
     } | {
         type: "rejected";
         file: {
@@ -31349,6 +31365,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 tags?: Record<string, string | number> | undefined;
             };
         }>;
+        codecs: z.ZodOptional<z.ZodString>;
         hint: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"hint">;
             poster: z.ZodArray<z.ZodObject<{
@@ -31496,6 +31513,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 quality: "medium" | "high";
             }[];
         } | undefined;
+        codecs?: string | undefined;
     }, {
         type: "video";
         file: {
@@ -31599,6 +31617,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 quality: "medium" | "high";
             }[];
         } | undefined;
+        codecs?: string | undefined;
     }>, z.ZodObject<z.objectUtil.extendShape<{
         type: z.ZodLiteral<"base">;
         file: z.ZodObject<{
@@ -34723,6 +34742,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 quality: "medium" | "high";
             }[];
         } | undefined;
+        codecs?: string | undefined;
     } | {
         type: "rejected";
         file: {
@@ -35745,6 +35765,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 quality: "medium" | "high";
             }[];
         } | undefined;
+        codecs?: string | undefined;
     } | {
         type: "rejected";
         file: {
@@ -36794,6 +36815,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 quality: "medium" | "high";
             }[];
         } | undefined;
+        codecs?: string | undefined;
     } | {
         type: "rejected";
         file: {
@@ -37877,6 +37899,7 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
                 quality: "medium" | "high";
             }[];
         } | undefined;
+        codecs?: string | undefined;
     } | {
         type: "rejected";
         file: {
@@ -38985,6 +39008,7 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
                 quality: "medium" | "high";
             }[];
         } | undefined;
+        codecs?: string | undefined;
     } | {
         type: "rejected";
         file: {
