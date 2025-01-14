@@ -1,7 +1,7 @@
 {
 	"name": "@dsbunny/dam-schema",
-	"version": "11.1.0",
-	"description": "ZOD schema for the DAM",
+	"version": "11.1.1",
+	"description": "Schema for the DAM",
 	"type": "module",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
@@ -13,8 +13,8 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"dependencies": {
-		"@dsbunny/metadata": "github:dsbunny/metadata#023b004",
-		"zod": "^3.23.8"
+		"zod": "^3.23.8",
+		"@dsbunny/metadata": "github:dsbunny/metadata#023b004"
 	},
 	"devDependencies": {
 		"typescript": "^5.5.3"
