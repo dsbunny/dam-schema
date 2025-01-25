@@ -731,23 +731,14 @@ export declare const OldVersionMetadata: z.ZodObject<{
             width: z.ZodNumber;
             height: z.ZodNumber;
             timings: z.ZodObject<{
-                tile_series_ffmpeg_duration: z.ZodNumber;
-                tile_series_avifenc_duration: z.ZodOptional<z.ZodNumber>;
-                tile_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
                 tile_series_ck_duration: z.ZodNumber;
                 tile_series_http_duration: z.ZodNumber;
             }, "strip", z.ZodTypeAny, {
-                tile_series_ffmpeg_duration: number;
                 tile_series_ck_duration: number;
                 tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
             }, {
-                tile_series_ffmpeg_duration: number;
                 tile_series_ck_duration: number;
                 tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
             }>;
         }>, "strip", z.ZodTypeAny, {
             type: "tile-series-image";
@@ -768,11 +759,8 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 s3_parts: number[];
             };
             timings: {
-                tile_series_ffmpeg_duration: number;
                 tile_series_ck_duration: number;
                 tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
             };
             quality: "low";
             count: number;
@@ -796,18 +784,37 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 s3_parts: number[];
             };
             timings: {
-                tile_series_ffmpeg_duration: number;
                 tile_series_ck_duration: number;
                 tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
             };
             quality: "low";
             count: number;
             end_time: number;
         }>, "many">;
+        timings: z.ZodObject<{
+            tile_series_ffprobe_duration: z.ZodNumber;
+            tile_series_ffmpeg_duration: z.ZodNumber;
+            tile_series_avifenc_duration: z.ZodOptional<z.ZodNumber>;
+            tile_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
+        }, "strip", z.ZodTypeAny, {
+            tile_series_ffprobe_duration: number;
+            tile_series_ffmpeg_duration: number;
+            tile_series_avifenc_duration?: number | undefined;
+            tile_series_sharp_duration?: number | undefined;
+        }, {
+            tile_series_ffprobe_duration: number;
+            tile_series_ffmpeg_duration: number;
+            tile_series_avifenc_duration?: number | undefined;
+            tile_series_sharp_duration?: number | undefined;
+        }>;
     }, "strip", z.ZodTypeAny, {
         type: "tile-series";
+        timings: {
+            tile_series_ffprobe_duration: number;
+            tile_series_ffmpeg_duration: number;
+            tile_series_avifenc_duration?: number | undefined;
+            tile_series_sharp_duration?: number | undefined;
+        };
         series: {
             type: "tile-series-image";
             index: number;
@@ -827,11 +834,8 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 s3_parts: number[];
             };
             timings: {
-                tile_series_ffmpeg_duration: number;
                 tile_series_ck_duration: number;
                 tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
             };
             quality: "low";
             count: number;
@@ -839,6 +843,12 @@ export declare const OldVersionMetadata: z.ZodObject<{
         }[];
     }, {
         type: "tile-series";
+        timings: {
+            tile_series_ffprobe_duration: number;
+            tile_series_ffmpeg_duration: number;
+            tile_series_avifenc_duration?: number | undefined;
+            tile_series_sharp_duration?: number | undefined;
+        };
         series: {
             type: "tile-series-image";
             index: number;
@@ -858,11 +868,8 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 s3_parts: number[];
             };
             timings: {
-                tile_series_ffmpeg_duration: number;
                 tile_series_ck_duration: number;
                 tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
             };
             quality: "low";
             count: number;
@@ -1148,6 +1155,12 @@ export declare const OldVersionMetadata: z.ZodObject<{
     } | undefined;
     tile_series_metadata?: {
         type: "tile-series";
+        timings: {
+            tile_series_ffprobe_duration: number;
+            tile_series_ffmpeg_duration: number;
+            tile_series_avifenc_duration?: number | undefined;
+            tile_series_sharp_duration?: number | undefined;
+        };
         series: {
             type: "tile-series-image";
             index: number;
@@ -1167,11 +1180,8 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 s3_parts: number[];
             };
             timings: {
-                tile_series_ffmpeg_duration: number;
                 tile_series_ck_duration: number;
                 tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
             };
             quality: "low";
             count: number;
@@ -1325,6 +1335,12 @@ export declare const OldVersionMetadata: z.ZodObject<{
     } | undefined;
     tile_series_metadata?: {
         type: "tile-series";
+        timings: {
+            tile_series_ffprobe_duration: number;
+            tile_series_ffmpeg_duration: number;
+            tile_series_avifenc_duration?: number | undefined;
+            tile_series_sharp_duration?: number | undefined;
+        };
         series: {
             type: "tile-series-image";
             index: number;
@@ -1344,11 +1360,8 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 s3_parts: number[];
             };
             timings: {
-                tile_series_ffmpeg_duration: number;
                 tile_series_ck_duration: number;
                 tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
             };
             quality: "low";
             count: number;
@@ -2112,23 +2125,14 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
             width: z.ZodNumber;
             height: z.ZodNumber;
             timings: z.ZodObject<{
-                tile_series_ffmpeg_duration: z.ZodNumber;
-                tile_series_avifenc_duration: z.ZodOptional<z.ZodNumber>;
-                tile_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
                 tile_series_ck_duration: z.ZodNumber;
                 tile_series_http_duration: z.ZodNumber;
             }, "strip", z.ZodTypeAny, {
-                tile_series_ffmpeg_duration: number;
                 tile_series_ck_duration: number;
                 tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
             }, {
-                tile_series_ffmpeg_duration: number;
                 tile_series_ck_duration: number;
                 tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
             }>;
         }>, "strip", z.ZodTypeAny, {
             type: "tile-series-image";
@@ -2149,11 +2153,8 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 s3_parts: number[];
             };
             timings: {
-                tile_series_ffmpeg_duration: number;
                 tile_series_ck_duration: number;
                 tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
             };
             quality: "low";
             count: number;
@@ -2177,18 +2178,37 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 s3_parts: number[];
             };
             timings: {
-                tile_series_ffmpeg_duration: number;
                 tile_series_ck_duration: number;
                 tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
             };
             quality: "low";
             count: number;
             end_time: number;
         }>, "many">;
+        timings: z.ZodObject<{
+            tile_series_ffprobe_duration: z.ZodNumber;
+            tile_series_ffmpeg_duration: z.ZodNumber;
+            tile_series_avifenc_duration: z.ZodOptional<z.ZodNumber>;
+            tile_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
+        }, "strip", z.ZodTypeAny, {
+            tile_series_ffprobe_duration: number;
+            tile_series_ffmpeg_duration: number;
+            tile_series_avifenc_duration?: number | undefined;
+            tile_series_sharp_duration?: number | undefined;
+        }, {
+            tile_series_ffprobe_duration: number;
+            tile_series_ffmpeg_duration: number;
+            tile_series_avifenc_duration?: number | undefined;
+            tile_series_sharp_duration?: number | undefined;
+        }>;
     }, "strip", z.ZodTypeAny, {
         type: "tile-series";
+        timings: {
+            tile_series_ffprobe_duration: number;
+            tile_series_ffmpeg_duration: number;
+            tile_series_avifenc_duration?: number | undefined;
+            tile_series_sharp_duration?: number | undefined;
+        };
         series: {
             type: "tile-series-image";
             index: number;
@@ -2208,11 +2228,8 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 s3_parts: number[];
             };
             timings: {
-                tile_series_ffmpeg_duration: number;
                 tile_series_ck_duration: number;
                 tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
             };
             quality: "low";
             count: number;
@@ -2220,6 +2237,12 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
         }[];
     }, {
         type: "tile-series";
+        timings: {
+            tile_series_ffprobe_duration: number;
+            tile_series_ffmpeg_duration: number;
+            tile_series_avifenc_duration?: number | undefined;
+            tile_series_sharp_duration?: number | undefined;
+        };
         series: {
             type: "tile-series-image";
             index: number;
@@ -2239,11 +2262,8 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 s3_parts: number[];
             };
             timings: {
-                tile_series_ffmpeg_duration: number;
                 tile_series_ck_duration: number;
                 tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
             };
             quality: "low";
             count: number;
@@ -2529,6 +2549,12 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
     } | undefined;
     tile_series_metadata?: {
         type: "tile-series";
+        timings: {
+            tile_series_ffprobe_duration: number;
+            tile_series_ffmpeg_duration: number;
+            tile_series_avifenc_duration?: number | undefined;
+            tile_series_sharp_duration?: number | undefined;
+        };
         series: {
             type: "tile-series-image";
             index: number;
@@ -2548,11 +2574,8 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 s3_parts: number[];
             };
             timings: {
-                tile_series_ffmpeg_duration: number;
                 tile_series_ck_duration: number;
                 tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
             };
             quality: "low";
             count: number;
@@ -2706,6 +2729,12 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
     } | undefined;
     tile_series_metadata?: {
         type: "tile-series";
+        timings: {
+            tile_series_ffprobe_duration: number;
+            tile_series_ffmpeg_duration: number;
+            tile_series_avifenc_duration?: number | undefined;
+            tile_series_sharp_duration?: number | undefined;
+        };
         series: {
             type: "tile-series-image";
             index: number;
@@ -2725,11 +2754,8 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 s3_parts: number[];
             };
             timings: {
-                tile_series_ffmpeg_duration: number;
                 tile_series_ck_duration: number;
                 tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
             };
             quality: "low";
             count: number;

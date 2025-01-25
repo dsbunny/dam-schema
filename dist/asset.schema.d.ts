@@ -3983,7 +3983,7 @@ export declare const AssetBase: z.ZodObject<{
                 tags?: Record<string, string | number> | undefined;
             };
         }>;
-        codecs: z.ZodOptional<z.ZodString>;
+        codecs: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         hint: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"hint">;
             poster: z.ZodArray<z.ZodObject<{
@@ -4131,7 +4131,7 @@ export declare const AssetBase: z.ZodObject<{
                 quality: "medium" | "high";
             }[];
         } | undefined;
-        codecs?: string | undefined;
+        codecs?: string[] | undefined;
     }, {
         type: "video";
         file: {
@@ -4235,7 +4235,7 @@ export declare const AssetBase: z.ZodObject<{
                 quality: "medium" | "high";
             }[];
         } | undefined;
-        codecs?: string | undefined;
+        codecs?: string[] | undefined;
     }>, z.ZodObject<z.objectUtil.extendShape<{
         type: z.ZodLiteral<"base">;
         file: z.ZodObject<{
@@ -4946,201 +4946,95 @@ export declare const AssetBase: z.ZodObject<{
         }[];
     }>>;
     poster_series_selected_index: z.ZodOptional<z.ZodNumber>;
-    tile_series_metadata: z.ZodOptional<z.ZodObject<{
-        type: z.ZodLiteral<"tile-series">;
-        series: z.ZodArray<z.ZodObject<z.objectUtil.extendShape<{
-            type: z.ZodLiteral<"base">;
-            file: z.ZodObject<{
-                s3_filename: z.ZodString;
-                content_type: z.ZodString;
-                size: z.ZodNumber;
-                mtime: z.ZodString;
-                md5: z.ZodString;
-                sha256: z.ZodString;
-                s3_uri: z.ZodString;
-                s3_version_id: z.ZodString;
-                s3_etag: z.ZodString;
-                s3_parts: z.ZodArray<z.ZodNumber, "many">;
-            }, "strip", z.ZodTypeAny, {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            }, {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            }>;
-            timings: z.ZodObject<{
-                file_http_duration: z.ZodNumber;
-                file_ck_duration: z.ZodNumber;
-            }, "strip", z.ZodTypeAny, {
-                file_http_duration: number;
-                file_ck_duration: number;
-            }, {
-                file_http_duration: number;
-                file_ck_duration: number;
-            }>;
+    tile_series_metadata: z.ZodOptional<z.ZodObject<z.objectUtil.extendShape<{
+        type: z.ZodLiteral<"base">;
+        file: z.ZodObject<{
+            s3_filename: z.ZodString;
+            content_type: z.ZodString;
+            size: z.ZodNumber;
+            mtime: z.ZodString;
+            md5: z.ZodString;
+            sha256: z.ZodString;
+            s3_uri: z.ZodString;
+            s3_version_id: z.ZodString;
+            s3_etag: z.ZodString;
+            s3_parts: z.ZodArray<z.ZodNumber, "many">;
+        }, "strip", z.ZodTypeAny, {
+            size: number;
+            s3_filename: string;
+            content_type: string;
+            mtime: string;
+            md5: string;
+            sha256: string;
+            s3_uri: string;
+            s3_version_id: string;
+            s3_etag: string;
+            s3_parts: number[];
         }, {
-            type: z.ZodLiteral<"tile-series-image">;
-            index: z.ZodNumber;
-            count: z.ZodNumber;
-            quality: z.ZodEnum<["low"]>;
-            start_time: z.ZodNumber;
-            end_time: z.ZodNumber;
-            width: z.ZodNumber;
-            height: z.ZodNumber;
-            timings: z.ZodObject<{
-                tile_series_ffmpeg_duration: z.ZodNumber;
-                tile_series_avifenc_duration: z.ZodOptional<z.ZodNumber>;
-                tile_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
-                tile_series_ck_duration: z.ZodNumber;
-                tile_series_http_duration: z.ZodNumber;
-            }, "strip", z.ZodTypeAny, {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            }, {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            }>;
-        }>, "strip", z.ZodTypeAny, {
-            type: "tile-series-image";
-            index: number;
-            width: number;
-            height: number;
-            start_time: number;
-            file: {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            };
-            timings: {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            };
-            quality: "low";
-            count: number;
-            end_time: number;
+            size: number;
+            s3_filename: string;
+            content_type: string;
+            mtime: string;
+            md5: string;
+            sha256: string;
+            s3_uri: string;
+            s3_version_id: string;
+            s3_etag: string;
+            s3_parts: number[];
+        }>;
+        timings: z.ZodObject<{
+            file_http_duration: z.ZodNumber;
+            file_ck_duration: z.ZodNumber;
+        }, "strip", z.ZodTypeAny, {
+            file_http_duration: number;
+            file_ck_duration: number;
         }, {
-            type: "tile-series-image";
-            index: number;
-            width: number;
-            height: number;
-            start_time: number;
-            file: {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            };
-            timings: {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            };
-            quality: "low";
-            count: number;
-            end_time: number;
-        }>, "many">;
-    }, "strip", z.ZodTypeAny, {
-        type: "tile-series";
-        series: {
-            type: "tile-series-image";
-            index: number;
-            width: number;
-            height: number;
-            start_time: number;
-            file: {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            };
-            timings: {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            };
-            quality: "low";
-            count: number;
-            end_time: number;
-        }[];
+            file_http_duration: number;
+            file_ck_duration: number;
+        }>;
     }, {
-        type: "tile-series";
-        series: {
-            type: "tile-series-image";
-            index: number;
-            width: number;
-            height: number;
-            start_time: number;
-            file: {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            };
-            timings: {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            };
-            quality: "low";
-            count: number;
-            end_time: number;
-        }[];
+        type: z.ZodLiteral<"tile-series-metadata">;
+        timings: z.ZodObject<{
+            metadata_http_duration: z.ZodNumber;
+        }, "strip", z.ZodTypeAny, {
+            metadata_http_duration: number;
+        }, {
+            metadata_http_duration: number;
+        }>;
+    }>, "strip", z.ZodTypeAny, {
+        type: "tile-series-metadata";
+        file: {
+            size: number;
+            s3_filename: string;
+            content_type: string;
+            mtime: string;
+            md5: string;
+            sha256: string;
+            s3_uri: string;
+            s3_version_id: string;
+            s3_etag: string;
+            s3_parts: number[];
+        };
+        timings: {
+            metadata_http_duration: number;
+        };
+    }, {
+        type: "tile-series-metadata";
+        file: {
+            size: number;
+            s3_filename: string;
+            content_type: string;
+            mtime: string;
+            md5: string;
+            sha256: string;
+            s3_uri: string;
+            s3_version_id: string;
+            s3_etag: string;
+            s3_parts: number[];
+        };
+        timings: {
+            metadata_http_duration: number;
+        };
     }>>;
     prevue_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"prevue">;
@@ -6036,23 +5930,14 @@ export declare const AssetBase: z.ZodObject<{
                 width: z.ZodNumber;
                 height: z.ZodNumber;
                 timings: z.ZodObject<{
-                    tile_series_ffmpeg_duration: z.ZodNumber;
-                    tile_series_avifenc_duration: z.ZodOptional<z.ZodNumber>;
-                    tile_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
                     tile_series_ck_duration: z.ZodNumber;
                     tile_series_http_duration: z.ZodNumber;
                 }, "strip", z.ZodTypeAny, {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 }, {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 }>;
             }>, "strip", z.ZodTypeAny, {
                 type: "tile-series-image";
@@ -6073,11 +5958,8 @@ export declare const AssetBase: z.ZodObject<{
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
@@ -6101,18 +5983,37 @@ export declare const AssetBase: z.ZodObject<{
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
                 end_time: number;
             }>, "many">;
+            timings: z.ZodObject<{
+                tile_series_ffprobe_duration: z.ZodNumber;
+                tile_series_ffmpeg_duration: z.ZodNumber;
+                tile_series_avifenc_duration: z.ZodOptional<z.ZodNumber>;
+                tile_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
+            }, "strip", z.ZodTypeAny, {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            }, {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            }>;
         }, "strip", z.ZodTypeAny, {
             type: "tile-series";
+            timings: {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            };
             series: {
                 type: "tile-series-image";
                 index: number;
@@ -6132,11 +6033,8 @@ export declare const AssetBase: z.ZodObject<{
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
@@ -6144,6 +6042,12 @@ export declare const AssetBase: z.ZodObject<{
             }[];
         }, {
             type: "tile-series";
+            timings: {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            };
             series: {
                 type: "tile-series-image";
                 index: number;
@@ -6163,11 +6067,8 @@ export declare const AssetBase: z.ZodObject<{
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
@@ -6453,6 +6354,12 @@ export declare const AssetBase: z.ZodObject<{
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series";
+            timings: {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            };
             series: {
                 type: "tile-series-image";
                 index: number;
@@ -6472,11 +6379,8 @@ export declare const AssetBase: z.ZodObject<{
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
@@ -6630,6 +6534,12 @@ export declare const AssetBase: z.ZodObject<{
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series";
+            timings: {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            };
             series: {
                 type: "tile-series-image";
                 index: number;
@@ -6649,11 +6559,8 @@ export declare const AssetBase: z.ZodObject<{
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
@@ -7349,7 +7256,7 @@ export declare const AssetBase: z.ZodObject<{
                 quality: "medium" | "high";
             }[];
         } | undefined;
-        codecs?: string | undefined;
+        codecs?: string[] | undefined;
     } | {
         type: "rejected";
         file: {
@@ -7503,6 +7410,12 @@ export declare const AssetBase: z.ZodObject<{
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series";
+            timings: {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            };
             series: {
                 type: "tile-series-image";
                 index: number;
@@ -7522,11 +7435,8 @@ export declare const AssetBase: z.ZodObject<{
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
@@ -7646,36 +7556,22 @@ export declare const AssetBase: z.ZodObject<{
         }[];
     } | undefined;
     tile_series_metadata?: {
-        type: "tile-series";
-        series: {
-            type: "tile-series-image";
-            index: number;
-            width: number;
-            height: number;
-            start_time: number;
-            file: {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            };
-            timings: {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            };
-            quality: "low";
-            count: number;
-            end_time: number;
-        }[];
+        type: "tile-series-metadata";
+        file: {
+            size: number;
+            s3_filename: string;
+            content_type: string;
+            mtime: string;
+            md5: string;
+            sha256: string;
+            s3_uri: string;
+            s3_version_id: string;
+            s3_etag: string;
+            s3_parts: number[];
+        };
+        timings: {
+            metadata_http_duration: number;
+        };
     } | undefined;
     prevue_metadata?: {
         type: "prevue";
@@ -8365,7 +8261,7 @@ export declare const AssetBase: z.ZodObject<{
                 quality: "medium" | "high";
             }[];
         } | undefined;
-        codecs?: string | undefined;
+        codecs?: string[] | undefined;
     } | {
         type: "rejected";
         file: {
@@ -8519,6 +8415,12 @@ export declare const AssetBase: z.ZodObject<{
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series";
+            timings: {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            };
             series: {
                 type: "tile-series-image";
                 index: number;
@@ -8538,11 +8440,8 @@ export declare const AssetBase: z.ZodObject<{
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
@@ -8662,36 +8561,22 @@ export declare const AssetBase: z.ZodObject<{
         }[];
     } | undefined;
     tile_series_metadata?: {
-        type: "tile-series";
-        series: {
-            type: "tile-series-image";
-            index: number;
-            width: number;
-            height: number;
-            start_time: number;
-            file: {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            };
-            timings: {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            };
-            quality: "low";
-            count: number;
-            end_time: number;
-        }[];
+        type: "tile-series-metadata";
+        file: {
+            size: number;
+            s3_filename: string;
+            content_type: string;
+            mtime: string;
+            md5: string;
+            sha256: string;
+            s3_uri: string;
+            s3_version_id: string;
+            s3_etag: string;
+            s3_parts: number[];
+        };
+        timings: {
+            metadata_http_duration: number;
+        };
     } | undefined;
     prevue_metadata?: {
         type: "prevue";
@@ -12736,7 +12621,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 tags?: Record<string, string | number> | undefined;
             };
         }>;
-        codecs: z.ZodOptional<z.ZodString>;
+        codecs: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         hint: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"hint">;
             poster: z.ZodArray<z.ZodObject<{
@@ -12884,7 +12769,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 quality: "medium" | "high";
             }[];
         } | undefined;
-        codecs?: string | undefined;
+        codecs?: string[] | undefined;
     }, {
         type: "video";
         file: {
@@ -12988,7 +12873,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 quality: "medium" | "high";
             }[];
         } | undefined;
-        codecs?: string | undefined;
+        codecs?: string[] | undefined;
     }>, z.ZodObject<z.objectUtil.extendShape<{
         type: z.ZodLiteral<"base">;
         file: z.ZodObject<{
@@ -13699,201 +13584,95 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
         }[];
     }>>;
     poster_series_selected_index: z.ZodOptional<z.ZodNumber>;
-    tile_series_metadata: z.ZodOptional<z.ZodObject<{
-        type: z.ZodLiteral<"tile-series">;
-        series: z.ZodArray<z.ZodObject<z.objectUtil.extendShape<{
-            type: z.ZodLiteral<"base">;
-            file: z.ZodObject<{
-                s3_filename: z.ZodString;
-                content_type: z.ZodString;
-                size: z.ZodNumber;
-                mtime: z.ZodString;
-                md5: z.ZodString;
-                sha256: z.ZodString;
-                s3_uri: z.ZodString;
-                s3_version_id: z.ZodString;
-                s3_etag: z.ZodString;
-                s3_parts: z.ZodArray<z.ZodNumber, "many">;
-            }, "strip", z.ZodTypeAny, {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            }, {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            }>;
-            timings: z.ZodObject<{
-                file_http_duration: z.ZodNumber;
-                file_ck_duration: z.ZodNumber;
-            }, "strip", z.ZodTypeAny, {
-                file_http_duration: number;
-                file_ck_duration: number;
-            }, {
-                file_http_duration: number;
-                file_ck_duration: number;
-            }>;
+    tile_series_metadata: z.ZodOptional<z.ZodObject<z.objectUtil.extendShape<{
+        type: z.ZodLiteral<"base">;
+        file: z.ZodObject<{
+            s3_filename: z.ZodString;
+            content_type: z.ZodString;
+            size: z.ZodNumber;
+            mtime: z.ZodString;
+            md5: z.ZodString;
+            sha256: z.ZodString;
+            s3_uri: z.ZodString;
+            s3_version_id: z.ZodString;
+            s3_etag: z.ZodString;
+            s3_parts: z.ZodArray<z.ZodNumber, "many">;
+        }, "strip", z.ZodTypeAny, {
+            size: number;
+            s3_filename: string;
+            content_type: string;
+            mtime: string;
+            md5: string;
+            sha256: string;
+            s3_uri: string;
+            s3_version_id: string;
+            s3_etag: string;
+            s3_parts: number[];
         }, {
-            type: z.ZodLiteral<"tile-series-image">;
-            index: z.ZodNumber;
-            count: z.ZodNumber;
-            quality: z.ZodEnum<["low"]>;
-            start_time: z.ZodNumber;
-            end_time: z.ZodNumber;
-            width: z.ZodNumber;
-            height: z.ZodNumber;
-            timings: z.ZodObject<{
-                tile_series_ffmpeg_duration: z.ZodNumber;
-                tile_series_avifenc_duration: z.ZodOptional<z.ZodNumber>;
-                tile_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
-                tile_series_ck_duration: z.ZodNumber;
-                tile_series_http_duration: z.ZodNumber;
-            }, "strip", z.ZodTypeAny, {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            }, {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            }>;
-        }>, "strip", z.ZodTypeAny, {
-            type: "tile-series-image";
-            index: number;
-            width: number;
-            height: number;
-            start_time: number;
-            file: {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            };
-            timings: {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            };
-            quality: "low";
-            count: number;
-            end_time: number;
+            size: number;
+            s3_filename: string;
+            content_type: string;
+            mtime: string;
+            md5: string;
+            sha256: string;
+            s3_uri: string;
+            s3_version_id: string;
+            s3_etag: string;
+            s3_parts: number[];
+        }>;
+        timings: z.ZodObject<{
+            file_http_duration: z.ZodNumber;
+            file_ck_duration: z.ZodNumber;
+        }, "strip", z.ZodTypeAny, {
+            file_http_duration: number;
+            file_ck_duration: number;
         }, {
-            type: "tile-series-image";
-            index: number;
-            width: number;
-            height: number;
-            start_time: number;
-            file: {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            };
-            timings: {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            };
-            quality: "low";
-            count: number;
-            end_time: number;
-        }>, "many">;
-    }, "strip", z.ZodTypeAny, {
-        type: "tile-series";
-        series: {
-            type: "tile-series-image";
-            index: number;
-            width: number;
-            height: number;
-            start_time: number;
-            file: {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            };
-            timings: {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            };
-            quality: "low";
-            count: number;
-            end_time: number;
-        }[];
+            file_http_duration: number;
+            file_ck_duration: number;
+        }>;
     }, {
-        type: "tile-series";
-        series: {
-            type: "tile-series-image";
-            index: number;
-            width: number;
-            height: number;
-            start_time: number;
-            file: {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            };
-            timings: {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            };
-            quality: "low";
-            count: number;
-            end_time: number;
-        }[];
+        type: z.ZodLiteral<"tile-series-metadata">;
+        timings: z.ZodObject<{
+            metadata_http_duration: z.ZodNumber;
+        }, "strip", z.ZodTypeAny, {
+            metadata_http_duration: number;
+        }, {
+            metadata_http_duration: number;
+        }>;
+    }>, "strip", z.ZodTypeAny, {
+        type: "tile-series-metadata";
+        file: {
+            size: number;
+            s3_filename: string;
+            content_type: string;
+            mtime: string;
+            md5: string;
+            sha256: string;
+            s3_uri: string;
+            s3_version_id: string;
+            s3_etag: string;
+            s3_parts: number[];
+        };
+        timings: {
+            metadata_http_duration: number;
+        };
+    }, {
+        type: "tile-series-metadata";
+        file: {
+            size: number;
+            s3_filename: string;
+            content_type: string;
+            mtime: string;
+            md5: string;
+            sha256: string;
+            s3_uri: string;
+            s3_version_id: string;
+            s3_etag: string;
+            s3_parts: number[];
+        };
+        timings: {
+            metadata_http_duration: number;
+        };
     }>>;
     prevue_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"prevue">;
@@ -14789,23 +14568,14 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 width: z.ZodNumber;
                 height: z.ZodNumber;
                 timings: z.ZodObject<{
-                    tile_series_ffmpeg_duration: z.ZodNumber;
-                    tile_series_avifenc_duration: z.ZodOptional<z.ZodNumber>;
-                    tile_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
                     tile_series_ck_duration: z.ZodNumber;
                     tile_series_http_duration: z.ZodNumber;
                 }, "strip", z.ZodTypeAny, {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 }, {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 }>;
             }>, "strip", z.ZodTypeAny, {
                 type: "tile-series-image";
@@ -14826,11 +14596,8 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
@@ -14854,18 +14621,37 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
                 end_time: number;
             }>, "many">;
+            timings: z.ZodObject<{
+                tile_series_ffprobe_duration: z.ZodNumber;
+                tile_series_ffmpeg_duration: z.ZodNumber;
+                tile_series_avifenc_duration: z.ZodOptional<z.ZodNumber>;
+                tile_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
+            }, "strip", z.ZodTypeAny, {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            }, {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            }>;
         }, "strip", z.ZodTypeAny, {
             type: "tile-series";
+            timings: {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            };
             series: {
                 type: "tile-series-image";
                 index: number;
@@ -14885,11 +14671,8 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
@@ -14897,6 +14680,12 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             }[];
         }, {
             type: "tile-series";
+            timings: {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            };
             series: {
                 type: "tile-series-image";
                 index: number;
@@ -14916,11 +14705,8 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
@@ -15206,6 +14992,12 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series";
+            timings: {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            };
             series: {
                 type: "tile-series-image";
                 index: number;
@@ -15225,11 +15017,8 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
@@ -15383,6 +15172,12 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series";
+            timings: {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            };
             series: {
                 type: "tile-series-image";
                 index: number;
@@ -15402,11 +15197,8 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
@@ -16113,7 +15905,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 quality: "medium" | "high";
             }[];
         } | undefined;
-        codecs?: string | undefined;
+        codecs?: string[] | undefined;
     } | {
         type: "rejected";
         file: {
@@ -16267,6 +16059,12 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series";
+            timings: {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            };
             series: {
                 type: "tile-series-image";
                 index: number;
@@ -16286,11 +16084,8 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
@@ -16414,36 +16209,22 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
         }[];
     } | undefined;
     tile_series_metadata?: {
-        type: "tile-series";
-        series: {
-            type: "tile-series-image";
-            index: number;
-            width: number;
-            height: number;
-            start_time: number;
-            file: {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            };
-            timings: {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            };
-            quality: "low";
-            count: number;
-            end_time: number;
-        }[];
+        type: "tile-series-metadata";
+        file: {
+            size: number;
+            s3_filename: string;
+            content_type: string;
+            mtime: string;
+            md5: string;
+            sha256: string;
+            s3_uri: string;
+            s3_version_id: string;
+            s3_etag: string;
+            s3_parts: number[];
+        };
+        timings: {
+            metadata_http_duration: number;
+        };
     } | undefined;
     prevue_metadata?: {
         type: "prevue";
@@ -17136,7 +16917,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 quality: "medium" | "high";
             }[];
         } | undefined;
-        codecs?: string | undefined;
+        codecs?: string[] | undefined;
     } | {
         type: "rejected";
         file: {
@@ -17290,6 +17071,12 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series";
+            timings: {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            };
             series: {
                 type: "tile-series-image";
                 index: number;
@@ -17309,11 +17096,8 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
@@ -17436,36 +17220,22 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
         }[];
     } | undefined;
     tile_series_metadata?: {
-        type: "tile-series";
-        series: {
-            type: "tile-series-image";
-            index: number;
-            width: number;
-            height: number;
-            start_time: number;
-            file: {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            };
-            timings: {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            };
-            quality: "low";
-            count: number;
-            end_time: number;
-        }[];
+        type: "tile-series-metadata";
+        file: {
+            size: number;
+            s3_filename: string;
+            content_type: string;
+            mtime: string;
+            md5: string;
+            sha256: string;
+            s3_uri: string;
+            s3_version_id: string;
+            s3_etag: string;
+            s3_parts: number[];
+        };
+        timings: {
+            metadata_http_duration: number;
+        };
     } | undefined;
     prevue_metadata?: {
         type: "prevue";
@@ -21477,7 +21247,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 tags?: Record<string, string | number> | undefined;
             };
         }>;
-        codecs: z.ZodOptional<z.ZodString>;
+        codecs: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         hint: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"hint">;
             poster: z.ZodArray<z.ZodObject<{
@@ -21625,7 +21395,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 quality: "medium" | "high";
             }[];
         } | undefined;
-        codecs?: string | undefined;
+        codecs?: string[] | undefined;
     }, {
         type: "video";
         file: {
@@ -21729,7 +21499,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 quality: "medium" | "high";
             }[];
         } | undefined;
-        codecs?: string | undefined;
+        codecs?: string[] | undefined;
     }>, z.ZodObject<z.objectUtil.extendShape<{
         type: z.ZodLiteral<"base">;
         file: z.ZodObject<{
@@ -22440,201 +22210,95 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         }[];
     }>>;
     poster_series_selected_index: z.ZodOptional<z.ZodNumber>;
-    tile_series_metadata: z.ZodOptional<z.ZodObject<{
-        type: z.ZodLiteral<"tile-series">;
-        series: z.ZodArray<z.ZodObject<z.objectUtil.extendShape<{
-            type: z.ZodLiteral<"base">;
-            file: z.ZodObject<{
-                s3_filename: z.ZodString;
-                content_type: z.ZodString;
-                size: z.ZodNumber;
-                mtime: z.ZodString;
-                md5: z.ZodString;
-                sha256: z.ZodString;
-                s3_uri: z.ZodString;
-                s3_version_id: z.ZodString;
-                s3_etag: z.ZodString;
-                s3_parts: z.ZodArray<z.ZodNumber, "many">;
-            }, "strip", z.ZodTypeAny, {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            }, {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            }>;
-            timings: z.ZodObject<{
-                file_http_duration: z.ZodNumber;
-                file_ck_duration: z.ZodNumber;
-            }, "strip", z.ZodTypeAny, {
-                file_http_duration: number;
-                file_ck_duration: number;
-            }, {
-                file_http_duration: number;
-                file_ck_duration: number;
-            }>;
+    tile_series_metadata: z.ZodOptional<z.ZodObject<z.objectUtil.extendShape<{
+        type: z.ZodLiteral<"base">;
+        file: z.ZodObject<{
+            s3_filename: z.ZodString;
+            content_type: z.ZodString;
+            size: z.ZodNumber;
+            mtime: z.ZodString;
+            md5: z.ZodString;
+            sha256: z.ZodString;
+            s3_uri: z.ZodString;
+            s3_version_id: z.ZodString;
+            s3_etag: z.ZodString;
+            s3_parts: z.ZodArray<z.ZodNumber, "many">;
+        }, "strip", z.ZodTypeAny, {
+            size: number;
+            s3_filename: string;
+            content_type: string;
+            mtime: string;
+            md5: string;
+            sha256: string;
+            s3_uri: string;
+            s3_version_id: string;
+            s3_etag: string;
+            s3_parts: number[];
         }, {
-            type: z.ZodLiteral<"tile-series-image">;
-            index: z.ZodNumber;
-            count: z.ZodNumber;
-            quality: z.ZodEnum<["low"]>;
-            start_time: z.ZodNumber;
-            end_time: z.ZodNumber;
-            width: z.ZodNumber;
-            height: z.ZodNumber;
-            timings: z.ZodObject<{
-                tile_series_ffmpeg_duration: z.ZodNumber;
-                tile_series_avifenc_duration: z.ZodOptional<z.ZodNumber>;
-                tile_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
-                tile_series_ck_duration: z.ZodNumber;
-                tile_series_http_duration: z.ZodNumber;
-            }, "strip", z.ZodTypeAny, {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            }, {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            }>;
-        }>, "strip", z.ZodTypeAny, {
-            type: "tile-series-image";
-            index: number;
-            width: number;
-            height: number;
-            start_time: number;
-            file: {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            };
-            timings: {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            };
-            quality: "low";
-            count: number;
-            end_time: number;
+            size: number;
+            s3_filename: string;
+            content_type: string;
+            mtime: string;
+            md5: string;
+            sha256: string;
+            s3_uri: string;
+            s3_version_id: string;
+            s3_etag: string;
+            s3_parts: number[];
+        }>;
+        timings: z.ZodObject<{
+            file_http_duration: z.ZodNumber;
+            file_ck_duration: z.ZodNumber;
+        }, "strip", z.ZodTypeAny, {
+            file_http_duration: number;
+            file_ck_duration: number;
         }, {
-            type: "tile-series-image";
-            index: number;
-            width: number;
-            height: number;
-            start_time: number;
-            file: {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            };
-            timings: {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            };
-            quality: "low";
-            count: number;
-            end_time: number;
-        }>, "many">;
-    }, "strip", z.ZodTypeAny, {
-        type: "tile-series";
-        series: {
-            type: "tile-series-image";
-            index: number;
-            width: number;
-            height: number;
-            start_time: number;
-            file: {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            };
-            timings: {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            };
-            quality: "low";
-            count: number;
-            end_time: number;
-        }[];
+            file_http_duration: number;
+            file_ck_duration: number;
+        }>;
     }, {
-        type: "tile-series";
-        series: {
-            type: "tile-series-image";
-            index: number;
-            width: number;
-            height: number;
-            start_time: number;
-            file: {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            };
-            timings: {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            };
-            quality: "low";
-            count: number;
-            end_time: number;
-        }[];
+        type: z.ZodLiteral<"tile-series-metadata">;
+        timings: z.ZodObject<{
+            metadata_http_duration: z.ZodNumber;
+        }, "strip", z.ZodTypeAny, {
+            metadata_http_duration: number;
+        }, {
+            metadata_http_duration: number;
+        }>;
+    }>, "strip", z.ZodTypeAny, {
+        type: "tile-series-metadata";
+        file: {
+            size: number;
+            s3_filename: string;
+            content_type: string;
+            mtime: string;
+            md5: string;
+            sha256: string;
+            s3_uri: string;
+            s3_version_id: string;
+            s3_etag: string;
+            s3_parts: number[];
+        };
+        timings: {
+            metadata_http_duration: number;
+        };
+    }, {
+        type: "tile-series-metadata";
+        file: {
+            size: number;
+            s3_filename: string;
+            content_type: string;
+            mtime: string;
+            md5: string;
+            sha256: string;
+            s3_uri: string;
+            s3_version_id: string;
+            s3_etag: string;
+            s3_parts: number[];
+        };
+        timings: {
+            metadata_http_duration: number;
+        };
     }>>;
     prevue_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"prevue">;
@@ -23530,23 +23194,14 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 width: z.ZodNumber;
                 height: z.ZodNumber;
                 timings: z.ZodObject<{
-                    tile_series_ffmpeg_duration: z.ZodNumber;
-                    tile_series_avifenc_duration: z.ZodOptional<z.ZodNumber>;
-                    tile_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
                     tile_series_ck_duration: z.ZodNumber;
                     tile_series_http_duration: z.ZodNumber;
                 }, "strip", z.ZodTypeAny, {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 }, {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 }>;
             }>, "strip", z.ZodTypeAny, {
                 type: "tile-series-image";
@@ -23567,11 +23222,8 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
@@ -23595,18 +23247,37 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
                 end_time: number;
             }>, "many">;
+            timings: z.ZodObject<{
+                tile_series_ffprobe_duration: z.ZodNumber;
+                tile_series_ffmpeg_duration: z.ZodNumber;
+                tile_series_avifenc_duration: z.ZodOptional<z.ZodNumber>;
+                tile_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
+            }, "strip", z.ZodTypeAny, {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            }, {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            }>;
         }, "strip", z.ZodTypeAny, {
             type: "tile-series";
+            timings: {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            };
             series: {
                 type: "tile-series-image";
                 index: number;
@@ -23626,11 +23297,8 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
@@ -23638,6 +23306,12 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             }[];
         }, {
             type: "tile-series";
+            timings: {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            };
             series: {
                 type: "tile-series-image";
                 index: number;
@@ -23657,11 +23331,8 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
@@ -23947,6 +23618,12 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series";
+            timings: {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            };
             series: {
                 type: "tile-series-image";
                 index: number;
@@ -23966,11 +23643,8 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
@@ -24124,6 +23798,12 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series";
+            timings: {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            };
             series: {
                 type: "tile-series-image";
                 index: number;
@@ -24143,11 +23823,8 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
@@ -24843,7 +24520,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 quality: "medium" | "high";
             }[];
         } | undefined;
-        codecs?: string | undefined;
+        codecs?: string[] | undefined;
     } | {
         type: "rejected";
         file: {
@@ -24997,6 +24674,12 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series";
+            timings: {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            };
             series: {
                 type: "tile-series-image";
                 index: number;
@@ -25016,11 +24699,8 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
@@ -25140,36 +24820,22 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         }[];
     } | undefined;
     tile_series_metadata?: {
-        type: "tile-series";
-        series: {
-            type: "tile-series-image";
-            index: number;
-            width: number;
-            height: number;
-            start_time: number;
-            file: {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            };
-            timings: {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            };
-            quality: "low";
-            count: number;
-            end_time: number;
-        }[];
+        type: "tile-series-metadata";
+        file: {
+            size: number;
+            s3_filename: string;
+            content_type: string;
+            mtime: string;
+            md5: string;
+            sha256: string;
+            s3_uri: string;
+            s3_version_id: string;
+            s3_etag: string;
+            s3_parts: number[];
+        };
+        timings: {
+            metadata_http_duration: number;
+        };
     } | undefined;
     prevue_metadata?: {
         type: "prevue";
@@ -25859,7 +25525,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 quality: "medium" | "high";
             }[];
         } | undefined;
-        codecs?: string | undefined;
+        codecs?: string[] | undefined;
     } | {
         type: "rejected";
         file: {
@@ -26013,6 +25679,12 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series";
+            timings: {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            };
             series: {
                 type: "tile-series-image";
                 index: number;
@@ -26032,11 +25704,8 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
@@ -26156,36 +25825,22 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         }[];
     } | undefined;
     tile_series_metadata?: {
-        type: "tile-series";
-        series: {
-            type: "tile-series-image";
-            index: number;
-            width: number;
-            height: number;
-            start_time: number;
-            file: {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            };
-            timings: {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            };
-            quality: "low";
-            count: number;
-            end_time: number;
-        }[];
+        type: "tile-series-metadata";
+        file: {
+            size: number;
+            s3_filename: string;
+            content_type: string;
+            mtime: string;
+            md5: string;
+            sha256: string;
+            s3_uri: string;
+            s3_version_id: string;
+            s3_etag: string;
+            s3_parts: number[];
+        };
+        timings: {
+            metadata_http_duration: number;
+        };
     } | undefined;
     prevue_metadata?: {
         type: "prevue";
@@ -26313,36 +25968,22 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         }[];
     } | undefined;
     tile_series_metadata?: {
-        type: "tile-series";
-        series: {
-            type: "tile-series-image";
-            index: number;
-            width: number;
-            height: number;
-            start_time: number;
-            file: {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            };
-            timings: {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            };
-            quality: "low";
-            count: number;
-            end_time: number;
-        }[];
+        type: "tile-series-metadata";
+        file: {
+            size: number;
+            s3_filename: string;
+            content_type: string;
+            mtime: string;
+            md5: string;
+            sha256: string;
+            s3_uri: string;
+            s3_version_id: string;
+            s3_etag: string;
+            s3_parts: number[];
+        };
+        timings: {
+            metadata_http_duration: number;
+        };
     } | undefined;
     prevue_metadata?: {
         type: "prevue";
@@ -27032,7 +26673,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 quality: "medium" | "high";
             }[];
         } | undefined;
-        codecs?: string | undefined;
+        codecs?: string[] | undefined;
     } | {
         type: "rejected";
         file: {
@@ -27186,6 +26827,12 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series";
+            timings: {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            };
             series: {
                 type: "tile-series-image";
                 index: number;
@@ -27205,11 +26852,8 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
@@ -27329,36 +26973,22 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         }[];
     } | undefined;
     tile_series_metadata?: {
-        type: "tile-series";
-        series: {
-            type: "tile-series-image";
-            index: number;
-            width: number;
-            height: number;
-            start_time: number;
-            file: {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            };
-            timings: {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            };
-            quality: "low";
-            count: number;
-            end_time: number;
-        }[];
+        type: "tile-series-metadata";
+        file: {
+            size: number;
+            s3_filename: string;
+            content_type: string;
+            mtime: string;
+            md5: string;
+            sha256: string;
+            s3_uri: string;
+            s3_version_id: string;
+            s3_etag: string;
+            s3_parts: number[];
+        };
+        timings: {
+            metadata_http_duration: number;
+        };
     } | undefined;
     prevue_metadata?: {
         type: "prevue";
@@ -31365,7 +30995,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 tags?: Record<string, string | number> | undefined;
             };
         }>;
-        codecs: z.ZodOptional<z.ZodString>;
+        codecs: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         hint: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"hint">;
             poster: z.ZodArray<z.ZodObject<{
@@ -31513,7 +31143,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 quality: "medium" | "high";
             }[];
         } | undefined;
-        codecs?: string | undefined;
+        codecs?: string[] | undefined;
     }, {
         type: "video";
         file: {
@@ -31617,7 +31247,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 quality: "medium" | "high";
             }[];
         } | undefined;
-        codecs?: string | undefined;
+        codecs?: string[] | undefined;
     }>, z.ZodObject<z.objectUtil.extendShape<{
         type: z.ZodLiteral<"base">;
         file: z.ZodObject<{
@@ -32328,201 +31958,95 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         }[];
     }>>;
     poster_series_selected_index: z.ZodOptional<z.ZodNumber>;
-    tile_series_metadata: z.ZodOptional<z.ZodObject<{
-        type: z.ZodLiteral<"tile-series">;
-        series: z.ZodArray<z.ZodObject<z.objectUtil.extendShape<{
-            type: z.ZodLiteral<"base">;
-            file: z.ZodObject<{
-                s3_filename: z.ZodString;
-                content_type: z.ZodString;
-                size: z.ZodNumber;
-                mtime: z.ZodString;
-                md5: z.ZodString;
-                sha256: z.ZodString;
-                s3_uri: z.ZodString;
-                s3_version_id: z.ZodString;
-                s3_etag: z.ZodString;
-                s3_parts: z.ZodArray<z.ZodNumber, "many">;
-            }, "strip", z.ZodTypeAny, {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            }, {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            }>;
-            timings: z.ZodObject<{
-                file_http_duration: z.ZodNumber;
-                file_ck_duration: z.ZodNumber;
-            }, "strip", z.ZodTypeAny, {
-                file_http_duration: number;
-                file_ck_duration: number;
-            }, {
-                file_http_duration: number;
-                file_ck_duration: number;
-            }>;
+    tile_series_metadata: z.ZodOptional<z.ZodObject<z.objectUtil.extendShape<{
+        type: z.ZodLiteral<"base">;
+        file: z.ZodObject<{
+            s3_filename: z.ZodString;
+            content_type: z.ZodString;
+            size: z.ZodNumber;
+            mtime: z.ZodString;
+            md5: z.ZodString;
+            sha256: z.ZodString;
+            s3_uri: z.ZodString;
+            s3_version_id: z.ZodString;
+            s3_etag: z.ZodString;
+            s3_parts: z.ZodArray<z.ZodNumber, "many">;
+        }, "strip", z.ZodTypeAny, {
+            size: number;
+            s3_filename: string;
+            content_type: string;
+            mtime: string;
+            md5: string;
+            sha256: string;
+            s3_uri: string;
+            s3_version_id: string;
+            s3_etag: string;
+            s3_parts: number[];
         }, {
-            type: z.ZodLiteral<"tile-series-image">;
-            index: z.ZodNumber;
-            count: z.ZodNumber;
-            quality: z.ZodEnum<["low"]>;
-            start_time: z.ZodNumber;
-            end_time: z.ZodNumber;
-            width: z.ZodNumber;
-            height: z.ZodNumber;
-            timings: z.ZodObject<{
-                tile_series_ffmpeg_duration: z.ZodNumber;
-                tile_series_avifenc_duration: z.ZodOptional<z.ZodNumber>;
-                tile_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
-                tile_series_ck_duration: z.ZodNumber;
-                tile_series_http_duration: z.ZodNumber;
-            }, "strip", z.ZodTypeAny, {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            }, {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            }>;
-        }>, "strip", z.ZodTypeAny, {
-            type: "tile-series-image";
-            index: number;
-            width: number;
-            height: number;
-            start_time: number;
-            file: {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            };
-            timings: {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            };
-            quality: "low";
-            count: number;
-            end_time: number;
+            size: number;
+            s3_filename: string;
+            content_type: string;
+            mtime: string;
+            md5: string;
+            sha256: string;
+            s3_uri: string;
+            s3_version_id: string;
+            s3_etag: string;
+            s3_parts: number[];
+        }>;
+        timings: z.ZodObject<{
+            file_http_duration: z.ZodNumber;
+            file_ck_duration: z.ZodNumber;
+        }, "strip", z.ZodTypeAny, {
+            file_http_duration: number;
+            file_ck_duration: number;
         }, {
-            type: "tile-series-image";
-            index: number;
-            width: number;
-            height: number;
-            start_time: number;
-            file: {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            };
-            timings: {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            };
-            quality: "low";
-            count: number;
-            end_time: number;
-        }>, "many">;
-    }, "strip", z.ZodTypeAny, {
-        type: "tile-series";
-        series: {
-            type: "tile-series-image";
-            index: number;
-            width: number;
-            height: number;
-            start_time: number;
-            file: {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            };
-            timings: {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            };
-            quality: "low";
-            count: number;
-            end_time: number;
-        }[];
+            file_http_duration: number;
+            file_ck_duration: number;
+        }>;
     }, {
-        type: "tile-series";
-        series: {
-            type: "tile-series-image";
-            index: number;
-            width: number;
-            height: number;
-            start_time: number;
-            file: {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            };
-            timings: {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            };
-            quality: "low";
-            count: number;
-            end_time: number;
-        }[];
+        type: z.ZodLiteral<"tile-series-metadata">;
+        timings: z.ZodObject<{
+            metadata_http_duration: z.ZodNumber;
+        }, "strip", z.ZodTypeAny, {
+            metadata_http_duration: number;
+        }, {
+            metadata_http_duration: number;
+        }>;
+    }>, "strip", z.ZodTypeAny, {
+        type: "tile-series-metadata";
+        file: {
+            size: number;
+            s3_filename: string;
+            content_type: string;
+            mtime: string;
+            md5: string;
+            sha256: string;
+            s3_uri: string;
+            s3_version_id: string;
+            s3_etag: string;
+            s3_parts: number[];
+        };
+        timings: {
+            metadata_http_duration: number;
+        };
+    }, {
+        type: "tile-series-metadata";
+        file: {
+            size: number;
+            s3_filename: string;
+            content_type: string;
+            mtime: string;
+            md5: string;
+            sha256: string;
+            s3_uri: string;
+            s3_version_id: string;
+            s3_etag: string;
+            s3_parts: number[];
+        };
+        timings: {
+            metadata_http_duration: number;
+        };
     }>>;
     prevue_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"prevue">;
@@ -33418,23 +32942,14 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 width: z.ZodNumber;
                 height: z.ZodNumber;
                 timings: z.ZodObject<{
-                    tile_series_ffmpeg_duration: z.ZodNumber;
-                    tile_series_avifenc_duration: z.ZodOptional<z.ZodNumber>;
-                    tile_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
                     tile_series_ck_duration: z.ZodNumber;
                     tile_series_http_duration: z.ZodNumber;
                 }, "strip", z.ZodTypeAny, {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 }, {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 }>;
             }>, "strip", z.ZodTypeAny, {
                 type: "tile-series-image";
@@ -33455,11 +32970,8 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
@@ -33483,18 +32995,37 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
                 end_time: number;
             }>, "many">;
+            timings: z.ZodObject<{
+                tile_series_ffprobe_duration: z.ZodNumber;
+                tile_series_ffmpeg_duration: z.ZodNumber;
+                tile_series_avifenc_duration: z.ZodOptional<z.ZodNumber>;
+                tile_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
+            }, "strip", z.ZodTypeAny, {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            }, {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            }>;
         }, "strip", z.ZodTypeAny, {
             type: "tile-series";
+            timings: {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            };
             series: {
                 type: "tile-series-image";
                 index: number;
@@ -33514,11 +33045,8 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
@@ -33526,6 +33054,12 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             }[];
         }, {
             type: "tile-series";
+            timings: {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            };
             series: {
                 type: "tile-series-image";
                 index: number;
@@ -33545,11 +33079,8 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
@@ -33835,6 +33366,12 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series";
+            timings: {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            };
             series: {
                 type: "tile-series-image";
                 index: number;
@@ -33854,11 +33391,8 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
@@ -34012,6 +33546,12 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series";
+            timings: {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            };
             series: {
                 type: "tile-series-image";
                 index: number;
@@ -34031,11 +33571,8 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
@@ -34742,7 +34279,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 quality: "medium" | "high";
             }[];
         } | undefined;
-        codecs?: string | undefined;
+        codecs?: string[] | undefined;
     } | {
         type: "rejected";
         file: {
@@ -34896,6 +34433,12 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series";
+            timings: {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            };
             series: {
                 type: "tile-series-image";
                 index: number;
@@ -34915,11 +34458,8 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
@@ -35043,36 +34583,22 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         }[];
     } | undefined;
     tile_series_metadata?: {
-        type: "tile-series";
-        series: {
-            type: "tile-series-image";
-            index: number;
-            width: number;
-            height: number;
-            start_time: number;
-            file: {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            };
-            timings: {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            };
-            quality: "low";
-            count: number;
-            end_time: number;
-        }[];
+        type: "tile-series-metadata";
+        file: {
+            size: number;
+            s3_filename: string;
+            content_type: string;
+            mtime: string;
+            md5: string;
+            sha256: string;
+            s3_uri: string;
+            s3_version_id: string;
+            s3_etag: string;
+            s3_parts: number[];
+        };
+        timings: {
+            metadata_http_duration: number;
+        };
     } | undefined;
     prevue_metadata?: {
         type: "prevue";
@@ -35765,7 +35291,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 quality: "medium" | "high";
             }[];
         } | undefined;
-        codecs?: string | undefined;
+        codecs?: string[] | undefined;
     } | {
         type: "rejected";
         file: {
@@ -35919,6 +35445,12 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series";
+            timings: {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            };
             series: {
                 type: "tile-series-image";
                 index: number;
@@ -35938,11 +35470,8 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
@@ -36065,36 +35594,22 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         }[];
     } | undefined;
     tile_series_metadata?: {
-        type: "tile-series";
-        series: {
-            type: "tile-series-image";
-            index: number;
-            width: number;
-            height: number;
-            start_time: number;
-            file: {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            };
-            timings: {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            };
-            quality: "low";
-            count: number;
-            end_time: number;
-        }[];
+        type: "tile-series-metadata";
+        file: {
+            size: number;
+            s3_filename: string;
+            content_type: string;
+            mtime: string;
+            md5: string;
+            sha256: string;
+            s3_uri: string;
+            s3_version_id: string;
+            s3_etag: string;
+            s3_parts: number[];
+        };
+        timings: {
+            metadata_http_duration: number;
+        };
     } | undefined;
     prevue_metadata?: {
         type: "prevue";
@@ -36815,7 +36330,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 quality: "medium" | "high";
             }[];
         } | undefined;
-        codecs?: string | undefined;
+        codecs?: string[] | undefined;
     } | {
         type: "rejected";
         file: {
@@ -36969,6 +36484,12 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series";
+            timings: {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            };
             series: {
                 type: "tile-series-image";
                 index: number;
@@ -36988,11 +36509,8 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
@@ -37115,36 +36633,22 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         }[];
     } | undefined;
     tile_series_metadata?: {
-        type: "tile-series";
-        series: {
-            type: "tile-series-image";
-            index: number;
-            width: number;
-            height: number;
-            start_time: number;
-            file: {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            };
-            timings: {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            };
-            quality: "low";
-            count: number;
-            end_time: number;
-        }[];
+        type: "tile-series-metadata";
+        file: {
+            size: number;
+            s3_filename: string;
+            content_type: string;
+            mtime: string;
+            md5: string;
+            sha256: string;
+            s3_uri: string;
+            s3_version_id: string;
+            s3_etag: string;
+            s3_parts: number[];
+        };
+        timings: {
+            metadata_http_duration: number;
+        };
     } | undefined;
     prevue_metadata?: {
         type: "prevue";
@@ -37899,7 +37403,7 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
                 quality: "medium" | "high";
             }[];
         } | undefined;
-        codecs?: string | undefined;
+        codecs?: string[] | undefined;
     } | {
         type: "rejected";
         file: {
@@ -38053,6 +37557,12 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series";
+            timings: {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            };
             series: {
                 type: "tile-series-image";
                 index: number;
@@ -38072,11 +37582,8 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
@@ -38196,36 +37703,22 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
         }[];
     } | undefined;
     tile_series_metadata?: {
-        type: "tile-series";
-        series: {
-            type: "tile-series-image";
-            index: number;
-            width: number;
-            height: number;
-            start_time: number;
-            file: {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            };
-            timings: {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            };
-            quality: "low";
-            count: number;
-            end_time: number;
-        }[];
+        type: "tile-series-metadata";
+        file: {
+            size: number;
+            s3_filename: string;
+            content_type: string;
+            mtime: string;
+            md5: string;
+            sha256: string;
+            s3_uri: string;
+            s3_version_id: string;
+            s3_etag: string;
+            s3_parts: number[];
+        };
+        timings: {
+            metadata_http_duration: number;
+        };
     } | undefined;
     prevue_metadata?: {
         type: "prevue";
@@ -39008,7 +38501,7 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
                 quality: "medium" | "high";
             }[];
         } | undefined;
-        codecs?: string | undefined;
+        codecs?: string[] | undefined;
     } | {
         type: "rejected";
         file: {
@@ -39162,6 +38655,12 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series";
+            timings: {
+                tile_series_ffprobe_duration: number;
+                tile_series_ffmpeg_duration: number;
+                tile_series_avifenc_duration?: number | undefined;
+                tile_series_sharp_duration?: number | undefined;
+            };
             series: {
                 type: "tile-series-image";
                 index: number;
@@ -39181,11 +38680,8 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
                     s3_parts: number[];
                 };
                 timings: {
-                    tile_series_ffmpeg_duration: number;
                     tile_series_ck_duration: number;
                     tile_series_http_duration: number;
-                    tile_series_avifenc_duration?: number | undefined;
-                    tile_series_sharp_duration?: number | undefined;
                 };
                 quality: "low";
                 count: number;
@@ -39309,36 +38805,22 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
         }[];
     } | undefined;
     tile_series_metadata?: {
-        type: "tile-series";
-        series: {
-            type: "tile-series-image";
-            index: number;
-            width: number;
-            height: number;
-            start_time: number;
-            file: {
-                size: number;
-                s3_filename: string;
-                content_type: string;
-                mtime: string;
-                md5: string;
-                sha256: string;
-                s3_uri: string;
-                s3_version_id: string;
-                s3_etag: string;
-                s3_parts: number[];
-            };
-            timings: {
-                tile_series_ffmpeg_duration: number;
-                tile_series_ck_duration: number;
-                tile_series_http_duration: number;
-                tile_series_avifenc_duration?: number | undefined;
-                tile_series_sharp_duration?: number | undefined;
-            };
-            quality: "low";
-            count: number;
-            end_time: number;
-        }[];
+        type: "tile-series-metadata";
+        file: {
+            size: number;
+            s3_filename: string;
+            content_type: string;
+            mtime: string;
+            md5: string;
+            sha256: string;
+            s3_uri: string;
+            s3_version_id: string;
+            s3_etag: string;
+            s3_parts: number[];
+        };
+        timings: {
+            metadata_http_duration: number;
+        };
     } | undefined;
     prevue_metadata?: {
         type: "prevue";

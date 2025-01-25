@@ -1,6 +1,6 @@
 // vim: tabstop=8 softtabstop=0 noexpandtab shiftwidth=8 nosmarttab
 import { z } from 'zod';
-import { AnimatedPosterMetadata, Metadata, MetadataMetadata, PosterMetadata, PosterSeriesMetadata, PrevueMetadata, TileSeriesMetadata, } from '@dsbunny/metadata';
+import { AnimatedPosterMetadata, Metadata, MetadataMetadata, PosterMetadata, PosterSeriesMetadata, PrevueMetadata, TileSeriesMetadataMetadata, } from '@dsbunny/metadata';
 import { TranscodeStateEnum } from './transcode-state.js';
 import { VersionMetadata } from './versions.schema.js';
 import { jsonSafeParser } from './json-safe-parser.js';
@@ -31,7 +31,7 @@ export const AssetBase = z.object({
         .describe('The poster entries of the asset'),
     poster_series_selected_index: z.number().int().min(1).max(3).optional()
         .describe('The selected index of the poster series'),
-    tile_series_metadata: TileSeriesMetadata.optional()
+    tile_series_metadata: TileSeriesMetadataMetadata.optional()
         .describe('The tile entries of the asset'),
     prevue_metadata: PrevueMetadata.optional()
         .describe('The prevue entry of the asset'),
@@ -205,7 +205,7 @@ export const DbDtoToAssetBase = z.object({
     }
     const tile_series_metadata_result = !dto.tile_series_metadata
         ? { success: true, data: undefined }
-        : jsonSafeParser(TileSeriesMetadata).safeParse(dto.tile_series_metadata);
+        : jsonSafeParser(TileSeriesMetadataMetadata).safeParse(dto.tile_series_metadata);
     if (!tile_series_metadata_result.success) {
         ctx.addIssue({
             code: z.ZodIssueCode.custom,
@@ -328,7 +328,7 @@ export const DbDtoToAsset = z.object({
     }
     const tile_series_metadata_result = !dto.tile_series_metadata
         ? { success: true, data: undefined }
-        : jsonSafeParser(TileSeriesMetadata).safeParse(dto.tile_series_metadata);
+        : jsonSafeParser(TileSeriesMetadataMetadata).safeParse(dto.tile_series_metadata);
     if (!tile_series_metadata_result.success) {
         ctx.addIssue({
             code: z.ZodIssueCode.custom,
