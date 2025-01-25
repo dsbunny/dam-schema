@@ -8,7 +8,7 @@ import {
 	PosterMetadata,
 	PosterSeriesMetadata,
 	PrevueMetadata,
-	TileSeriesMetadata,
+	TileSeriesMetadataMetadata,
 } from '@dsbunny/metadata';
 
 // `file` and `poster` will be present if the version is not current.
@@ -41,7 +41,7 @@ export const OldVersionMetadata = z.object({
 		.describe('The animated poster entry of the asset'),
 	poster_series_metadata: PosterSeriesMetadata.optional()
 		.describe('The poster entries of the asset'),
-	tile_series_metadata: TileSeriesMetadata.optional()
+	tile_series_metadata: TileSeriesMetadataMetadata.optional()
 		.describe('The tile entries of the asset'),
 	prevue_metadata: PrevueMetadata.optional()
 		.describe('The prevue entry of the asset'),
