@@ -1,4 +1,7 @@
 # Changelog
+## v11.3.3
+- Add `PosterAnalysis` object for generated captions and tags.
+
 ## v11.2.2
 - Replace `TileSeriesMetadata` with `TileSeriesMetadataMetadata`.
 

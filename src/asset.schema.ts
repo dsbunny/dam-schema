@@ -13,6 +13,7 @@ import {
 import { TranscodeStateEnum } from './transcode-state.js';
 import { VersionMetadata } from './versions.schema.js';
 import { jsonSafeParser } from './json-safe-parser.js';
+import { PosterAnalysis } from 'poster-analysis.schema.js';
 
 export const SkippableTranscodeStateEnum = z.enum(
 	[ ...TranscodeStateEnum.options, 'skipped' ]
@@ -42,6 +43,8 @@ export const AssetBase = z.object({
 		.describe('The metadata of the asset'),
 	poster_metadata: PosterMetadata.optional()
 		.describe('The poster entry of the asset'),
+	poster_analysis: PosterAnalysis.optional()
+    		.describe('Generated analysis of the poster including caption and tags'),
 	animated_poster_metadata: AnimatedPosterMetadata.optional()
 		.describe('The animated poster entry of the asset'),
 	poster_series_metadata: PosterSeriesMetadata.optional()
