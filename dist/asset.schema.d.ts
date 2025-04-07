@@ -35028,6 +35028,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
     metadata: string;
     metadata_metadata: string;
     poster_metadata: string;
+    poster_analysis: string;
     animated_poster_metadata: string;
     poster_series_metadata: string;
     poster_series_selected_index: number | null;
@@ -35048,12 +35049,6 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
     create_timestamp: string;
     modify_timestamp: string;
     is_deleted: boolean;
-    poster_analysis?: {
-        caption: string;
-        tags: string[];
-        source: string;
-        generated_at: string;
-    } | undefined;
     poster_url?: string | undefined;
     animated_poster_url?: string | undefined;
     prevue_url?: string | undefined;
@@ -36065,6 +36060,7 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
     metadata: z.ZodString;
     metadata_metadata: z.ZodString;
     poster_metadata: z.ZodNullable<z.ZodString>;
+    poster_analysis: z.ZodNullable<z.ZodString>;
     animated_poster_metadata: z.ZodNullable<z.ZodString>;
     poster_series_metadata: z.ZodNullable<z.ZodString>;
     poster_series_selected_index: z.ZodNullable<z.ZodNumber>;
@@ -36090,6 +36086,7 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
     tenant_id: string;
     name: string;
     metadata: string;
+    poster_analysis: string | null;
     poster_series_selected_index: number | null;
     metadata_state: "pending" | "processing" | "processed" | "rejected" | "error";
     poster_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
@@ -36110,6 +36107,7 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
     tenant_id: string;
     name: string;
     metadata: string;
+    poster_analysis: string | null;
     poster_series_selected_index: number | null;
     metadata_state: "pending" | "processing" | "processed" | "rejected" | "error";
     poster_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
@@ -37124,6 +37122,7 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
     tenant_id: string;
     name: string;
     metadata: string;
+    poster_analysis: string | null;
     poster_series_selected_index: number | null;
     metadata_state: "pending" | "processing" | "processed" | "rejected" | "error";
     poster_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
@@ -37141,6 +37140,7 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
     metadata: z.ZodString;
     metadata_metadata: z.ZodString;
     poster_metadata: z.ZodNullable<z.ZodString>;
+    poster_analysis: z.ZodNullable<z.ZodString>;
     animated_poster_metadata: z.ZodNullable<z.ZodString>;
     poster_series_metadata: z.ZodNullable<z.ZodString>;
     poster_series_selected_index: z.ZodNullable<z.ZodNumber>;
@@ -37169,6 +37169,7 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
     tenant_id: string;
     name: string;
     metadata: string;
+    poster_analysis: string | null;
     poster_series_selected_index: number | null;
     metadata_state: "pending" | "processing" | "processed" | "rejected" | "error";
     poster_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
@@ -37193,6 +37194,7 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
     tenant_id: string;
     name: string;
     metadata: string;
+    poster_analysis: string | null;
     poster_series_selected_index: number | null;
     metadata_state: "pending" | "processing" | "processed" | "rejected" | "error";
     poster_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
@@ -38218,6 +38220,7 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
     tenant_id: string;
     name: string;
     metadata: string;
+    poster_analysis: string | null;
     poster_series_selected_index: number | null;
     metadata_state: "pending" | "processing" | "processed" | "rejected" | "error";
     poster_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";

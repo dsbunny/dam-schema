@@ -106,6 +106,7 @@ export const DbDtoFromAsset = Asset.transform((asset) => {
         metadata: JSON.stringify(asset.metadata),
         metadata_metadata: JSON.stringify(asset.metadata_metadata),
         poster_metadata: JSON.stringify(asset.poster_metadata) ?? null,
+        poster_analysis: JSON.stringify(asset.poster_analysis) ?? null,
         animated_poster_metadata: JSON.stringify(asset.animated_poster_metadata) ?? null,
         poster_series_metadata: JSON.stringify(asset.poster_series_metadata) ?? null,
         poster_series_selected_index: asset.poster_series_selected_index ?? null,
@@ -126,6 +127,7 @@ export const DbDtoToAssetBase = z.object({
     metadata: z.string().max(65535),
     metadata_metadata: z.string().max(4096),
     poster_metadata: z.string().max(8192).nullable(),
+    poster_analysis: z.string().max(4096).nullable(),
     animated_poster_metadata: z.string().max(4096).nullable(),
     poster_series_metadata: z.string().max(16384).nullable(),
     poster_series_selected_index: z.number().int().min(1).max(3).nullable(),
@@ -179,6 +181,15 @@ export const DbDtoToAssetBase = z.object({
         return z.NEVER;
     }
     // The following fields are optional, so we don't need to check for success.
+    const poster_analysis_result = !dto.poster_analysis
+        ? { success: true, data: undefined }
+        : jsonSafeParser(PosterAnalysis).safeParse(dto.poster_analysis);
+    if (!poster_analysis_result.success) {
+        ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: 'Invalid poster analysis',
+        });
+    }
     const poster_metadata_result = !dto.poster_metadata
         ? { success: true, data: undefined }
         : jsonSafeParser(PosterMetadata).safeParse(dto.poster_metadata);
@@ -229,6 +240,7 @@ export const DbDtoToAssetBase = z.object({
         metadata: metadata_result.data,
         metadata_metadata: metadata_metadata_result.data,
         poster_metadata: poster_metadata_result.data,
+        poster_analysis: poster_analysis_result.data,
         animated_poster_metadata: animated_poster_metadata_result.data,
         poster_series_metadata: poster_series_metadata_result.data,
         poster_series_selected_index: dto.poster_series_selected_index ?? undefined,
@@ -246,6 +258,7 @@ export const DbDtoToAsset = z.object({
     metadata: z.string().max(65535),
     metadata_metadata: z.string().max(4096),
     poster_metadata: z.string().max(8192).nullable(),
+    poster_analysis: z.string().max(4096).nullable(),
     animated_poster_metadata: z.string().max(4096).nullable(),
     poster_series_metadata: z.string().max(16384).nullable(),
     poster_series_selected_index: z.number().int().min(1).max(3).nullable(),
@@ -302,6 +315,15 @@ export const DbDtoToAsset = z.object({
         return z.NEVER;
     }
     // The following fields are optional, so we don't need to check for success.
+    const poster_analysis_result = !dto.poster_analysis
+        ? { success: true, data: undefined }
+        : jsonSafeParser(PosterAnalysis).safeParse(dto.poster_analysis);
+    if (!poster_analysis_result.success) {
+        ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: 'Invalid poster analysis',
+        });
+    }
     const poster_metadata_result = !dto.poster_metadata
         ? { success: true, data: undefined }
         : jsonSafeParser(PosterMetadata).safeParse(dto.poster_metadata);
@@ -352,6 +374,7 @@ export const DbDtoToAsset = z.object({
         metadata: metadata_result.data,
         metadata_metadata: metadata_metadata_result.data,
         poster_metadata: poster_metadata_result.data,
+        poster_analysis: poster_analysis_result.data,
         animated_poster_metadata: animated_poster_metadata_result.data,
         poster_series_metadata: poster_series_metadata_result.data,
         poster_series_selected_index: dto.poster_series_selected_index ?? undefined,
