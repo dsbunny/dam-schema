@@ -330,6 +330,22 @@ export declare const OldVersionMetadata: z.ZodObject<{
             blurhash?: string | undefined;
         }[];
     }>>;
+    poster_analysis: z.ZodOptional<z.ZodObject<{
+        caption: z.ZodString;
+        tags: z.ZodArray<z.ZodString, "many">;
+        source: z.ZodString;
+        generated_at: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        caption: string;
+        tags: string[];
+        source: string;
+        generated_at: string;
+    }, {
+        caption: string;
+        tags: string[];
+        source: string;
+        generated_at: string;
+    }>>;
     animated_poster_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"animated-poster">;
         poster: z.ZodObject<z.objectUtil.extendShape<{
@@ -985,6 +1001,12 @@ export declare const OldVersionMetadata: z.ZodObject<{
             blurhash?: string | undefined;
         }[];
     } | undefined;
+    poster_analysis?: {
+        caption: string;
+        tags: string[];
+        source: string;
+        generated_at: string;
+    } | undefined;
     animated_poster_metadata?: {
         type: "animated-poster";
         poster: {
@@ -1147,6 +1169,12 @@ export declare const OldVersionMetadata: z.ZodObject<{
             quality: "medium" | "high";
             blurhash?: string | undefined;
         }[];
+    } | undefined;
+    poster_analysis?: {
+        caption: string;
+        tags: string[];
+        source: string;
+        generated_at: string;
     } | undefined;
     animated_poster_metadata?: {
         type: "animated-poster";
@@ -1577,6 +1605,22 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
             blurhash?: string | undefined;
         }[];
     }>>;
+    poster_analysis: z.ZodOptional<z.ZodObject<{
+        caption: z.ZodString;
+        tags: z.ZodArray<z.ZodString, "many">;
+        source: z.ZodString;
+        generated_at: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        caption: string;
+        tags: string[];
+        source: string;
+        generated_at: string;
+    }, {
+        caption: string;
+        tags: string[];
+        source: string;
+        generated_at: string;
+    }>>;
     animated_poster_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"animated-poster">;
         poster: z.ZodObject<z.objectUtil.extendShape<{
@@ -2232,6 +2276,12 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
             blurhash?: string | undefined;
         }[];
     } | undefined;
+    poster_analysis?: {
+        caption: string;
+        tags: string[];
+        source: string;
+        generated_at: string;
+    } | undefined;
     animated_poster_metadata?: {
         type: "animated-poster";
         poster: {
@@ -2394,6 +2444,12 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
             quality: "medium" | "high";
             blurhash?: string | undefined;
         }[];
+    } | undefined;
+    poster_analysis?: {
+        caption: string;
+        tags: string[];
+        source: string;
+        generated_at: string;
     } | undefined;
     animated_poster_metadata?: {
         type: "animated-poster";
