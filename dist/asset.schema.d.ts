@@ -4602,6 +4602,22 @@ export declare const AssetBase: z.ZodObject<{
             blurhash?: string | undefined;
         }[];
     }>>;
+    poster_analysis: z.ZodOptional<z.ZodObject<{
+        caption: z.ZodString;
+        tags: z.ZodArray<z.ZodString, "many">;
+        source: z.ZodString;
+        generated_at: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        caption: string;
+        tags: string[];
+        source: string;
+        generated_at: string;
+    }, {
+        caption: string;
+        tags: string[];
+        source: string;
+        generated_at: string;
+    }>>;
     animated_poster_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"animated-poster">;
         poster: z.ZodObject<z.objectUtil.extendShape<{
@@ -6466,6 +6482,7 @@ export declare const AssetBase: z.ZodObject<{
             metadata_http_duration: number;
         };
     };
+    tags: string[];
     tenant_id: string;
     name: string;
     metadata: {
@@ -7305,7 +7322,6 @@ export declare const AssetBase: z.ZodObject<{
             };
         } | undefined;
     })[];
-    tags: string[];
     poster_metadata?: {
         type: "poster";
         poster: {
@@ -7433,6 +7449,12 @@ export declare const AssetBase: z.ZodObject<{
                 prevue_http_duration: number;
             };
         };
+    } | undefined;
+    poster_analysis?: {
+        caption: string;
+        tags: string[];
+        source: string;
+        generated_at: string;
     } | undefined;
     poster_series_selected_index?: number | undefined;
 }, {
@@ -7454,6 +7476,7 @@ export declare const AssetBase: z.ZodObject<{
             metadata_http_duration: number;
         };
     };
+    tags: string[];
     tenant_id: string;
     name: string;
     metadata: {
@@ -8293,7 +8316,6 @@ export declare const AssetBase: z.ZodObject<{
             };
         } | undefined;
     })[];
-    tags: string[];
     poster_metadata?: {
         type: "poster";
         poster: {
@@ -8421,6 +8443,12 @@ export declare const AssetBase: z.ZodObject<{
                 prevue_http_duration: number;
             };
         };
+    } | undefined;
+    poster_analysis?: {
+        caption: string;
+        tags: string[];
+        source: string;
+        generated_at: string;
     } | undefined;
     poster_series_selected_index?: number | undefined;
 }>;
@@ -13059,6 +13087,22 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             blurhash?: string | undefined;
         }[];
     }>>;
+    poster_analysis: z.ZodOptional<z.ZodObject<{
+        caption: z.ZodString;
+        tags: z.ZodArray<z.ZodString, "many">;
+        source: z.ZodString;
+        generated_at: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        caption: string;
+        tags: string[];
+        source: string;
+        generated_at: string;
+    }, {
+        caption: string;
+        tags: string[];
+        source: string;
+        generated_at: string;
+    }>>;
     animated_poster_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"animated-poster">;
         poster: z.ZodObject<z.objectUtil.extendShape<{
@@ -14934,6 +14978,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             metadata_http_duration: number;
         };
     };
+    tags: string[];
     tenant_id: string;
     name: string;
     metadata: {
@@ -15773,7 +15818,6 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             };
         } | undefined;
     })[];
-    tags: string[];
     asset_id: string;
     create_timestamp: string;
     modify_timestamp: string;
@@ -15906,6 +15950,12 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             };
         };
     } | undefined;
+    poster_analysis?: {
+        caption: string;
+        tags: string[];
+        source: string;
+        generated_at: string;
+    } | undefined;
     poster_series_selected_index?: number | undefined;
     poster_url?: string | undefined;
     animated_poster_url?: string | undefined;
@@ -15929,6 +15979,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             metadata_http_duration: number;
         };
     };
+    tags: string[];
     tenant_id: string;
     name: string;
     metadata: {
@@ -16768,7 +16819,6 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             };
         } | undefined;
     })[];
-    tags: string[];
     asset_id: string;
     create_timestamp: string;
     modify_timestamp: string;
@@ -16899,6 +16949,12 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 prevue_http_duration: number;
             };
         };
+    } | undefined;
+    poster_analysis?: {
+        caption: string;
+        tags: string[];
+        source: string;
+        generated_at: string;
     } | undefined;
     poster_series_selected_index?: number | undefined;
     is_deleted?: boolean | undefined;
@@ -21504,6 +21560,22 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             blurhash?: string | undefined;
         }[];
     }>>;
+    poster_analysis: z.ZodOptional<z.ZodObject<{
+        caption: z.ZodString;
+        tags: z.ZodArray<z.ZodString, "many">;
+        source: z.ZodString;
+        generated_at: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        caption: string;
+        tags: string[];
+        source: string;
+        generated_at: string;
+    }, {
+        caption: string;
+        tags: string[];
+        source: string;
+        generated_at: string;
+    }>>;
     animated_poster_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"animated-poster">;
         poster: z.ZodObject<z.objectUtil.extendShape<{
@@ -23368,6 +23440,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             metadata_http_duration: number;
         };
     };
+    tags: string[];
     tenant_id: string;
     name: string;
     metadata: {
@@ -24207,7 +24280,6 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             };
         } | undefined;
     })[];
-    tags: string[];
     poster_metadata?: {
         type: "poster";
         poster: {
@@ -24335,6 +24407,12 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 prevue_http_duration: number;
             };
         };
+    } | undefined;
+    poster_analysis?: {
+        caption: string;
+        tags: string[];
+        source: string;
+        generated_at: string;
     } | undefined;
     poster_series_selected_index?: number | undefined;
 }, {
@@ -24356,6 +24434,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             metadata_http_duration: number;
         };
     };
+    tags: string[];
     tenant_id: string;
     name: string;
     metadata: {
@@ -25195,7 +25274,6 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             };
         } | undefined;
     })[];
-    tags: string[];
     poster_metadata?: {
         type: "poster";
         poster: {
@@ -25323,6 +25401,12 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 prevue_http_duration: number;
             };
         };
+    } | undefined;
+    poster_analysis?: {
+        caption: string;
+        tags: string[];
+        source: string;
+        generated_at: string;
     } | undefined;
     poster_series_selected_index?: number | undefined;
 }>, {
@@ -25467,6 +25551,12 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             };
         };
     } | undefined;
+    poster_analysis?: {
+        caption: string;
+        tags: string[];
+        source: string;
+        generated_at: string;
+    } | undefined;
     poster_series_selected_index?: number | undefined;
 }, {
     metadata_metadata: {
@@ -25487,6 +25577,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             metadata_http_duration: number;
         };
     };
+    tags: string[];
     tenant_id: string;
     name: string;
     metadata: {
@@ -26326,7 +26417,6 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             };
         } | undefined;
     })[];
-    tags: string[];
     poster_metadata?: {
         type: "poster";
         poster: {
@@ -26454,6 +26544,12 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 prevue_http_duration: number;
             };
         };
+    } | undefined;
+    poster_analysis?: {
+        caption: string;
+        tags: string[];
+        source: string;
+        generated_at: string;
     } | undefined;
     poster_series_selected_index?: number | undefined;
 }>;
@@ -31054,6 +31150,22 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             blurhash?: string | undefined;
         }[];
     }>>;
+    poster_analysis: z.ZodOptional<z.ZodObject<{
+        caption: z.ZodString;
+        tags: z.ZodArray<z.ZodString, "many">;
+        source: z.ZodString;
+        generated_at: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        caption: string;
+        tags: string[];
+        source: string;
+        generated_at: string;
+    }, {
+        caption: string;
+        tags: string[];
+        source: string;
+        generated_at: string;
+    }>>;
     animated_poster_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"animated-poster">;
         poster: z.ZodObject<z.objectUtil.extendShape<{
@@ -32929,6 +33041,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             metadata_http_duration: number;
         };
     };
+    tags: string[];
     tenant_id: string;
     name: string;
     metadata: {
@@ -33768,7 +33881,6 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             };
         } | undefined;
     })[];
-    tags: string[];
     asset_id: string;
     create_timestamp: string;
     modify_timestamp: string;
@@ -33901,6 +34013,12 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             };
         };
     } | undefined;
+    poster_analysis?: {
+        caption: string;
+        tags: string[];
+        source: string;
+        generated_at: string;
+    } | undefined;
     poster_series_selected_index?: number | undefined;
     poster_url?: string | undefined;
     animated_poster_url?: string | undefined;
@@ -33924,6 +34042,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             metadata_http_duration: number;
         };
     };
+    tags: string[];
     tenant_id: string;
     name: string;
     metadata: {
@@ -34763,7 +34882,6 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             };
         } | undefined;
     })[];
-    tags: string[];
     asset_id: string;
     create_timestamp: string;
     modify_timestamp: string;
@@ -34894,6 +35012,12 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 prevue_http_duration: number;
             };
         };
+    } | undefined;
+    poster_analysis?: {
+        caption: string;
+        tags: string[];
+        source: string;
+        generated_at: string;
     } | undefined;
     poster_series_selected_index?: number | undefined;
     is_deleted?: boolean | undefined;
@@ -34924,6 +35048,12 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
     create_timestamp: string;
     modify_timestamp: string;
     is_deleted: boolean;
+    poster_analysis?: {
+        caption: string;
+        tags: string[];
+        source: string;
+        generated_at: string;
+    } | undefined;
     poster_url?: string | undefined;
     animated_poster_url?: string | undefined;
     prevue_url?: string | undefined;
@@ -34946,6 +35076,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             metadata_http_duration: number;
         };
     };
+    tags: string[];
     tenant_id: string;
     name: string;
     metadata: {
@@ -35785,7 +35916,6 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             };
         } | undefined;
     })[];
-    tags: string[];
     asset_id: string;
     create_timestamp: string;
     modify_timestamp: string;
@@ -35916,6 +36046,12 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 prevue_http_duration: number;
             };
         };
+    } | undefined;
+    poster_analysis?: {
+        caption: string;
+        tags: string[];
+        source: string;
+        generated_at: string;
     } | undefined;
     poster_series_selected_index?: number | undefined;
     is_deleted?: boolean | undefined;
@@ -35950,6 +36086,7 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
     poster_series_metadata: string | null;
     tile_series_metadata: string | null;
     prevue_metadata: string | null;
+    tags: string;
     tenant_id: string;
     name: string;
     metadata: string;
@@ -35962,7 +36099,6 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
     prevue_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     is_settled: number;
     versions: string;
-    tags: string;
 }, {
     metadata_metadata: string;
     poster_metadata: string | null;
@@ -35970,6 +36106,7 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
     poster_series_metadata: string | null;
     tile_series_metadata: string | null;
     prevue_metadata: string | null;
+    tags: string;
     tenant_id: string;
     name: string;
     metadata: string;
@@ -35982,7 +36119,6 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
     prevue_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     is_settled: number;
     versions: string;
-    tags: string;
 }>, {
     metadata_metadata: {
         type: "metadata";
@@ -36002,6 +36138,7 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
             metadata_http_duration: number;
         };
     };
+    tags: string[];
     tenant_id: string;
     name: string;
     metadata: {
@@ -36841,7 +36978,6 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
             };
         } | undefined;
     })[];
-    tags: string[];
     poster_metadata?: {
         type: "poster";
         poster: {
@@ -36970,6 +37106,12 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
             };
         };
     } | undefined;
+    poster_analysis?: {
+        caption: string;
+        tags: string[];
+        source: string;
+        generated_at: string;
+    } | undefined;
     poster_series_selected_index?: number | undefined;
 }, {
     metadata_metadata: string;
@@ -36978,6 +37120,7 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
     poster_series_metadata: string | null;
     tile_series_metadata: string | null;
     prevue_metadata: string | null;
+    tags: string;
     tenant_id: string;
     name: string;
     metadata: string;
@@ -36990,7 +37133,6 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
     prevue_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     is_settled: number;
     versions: string;
-    tags: string;
 }>;
 export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
     asset_id: z.ZodString;
@@ -37023,6 +37165,7 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
     poster_series_metadata: string | null;
     tile_series_metadata: string | null;
     prevue_metadata: string | null;
+    tags: string;
     tenant_id: string;
     name: string;
     metadata: string;
@@ -37035,7 +37178,6 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
     prevue_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     is_settled: number;
     versions: string;
-    tags: string;
     asset_id: string;
     create_timestamp: string;
     modify_timestamp: string;
@@ -37047,6 +37189,7 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
     poster_series_metadata: string | null;
     tile_series_metadata: string | null;
     prevue_metadata: string | null;
+    tags: string;
     tenant_id: string;
     name: string;
     metadata: string;
@@ -37059,7 +37202,6 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
     prevue_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     is_settled: number;
     versions: string;
-    tags: string;
     asset_id: string;
     create_timestamp: string;
     modify_timestamp: string;
@@ -37083,6 +37225,7 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
             metadata_http_duration: number;
         };
     };
+    tags: string[];
     tenant_id: string;
     name: string;
     metadata: {
@@ -37922,7 +38065,6 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
             };
         } | undefined;
     })[];
-    tags: string[];
     asset_id: string;
     create_timestamp: string;
     modify_timestamp: string;
@@ -38055,6 +38197,12 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
             };
         };
     } | undefined;
+    poster_analysis?: {
+        caption: string;
+        tags: string[];
+        source: string;
+        generated_at: string;
+    } | undefined;
     poster_series_selected_index?: number | undefined;
     poster_url?: string | undefined;
     animated_poster_url?: string | undefined;
@@ -38066,6 +38214,7 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
     poster_series_metadata: string | null;
     tile_series_metadata: string | null;
     prevue_metadata: string | null;
+    tags: string;
     tenant_id: string;
     name: string;
     metadata: string;
@@ -38078,7 +38227,6 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
     prevue_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     is_settled: number;
     versions: string;
-    tags: string;
     asset_id: string;
     create_timestamp: string;
     modify_timestamp: string;

@@ -13,7 +13,7 @@ import {
 import { TranscodeStateEnum } from './transcode-state.js';
 import { VersionMetadata } from './versions.schema.js';
 import { jsonSafeParser } from './json-safe-parser.js';
-import { PosterAnalysis } from 'poster-analysis.schema.js';
+import { PosterAnalysis } from './poster-analysis.schema.js';
 
 export const SkippableTranscodeStateEnum = z.enum(
 	[ ...TranscodeStateEnum.options, 'skipped' ]
