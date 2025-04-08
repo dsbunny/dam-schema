@@ -2,6 +2,7 @@
 
 export * from './asset.schema.js';
 export * from './part.schema.js';
+export * from './poster-analysis.schema.js';
 export * from './s3-complete-state.schema.js';
 export * from './transcode-state.js';
 export * from './upload.schema.js';
