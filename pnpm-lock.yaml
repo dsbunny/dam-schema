@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@dsbunny/metadata':
-        specifier: github:dsbunny/metadata#8085468
-        version: https://codeload.github.com/dsbunny/metadata/tar.gz/8085468
+        specifier: github:dsbunny/metadata#08364fd
+        version: https://codeload.github.com/dsbunny/metadata/tar.gz/08364fd
       zod:
         specifier: ^3.23.8
         version: 3.24.2
@@ -21,8 +21,8 @@ importers:
 
 packages:
 
-  '@dsbunny/metadata@https://codeload.github.com/dsbunny/metadata/tar.gz/8085468':
-    resolution: {tarball: https://codeload.github.com/dsbunny/metadata/tar.gz/8085468}
+  '@dsbunny/metadata@https://codeload.github.com/dsbunny/metadata/tar.gz/08364fd':
+    resolution: {tarball: https://codeload.github.com/dsbunny/metadata/tar.gz/08364fd}
     version: 7.0.15
 
   typescript@5.8.3:
@@ -35,7 +35,7 @@ packages:
 
 snapshots:
 
-  '@dsbunny/metadata@https://codeload.github.com/dsbunny/metadata/tar.gz/8085468':
+  '@dsbunny/metadata@https://codeload.github.com/dsbunny/metadata/tar.gz/08364fd':
     dependencies:
       zod: 3.24.2
 

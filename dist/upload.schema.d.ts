@@ -231,7 +231,7 @@ export declare const Upload: z.ZodObject<{
             file_http_duration: number;
             file_ck_duration: number;
         }>;
-        tags: z.ZodArray<z.ZodString, "many">;
+        tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     }, {
         type: z.ZodLiteral<"metadata">;
         timings: z.ZodObject<{
@@ -243,7 +243,6 @@ export declare const Upload: z.ZodObject<{
         }>;
     }>, "strip", z.ZodTypeAny, {
         type: "metadata";
-        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -259,9 +258,9 @@ export declare const Upload: z.ZodObject<{
         timings: {
             metadata_http_duration: number;
         };
+        tags?: string[] | undefined;
     }, {
         type: "metadata";
-        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -277,6 +276,7 @@ export declare const Upload: z.ZodObject<{
         timings: {
             metadata_http_duration: number;
         };
+        tags?: string[] | undefined;
     }>>;
     upload_state: z.ZodEnum<["pending", "uploading", "uploaded", "error"]>;
     s3_complete_state: z.ZodEnum<["pending", "completing", "completed", "error"]>;
@@ -305,7 +305,6 @@ export declare const Upload: z.ZodObject<{
     save_state: "pending" | "error" | "saving" | "saved" | "conflict";
     metadata_metadata?: {
         type: "metadata";
-        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -321,6 +320,7 @@ export declare const Upload: z.ZodObject<{
         timings: {
             metadata_http_duration: number;
         };
+        tags?: string[] | undefined;
     } | undefined;
     s3_etag?: string | undefined;
     size?: number | undefined;
@@ -358,7 +358,6 @@ export declare const Upload: z.ZodObject<{
     save_state: "pending" | "error" | "saving" | "saved" | "conflict";
     metadata_metadata?: {
         type: "metadata";
-        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -374,6 +373,7 @@ export declare const Upload: z.ZodObject<{
         timings: {
             metadata_http_duration: number;
         };
+        tags?: string[] | undefined;
     } | undefined;
     is_deleted?: boolean | undefined;
     s3_etag?: string | undefined;
@@ -444,7 +444,7 @@ export declare const ValidatedUpload: z.ZodObject<{
             file_http_duration: number;
             file_ck_duration: number;
         }>;
-        tags: z.ZodArray<z.ZodString, "many">;
+        tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     }, {
         type: z.ZodLiteral<"metadata">;
         timings: z.ZodObject<{
@@ -456,7 +456,6 @@ export declare const ValidatedUpload: z.ZodObject<{
         }>;
     }>, "strip", z.ZodTypeAny, {
         type: "metadata";
-        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -472,9 +471,9 @@ export declare const ValidatedUpload: z.ZodObject<{
         timings: {
             metadata_http_duration: number;
         };
+        tags?: string[] | undefined;
     }, {
         type: "metadata";
-        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -490,6 +489,7 @@ export declare const ValidatedUpload: z.ZodObject<{
         timings: {
             metadata_http_duration: number;
         };
+        tags?: string[] | undefined;
     }>>;
     tenant_id: z.ZodString;
     metadata_state: z.ZodEnum<["pending", "processing", "processed", "rejected", "error"]>;
@@ -581,7 +581,6 @@ export declare const ValidatedUpload: z.ZodObject<{
     save_state: "pending" | "error" | "saving" | "saved" | "conflict";
     metadata_metadata?: {
         type: "metadata";
-        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -597,6 +596,7 @@ export declare const ValidatedUpload: z.ZodObject<{
         timings: {
             metadata_http_duration: number;
         };
+        tags?: string[] | undefined;
     } | undefined;
     s3_upload_id?: string | undefined;
     s3_metadata?: {
@@ -634,7 +634,6 @@ export declare const ValidatedUpload: z.ZodObject<{
     save_state: "pending" | "error" | "saving" | "saved" | "conflict";
     metadata_metadata?: {
         type: "metadata";
-        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -650,6 +649,7 @@ export declare const ValidatedUpload: z.ZodObject<{
         timings: {
             metadata_http_duration: number;
         };
+        tags?: string[] | undefined;
     } | undefined;
     is_deleted?: boolean | undefined;
     s3_upload_id?: string | undefined;
@@ -775,7 +775,7 @@ export declare const DbDtoFromUpload: z.ZodEffects<z.ZodObject<{
             file_http_duration: number;
             file_ck_duration: number;
         }>;
-        tags: z.ZodArray<z.ZodString, "many">;
+        tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     }, {
         type: z.ZodLiteral<"metadata">;
         timings: z.ZodObject<{
@@ -787,7 +787,6 @@ export declare const DbDtoFromUpload: z.ZodEffects<z.ZodObject<{
         }>;
     }>, "strip", z.ZodTypeAny, {
         type: "metadata";
-        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -803,9 +802,9 @@ export declare const DbDtoFromUpload: z.ZodEffects<z.ZodObject<{
         timings: {
             metadata_http_duration: number;
         };
+        tags?: string[] | undefined;
     }, {
         type: "metadata";
-        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -821,6 +820,7 @@ export declare const DbDtoFromUpload: z.ZodEffects<z.ZodObject<{
         timings: {
             metadata_http_duration: number;
         };
+        tags?: string[] | undefined;
     }>>;
     upload_state: z.ZodEnum<["pending", "uploading", "uploaded", "error"]>;
     s3_complete_state: z.ZodEnum<["pending", "completing", "completed", "error"]>;
@@ -849,7 +849,6 @@ export declare const DbDtoFromUpload: z.ZodEffects<z.ZodObject<{
     save_state: "pending" | "error" | "saving" | "saved" | "conflict";
     metadata_metadata?: {
         type: "metadata";
-        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -865,6 +864,7 @@ export declare const DbDtoFromUpload: z.ZodEffects<z.ZodObject<{
         timings: {
             metadata_http_duration: number;
         };
+        tags?: string[] | undefined;
     } | undefined;
     s3_etag?: string | undefined;
     size?: number | undefined;
@@ -902,7 +902,6 @@ export declare const DbDtoFromUpload: z.ZodEffects<z.ZodObject<{
     save_state: "pending" | "error" | "saving" | "saved" | "conflict";
     metadata_metadata?: {
         type: "metadata";
-        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -918,6 +917,7 @@ export declare const DbDtoFromUpload: z.ZodEffects<z.ZodObject<{
         timings: {
             metadata_http_duration: number;
         };
+        tags?: string[] | undefined;
     } | undefined;
     is_deleted?: boolean | undefined;
     s3_etag?: string | undefined;
@@ -980,7 +980,6 @@ export declare const DbDtoFromUpload: z.ZodEffects<z.ZodObject<{
     save_state: "pending" | "error" | "saving" | "saved" | "conflict";
     metadata_metadata?: {
         type: "metadata";
-        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -996,6 +995,7 @@ export declare const DbDtoFromUpload: z.ZodEffects<z.ZodObject<{
         timings: {
             metadata_http_duration: number;
         };
+        tags?: string[] | undefined;
     } | undefined;
     is_deleted?: boolean | undefined;
     s3_etag?: string | undefined;
@@ -1108,7 +1108,6 @@ export declare const DbDtoToUpload: z.ZodEffects<z.ZodObject<{
     save_state: "pending" | "error" | "saving" | "saved" | "conflict";
     metadata_metadata?: {
         type: "metadata";
-        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -1124,6 +1123,7 @@ export declare const DbDtoToUpload: z.ZodEffects<z.ZodObject<{
         timings: {
             metadata_http_duration: number;
         };
+        tags?: string[] | undefined;
     } | undefined;
     s3_etag?: string | undefined;
     size?: number | undefined;

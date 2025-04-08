@@ -13,7 +13,7 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"dependencies": {
-		"@dsbunny/metadata": "github:dsbunny/metadata#8085468",
+		"@dsbunny/metadata": "github:dsbunny/metadata#08364fd",
 		"zod": "^3.23.8"
 	},
 	"devDependencies": {

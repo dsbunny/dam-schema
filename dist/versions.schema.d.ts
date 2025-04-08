@@ -98,7 +98,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
             file_http_duration: number;
             file_ck_duration: number;
         }>;
-        tags: z.ZodArray<z.ZodString, "many">;
+        tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     }, {
         type: z.ZodLiteral<"metadata">;
         timings: z.ZodObject<{
@@ -110,7 +110,6 @@ export declare const OldVersionMetadata: z.ZodObject<{
         }>;
     }>, "strip", z.ZodTypeAny, {
         type: "metadata";
-        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -126,9 +125,9 @@ export declare const OldVersionMetadata: z.ZodObject<{
         timings: {
             metadata_http_duration: number;
         };
+        tags?: string[] | undefined;
     }, {
         type: "metadata";
-        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -144,6 +143,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
         timings: {
             metadata_http_duration: number;
         };
+        tags?: string[] | undefined;
     }>;
     poster_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"poster">;
@@ -193,7 +193,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 file_http_duration: number;
                 file_ck_duration: number;
             }>;
-            tags: z.ZodArray<z.ZodString, "many">;
+            tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         }, {
             type: z.ZodLiteral<"poster-image">;
             quality: z.ZodEnum<["medium", "high"]>;
@@ -226,7 +226,6 @@ export declare const OldVersionMetadata: z.ZodObject<{
             type: "poster-image";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -248,12 +247,12 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 poster_sharp_duration?: number | undefined;
             };
             quality: "medium" | "high";
+            tags?: string[] | undefined;
             blurhash?: string | undefined;
         }, {
             type: "poster-image";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -275,6 +274,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 poster_sharp_duration?: number | undefined;
             };
             quality: "medium" | "high";
+            tags?: string[] | undefined;
             blurhash?: string | undefined;
         }>, "many">;
     }, "strip", z.ZodTypeAny, {
@@ -283,7 +283,6 @@ export declare const OldVersionMetadata: z.ZodObject<{
             type: "poster-image";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -305,6 +304,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 poster_sharp_duration?: number | undefined;
             };
             quality: "medium" | "high";
+            tags?: string[] | undefined;
             blurhash?: string | undefined;
         }[];
     }, {
@@ -313,7 +313,6 @@ export declare const OldVersionMetadata: z.ZodObject<{
             type: "poster-image";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -335,6 +334,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 poster_sharp_duration?: number | undefined;
             };
             quality: "medium" | "high";
+            tags?: string[] | undefined;
             blurhash?: string | undefined;
         }[];
     }>>;
@@ -402,7 +402,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 file_http_duration: number;
                 file_ck_duration: number;
             }>;
-            tags: z.ZodArray<z.ZodString, "many">;
+            tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         }, {
             type: z.ZodLiteral<"animated-poster-image">;
             width: z.ZodNumber;
@@ -424,7 +424,6 @@ export declare const OldVersionMetadata: z.ZodObject<{
             type: "animated-poster-image";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -442,11 +441,11 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 animated_poster_ck_duration: number;
                 animated_poster_http_duration: number;
             };
+            tags?: string[] | undefined;
         }, {
             type: "animated-poster-image";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -464,6 +463,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 animated_poster_ck_duration: number;
                 animated_poster_http_duration: number;
             };
+            tags?: string[] | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
         type: "animated-poster";
@@ -471,7 +471,6 @@ export declare const OldVersionMetadata: z.ZodObject<{
             type: "animated-poster-image";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -489,6 +488,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 animated_poster_ck_duration: number;
                 animated_poster_http_duration: number;
             };
+            tags?: string[] | undefined;
         };
     }, {
         type: "animated-poster";
@@ -496,7 +496,6 @@ export declare const OldVersionMetadata: z.ZodObject<{
             type: "animated-poster-image";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -514,6 +513,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 animated_poster_ck_duration: number;
                 animated_poster_http_duration: number;
             };
+            tags?: string[] | undefined;
         };
     }>>;
     poster_series_metadata: z.ZodOptional<z.ZodObject<{
@@ -564,7 +564,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 file_http_duration: number;
                 file_ck_duration: number;
             }>;
-            tags: z.ZodArray<z.ZodString, "many">;
+            tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         }, {
             type: z.ZodLiteral<"poster-series-image">;
             index: z.ZodNumber;
@@ -596,7 +596,6 @@ export declare const OldVersionMetadata: z.ZodObject<{
             index: number;
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -617,13 +616,13 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 poster_series_sharp_duration?: number | undefined;
             };
             quality: "medium" | "high";
+            tags?: string[] | undefined;
             blurhash?: string | undefined;
         }, {
             type: "poster-series-image";
             index: number;
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -644,6 +643,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 poster_series_sharp_duration?: number | undefined;
             };
             quality: "medium" | "high";
+            tags?: string[] | undefined;
             blurhash?: string | undefined;
         }>, "many">;
     }, "strip", z.ZodTypeAny, {
@@ -653,7 +653,6 @@ export declare const OldVersionMetadata: z.ZodObject<{
             index: number;
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -674,6 +673,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 poster_series_sharp_duration?: number | undefined;
             };
             quality: "medium" | "high";
+            tags?: string[] | undefined;
             blurhash?: string | undefined;
         }[];
     }, {
@@ -683,7 +683,6 @@ export declare const OldVersionMetadata: z.ZodObject<{
             index: number;
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -704,6 +703,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 poster_series_sharp_duration?: number | undefined;
             };
             quality: "medium" | "high";
+            tags?: string[] | undefined;
             blurhash?: string | undefined;
         }[];
     }>>;
@@ -753,7 +753,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
             file_http_duration: number;
             file_ck_duration: number;
         }>;
-        tags: z.ZodArray<z.ZodString, "many">;
+        tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     }, {
         type: z.ZodLiteral<"tile-series-metadata">;
         timings: z.ZodObject<{
@@ -765,7 +765,6 @@ export declare const OldVersionMetadata: z.ZodObject<{
         }>;
     }>, "strip", z.ZodTypeAny, {
         type: "tile-series-metadata";
-        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -781,9 +780,9 @@ export declare const OldVersionMetadata: z.ZodObject<{
         timings: {
             metadata_http_duration: number;
         };
+        tags?: string[] | undefined;
     }, {
         type: "tile-series-metadata";
-        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -799,6 +798,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
         timings: {
             metadata_http_duration: number;
         };
+        tags?: string[] | undefined;
     }>>;
     prevue_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"prevue">;
@@ -848,7 +848,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 file_http_duration: number;
                 file_ck_duration: number;
             }>;
-            tags: z.ZodArray<z.ZodString, "many">;
+            tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         }, {
             type: z.ZodLiteral<"prevue-video">;
             width: z.ZodNumber;
@@ -870,7 +870,6 @@ export declare const OldVersionMetadata: z.ZodObject<{
             type: "prevue-video";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -888,11 +887,11 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 prevue_ck_duration: number;
                 prevue_http_duration: number;
             };
+            tags?: string[] | undefined;
         }, {
             type: "prevue-video";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -910,6 +909,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 prevue_ck_duration: number;
                 prevue_http_duration: number;
             };
+            tags?: string[] | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
         type: "prevue";
@@ -917,7 +917,6 @@ export declare const OldVersionMetadata: z.ZodObject<{
             type: "prevue-video";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -935,6 +934,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 prevue_ck_duration: number;
                 prevue_http_duration: number;
             };
+            tags?: string[] | undefined;
         };
     }, {
         type: "prevue";
@@ -942,7 +942,6 @@ export declare const OldVersionMetadata: z.ZodObject<{
             type: "prevue-video";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -960,6 +959,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 prevue_ck_duration: number;
                 prevue_http_duration: number;
             };
+            tags?: string[] | undefined;
         };
     }>>;
 }, "strip", z.ZodTypeAny, {
@@ -981,7 +981,6 @@ export declare const OldVersionMetadata: z.ZodObject<{
     };
     metadata_metadata: {
         type: "metadata";
-        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -997,6 +996,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
         timings: {
             metadata_http_duration: number;
         };
+        tags?: string[] | undefined;
     };
     poster_metadata?: {
         type: "poster";
@@ -1004,7 +1004,6 @@ export declare const OldVersionMetadata: z.ZodObject<{
             type: "poster-image";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -1026,6 +1025,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 poster_sharp_duration?: number | undefined;
             };
             quality: "medium" | "high";
+            tags?: string[] | undefined;
             blurhash?: string | undefined;
         }[];
     } | undefined;
@@ -1041,7 +1041,6 @@ export declare const OldVersionMetadata: z.ZodObject<{
             type: "animated-poster-image";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -1059,6 +1058,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 animated_poster_ck_duration: number;
                 animated_poster_http_duration: number;
             };
+            tags?: string[] | undefined;
         };
     } | undefined;
     poster_series_metadata?: {
@@ -1068,7 +1068,6 @@ export declare const OldVersionMetadata: z.ZodObject<{
             index: number;
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -1089,12 +1088,12 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 poster_series_sharp_duration?: number | undefined;
             };
             quality: "medium" | "high";
+            tags?: string[] | undefined;
             blurhash?: string | undefined;
         }[];
     } | undefined;
     tile_series_metadata?: {
         type: "tile-series-metadata";
-        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -1110,6 +1109,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
         timings: {
             metadata_http_duration: number;
         };
+        tags?: string[] | undefined;
     } | undefined;
     prevue_metadata?: {
         type: "prevue";
@@ -1117,7 +1117,6 @@ export declare const OldVersionMetadata: z.ZodObject<{
             type: "prevue-video";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -1135,6 +1134,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 prevue_ck_duration: number;
                 prevue_http_duration: number;
             };
+            tags?: string[] | undefined;
         };
     } | undefined;
 }, {
@@ -1156,7 +1156,6 @@ export declare const OldVersionMetadata: z.ZodObject<{
     };
     metadata_metadata: {
         type: "metadata";
-        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -1172,6 +1171,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
         timings: {
             metadata_http_duration: number;
         };
+        tags?: string[] | undefined;
     };
     poster_metadata?: {
         type: "poster";
@@ -1179,7 +1179,6 @@ export declare const OldVersionMetadata: z.ZodObject<{
             type: "poster-image";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -1201,6 +1200,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 poster_sharp_duration?: number | undefined;
             };
             quality: "medium" | "high";
+            tags?: string[] | undefined;
             blurhash?: string | undefined;
         }[];
     } | undefined;
@@ -1216,7 +1216,6 @@ export declare const OldVersionMetadata: z.ZodObject<{
             type: "animated-poster-image";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -1234,6 +1233,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 animated_poster_ck_duration: number;
                 animated_poster_http_duration: number;
             };
+            tags?: string[] | undefined;
         };
     } | undefined;
     poster_series_metadata?: {
@@ -1243,7 +1243,6 @@ export declare const OldVersionMetadata: z.ZodObject<{
             index: number;
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -1264,12 +1263,12 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 poster_series_sharp_duration?: number | undefined;
             };
             quality: "medium" | "high";
+            tags?: string[] | undefined;
             blurhash?: string | undefined;
         }[];
     } | undefined;
     tile_series_metadata?: {
         type: "tile-series-metadata";
-        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -1285,6 +1284,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
         timings: {
             metadata_http_duration: number;
         };
+        tags?: string[] | undefined;
     } | undefined;
     prevue_metadata?: {
         type: "prevue";
@@ -1292,7 +1292,6 @@ export declare const OldVersionMetadata: z.ZodObject<{
             type: "prevue-video";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -1310,6 +1309,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 prevue_ck_duration: number;
                 prevue_http_duration: number;
             };
+            tags?: string[] | undefined;
         };
     } | undefined;
 }>;
@@ -1411,7 +1411,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
             file_http_duration: number;
             file_ck_duration: number;
         }>;
-        tags: z.ZodArray<z.ZodString, "many">;
+        tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     }, {
         type: z.ZodLiteral<"metadata">;
         timings: z.ZodObject<{
@@ -1423,7 +1423,6 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
         }>;
     }>, "strip", z.ZodTypeAny, {
         type: "metadata";
-        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -1439,9 +1438,9 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
         timings: {
             metadata_http_duration: number;
         };
+        tags?: string[] | undefined;
     }, {
         type: "metadata";
-        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -1457,6 +1456,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
         timings: {
             metadata_http_duration: number;
         };
+        tags?: string[] | undefined;
     }>;
     poster_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"poster">;
@@ -1506,7 +1506,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 file_http_duration: number;
                 file_ck_duration: number;
             }>;
-            tags: z.ZodArray<z.ZodString, "many">;
+            tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         }, {
             type: z.ZodLiteral<"poster-image">;
             quality: z.ZodEnum<["medium", "high"]>;
@@ -1539,7 +1539,6 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
             type: "poster-image";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -1561,12 +1560,12 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 poster_sharp_duration?: number | undefined;
             };
             quality: "medium" | "high";
+            tags?: string[] | undefined;
             blurhash?: string | undefined;
         }, {
             type: "poster-image";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -1588,6 +1587,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 poster_sharp_duration?: number | undefined;
             };
             quality: "medium" | "high";
+            tags?: string[] | undefined;
             blurhash?: string | undefined;
         }>, "many">;
     }, "strip", z.ZodTypeAny, {
@@ -1596,7 +1596,6 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
             type: "poster-image";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -1618,6 +1617,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 poster_sharp_duration?: number | undefined;
             };
             quality: "medium" | "high";
+            tags?: string[] | undefined;
             blurhash?: string | undefined;
         }[];
     }, {
@@ -1626,7 +1626,6 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
             type: "poster-image";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -1648,6 +1647,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 poster_sharp_duration?: number | undefined;
             };
             quality: "medium" | "high";
+            tags?: string[] | undefined;
             blurhash?: string | undefined;
         }[];
     }>>;
@@ -1715,7 +1715,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 file_http_duration: number;
                 file_ck_duration: number;
             }>;
-            tags: z.ZodArray<z.ZodString, "many">;
+            tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         }, {
             type: z.ZodLiteral<"animated-poster-image">;
             width: z.ZodNumber;
@@ -1737,7 +1737,6 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
             type: "animated-poster-image";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -1755,11 +1754,11 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 animated_poster_ck_duration: number;
                 animated_poster_http_duration: number;
             };
+            tags?: string[] | undefined;
         }, {
             type: "animated-poster-image";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -1777,6 +1776,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 animated_poster_ck_duration: number;
                 animated_poster_http_duration: number;
             };
+            tags?: string[] | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
         type: "animated-poster";
@@ -1784,7 +1784,6 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
             type: "animated-poster-image";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -1802,6 +1801,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 animated_poster_ck_duration: number;
                 animated_poster_http_duration: number;
             };
+            tags?: string[] | undefined;
         };
     }, {
         type: "animated-poster";
@@ -1809,7 +1809,6 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
             type: "animated-poster-image";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -1827,6 +1826,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 animated_poster_ck_duration: number;
                 animated_poster_http_duration: number;
             };
+            tags?: string[] | undefined;
         };
     }>>;
     poster_series_metadata: z.ZodOptional<z.ZodObject<{
@@ -1877,7 +1877,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 file_http_duration: number;
                 file_ck_duration: number;
             }>;
-            tags: z.ZodArray<z.ZodString, "many">;
+            tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         }, {
             type: z.ZodLiteral<"poster-series-image">;
             index: z.ZodNumber;
@@ -1909,7 +1909,6 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
             index: number;
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -1930,13 +1929,13 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 poster_series_sharp_duration?: number | undefined;
             };
             quality: "medium" | "high";
+            tags?: string[] | undefined;
             blurhash?: string | undefined;
         }, {
             type: "poster-series-image";
             index: number;
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -1957,6 +1956,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 poster_series_sharp_duration?: number | undefined;
             };
             quality: "medium" | "high";
+            tags?: string[] | undefined;
             blurhash?: string | undefined;
         }>, "many">;
     }, "strip", z.ZodTypeAny, {
@@ -1966,7 +1966,6 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
             index: number;
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -1987,6 +1986,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 poster_series_sharp_duration?: number | undefined;
             };
             quality: "medium" | "high";
+            tags?: string[] | undefined;
             blurhash?: string | undefined;
         }[];
     }, {
@@ -1996,7 +1996,6 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
             index: number;
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -2017,6 +2016,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 poster_series_sharp_duration?: number | undefined;
             };
             quality: "medium" | "high";
+            tags?: string[] | undefined;
             blurhash?: string | undefined;
         }[];
     }>>;
@@ -2066,7 +2066,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
             file_http_duration: number;
             file_ck_duration: number;
         }>;
-        tags: z.ZodArray<z.ZodString, "many">;
+        tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     }, {
         type: z.ZodLiteral<"tile-series-metadata">;
         timings: z.ZodObject<{
@@ -2078,7 +2078,6 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
         }>;
     }>, "strip", z.ZodTypeAny, {
         type: "tile-series-metadata";
-        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -2094,9 +2093,9 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
         timings: {
             metadata_http_duration: number;
         };
+        tags?: string[] | undefined;
     }, {
         type: "tile-series-metadata";
-        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -2112,6 +2111,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
         timings: {
             metadata_http_duration: number;
         };
+        tags?: string[] | undefined;
     }>>;
     prevue_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"prevue">;
@@ -2161,7 +2161,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 file_http_duration: number;
                 file_ck_duration: number;
             }>;
-            tags: z.ZodArray<z.ZodString, "many">;
+            tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         }, {
             type: z.ZodLiteral<"prevue-video">;
             width: z.ZodNumber;
@@ -2183,7 +2183,6 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
             type: "prevue-video";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -2201,11 +2200,11 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 prevue_ck_duration: number;
                 prevue_http_duration: number;
             };
+            tags?: string[] | undefined;
         }, {
             type: "prevue-video";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -2223,6 +2222,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 prevue_ck_duration: number;
                 prevue_http_duration: number;
             };
+            tags?: string[] | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
         type: "prevue";
@@ -2230,7 +2230,6 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
             type: "prevue-video";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -2248,6 +2247,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 prevue_ck_duration: number;
                 prevue_http_duration: number;
             };
+            tags?: string[] | undefined;
         };
     }, {
         type: "prevue";
@@ -2255,7 +2255,6 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
             type: "prevue-video";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -2273,6 +2272,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 prevue_ck_duration: number;
                 prevue_http_duration: number;
             };
+            tags?: string[] | undefined;
         };
     }>>;
 }, "strip", z.ZodTypeAny, {
@@ -2294,7 +2294,6 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
     };
     metadata_metadata: {
         type: "metadata";
-        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -2310,6 +2309,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
         timings: {
             metadata_http_duration: number;
         };
+        tags?: string[] | undefined;
     };
     poster_metadata?: {
         type: "poster";
@@ -2317,7 +2317,6 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
             type: "poster-image";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -2339,6 +2338,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 poster_sharp_duration?: number | undefined;
             };
             quality: "medium" | "high";
+            tags?: string[] | undefined;
             blurhash?: string | undefined;
         }[];
     } | undefined;
@@ -2354,7 +2354,6 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
             type: "animated-poster-image";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -2372,6 +2371,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 animated_poster_ck_duration: number;
                 animated_poster_http_duration: number;
             };
+            tags?: string[] | undefined;
         };
     } | undefined;
     poster_series_metadata?: {
@@ -2381,7 +2381,6 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
             index: number;
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -2402,12 +2401,12 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 poster_series_sharp_duration?: number | undefined;
             };
             quality: "medium" | "high";
+            tags?: string[] | undefined;
             blurhash?: string | undefined;
         }[];
     } | undefined;
     tile_series_metadata?: {
         type: "tile-series-metadata";
-        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -2423,6 +2422,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
         timings: {
             metadata_http_duration: number;
         };
+        tags?: string[] | undefined;
     } | undefined;
     prevue_metadata?: {
         type: "prevue";
@@ -2430,7 +2430,6 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
             type: "prevue-video";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -2448,6 +2447,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 prevue_ck_duration: number;
                 prevue_http_duration: number;
             };
+            tags?: string[] | undefined;
         };
     } | undefined;
 }, {
@@ -2469,7 +2469,6 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
     };
     metadata_metadata: {
         type: "metadata";
-        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -2485,6 +2484,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
         timings: {
             metadata_http_duration: number;
         };
+        tags?: string[] | undefined;
     };
     poster_metadata?: {
         type: "poster";
@@ -2492,7 +2492,6 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
             type: "poster-image";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -2514,6 +2513,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 poster_sharp_duration?: number | undefined;
             };
             quality: "medium" | "high";
+            tags?: string[] | undefined;
             blurhash?: string | undefined;
         }[];
     } | undefined;
@@ -2529,7 +2529,6 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
             type: "animated-poster-image";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -2547,6 +2546,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 animated_poster_ck_duration: number;
                 animated_poster_http_duration: number;
             };
+            tags?: string[] | undefined;
         };
     } | undefined;
     poster_series_metadata?: {
@@ -2556,7 +2556,6 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
             index: number;
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -2577,12 +2576,12 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 poster_series_sharp_duration?: number | undefined;
             };
             quality: "medium" | "high";
+            tags?: string[] | undefined;
             blurhash?: string | undefined;
         }[];
     } | undefined;
     tile_series_metadata?: {
         type: "tile-series-metadata";
-        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -2598,6 +2597,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
         timings: {
             metadata_http_duration: number;
         };
+        tags?: string[] | undefined;
     } | undefined;
     prevue_metadata?: {
         type: "prevue";
@@ -2605,7 +2605,6 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
             type: "prevue-video";
             width: number;
             height: number;
-            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -2623,6 +2622,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 prevue_ck_duration: number;
                 prevue_http_duration: number;
             };
+            tags?: string[] | undefined;
         };
     } | undefined;
 }>]>;
