@@ -1,4 +1,7 @@
 # Changelog
+## v12.0.4
+- Add `user_tags` pairing with `tags` under `metadata` from new `@dsbunny/metadata`, and `poster_analysis`.
+
 ## v11.3.3
 - Add `PosterAnalysis` object for generated captions and tags.
 

@@ -14,8 +14,6 @@ export const AssetSummaryStateEnum = z.enum([
     'error',
 ])
     .describe('The state of the asset');
-export const AssetTag = z.string().max(255);
-;
 export const AssetBase = z.object({
     tenant_id: z.string().uuid()
         .describe('The tenant ID of the asset'),
@@ -52,9 +50,11 @@ export const AssetBase = z.object({
         .describe('The status of the prevue transcode'),
     is_settled: z.boolean()
         .describe('Whether the asset is settled, not expected to change'),
+    user_tags: z.array(z.string().max(64))
+        .describe('The user tags of the asset'),
     versions: z.array(VersionMetadata)
         .describe('The versions of the asset'),
-    tags: z.array(AssetTag)
+    tags: z.array(z.string().max(64))
         .describe('The tags of the asset'),
 });
 export const AssetMetadata = z.object({
@@ -97,6 +97,7 @@ export const DbDtoFromAssetBase = AssetBase.transform((asset) => {
         metadata: JSON.stringify(asset.metadata),
         metadata_metadata: JSON.stringify(asset.metadata_metadata),
         versions: JSON.stringify(asset.versions),
+        user_tags: JSON.stringify(asset.user_tags),
         tags: JSON.stringify(asset.tags),
     };
 });
@@ -117,6 +118,7 @@ export const DbDtoFromAsset = Asset.transform((asset) => {
         poster_series_state: asset.poster_series_state ?? null,
         tile_series_state: asset.tile_series_state ?? null,
         prevue_state: asset.prevue_state ?? null,
+        user_tags: JSON.stringify(asset.user_tags),
         versions: JSON.stringify(asset.versions),
         tags: JSON.stringify(asset.tags),
     };
@@ -140,8 +142,9 @@ export const DbDtoToAssetBase = z.object({
     tile_series_state: SkippableTranscodeStateEnum,
     prevue_state: SkippableTranscodeStateEnum,
     is_settled: z.number(),
-    versions: z.string(),
-    tags: z.string(),
+    user_tags: z.string().max(65535),
+    versions: z.string().max(65535),
+    tags: z.string().max(65535),
 })
     .transform((dto, ctx) => {
     const metadata_result = jsonSafeParser(Metadata).safeParse(dto.metadata);
@@ -162,6 +165,15 @@ export const DbDtoToAssetBase = z.object({
         });
         return z.NEVER;
     }
+    const user_tags_result = jsonSafeParser(z.array(z.string().max(64))).safeParse(dto.user_tags);
+    if (!user_tags_result.success) {
+        ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: 'Invalid user tags',
+            fatal: true,
+        });
+        return z.NEVER;
+    }
     const versions_result = jsonSafeParser(z.array(VersionMetadata)).safeParse(dto.versions);
     if (!versions_result.success) {
         ctx.addIssue({
@@ -171,7 +183,7 @@ export const DbDtoToAssetBase = z.object({
         });
         return z.NEVER;
     }
-    const tags_result = jsonSafeParser(z.array(AssetTag)).safeParse(dto.tags);
+    const tags_result = jsonSafeParser(z.array(z.string().max(64))).safeParse(dto.tags);
     if (!tags_result.success) {
         ctx.addIssue({
             code: z.ZodIssueCode.custom,
@@ -247,6 +259,7 @@ export const DbDtoToAssetBase = z.object({
         tile_series_metadata: tile_series_metadata_result.data,
         prevue_metadata: prevue_metadata_result.data,
         is_settled: Boolean(dto.is_settled),
+        user_tags: user_tags_result.data,
         versions: versions_result.data,
         tags: tags_result.data,
     };
@@ -271,6 +284,7 @@ export const DbDtoToAsset = z.object({
     tile_series_state: SkippableTranscodeStateEnum,
     prevue_state: SkippableTranscodeStateEnum,
     is_settled: z.number(),
+    user_tags: z.string(),
     versions: z.string(),
     tags: z.string(),
     create_timestamp: sqliteDateSchema,
@@ -296,6 +310,15 @@ export const DbDtoToAsset = z.object({
         });
         return z.NEVER;
     }
+    const user_tags_result = jsonSafeParser(z.array(z.string().max(64))).safeParse(dto.user_tags);
+    if (!user_tags_result.success) {
+        ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: 'Invalid user tags',
+            fatal: true,
+        });
+        return z.NEVER;
+    }
     const versions_result = jsonSafeParser(z.array(VersionMetadata)).safeParse(dto.versions);
     if (!versions_result.success) {
         ctx.addIssue({
@@ -305,7 +328,7 @@ export const DbDtoToAsset = z.object({
         });
         return z.NEVER;
     }
-    const tags_result = jsonSafeParser(z.array(AssetTag)).safeParse(dto.tags);
+    const tags_result = jsonSafeParser(z.array(z.string().max(64))).safeParse(dto.tags);
     if (!tags_result.success) {
         ctx.addIssue({
             code: z.ZodIssueCode.custom,
@@ -381,6 +404,7 @@ export const DbDtoToAsset = z.object({
         tile_series_metadata: tile_series_metadata_result.data,
         prevue_metadata: prevue_metadata_result.data,
         is_settled: Boolean(dto.is_settled),
+        user_tags: user_tags_result.data,
         versions: versions_result.data,
         tags: tags_result.data,
         is_deleted: Boolean(dto.is_deleted),

@@ -3,8 +3,6 @@ export declare const SkippableTranscodeStateEnum: z.ZodEnum<["pending", "process
 export type SkippableTranscodeStateEnum = z.infer<typeof SkippableTranscodeStateEnum>;
 export declare const AssetSummaryStateEnum: z.ZodEnum<["pending", "ok", "rejected", "error"]>;
 export type AssetSummaryStateEnum = z.infer<typeof AssetSummaryStateEnum>;
-export declare const AssetTag: z.ZodString;
-export type AssetTag = z.infer<typeof AssetTag>;
 export declare const AssetBase: z.ZodObject<{
     tenant_id: z.ZodString;
     name: z.ZodString;
@@ -54,6 +52,7 @@ export declare const AssetBase: z.ZodObject<{
             file_http_duration: number;
             file_ck_duration: number;
         }>;
+        tags: z.ZodArray<z.ZodString, "many">;
     }, {
         type: z.ZodLiteral<"file">;
         hint: z.ZodOptional<z.ZodObject<{
@@ -88,6 +87,7 @@ export declare const AssetBase: z.ZodObject<{
         }>>;
     }>, "strip", z.ZodTypeAny, {
         type: "file";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -114,6 +114,7 @@ export declare const AssetBase: z.ZodObject<{
         } | undefined;
     }, {
         type: "file";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -184,6 +185,7 @@ export declare const AssetBase: z.ZodObject<{
             file_http_duration: number;
             file_ck_duration: number;
         }>;
+        tags: z.ZodArray<z.ZodString, "many">;
     }, {
         type: z.ZodLiteral<"image">;
         sharp: z.ZodObject<{
@@ -2517,6 +2519,7 @@ export declare const AssetBase: z.ZodObject<{
         }>;
     }>, "strip", z.ZodTypeAny, {
         type: "image";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -3029,6 +3032,7 @@ export declare const AssetBase: z.ZodObject<{
         } | undefined;
     }, {
         type: "image";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -3585,6 +3589,7 @@ export declare const AssetBase: z.ZodObject<{
             file_http_duration: number;
             file_ck_duration: number;
         }>;
+        tags: z.ZodArray<z.ZodString, "many">;
     }, {
         type: z.ZodLiteral<"video">;
         ffprobe: z.ZodObject<{
@@ -4030,6 +4035,7 @@ export declare const AssetBase: z.ZodObject<{
         }>;
     }>, "strip", z.ZodTypeAny, {
         type: "video";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -4134,6 +4140,7 @@ export declare const AssetBase: z.ZodObject<{
         codecs?: string[] | undefined;
     }, {
         type: "video";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -4282,11 +4289,13 @@ export declare const AssetBase: z.ZodObject<{
             file_http_duration: number;
             file_ck_duration: number;
         }>;
+        tags: z.ZodArray<z.ZodString, "many">;
     }, {
         type: z.ZodLiteral<"rejected">;
         error_text: z.ZodString;
     }>, "strip", z.ZodTypeAny, {
         type: "rejected";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -4306,6 +4315,7 @@ export declare const AssetBase: z.ZodObject<{
         error_text: string;
     }, {
         type: "rejected";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -4370,6 +4380,7 @@ export declare const AssetBase: z.ZodObject<{
             file_http_duration: number;
             file_ck_duration: number;
         }>;
+        tags: z.ZodArray<z.ZodString, "many">;
     }, {
         type: z.ZodLiteral<"metadata">;
         timings: z.ZodObject<{
@@ -4381,6 +4392,7 @@ export declare const AssetBase: z.ZodObject<{
         }>;
     }>, "strip", z.ZodTypeAny, {
         type: "metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -4398,6 +4410,7 @@ export declare const AssetBase: z.ZodObject<{
         };
     }, {
         type: "metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -4462,6 +4475,7 @@ export declare const AssetBase: z.ZodObject<{
                 file_http_duration: number;
                 file_ck_duration: number;
             }>;
+            tags: z.ZodArray<z.ZodString, "many">;
         }, {
             type: z.ZodLiteral<"poster-image">;
             quality: z.ZodEnum<["medium", "high"]>;
@@ -4494,6 +4508,7 @@ export declare const AssetBase: z.ZodObject<{
             type: "poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -4520,6 +4535,7 @@ export declare const AssetBase: z.ZodObject<{
             type: "poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -4549,6 +4565,7 @@ export declare const AssetBase: z.ZodObject<{
             type: "poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -4578,6 +4595,7 @@ export declare const AssetBase: z.ZodObject<{
             type: "poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -4666,6 +4684,7 @@ export declare const AssetBase: z.ZodObject<{
                 file_http_duration: number;
                 file_ck_duration: number;
             }>;
+            tags: z.ZodArray<z.ZodString, "many">;
         }, {
             type: z.ZodLiteral<"animated-poster-image">;
             width: z.ZodNumber;
@@ -4687,6 +4706,7 @@ export declare const AssetBase: z.ZodObject<{
             type: "animated-poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -4708,6 +4728,7 @@ export declare const AssetBase: z.ZodObject<{
             type: "animated-poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -4732,6 +4753,7 @@ export declare const AssetBase: z.ZodObject<{
             type: "animated-poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -4756,6 +4778,7 @@ export declare const AssetBase: z.ZodObject<{
             type: "animated-poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -4823,6 +4846,7 @@ export declare const AssetBase: z.ZodObject<{
                 file_http_duration: number;
                 file_ck_duration: number;
             }>;
+            tags: z.ZodArray<z.ZodString, "many">;
         }, {
             type: z.ZodLiteral<"poster-series-image">;
             index: z.ZodNumber;
@@ -4854,6 +4878,7 @@ export declare const AssetBase: z.ZodObject<{
             index: number;
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -4880,6 +4905,7 @@ export declare const AssetBase: z.ZodObject<{
             index: number;
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -4909,6 +4935,7 @@ export declare const AssetBase: z.ZodObject<{
             index: number;
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -4938,6 +4965,7 @@ export declare const AssetBase: z.ZodObject<{
             index: number;
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -5008,6 +5036,7 @@ export declare const AssetBase: z.ZodObject<{
             file_http_duration: number;
             file_ck_duration: number;
         }>;
+        tags: z.ZodArray<z.ZodString, "many">;
     }, {
         type: z.ZodLiteral<"tile-series-metadata">;
         timings: z.ZodObject<{
@@ -5019,6 +5048,7 @@ export declare const AssetBase: z.ZodObject<{
         }>;
     }>, "strip", z.ZodTypeAny, {
         type: "tile-series-metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -5036,6 +5066,7 @@ export declare const AssetBase: z.ZodObject<{
         };
     }, {
         type: "tile-series-metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -5100,6 +5131,7 @@ export declare const AssetBase: z.ZodObject<{
                 file_http_duration: number;
                 file_ck_duration: number;
             }>;
+            tags: z.ZodArray<z.ZodString, "many">;
         }, {
             type: z.ZodLiteral<"prevue-video">;
             width: z.ZodNumber;
@@ -5121,6 +5153,7 @@ export declare const AssetBase: z.ZodObject<{
             type: "prevue-video";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -5142,6 +5175,7 @@ export declare const AssetBase: z.ZodObject<{
             type: "prevue-video";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -5166,6 +5200,7 @@ export declare const AssetBase: z.ZodObject<{
             type: "prevue-video";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -5190,6 +5225,7 @@ export declare const AssetBase: z.ZodObject<{
             type: "prevue-video";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -5216,6 +5252,7 @@ export declare const AssetBase: z.ZodObject<{
     tile_series_state: z.ZodEnum<["pending", "processing", "processed", "rejected", "error", "skipped"]>;
     prevue_state: z.ZodEnum<["pending", "processing", "processed", "rejected", "error", "skipped"]>;
     is_settled: z.ZodBoolean;
+    user_tags: z.ZodArray<z.ZodString, "many">;
     versions: z.ZodArray<z.ZodUnion<[z.ZodObject<{
         is_current: z.ZodLiteral<true>;
         version: z.ZodNumber;
@@ -5313,6 +5350,7 @@ export declare const AssetBase: z.ZodObject<{
                 file_http_duration: number;
                 file_ck_duration: number;
             }>;
+            tags: z.ZodArray<z.ZodString, "many">;
         }, {
             type: z.ZodLiteral<"metadata">;
             timings: z.ZodObject<{
@@ -5324,6 +5362,7 @@ export declare const AssetBase: z.ZodObject<{
             }>;
         }>, "strip", z.ZodTypeAny, {
             type: "metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -5341,6 +5380,7 @@ export declare const AssetBase: z.ZodObject<{
             };
         }, {
             type: "metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -5405,6 +5445,7 @@ export declare const AssetBase: z.ZodObject<{
                     file_http_duration: number;
                     file_ck_duration: number;
                 }>;
+                tags: z.ZodArray<z.ZodString, "many">;
             }, {
                 type: z.ZodLiteral<"poster-image">;
                 quality: z.ZodEnum<["medium", "high"]>;
@@ -5437,6 +5478,7 @@ export declare const AssetBase: z.ZodObject<{
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -5463,6 +5505,7 @@ export declare const AssetBase: z.ZodObject<{
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -5492,6 +5535,7 @@ export declare const AssetBase: z.ZodObject<{
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -5521,6 +5565,7 @@ export declare const AssetBase: z.ZodObject<{
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -5609,6 +5654,7 @@ export declare const AssetBase: z.ZodObject<{
                     file_http_duration: number;
                     file_ck_duration: number;
                 }>;
+                tags: z.ZodArray<z.ZodString, "many">;
             }, {
                 type: z.ZodLiteral<"animated-poster-image">;
                 width: z.ZodNumber;
@@ -5630,6 +5676,7 @@ export declare const AssetBase: z.ZodObject<{
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -5651,6 +5698,7 @@ export declare const AssetBase: z.ZodObject<{
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -5675,6 +5723,7 @@ export declare const AssetBase: z.ZodObject<{
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -5699,6 +5748,7 @@ export declare const AssetBase: z.ZodObject<{
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -5766,6 +5816,7 @@ export declare const AssetBase: z.ZodObject<{
                     file_http_duration: number;
                     file_ck_duration: number;
                 }>;
+                tags: z.ZodArray<z.ZodString, "many">;
             }, {
                 type: z.ZodLiteral<"poster-series-image">;
                 index: z.ZodNumber;
@@ -5797,6 +5848,7 @@ export declare const AssetBase: z.ZodObject<{
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -5823,6 +5875,7 @@ export declare const AssetBase: z.ZodObject<{
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -5852,6 +5905,7 @@ export declare const AssetBase: z.ZodObject<{
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -5881,6 +5935,7 @@ export declare const AssetBase: z.ZodObject<{
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -5950,6 +6005,7 @@ export declare const AssetBase: z.ZodObject<{
                 file_http_duration: number;
                 file_ck_duration: number;
             }>;
+            tags: z.ZodArray<z.ZodString, "many">;
         }, {
             type: z.ZodLiteral<"tile-series-metadata">;
             timings: z.ZodObject<{
@@ -5961,6 +6017,7 @@ export declare const AssetBase: z.ZodObject<{
             }>;
         }>, "strip", z.ZodTypeAny, {
             type: "tile-series-metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -5978,6 +6035,7 @@ export declare const AssetBase: z.ZodObject<{
             };
         }, {
             type: "tile-series-metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -6042,6 +6100,7 @@ export declare const AssetBase: z.ZodObject<{
                     file_http_duration: number;
                     file_ck_duration: number;
                 }>;
+                tags: z.ZodArray<z.ZodString, "many">;
             }, {
                 type: z.ZodLiteral<"prevue-video">;
                 width: z.ZodNumber;
@@ -6063,6 +6122,7 @@ export declare const AssetBase: z.ZodObject<{
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -6084,6 +6144,7 @@ export declare const AssetBase: z.ZodObject<{
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -6108,6 +6169,7 @@ export declare const AssetBase: z.ZodObject<{
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -6132,6 +6194,7 @@ export declare const AssetBase: z.ZodObject<{
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -6170,6 +6233,7 @@ export declare const AssetBase: z.ZodObject<{
         };
         metadata_metadata: {
             type: "metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -6192,6 +6256,7 @@ export declare const AssetBase: z.ZodObject<{
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -6228,6 +6293,7 @@ export declare const AssetBase: z.ZodObject<{
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -6254,6 +6320,7 @@ export declare const AssetBase: z.ZodObject<{
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -6279,6 +6346,7 @@ export declare const AssetBase: z.ZodObject<{
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series-metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -6301,6 +6369,7 @@ export declare const AssetBase: z.ZodObject<{
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -6339,6 +6408,7 @@ export declare const AssetBase: z.ZodObject<{
         };
         metadata_metadata: {
             type: "metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -6361,6 +6431,7 @@ export declare const AssetBase: z.ZodObject<{
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -6397,6 +6468,7 @@ export declare const AssetBase: z.ZodObject<{
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -6423,6 +6495,7 @@ export declare const AssetBase: z.ZodObject<{
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -6448,6 +6521,7 @@ export declare const AssetBase: z.ZodObject<{
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series-metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -6470,6 +6544,7 @@ export declare const AssetBase: z.ZodObject<{
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -6495,6 +6570,7 @@ export declare const AssetBase: z.ZodObject<{
     tags: string[];
     metadata_metadata: {
         type: "metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -6515,6 +6591,7 @@ export declare const AssetBase: z.ZodObject<{
     name: string;
     metadata: {
         type: "file";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -6541,6 +6618,7 @@ export declare const AssetBase: z.ZodObject<{
         } | undefined;
     } | {
         type: "image";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -7053,6 +7131,7 @@ export declare const AssetBase: z.ZodObject<{
         } | undefined;
     } | {
         type: "video";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -7157,6 +7236,7 @@ export declare const AssetBase: z.ZodObject<{
         codecs?: string[] | undefined;
     } | {
         type: "rejected";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -7182,6 +7262,7 @@ export declare const AssetBase: z.ZodObject<{
     tile_series_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     prevue_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     is_settled: boolean;
+    user_tags: string[];
     versions: ({
         is_current: true;
         version: number;
@@ -7205,6 +7286,7 @@ export declare const AssetBase: z.ZodObject<{
         };
         metadata_metadata: {
             type: "metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -7227,6 +7309,7 @@ export declare const AssetBase: z.ZodObject<{
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -7263,6 +7346,7 @@ export declare const AssetBase: z.ZodObject<{
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -7289,6 +7373,7 @@ export declare const AssetBase: z.ZodObject<{
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -7314,6 +7399,7 @@ export declare const AssetBase: z.ZodObject<{
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series-metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -7336,6 +7422,7 @@ export declare const AssetBase: z.ZodObject<{
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -7362,6 +7449,7 @@ export declare const AssetBase: z.ZodObject<{
             type: "poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -7398,6 +7486,7 @@ export declare const AssetBase: z.ZodObject<{
             type: "animated-poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -7424,6 +7513,7 @@ export declare const AssetBase: z.ZodObject<{
             index: number;
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -7449,6 +7539,7 @@ export declare const AssetBase: z.ZodObject<{
     } | undefined;
     tile_series_metadata?: {
         type: "tile-series-metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -7471,6 +7562,7 @@ export declare const AssetBase: z.ZodObject<{
             type: "prevue-video";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -7495,6 +7587,7 @@ export declare const AssetBase: z.ZodObject<{
     tags: string[];
     metadata_metadata: {
         type: "metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -7515,6 +7608,7 @@ export declare const AssetBase: z.ZodObject<{
     name: string;
     metadata: {
         type: "file";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -7541,6 +7635,7 @@ export declare const AssetBase: z.ZodObject<{
         } | undefined;
     } | {
         type: "image";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -8053,6 +8148,7 @@ export declare const AssetBase: z.ZodObject<{
         } | undefined;
     } | {
         type: "video";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -8157,6 +8253,7 @@ export declare const AssetBase: z.ZodObject<{
         codecs?: string[] | undefined;
     } | {
         type: "rejected";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -8182,6 +8279,7 @@ export declare const AssetBase: z.ZodObject<{
     tile_series_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     prevue_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     is_settled: boolean;
+    user_tags: string[];
     versions: ({
         is_current: true;
         version: number;
@@ -8205,6 +8303,7 @@ export declare const AssetBase: z.ZodObject<{
         };
         metadata_metadata: {
             type: "metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -8227,6 +8326,7 @@ export declare const AssetBase: z.ZodObject<{
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -8263,6 +8363,7 @@ export declare const AssetBase: z.ZodObject<{
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -8289,6 +8390,7 @@ export declare const AssetBase: z.ZodObject<{
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -8314,6 +8416,7 @@ export declare const AssetBase: z.ZodObject<{
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series-metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -8336,6 +8439,7 @@ export declare const AssetBase: z.ZodObject<{
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -8362,6 +8466,7 @@ export declare const AssetBase: z.ZodObject<{
             type: "poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -8398,6 +8503,7 @@ export declare const AssetBase: z.ZodObject<{
             type: "animated-poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -8424,6 +8530,7 @@ export declare const AssetBase: z.ZodObject<{
             index: number;
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -8449,6 +8556,7 @@ export declare const AssetBase: z.ZodObject<{
     } | undefined;
     tile_series_metadata?: {
         type: "tile-series-metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -8471,6 +8579,7 @@ export declare const AssetBase: z.ZodObject<{
             type: "prevue-video";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -8579,6 +8688,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             file_http_duration: number;
             file_ck_duration: number;
         }>;
+        tags: z.ZodArray<z.ZodString, "many">;
     }, {
         type: z.ZodLiteral<"file">;
         hint: z.ZodOptional<z.ZodObject<{
@@ -8613,6 +8723,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
         }>>;
     }>, "strip", z.ZodTypeAny, {
         type: "file";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -8639,6 +8750,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
         } | undefined;
     }, {
         type: "file";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -8709,6 +8821,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             file_http_duration: number;
             file_ck_duration: number;
         }>;
+        tags: z.ZodArray<z.ZodString, "many">;
     }, {
         type: z.ZodLiteral<"image">;
         sharp: z.ZodObject<{
@@ -11042,6 +11155,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
         }>;
     }>, "strip", z.ZodTypeAny, {
         type: "image";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -11554,6 +11668,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
         } | undefined;
     }, {
         type: "image";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -12110,6 +12225,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             file_http_duration: number;
             file_ck_duration: number;
         }>;
+        tags: z.ZodArray<z.ZodString, "many">;
     }, {
         type: z.ZodLiteral<"video">;
         ffprobe: z.ZodObject<{
@@ -12555,6 +12671,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
         }>;
     }>, "strip", z.ZodTypeAny, {
         type: "video";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -12659,6 +12776,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
         codecs?: string[] | undefined;
     }, {
         type: "video";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -12807,11 +12925,13 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             file_http_duration: number;
             file_ck_duration: number;
         }>;
+        tags: z.ZodArray<z.ZodString, "many">;
     }, {
         type: z.ZodLiteral<"rejected">;
         error_text: z.ZodString;
     }>, "strip", z.ZodTypeAny, {
         type: "rejected";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -12831,6 +12951,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
         error_text: string;
     }, {
         type: "rejected";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -12895,6 +13016,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             file_http_duration: number;
             file_ck_duration: number;
         }>;
+        tags: z.ZodArray<z.ZodString, "many">;
     }, {
         type: z.ZodLiteral<"metadata">;
         timings: z.ZodObject<{
@@ -12906,6 +13028,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
         }>;
     }>, "strip", z.ZodTypeAny, {
         type: "metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -12923,6 +13046,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
         };
     }, {
         type: "metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -12987,6 +13111,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 file_http_duration: number;
                 file_ck_duration: number;
             }>;
+            tags: z.ZodArray<z.ZodString, "many">;
         }, {
             type: z.ZodLiteral<"poster-image">;
             quality: z.ZodEnum<["medium", "high"]>;
@@ -13019,6 +13144,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             type: "poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -13045,6 +13171,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             type: "poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -13074,6 +13201,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             type: "poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -13103,6 +13231,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             type: "poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -13191,6 +13320,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 file_http_duration: number;
                 file_ck_duration: number;
             }>;
+            tags: z.ZodArray<z.ZodString, "many">;
         }, {
             type: z.ZodLiteral<"animated-poster-image">;
             width: z.ZodNumber;
@@ -13212,6 +13342,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             type: "animated-poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -13233,6 +13364,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             type: "animated-poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -13257,6 +13389,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             type: "animated-poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -13281,6 +13414,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             type: "animated-poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -13348,6 +13482,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 file_http_duration: number;
                 file_ck_duration: number;
             }>;
+            tags: z.ZodArray<z.ZodString, "many">;
         }, {
             type: z.ZodLiteral<"poster-series-image">;
             index: z.ZodNumber;
@@ -13379,6 +13514,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             index: number;
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -13405,6 +13541,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             index: number;
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -13434,6 +13571,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             index: number;
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -13463,6 +13601,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             index: number;
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -13533,6 +13672,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             file_http_duration: number;
             file_ck_duration: number;
         }>;
+        tags: z.ZodArray<z.ZodString, "many">;
     }, {
         type: z.ZodLiteral<"tile-series-metadata">;
         timings: z.ZodObject<{
@@ -13544,6 +13684,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
         }>;
     }>, "strip", z.ZodTypeAny, {
         type: "tile-series-metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -13561,6 +13702,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
         };
     }, {
         type: "tile-series-metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -13625,6 +13767,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 file_http_duration: number;
                 file_ck_duration: number;
             }>;
+            tags: z.ZodArray<z.ZodString, "many">;
         }, {
             type: z.ZodLiteral<"prevue-video">;
             width: z.ZodNumber;
@@ -13646,6 +13789,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             type: "prevue-video";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -13667,6 +13811,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             type: "prevue-video";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -13691,6 +13836,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             type: "prevue-video";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -13715,6 +13861,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             type: "prevue-video";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -13741,6 +13888,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
     tile_series_state: z.ZodEnum<["pending", "processing", "processed", "rejected", "error", "skipped"]>;
     prevue_state: z.ZodEnum<["pending", "processing", "processed", "rejected", "error", "skipped"]>;
     is_settled: z.ZodBoolean;
+    user_tags: z.ZodArray<z.ZodString, "many">;
     versions: z.ZodArray<z.ZodUnion<[z.ZodObject<{
         is_current: z.ZodLiteral<true>;
         version: z.ZodNumber;
@@ -13838,6 +13986,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 file_http_duration: number;
                 file_ck_duration: number;
             }>;
+            tags: z.ZodArray<z.ZodString, "many">;
         }, {
             type: z.ZodLiteral<"metadata">;
             timings: z.ZodObject<{
@@ -13849,6 +13998,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             }>;
         }>, "strip", z.ZodTypeAny, {
             type: "metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -13866,6 +14016,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             };
         }, {
             type: "metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -13930,6 +14081,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                     file_http_duration: number;
                     file_ck_duration: number;
                 }>;
+                tags: z.ZodArray<z.ZodString, "many">;
             }, {
                 type: z.ZodLiteral<"poster-image">;
                 quality: z.ZodEnum<["medium", "high"]>;
@@ -13962,6 +14114,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -13988,6 +14141,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -14017,6 +14171,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -14046,6 +14201,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -14134,6 +14290,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                     file_http_duration: number;
                     file_ck_duration: number;
                 }>;
+                tags: z.ZodArray<z.ZodString, "many">;
             }, {
                 type: z.ZodLiteral<"animated-poster-image">;
                 width: z.ZodNumber;
@@ -14155,6 +14312,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -14176,6 +14334,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -14200,6 +14359,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -14224,6 +14384,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -14291,6 +14452,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                     file_http_duration: number;
                     file_ck_duration: number;
                 }>;
+                tags: z.ZodArray<z.ZodString, "many">;
             }, {
                 type: z.ZodLiteral<"poster-series-image">;
                 index: z.ZodNumber;
@@ -14322,6 +14484,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -14348,6 +14511,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -14377,6 +14541,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -14406,6 +14571,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -14475,6 +14641,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 file_http_duration: number;
                 file_ck_duration: number;
             }>;
+            tags: z.ZodArray<z.ZodString, "many">;
         }, {
             type: z.ZodLiteral<"tile-series-metadata">;
             timings: z.ZodObject<{
@@ -14486,6 +14653,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             }>;
         }>, "strip", z.ZodTypeAny, {
             type: "tile-series-metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -14503,6 +14671,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             };
         }, {
             type: "tile-series-metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -14567,6 +14736,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                     file_http_duration: number;
                     file_ck_duration: number;
                 }>;
+                tags: z.ZodArray<z.ZodString, "many">;
             }, {
                 type: z.ZodLiteral<"prevue-video">;
                 width: z.ZodNumber;
@@ -14588,6 +14758,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -14609,6 +14780,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -14633,6 +14805,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -14657,6 +14830,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -14695,6 +14869,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
         };
         metadata_metadata: {
             type: "metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -14717,6 +14892,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -14753,6 +14929,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -14779,6 +14956,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -14804,6 +14982,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series-metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -14826,6 +15005,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -14864,6 +15044,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
         };
         metadata_metadata: {
             type: "metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -14886,6 +15067,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -14922,6 +15104,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -14948,6 +15131,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -14973,6 +15157,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series-metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -14995,6 +15180,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -15031,6 +15217,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
     tags: string[];
     metadata_metadata: {
         type: "metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -15051,6 +15238,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
     name: string;
     metadata: {
         type: "file";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -15077,6 +15265,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
         } | undefined;
     } | {
         type: "image";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -15589,6 +15778,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
         } | undefined;
     } | {
         type: "video";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -15693,6 +15883,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
         codecs?: string[] | undefined;
     } | {
         type: "rejected";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -15718,6 +15909,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
     tile_series_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     prevue_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     is_settled: boolean;
+    user_tags: string[];
     versions: ({
         is_current: true;
         version: number;
@@ -15741,6 +15933,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
         };
         metadata_metadata: {
             type: "metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -15763,6 +15956,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -15799,6 +15993,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -15825,6 +16020,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -15850,6 +16046,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series-metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -15872,6 +16069,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -15902,6 +16100,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             type: "poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -15938,6 +16137,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             type: "animated-poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -15964,6 +16164,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             index: number;
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -15989,6 +16190,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
     } | undefined;
     tile_series_metadata?: {
         type: "tile-series-metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -16011,6 +16213,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             type: "prevue-video";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -16038,6 +16241,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
     tags: string[];
     metadata_metadata: {
         type: "metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -16058,6 +16262,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
     name: string;
     metadata: {
         type: "file";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -16084,6 +16289,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
         } | undefined;
     } | {
         type: "image";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -16596,6 +16802,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
         } | undefined;
     } | {
         type: "video";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -16700,6 +16907,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
         codecs?: string[] | undefined;
     } | {
         type: "rejected";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -16725,6 +16933,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
     tile_series_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     prevue_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     is_settled: boolean;
+    user_tags: string[];
     versions: ({
         is_current: true;
         version: number;
@@ -16748,6 +16957,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
         };
         metadata_metadata: {
             type: "metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -16770,6 +16980,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -16806,6 +17017,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -16832,6 +17044,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -16857,6 +17070,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series-metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -16879,6 +17093,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -16908,6 +17123,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             type: "poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -16944,6 +17160,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             type: "animated-poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -16970,6 +17187,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             index: number;
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -16995,6 +17213,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
     } | undefined;
     tile_series_metadata?: {
         type: "tile-series-metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -17017,6 +17236,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             type: "prevue-video";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -17092,6 +17312,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             file_http_duration: number;
             file_ck_duration: number;
         }>;
+        tags: z.ZodArray<z.ZodString, "many">;
     }, {
         type: z.ZodLiteral<"file">;
         hint: z.ZodOptional<z.ZodObject<{
@@ -17126,6 +17347,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         }>>;
     }>, "strip", z.ZodTypeAny, {
         type: "file";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -17152,6 +17374,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         } | undefined;
     }, {
         type: "file";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -17222,6 +17445,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             file_http_duration: number;
             file_ck_duration: number;
         }>;
+        tags: z.ZodArray<z.ZodString, "many">;
     }, {
         type: z.ZodLiteral<"image">;
         sharp: z.ZodObject<{
@@ -19555,6 +19779,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         }>;
     }>, "strip", z.ZodTypeAny, {
         type: "image";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -20067,6 +20292,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         } | undefined;
     }, {
         type: "image";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -20623,6 +20849,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             file_http_duration: number;
             file_ck_duration: number;
         }>;
+        tags: z.ZodArray<z.ZodString, "many">;
     }, {
         type: z.ZodLiteral<"video">;
         ffprobe: z.ZodObject<{
@@ -21068,6 +21295,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         }>;
     }>, "strip", z.ZodTypeAny, {
         type: "video";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -21172,6 +21400,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         codecs?: string[] | undefined;
     }, {
         type: "video";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -21320,11 +21549,13 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             file_http_duration: number;
             file_ck_duration: number;
         }>;
+        tags: z.ZodArray<z.ZodString, "many">;
     }, {
         type: z.ZodLiteral<"rejected">;
         error_text: z.ZodString;
     }>, "strip", z.ZodTypeAny, {
         type: "rejected";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -21344,6 +21575,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         error_text: string;
     }, {
         type: "rejected";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -21408,6 +21640,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             file_http_duration: number;
             file_ck_duration: number;
         }>;
+        tags: z.ZodArray<z.ZodString, "many">;
     }, {
         type: z.ZodLiteral<"metadata">;
         timings: z.ZodObject<{
@@ -21419,6 +21652,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         }>;
     }>, "strip", z.ZodTypeAny, {
         type: "metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -21436,6 +21670,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         };
     }, {
         type: "metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -21500,6 +21735,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 file_http_duration: number;
                 file_ck_duration: number;
             }>;
+            tags: z.ZodArray<z.ZodString, "many">;
         }, {
             type: z.ZodLiteral<"poster-image">;
             quality: z.ZodEnum<["medium", "high"]>;
@@ -21532,6 +21768,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             type: "poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -21558,6 +21795,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             type: "poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -21587,6 +21825,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             type: "poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -21616,6 +21855,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             type: "poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -21704,6 +21944,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 file_http_duration: number;
                 file_ck_duration: number;
             }>;
+            tags: z.ZodArray<z.ZodString, "many">;
         }, {
             type: z.ZodLiteral<"animated-poster-image">;
             width: z.ZodNumber;
@@ -21725,6 +21966,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             type: "animated-poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -21746,6 +21988,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             type: "animated-poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -21770,6 +22013,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             type: "animated-poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -21794,6 +22038,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             type: "animated-poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -21861,6 +22106,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 file_http_duration: number;
                 file_ck_duration: number;
             }>;
+            tags: z.ZodArray<z.ZodString, "many">;
         }, {
             type: z.ZodLiteral<"poster-series-image">;
             index: z.ZodNumber;
@@ -21892,6 +22138,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             index: number;
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -21918,6 +22165,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             index: number;
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -21947,6 +22195,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             index: number;
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -21976,6 +22225,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             index: number;
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -22046,6 +22296,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             file_http_duration: number;
             file_ck_duration: number;
         }>;
+        tags: z.ZodArray<z.ZodString, "many">;
     }, {
         type: z.ZodLiteral<"tile-series-metadata">;
         timings: z.ZodObject<{
@@ -22057,6 +22308,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         }>;
     }>, "strip", z.ZodTypeAny, {
         type: "tile-series-metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -22074,6 +22326,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         };
     }, {
         type: "tile-series-metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -22138,6 +22391,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 file_http_duration: number;
                 file_ck_duration: number;
             }>;
+            tags: z.ZodArray<z.ZodString, "many">;
         }, {
             type: z.ZodLiteral<"prevue-video">;
             width: z.ZodNumber;
@@ -22159,6 +22413,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             type: "prevue-video";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -22180,6 +22435,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             type: "prevue-video";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -22204,6 +22460,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             type: "prevue-video";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -22228,6 +22485,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             type: "prevue-video";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -22254,6 +22512,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
     tile_series_state: z.ZodEnum<["pending", "processing", "processed", "rejected", "error", "skipped"]>;
     prevue_state: z.ZodEnum<["pending", "processing", "processed", "rejected", "error", "skipped"]>;
     is_settled: z.ZodBoolean;
+    user_tags: z.ZodArray<z.ZodString, "many">;
     versions: z.ZodArray<z.ZodUnion<[z.ZodObject<{
         is_current: z.ZodLiteral<true>;
         version: z.ZodNumber;
@@ -22351,6 +22610,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 file_http_duration: number;
                 file_ck_duration: number;
             }>;
+            tags: z.ZodArray<z.ZodString, "many">;
         }, {
             type: z.ZodLiteral<"metadata">;
             timings: z.ZodObject<{
@@ -22362,6 +22622,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             }>;
         }>, "strip", z.ZodTypeAny, {
             type: "metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -22379,6 +22640,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             };
         }, {
             type: "metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -22443,6 +22705,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                     file_http_duration: number;
                     file_ck_duration: number;
                 }>;
+                tags: z.ZodArray<z.ZodString, "many">;
             }, {
                 type: z.ZodLiteral<"poster-image">;
                 quality: z.ZodEnum<["medium", "high"]>;
@@ -22475,6 +22738,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -22501,6 +22765,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -22530,6 +22795,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -22559,6 +22825,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -22647,6 +22914,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                     file_http_duration: number;
                     file_ck_duration: number;
                 }>;
+                tags: z.ZodArray<z.ZodString, "many">;
             }, {
                 type: z.ZodLiteral<"animated-poster-image">;
                 width: z.ZodNumber;
@@ -22668,6 +22936,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -22689,6 +22958,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -22713,6 +22983,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -22737,6 +23008,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -22804,6 +23076,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                     file_http_duration: number;
                     file_ck_duration: number;
                 }>;
+                tags: z.ZodArray<z.ZodString, "many">;
             }, {
                 type: z.ZodLiteral<"poster-series-image">;
                 index: z.ZodNumber;
@@ -22835,6 +23108,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -22861,6 +23135,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -22890,6 +23165,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -22919,6 +23195,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -22988,6 +23265,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 file_http_duration: number;
                 file_ck_duration: number;
             }>;
+            tags: z.ZodArray<z.ZodString, "many">;
         }, {
             type: z.ZodLiteral<"tile-series-metadata">;
             timings: z.ZodObject<{
@@ -22999,6 +23277,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             }>;
         }>, "strip", z.ZodTypeAny, {
             type: "tile-series-metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -23016,6 +23295,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             };
         }, {
             type: "tile-series-metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -23080,6 +23360,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                     file_http_duration: number;
                     file_ck_duration: number;
                 }>;
+                tags: z.ZodArray<z.ZodString, "many">;
             }, {
                 type: z.ZodLiteral<"prevue-video">;
                 width: z.ZodNumber;
@@ -23101,6 +23382,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -23122,6 +23404,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -23146,6 +23429,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -23170,6 +23454,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -23208,6 +23493,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         };
         metadata_metadata: {
             type: "metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -23230,6 +23516,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -23266,6 +23553,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -23292,6 +23580,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -23317,6 +23606,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series-metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -23339,6 +23629,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -23377,6 +23668,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         };
         metadata_metadata: {
             type: "metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -23399,6 +23691,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -23435,6 +23728,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -23461,6 +23755,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -23486,6 +23781,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series-metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -23508,6 +23804,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -23533,6 +23830,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
     tags: string[];
     metadata_metadata: {
         type: "metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -23553,6 +23851,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
     name: string;
     metadata: {
         type: "file";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -23579,6 +23878,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         } | undefined;
     } | {
         type: "image";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -24091,6 +24391,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         } | undefined;
     } | {
         type: "video";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -24195,6 +24496,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         codecs?: string[] | undefined;
     } | {
         type: "rejected";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -24220,6 +24522,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
     tile_series_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     prevue_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     is_settled: boolean;
+    user_tags: string[];
     versions: ({
         is_current: true;
         version: number;
@@ -24243,6 +24546,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         };
         metadata_metadata: {
             type: "metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -24265,6 +24569,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -24301,6 +24606,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -24327,6 +24633,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -24352,6 +24659,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series-metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -24374,6 +24682,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -24400,6 +24709,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             type: "poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -24436,6 +24746,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             type: "animated-poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -24462,6 +24773,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             index: number;
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -24487,6 +24799,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
     } | undefined;
     tile_series_metadata?: {
         type: "tile-series-metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -24509,6 +24822,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             type: "prevue-video";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -24533,6 +24847,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
     tags: string[];
     metadata_metadata: {
         type: "metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -24553,6 +24868,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
     name: string;
     metadata: {
         type: "file";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -24579,6 +24895,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         } | undefined;
     } | {
         type: "image";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -25091,6 +25408,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         } | undefined;
     } | {
         type: "video";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -25195,6 +25513,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         codecs?: string[] | undefined;
     } | {
         type: "rejected";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -25220,6 +25539,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
     tile_series_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     prevue_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     is_settled: boolean;
+    user_tags: string[];
     versions: ({
         is_current: true;
         version: number;
@@ -25243,6 +25563,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         };
         metadata_metadata: {
             type: "metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -25265,6 +25586,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -25301,6 +25623,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -25327,6 +25650,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -25352,6 +25676,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series-metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -25374,6 +25699,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -25400,6 +25726,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             type: "poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -25436,6 +25763,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             type: "animated-poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -25462,6 +25790,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             index: number;
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -25487,6 +25816,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
     } | undefined;
     tile_series_metadata?: {
         type: "tile-series-metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -25509,6 +25839,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             type: "prevue-video";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -25533,6 +25864,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
     metadata: string;
     metadata_metadata: string;
     versions: string;
+    user_tags: string;
     tags: string;
     tenant_id: string;
     name: string;
@@ -25549,6 +25881,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             type: "poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -25585,6 +25918,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             type: "animated-poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -25611,6 +25945,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             index: number;
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -25636,6 +25971,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
     } | undefined;
     tile_series_metadata?: {
         type: "tile-series-metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -25658,6 +25994,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             type: "prevue-video";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -25682,6 +26019,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
     tags: string[];
     metadata_metadata: {
         type: "metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -25702,6 +26040,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
     name: string;
     metadata: {
         type: "file";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -25728,6 +26067,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         } | undefined;
     } | {
         type: "image";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -26240,6 +26580,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         } | undefined;
     } | {
         type: "video";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -26344,6 +26685,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         codecs?: string[] | undefined;
     } | {
         type: "rejected";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -26369,6 +26711,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
     tile_series_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     prevue_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     is_settled: boolean;
+    user_tags: string[];
     versions: ({
         is_current: true;
         version: number;
@@ -26392,6 +26735,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         };
         metadata_metadata: {
             type: "metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -26414,6 +26758,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -26450,6 +26795,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -26476,6 +26822,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -26501,6 +26848,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series-metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -26523,6 +26871,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -26549,6 +26898,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             type: "poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -26585,6 +26935,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             type: "animated-poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -26611,6 +26962,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             index: number;
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -26636,6 +26988,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
     } | undefined;
     tile_series_metadata?: {
         type: "tile-series-metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -26658,6 +27011,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             type: "prevue-video";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -26728,6 +27082,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             file_http_duration: number;
             file_ck_duration: number;
         }>;
+        tags: z.ZodArray<z.ZodString, "many">;
     }, {
         type: z.ZodLiteral<"file">;
         hint: z.ZodOptional<z.ZodObject<{
@@ -26762,6 +27117,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         }>>;
     }>, "strip", z.ZodTypeAny, {
         type: "file";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -26788,6 +27144,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         } | undefined;
     }, {
         type: "file";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -26858,6 +27215,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             file_http_duration: number;
             file_ck_duration: number;
         }>;
+        tags: z.ZodArray<z.ZodString, "many">;
     }, {
         type: z.ZodLiteral<"image">;
         sharp: z.ZodObject<{
@@ -29191,6 +29549,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         }>;
     }>, "strip", z.ZodTypeAny, {
         type: "image";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -29703,6 +30062,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         } | undefined;
     }, {
         type: "image";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -30259,6 +30619,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             file_http_duration: number;
             file_ck_duration: number;
         }>;
+        tags: z.ZodArray<z.ZodString, "many">;
     }, {
         type: z.ZodLiteral<"video">;
         ffprobe: z.ZodObject<{
@@ -30704,6 +31065,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         }>;
     }>, "strip", z.ZodTypeAny, {
         type: "video";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -30808,6 +31170,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         codecs?: string[] | undefined;
     }, {
         type: "video";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -30956,11 +31319,13 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             file_http_duration: number;
             file_ck_duration: number;
         }>;
+        tags: z.ZodArray<z.ZodString, "many">;
     }, {
         type: z.ZodLiteral<"rejected">;
         error_text: z.ZodString;
     }>, "strip", z.ZodTypeAny, {
         type: "rejected";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -30980,6 +31345,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         error_text: string;
     }, {
         type: "rejected";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -31044,6 +31410,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             file_http_duration: number;
             file_ck_duration: number;
         }>;
+        tags: z.ZodArray<z.ZodString, "many">;
     }, {
         type: z.ZodLiteral<"metadata">;
         timings: z.ZodObject<{
@@ -31055,6 +31422,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         }>;
     }>, "strip", z.ZodTypeAny, {
         type: "metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -31072,6 +31440,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         };
     }, {
         type: "metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -31136,6 +31505,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 file_http_duration: number;
                 file_ck_duration: number;
             }>;
+            tags: z.ZodArray<z.ZodString, "many">;
         }, {
             type: z.ZodLiteral<"poster-image">;
             quality: z.ZodEnum<["medium", "high"]>;
@@ -31168,6 +31538,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             type: "poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -31194,6 +31565,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             type: "poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -31223,6 +31595,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             type: "poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -31252,6 +31625,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             type: "poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -31340,6 +31714,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 file_http_duration: number;
                 file_ck_duration: number;
             }>;
+            tags: z.ZodArray<z.ZodString, "many">;
         }, {
             type: z.ZodLiteral<"animated-poster-image">;
             width: z.ZodNumber;
@@ -31361,6 +31736,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             type: "animated-poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -31382,6 +31758,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             type: "animated-poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -31406,6 +31783,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             type: "animated-poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -31430,6 +31808,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             type: "animated-poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -31497,6 +31876,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 file_http_duration: number;
                 file_ck_duration: number;
             }>;
+            tags: z.ZodArray<z.ZodString, "many">;
         }, {
             type: z.ZodLiteral<"poster-series-image">;
             index: z.ZodNumber;
@@ -31528,6 +31908,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             index: number;
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -31554,6 +31935,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             index: number;
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -31583,6 +31965,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             index: number;
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -31612,6 +31995,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             index: number;
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -31682,6 +32066,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             file_http_duration: number;
             file_ck_duration: number;
         }>;
+        tags: z.ZodArray<z.ZodString, "many">;
     }, {
         type: z.ZodLiteral<"tile-series-metadata">;
         timings: z.ZodObject<{
@@ -31693,6 +32078,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         }>;
     }>, "strip", z.ZodTypeAny, {
         type: "tile-series-metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -31710,6 +32096,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         };
     }, {
         type: "tile-series-metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -31774,6 +32161,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 file_http_duration: number;
                 file_ck_duration: number;
             }>;
+            tags: z.ZodArray<z.ZodString, "many">;
         }, {
             type: z.ZodLiteral<"prevue-video">;
             width: z.ZodNumber;
@@ -31795,6 +32183,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             type: "prevue-video";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -31816,6 +32205,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             type: "prevue-video";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -31840,6 +32230,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             type: "prevue-video";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -31864,6 +32255,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             type: "prevue-video";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -31890,6 +32282,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
     tile_series_state: z.ZodEnum<["pending", "processing", "processed", "rejected", "error", "skipped"]>;
     prevue_state: z.ZodEnum<["pending", "processing", "processed", "rejected", "error", "skipped"]>;
     is_settled: z.ZodBoolean;
+    user_tags: z.ZodArray<z.ZodString, "many">;
     versions: z.ZodArray<z.ZodUnion<[z.ZodObject<{
         is_current: z.ZodLiteral<true>;
         version: z.ZodNumber;
@@ -31987,6 +32380,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 file_http_duration: number;
                 file_ck_duration: number;
             }>;
+            tags: z.ZodArray<z.ZodString, "many">;
         }, {
             type: z.ZodLiteral<"metadata">;
             timings: z.ZodObject<{
@@ -31998,6 +32392,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             }>;
         }>, "strip", z.ZodTypeAny, {
             type: "metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -32015,6 +32410,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             };
         }, {
             type: "metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -32079,6 +32475,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                     file_http_duration: number;
                     file_ck_duration: number;
                 }>;
+                tags: z.ZodArray<z.ZodString, "many">;
             }, {
                 type: z.ZodLiteral<"poster-image">;
                 quality: z.ZodEnum<["medium", "high"]>;
@@ -32111,6 +32508,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -32137,6 +32535,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -32166,6 +32565,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -32195,6 +32595,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -32283,6 +32684,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                     file_http_duration: number;
                     file_ck_duration: number;
                 }>;
+                tags: z.ZodArray<z.ZodString, "many">;
             }, {
                 type: z.ZodLiteral<"animated-poster-image">;
                 width: z.ZodNumber;
@@ -32304,6 +32706,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -32325,6 +32728,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -32349,6 +32753,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -32373,6 +32778,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -32440,6 +32846,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                     file_http_duration: number;
                     file_ck_duration: number;
                 }>;
+                tags: z.ZodArray<z.ZodString, "many">;
             }, {
                 type: z.ZodLiteral<"poster-series-image">;
                 index: z.ZodNumber;
@@ -32471,6 +32878,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -32497,6 +32905,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -32526,6 +32935,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -32555,6 +32965,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -32624,6 +33035,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 file_http_duration: number;
                 file_ck_duration: number;
             }>;
+            tags: z.ZodArray<z.ZodString, "many">;
         }, {
             type: z.ZodLiteral<"tile-series-metadata">;
             timings: z.ZodObject<{
@@ -32635,6 +33047,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             }>;
         }>, "strip", z.ZodTypeAny, {
             type: "tile-series-metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -32652,6 +33065,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             };
         }, {
             type: "tile-series-metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -32716,6 +33130,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                     file_http_duration: number;
                     file_ck_duration: number;
                 }>;
+                tags: z.ZodArray<z.ZodString, "many">;
             }, {
                 type: z.ZodLiteral<"prevue-video">;
                 width: z.ZodNumber;
@@ -32737,6 +33152,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -32758,6 +33174,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -32782,6 +33199,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -32806,6 +33224,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -32844,6 +33263,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         };
         metadata_metadata: {
             type: "metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -32866,6 +33286,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -32902,6 +33323,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -32928,6 +33350,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -32953,6 +33376,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series-metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -32975,6 +33399,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -33013,6 +33438,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         };
         metadata_metadata: {
             type: "metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -33035,6 +33461,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -33071,6 +33498,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -33097,6 +33525,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -33122,6 +33551,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series-metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -33144,6 +33574,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -33180,6 +33611,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
     tags: string[];
     metadata_metadata: {
         type: "metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -33200,6 +33632,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
     name: string;
     metadata: {
         type: "file";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -33226,6 +33659,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         } | undefined;
     } | {
         type: "image";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -33738,6 +34172,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         } | undefined;
     } | {
         type: "video";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -33842,6 +34277,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         codecs?: string[] | undefined;
     } | {
         type: "rejected";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -33867,6 +34303,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
     tile_series_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     prevue_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     is_settled: boolean;
+    user_tags: string[];
     versions: ({
         is_current: true;
         version: number;
@@ -33890,6 +34327,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         };
         metadata_metadata: {
             type: "metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -33912,6 +34350,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -33948,6 +34387,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -33974,6 +34414,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -33999,6 +34440,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series-metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -34021,6 +34463,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -34051,6 +34494,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             type: "poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -34087,6 +34531,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             type: "animated-poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -34113,6 +34558,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             index: number;
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -34138,6 +34584,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
     } | undefined;
     tile_series_metadata?: {
         type: "tile-series-metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -34160,6 +34607,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             type: "prevue-video";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -34187,6 +34635,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
     tags: string[];
     metadata_metadata: {
         type: "metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -34207,6 +34656,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
     name: string;
     metadata: {
         type: "file";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -34233,6 +34683,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         } | undefined;
     } | {
         type: "image";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -34745,6 +35196,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         } | undefined;
     } | {
         type: "video";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -34849,6 +35301,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         codecs?: string[] | undefined;
     } | {
         type: "rejected";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -34874,6 +35327,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
     tile_series_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     prevue_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     is_settled: boolean;
+    user_tags: string[];
     versions: ({
         is_current: true;
         version: number;
@@ -34897,6 +35351,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         };
         metadata_metadata: {
             type: "metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -34919,6 +35374,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -34955,6 +35411,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -34981,6 +35438,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -35006,6 +35464,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series-metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -35028,6 +35487,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -35057,6 +35517,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             type: "poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -35093,6 +35554,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             type: "animated-poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -35119,6 +35581,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             index: number;
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -35144,6 +35607,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
     } | undefined;
     tile_series_metadata?: {
         type: "tile-series-metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -35166,6 +35630,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             type: "prevue-video";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -35205,6 +35670,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
     poster_series_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     tile_series_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     prevue_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
+    user_tags: string;
     versions: string;
     tags: string;
     tenant_id: string;
@@ -35222,6 +35688,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
     tags: string[];
     metadata_metadata: {
         type: "metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -35242,6 +35709,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
     name: string;
     metadata: {
         type: "file";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -35268,6 +35736,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         } | undefined;
     } | {
         type: "image";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -35780,6 +36249,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         } | undefined;
     } | {
         type: "video";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -35884,6 +36354,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         codecs?: string[] | undefined;
     } | {
         type: "rejected";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -35909,6 +36380,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
     tile_series_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     prevue_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     is_settled: boolean;
+    user_tags: string[];
     versions: ({
         is_current: true;
         version: number;
@@ -35932,6 +36404,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         };
         metadata_metadata: {
             type: "metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -35954,6 +36427,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -35990,6 +36464,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -36016,6 +36491,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -36041,6 +36517,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series-metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -36063,6 +36540,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -36092,6 +36570,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             type: "poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -36128,6 +36607,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             type: "animated-poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -36154,6 +36634,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             index: number;
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -36179,6 +36660,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
     } | undefined;
     tile_series_metadata?: {
         type: "tile-series-metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -36201,6 +36683,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             type: "prevue-video";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -36245,6 +36728,7 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
     tile_series_state: z.ZodEnum<["pending", "processing", "processed", "rejected", "error", "skipped"]>;
     prevue_state: z.ZodEnum<["pending", "processing", "processed", "rejected", "error", "skipped"]>;
     is_settled: z.ZodNumber;
+    user_tags: z.ZodString;
     versions: z.ZodString;
     tags: z.ZodString;
 }, "strip", z.ZodTypeAny, {
@@ -36267,6 +36751,7 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
     tile_series_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     prevue_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     is_settled: number;
+    user_tags: string;
     versions: string;
 }, {
     tags: string;
@@ -36288,11 +36773,13 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
     tile_series_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     prevue_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     is_settled: number;
+    user_tags: string;
     versions: string;
 }>, {
     tags: string[];
     metadata_metadata: {
         type: "metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -36313,6 +36800,7 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
     name: string;
     metadata: {
         type: "file";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -36339,6 +36827,7 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
         } | undefined;
     } | {
         type: "image";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -36851,6 +37340,7 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
         } | undefined;
     } | {
         type: "video";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -36955,6 +37445,7 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
         codecs?: string[] | undefined;
     } | {
         type: "rejected";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -36980,6 +37471,7 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
     tile_series_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     prevue_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     is_settled: boolean;
+    user_tags: string[];
     versions: ({
         is_current: true;
         version: number;
@@ -37003,6 +37495,7 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
         };
         metadata_metadata: {
             type: "metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -37025,6 +37518,7 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -37061,6 +37555,7 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -37087,6 +37582,7 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -37112,6 +37608,7 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series-metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -37134,6 +37631,7 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -37160,6 +37658,7 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
             type: "poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -37196,6 +37695,7 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
             type: "animated-poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -37222,6 +37722,7 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
             index: number;
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -37247,6 +37748,7 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
     } | undefined;
     tile_series_metadata?: {
         type: "tile-series-metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -37269,6 +37771,7 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
             type: "prevue-video";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -37309,6 +37812,7 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
     tile_series_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     prevue_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     is_settled: number;
+    user_tags: string;
     versions: string;
 }>;
 export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
@@ -37331,6 +37835,7 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
     tile_series_state: z.ZodEnum<["pending", "processing", "processed", "rejected", "error", "skipped"]>;
     prevue_state: z.ZodEnum<["pending", "processing", "processed", "rejected", "error", "skipped"]>;
     is_settled: z.ZodNumber;
+    user_tags: z.ZodString;
     versions: z.ZodString;
     tags: z.ZodString;
     create_timestamp: z.ZodEffects<z.ZodString, string, string>;
@@ -37356,6 +37861,7 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
     tile_series_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     prevue_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     is_settled: number;
+    user_tags: string;
     versions: string;
     asset_id: string;
     create_timestamp: string;
@@ -37381,6 +37887,7 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
     tile_series_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     prevue_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     is_settled: number;
+    user_tags: string;
     versions: string;
     asset_id: string;
     create_timestamp: string;
@@ -37390,6 +37897,7 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
     tags: string[];
     metadata_metadata: {
         type: "metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -37410,6 +37918,7 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
     name: string;
     metadata: {
         type: "file";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -37436,6 +37945,7 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
         } | undefined;
     } | {
         type: "image";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -37948,6 +38458,7 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
         } | undefined;
     } | {
         type: "video";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -38052,6 +38563,7 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
         codecs?: string[] | undefined;
     } | {
         type: "rejected";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -38077,6 +38589,7 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
     tile_series_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     prevue_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     is_settled: boolean;
+    user_tags: string[];
     versions: ({
         is_current: true;
         version: number;
@@ -38100,6 +38613,7 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
         };
         metadata_metadata: {
             type: "metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -38122,6 +38636,7 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
                 type: "poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -38158,6 +38673,7 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
                 type: "animated-poster-image";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -38184,6 +38700,7 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
                 index: number;
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -38209,6 +38726,7 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
         } | undefined;
         tile_series_metadata?: {
             type: "tile-series-metadata";
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -38231,6 +38749,7 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
                 type: "prevue-video";
                 width: number;
                 height: number;
+                tags: string[];
                 file: {
                     size: number;
                     s3_filename: string;
@@ -38261,6 +38780,7 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
             type: "poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -38297,6 +38817,7 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
             type: "animated-poster-image";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -38323,6 +38844,7 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
             index: number;
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -38348,6 +38870,7 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
     } | undefined;
     tile_series_metadata?: {
         type: "tile-series-metadata";
+        tags: string[];
         file: {
             size: number;
             s3_filename: string;
@@ -38370,6 +38893,7 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
             type: "prevue-video";
             width: number;
             height: number;
+            tags: string[];
             file: {
                 size: number;
                 s3_filename: string;
@@ -38413,6 +38937,7 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
     tile_series_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     prevue_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     is_settled: number;
+    user_tags: string;
     versions: string;
     asset_id: string;
     create_timestamp: string;
