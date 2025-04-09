@@ -196,7 +196,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
             tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         }, {
             type: z.ZodLiteral<"poster-image">;
-            quality: z.ZodEnum<["medium", "high"]>;
+            quality: z.ZodEnum<["medium", "high", "sample"]>;
             width: z.ZodNumber;
             height: z.ZodNumber;
             blurhash: z.ZodOptional<z.ZodString>;
@@ -246,7 +246,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 poster_avifenc_duration?: number | undefined;
                 poster_sharp_duration?: number | undefined;
             };
-            quality: "medium" | "high";
+            quality: "medium" | "high" | "sample";
             tags?: string[] | undefined;
             blurhash?: string | undefined;
         }, {
@@ -273,7 +273,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 poster_avifenc_duration?: number | undefined;
                 poster_sharp_duration?: number | undefined;
             };
-            quality: "medium" | "high";
+            quality: "medium" | "high" | "sample";
             tags?: string[] | undefined;
             blurhash?: string | undefined;
         }>, "many">;
@@ -303,7 +303,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 poster_avifenc_duration?: number | undefined;
                 poster_sharp_duration?: number | undefined;
             };
-            quality: "medium" | "high";
+            quality: "medium" | "high" | "sample";
             tags?: string[] | undefined;
             blurhash?: string | undefined;
         }[];
@@ -333,7 +333,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 poster_avifenc_duration?: number | undefined;
                 poster_sharp_duration?: number | undefined;
             };
-            quality: "medium" | "high";
+            quality: "medium" | "high" | "sample";
             tags?: string[] | undefined;
             blurhash?: string | undefined;
         }[];
@@ -568,7 +568,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
         }, {
             type: z.ZodLiteral<"poster-series-image">;
             index: z.ZodNumber;
-            quality: z.ZodEnum<["medium", "high"]>;
+            quality: z.ZodEnum<["medium", "high", "sample"]>;
             width: z.ZodNumber;
             height: z.ZodNumber;
             blurhash: z.ZodOptional<z.ZodString>;
@@ -615,7 +615,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 poster_series_avifenc_duration?: number | undefined;
                 poster_series_sharp_duration?: number | undefined;
             };
-            quality: "medium" | "high";
+            quality: "medium" | "high" | "sample";
             tags?: string[] | undefined;
             blurhash?: string | undefined;
         }, {
@@ -642,7 +642,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 poster_series_avifenc_duration?: number | undefined;
                 poster_series_sharp_duration?: number | undefined;
             };
-            quality: "medium" | "high";
+            quality: "medium" | "high" | "sample";
             tags?: string[] | undefined;
             blurhash?: string | undefined;
         }>, "many">;
@@ -672,7 +672,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 poster_series_avifenc_duration?: number | undefined;
                 poster_series_sharp_duration?: number | undefined;
             };
-            quality: "medium" | "high";
+            quality: "medium" | "high" | "sample";
             tags?: string[] | undefined;
             blurhash?: string | undefined;
         }[];
@@ -702,7 +702,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 poster_series_avifenc_duration?: number | undefined;
                 poster_series_sharp_duration?: number | undefined;
             };
-            quality: "medium" | "high";
+            quality: "medium" | "high" | "sample";
             tags?: string[] | undefined;
             blurhash?: string | undefined;
         }[];
@@ -1024,7 +1024,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 poster_avifenc_duration?: number | undefined;
                 poster_sharp_duration?: number | undefined;
             };
-            quality: "medium" | "high";
+            quality: "medium" | "high" | "sample";
             tags?: string[] | undefined;
             blurhash?: string | undefined;
         }[];
@@ -1087,7 +1087,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 poster_series_avifenc_duration?: number | undefined;
                 poster_series_sharp_duration?: number | undefined;
             };
-            quality: "medium" | "high";
+            quality: "medium" | "high" | "sample";
             tags?: string[] | undefined;
             blurhash?: string | undefined;
         }[];
@@ -1199,7 +1199,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 poster_avifenc_duration?: number | undefined;
                 poster_sharp_duration?: number | undefined;
             };
-            quality: "medium" | "high";
+            quality: "medium" | "high" | "sample";
             tags?: string[] | undefined;
             blurhash?: string | undefined;
         }[];
@@ -1262,7 +1262,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
                 poster_series_avifenc_duration?: number | undefined;
                 poster_series_sharp_duration?: number | undefined;
             };
-            quality: "medium" | "high";
+            quality: "medium" | "high" | "sample";
             tags?: string[] | undefined;
             blurhash?: string | undefined;
         }[];
@@ -1509,7 +1509,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
             tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         }, {
             type: z.ZodLiteral<"poster-image">;
-            quality: z.ZodEnum<["medium", "high"]>;
+            quality: z.ZodEnum<["medium", "high", "sample"]>;
             width: z.ZodNumber;
             height: z.ZodNumber;
             blurhash: z.ZodOptional<z.ZodString>;
@@ -1559,7 +1559,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 poster_avifenc_duration?: number | undefined;
                 poster_sharp_duration?: number | undefined;
             };
-            quality: "medium" | "high";
+            quality: "medium" | "high" | "sample";
             tags?: string[] | undefined;
             blurhash?: string | undefined;
         }, {
@@ -1586,7 +1586,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 poster_avifenc_duration?: number | undefined;
                 poster_sharp_duration?: number | undefined;
             };
-            quality: "medium" | "high";
+            quality: "medium" | "high" | "sample";
             tags?: string[] | undefined;
             blurhash?: string | undefined;
         }>, "many">;
@@ -1616,7 +1616,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 poster_avifenc_duration?: number | undefined;
                 poster_sharp_duration?: number | undefined;
             };
-            quality: "medium" | "high";
+            quality: "medium" | "high" | "sample";
             tags?: string[] | undefined;
             blurhash?: string | undefined;
         }[];
@@ -1646,7 +1646,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 poster_avifenc_duration?: number | undefined;
                 poster_sharp_duration?: number | undefined;
             };
-            quality: "medium" | "high";
+            quality: "medium" | "high" | "sample";
             tags?: string[] | undefined;
             blurhash?: string | undefined;
         }[];
@@ -1881,7 +1881,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
         }, {
             type: z.ZodLiteral<"poster-series-image">;
             index: z.ZodNumber;
-            quality: z.ZodEnum<["medium", "high"]>;
+            quality: z.ZodEnum<["medium", "high", "sample"]>;
             width: z.ZodNumber;
             height: z.ZodNumber;
             blurhash: z.ZodOptional<z.ZodString>;
@@ -1928,7 +1928,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 poster_series_avifenc_duration?: number | undefined;
                 poster_series_sharp_duration?: number | undefined;
             };
-            quality: "medium" | "high";
+            quality: "medium" | "high" | "sample";
             tags?: string[] | undefined;
             blurhash?: string | undefined;
         }, {
@@ -1955,7 +1955,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 poster_series_avifenc_duration?: number | undefined;
                 poster_series_sharp_duration?: number | undefined;
             };
-            quality: "medium" | "high";
+            quality: "medium" | "high" | "sample";
             tags?: string[] | undefined;
             blurhash?: string | undefined;
         }>, "many">;
@@ -1985,7 +1985,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 poster_series_avifenc_duration?: number | undefined;
                 poster_series_sharp_duration?: number | undefined;
             };
-            quality: "medium" | "high";
+            quality: "medium" | "high" | "sample";
             tags?: string[] | undefined;
             blurhash?: string | undefined;
         }[];
@@ -2015,7 +2015,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 poster_series_avifenc_duration?: number | undefined;
                 poster_series_sharp_duration?: number | undefined;
             };
-            quality: "medium" | "high";
+            quality: "medium" | "high" | "sample";
             tags?: string[] | undefined;
             blurhash?: string | undefined;
         }[];
@@ -2337,7 +2337,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 poster_avifenc_duration?: number | undefined;
                 poster_sharp_duration?: number | undefined;
             };
-            quality: "medium" | "high";
+            quality: "medium" | "high" | "sample";
             tags?: string[] | undefined;
             blurhash?: string | undefined;
         }[];
@@ -2400,7 +2400,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 poster_series_avifenc_duration?: number | undefined;
                 poster_series_sharp_duration?: number | undefined;
             };
-            quality: "medium" | "high";
+            quality: "medium" | "high" | "sample";
             tags?: string[] | undefined;
             blurhash?: string | undefined;
         }[];
@@ -2512,7 +2512,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 poster_avifenc_duration?: number | undefined;
                 poster_sharp_duration?: number | undefined;
             };
-            quality: "medium" | "high";
+            quality: "medium" | "high" | "sample";
             tags?: string[] | undefined;
             blurhash?: string | undefined;
         }[];
@@ -2575,7 +2575,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
                 poster_series_avifenc_duration?: number | undefined;
                 poster_series_sharp_duration?: number | undefined;
             };
-            quality: "medium" | "high";
+            quality: "medium" | "high" | "sample";
             tags?: string[] | undefined;
             blurhash?: string | undefined;
         }[];
