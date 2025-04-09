@@ -73,7 +73,6 @@ export const S3Metadata = z.object({
 });
 export const S3Parts = z.array(z.number().min(20).max(5497558138880)).min(1).max(10000);
 export const UploadMetadata = z.record(z.string().max(255));
-export const UploadTag = z.string().max(255);
 export const Upload = z.object({
     upload_id: z.string().uuid()
         .describe('The upload ID'),
@@ -113,7 +112,7 @@ export const Upload = z.object({
         .describe('The status of the metadata transcode'),
     save_state: SaveStateEnum
         .describe('The status of the asset save'),
-    tags: z.array(UploadTag)
+    user_tags: z.array(z.string().max(64))
         .describe('The tags of the upload'),
     create_timestamp: z.string().datetime() // ISO 8601
         .describe('The timestamp when the upload was created'),
@@ -134,7 +133,7 @@ export const DbDtoFromUpload = Upload.transform((upload) => {
         s3_metadata: JSON.stringify(upload.s3_metadata),
         s3_parts: JSON.stringify(upload.s3_parts),
         metadata_metadata: JSON.stringify(upload.metadata_metadata),
-        tags: JSON.stringify(upload.tags),
+        user_tags: JSON.stringify(upload.user_tags),
     };
 });
 export const DbDtoToUpload = z.object({
@@ -157,7 +156,7 @@ export const DbDtoToUpload = z.object({
     s3_complete_state: S3CompleteStateEnum,
     metadata_state: TranscodeStateEnum,
     save_state: SaveStateEnum,
-    tags: z.string(),
+    user_tags: z.string().max(65535),
     create_timestamp: sqliteDateSchema,
     modify_timestamp: sqliteDateSchema,
     is_deleted: z.number().default(0),
@@ -196,8 +195,8 @@ export const DbDtoToUpload = z.object({
         });
         return z.NEVER;
     }
-    const tags_result = jsonSafeParser(z.array(UploadTag)).safeParse(dto.tags);
-    if (!tags_result.success) {
+    const user_tags_result = jsonSafeParser(z.array(z.string().max(64))).safeParse(dto.user_tags);
+    if (!user_tags_result.success) {
         ctx.addIssue({
             code: z.ZodIssueCode.custom,
             message: 'Invalid tags',
@@ -214,7 +213,7 @@ export const DbDtoToUpload = z.object({
         s3_parts: s3_parts_result.data,
         size: dto.size ?? undefined,
         metadata_metadata: metadata_metadata_result.data,
-        tags: tags_result.data,
+        user_tags: user_tags_result.data,
         is_deleted: Boolean(dto.is_deleted),
     };
 });

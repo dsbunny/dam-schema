@@ -122,8 +122,6 @@ export declare const S3Parts: z.ZodArray<z.ZodNumber, "many">;
 export type S3Parts = z.infer<typeof S3Parts>;
 export declare const UploadMetadata: z.ZodRecord<z.ZodString, z.ZodString>;
 export type UploadMetadata = z.infer<typeof UploadMetadata>;
-export declare const UploadTag: z.ZodString;
-export type UploadTag = z.infer<typeof UploadTag>;
 export declare const Upload: z.ZodObject<{
     upload_id: z.ZodString;
     tenant_id: z.ZodString;
@@ -282,14 +280,14 @@ export declare const Upload: z.ZodObject<{
     s3_complete_state: z.ZodEnum<["pending", "completing", "completed", "error"]>;
     metadata_state: z.ZodEnum<["pending", "processing", "processed", "rejected", "error"]>;
     save_state: z.ZodEnum<["pending", "saving", "saved", "conflict", "error"]>;
-    tags: z.ZodArray<z.ZodString, "many">;
+    user_tags: z.ZodArray<z.ZodString, "many">;
     create_timestamp: z.ZodString;
     modify_timestamp: z.ZodString;
     is_deleted: z.ZodDefault<z.ZodBoolean>;
 }, "strip", z.ZodTypeAny, {
-    tags: string[];
     tenant_id: string;
     metadata_state: "pending" | "processing" | "processed" | "rejected" | "error";
+    user_tags: string[];
     asset_id: string;
     create_timestamp: string;
     modify_timestamp: string;
@@ -341,9 +339,9 @@ export declare const Upload: z.ZodObject<{
     s3_version_id?: string | undefined;
     s3_parts?: number[] | undefined;
 }, {
-    tags: string[];
     tenant_id: string;
     metadata_state: "pending" | "processing" | "processed" | "rejected" | "error";
+    user_tags: string[];
     asset_id: string;
     create_timestamp: string;
     modify_timestamp: string;
@@ -397,7 +395,6 @@ export declare const Upload: z.ZodObject<{
 }>;
 export type Upload = z.infer<typeof Upload>;
 export declare const ValidatedUpload: z.ZodObject<{
-    tags: z.ZodArray<z.ZodString, "many">;
     metadata_metadata: z.ZodOptional<z.ZodObject<z.objectUtil.extendShape<{
         type: z.ZodLiteral<"base">;
         file: z.ZodObject<{
@@ -493,6 +490,7 @@ export declare const ValidatedUpload: z.ZodObject<{
     }>>;
     tenant_id: z.ZodString;
     metadata_state: z.ZodEnum<["pending", "processing", "processed", "rejected", "error"]>;
+    user_tags: z.ZodArray<z.ZodString, "many">;
     asset_id: z.ZodString;
     create_timestamp: z.ZodString;
     modify_timestamp: z.ZodString;
@@ -559,9 +557,9 @@ export declare const ValidatedUpload: z.ZodObject<{
     s3_complete_state: z.ZodEnum<["pending", "completing", "completed", "error"]>;
     save_state: z.ZodEnum<["pending", "saving", "saved", "conflict", "error"]>;
 }, "strip", z.ZodTypeAny, {
-    tags: string[];
     tenant_id: string;
     metadata_state: "pending" | "processing" | "processed" | "rejected" | "error";
+    user_tags: string[];
     asset_id: string;
     create_timestamp: string;
     modify_timestamp: string;
@@ -613,9 +611,9 @@ export declare const ValidatedUpload: z.ZodObject<{
         VersionId: string;
     } | undefined;
 }, {
-    tags: string[];
     tenant_id: string;
     metadata_state: "pending" | "processing" | "processed" | "rejected" | "error";
+    user_tags: string[];
     asset_id: string;
     create_timestamp: string;
     modify_timestamp: string;
@@ -826,14 +824,14 @@ export declare const DbDtoFromUpload: z.ZodEffects<z.ZodObject<{
     s3_complete_state: z.ZodEnum<["pending", "completing", "completed", "error"]>;
     metadata_state: z.ZodEnum<["pending", "processing", "processed", "rejected", "error"]>;
     save_state: z.ZodEnum<["pending", "saving", "saved", "conflict", "error"]>;
-    tags: z.ZodArray<z.ZodString, "many">;
+    user_tags: z.ZodArray<z.ZodString, "many">;
     create_timestamp: z.ZodString;
     modify_timestamp: z.ZodString;
     is_deleted: z.ZodDefault<z.ZodBoolean>;
 }, "strip", z.ZodTypeAny, {
-    tags: string[];
     tenant_id: string;
     metadata_state: "pending" | "processing" | "processed" | "rejected" | "error";
+    user_tags: string[];
     asset_id: string;
     create_timestamp: string;
     modify_timestamp: string;
@@ -885,9 +883,9 @@ export declare const DbDtoFromUpload: z.ZodEffects<z.ZodObject<{
     s3_version_id?: string | undefined;
     s3_parts?: number[] | undefined;
 }, {
-    tags: string[];
     tenant_id: string;
     metadata_state: "pending" | "processing" | "processed" | "rejected" | "error";
+    user_tags: string[];
     asset_id: string;
     create_timestamp: string;
     modify_timestamp: string;
@@ -942,7 +940,7 @@ export declare const DbDtoFromUpload: z.ZodEffects<z.ZodObject<{
     s3_metadata: string;
     s3_parts: string;
     metadata_metadata: string;
-    tags: string;
+    user_tags: string;
     tenant_id: string;
     metadata_state: "pending" | "processing" | "processed" | "rejected" | "error";
     asset_id: string;
@@ -963,9 +961,9 @@ export declare const DbDtoFromUpload: z.ZodEffects<z.ZodObject<{
     s3_upload_id?: string | undefined;
     s3_version_id?: string | undefined;
 }, {
-    tags: string[];
     tenant_id: string;
     metadata_state: "pending" | "processing" | "processed" | "rejected" | "error";
+    user_tags: string[];
     asset_id: string;
     create_timestamp: string;
     modify_timestamp: string;
@@ -1037,15 +1035,15 @@ export declare const DbDtoToUpload: z.ZodEffects<z.ZodObject<{
     s3_complete_state: z.ZodEnum<["pending", "completing", "completed", "error"]>;
     metadata_state: z.ZodEnum<["pending", "processing", "processed", "rejected", "error"]>;
     save_state: z.ZodEnum<["pending", "saving", "saved", "conflict", "error"]>;
-    tags: z.ZodString;
+    user_tags: z.ZodString;
     create_timestamp: z.ZodEffects<z.ZodString, string, string>;
     modify_timestamp: z.ZodEffects<z.ZodString, string, string>;
     is_deleted: z.ZodDefault<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
-    tags: string;
     metadata_metadata: string | null;
     tenant_id: string;
     metadata_state: "pending" | "processing" | "processed" | "rejected" | "error";
+    user_tags: string;
     asset_id: string;
     create_timestamp: string;
     modify_timestamp: string;
@@ -1066,10 +1064,10 @@ export declare const DbDtoToUpload: z.ZodEffects<z.ZodObject<{
     s3_complete_state: "pending" | "error" | "completing" | "completed";
     save_state: "pending" | "error" | "saving" | "saved" | "conflict";
 }, {
-    tags: string;
     metadata_metadata: string | null;
     tenant_id: string;
     metadata_state: "pending" | "processing" | "processed" | "rejected" | "error";
+    user_tags: string;
     asset_id: string;
     create_timestamp: string;
     modify_timestamp: string;
@@ -1090,9 +1088,9 @@ export declare const DbDtoToUpload: z.ZodEffects<z.ZodObject<{
     save_state: "pending" | "error" | "saving" | "saved" | "conflict";
     is_deleted?: number | undefined;
 }>, {
-    tags: string[];
     tenant_id: string;
     metadata_state: "pending" | "processing" | "processed" | "rejected" | "error";
+    user_tags: string[];
     asset_id: string;
     create_timestamp: string;
     modify_timestamp: string;
@@ -1144,10 +1142,10 @@ export declare const DbDtoToUpload: z.ZodEffects<z.ZodObject<{
     s3_version_id?: string | undefined;
     s3_parts?: number[] | undefined;
 }, {
-    tags: string;
     metadata_metadata: string | null;
     tenant_id: string;
     metadata_state: "pending" | "processing" | "processed" | "rejected" | "error";
+    user_tags: string;
     asset_id: string;
     create_timestamp: string;
     modify_timestamp: string;
