@@ -339,17 +339,17 @@ export declare const OldVersionMetadata: z.ZodObject<{
         }[];
     }>>;
     poster_analysis: z.ZodOptional<z.ZodObject<{
-        caption: z.ZodString;
+        description: z.ZodString;
         tags: z.ZodArray<z.ZodString, "many">;
         source: z.ZodString;
         generated_at: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        caption: string;
+        description: string;
         tags: string[];
         source: string;
         generated_at: string;
     }, {
-        caption: string;
+        description: string;
         tags: string[];
         source: string;
         generated_at: string;
@@ -1030,7 +1030,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
         }[];
     } | undefined;
     poster_analysis?: {
-        caption: string;
+        description: string;
         tags: string[];
         source: string;
         generated_at: string;
@@ -1205,7 +1205,7 @@ export declare const OldVersionMetadata: z.ZodObject<{
         }[];
     } | undefined;
     poster_analysis?: {
-        caption: string;
+        description: string;
         tags: string[];
         source: string;
         generated_at: string;
@@ -1652,17 +1652,17 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
         }[];
     }>>;
     poster_analysis: z.ZodOptional<z.ZodObject<{
-        caption: z.ZodString;
+        description: z.ZodString;
         tags: z.ZodArray<z.ZodString, "many">;
         source: z.ZodString;
         generated_at: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        caption: string;
+        description: string;
         tags: string[];
         source: string;
         generated_at: string;
     }, {
-        caption: string;
+        description: string;
         tags: string[];
         source: string;
         generated_at: string;
@@ -2343,7 +2343,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
         }[];
     } | undefined;
     poster_analysis?: {
-        caption: string;
+        description: string;
         tags: string[];
         source: string;
         generated_at: string;
@@ -2518,7 +2518,7 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
         }[];
     } | undefined;
     poster_analysis?: {
-        caption: string;
+        description: string;
         tags: string[];
         source: string;
         generated_at: string;

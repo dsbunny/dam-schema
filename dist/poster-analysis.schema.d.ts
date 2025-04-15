@@ -1,16 +1,16 @@
 import { z } from 'zod';
 export declare const PosterAnalysis: z.ZodObject<{
-    caption: z.ZodString;
+    description: z.ZodString;
     tags: z.ZodArray<z.ZodString, "many">;
     source: z.ZodString;
     generated_at: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    caption: string;
+    description: string;
     tags: string[];
     source: string;
     generated_at: string;
 }, {
-    caption: string;
+    description: string;
     tags: string[];
     source: string;
     generated_at: string;

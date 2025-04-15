@@ -1,8 +1,8 @@
 // vim: tabstop=8 softtabstop=0 noexpandtab shiftwidth=8 nosmarttab
 import { z } from 'zod';
 export const PosterAnalysis = z.object({
-    caption: z.string()
-        .describe('Generated caption for the poster image'),
+    description: z.string()
+        .describe('Generated description for the poster image'),
     tags: z.array(z.string())
         .describe('Generated tags derived from the poster image'),
     source: z.string()

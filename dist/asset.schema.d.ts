@@ -4621,17 +4621,17 @@ export declare const AssetBase: z.ZodObject<{
         }[];
     }>>;
     poster_analysis: z.ZodOptional<z.ZodObject<{
-        caption: z.ZodString;
+        description: z.ZodString;
         tags: z.ZodArray<z.ZodString, "many">;
         source: z.ZodString;
         generated_at: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        caption: string;
+        description: string;
         tags: string[];
         source: string;
         generated_at: string;
     }, {
-        caption: string;
+        description: string;
         tags: string[];
         source: string;
         generated_at: string;
@@ -5591,17 +5591,17 @@ export declare const AssetBase: z.ZodObject<{
             }[];
         }>>;
         poster_analysis: z.ZodOptional<z.ZodObject<{
-            caption: z.ZodString;
+            description: z.ZodString;
             tags: z.ZodArray<z.ZodString, "many">;
             source: z.ZodString;
             generated_at: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            caption: string;
+            description: string;
             tags: string[];
             source: string;
             generated_at: string;
         }, {
-            caption: string;
+            description: string;
             tags: string[];
             source: string;
             generated_at: string;
@@ -6282,7 +6282,7 @@ export declare const AssetBase: z.ZodObject<{
             }[];
         } | undefined;
         poster_analysis?: {
-            caption: string;
+            description: string;
             tags: string[];
             source: string;
             generated_at: string;
@@ -6457,7 +6457,7 @@ export declare const AssetBase: z.ZodObject<{
             }[];
         } | undefined;
         poster_analysis?: {
-            caption: string;
+            description: string;
             tags: string[];
             source: string;
             generated_at: string;
@@ -7335,7 +7335,7 @@ export declare const AssetBase: z.ZodObject<{
             }[];
         } | undefined;
         poster_analysis?: {
-            caption: string;
+            description: string;
             tags: string[];
             source: string;
             generated_at: string;
@@ -7475,7 +7475,7 @@ export declare const AssetBase: z.ZodObject<{
         }[];
     } | undefined;
     poster_analysis?: {
-        caption: string;
+        description: string;
         tags: string[];
         source: string;
         generated_at: string;
@@ -8352,7 +8352,7 @@ export declare const AssetBase: z.ZodObject<{
             }[];
         } | undefined;
         poster_analysis?: {
-            caption: string;
+            description: string;
             tags: string[];
             source: string;
             generated_at: string;
@@ -8492,7 +8492,7 @@ export declare const AssetBase: z.ZodObject<{
         }[];
     } | undefined;
     poster_analysis?: {
-        caption: string;
+        description: string;
         tags: string[];
         source: string;
         generated_at: string;
@@ -13257,17 +13257,17 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
         }[];
     }>>;
     poster_analysis: z.ZodOptional<z.ZodObject<{
-        caption: z.ZodString;
+        description: z.ZodString;
         tags: z.ZodArray<z.ZodString, "many">;
         source: z.ZodString;
         generated_at: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        caption: string;
+        description: string;
         tags: string[];
         source: string;
         generated_at: string;
     }, {
-        caption: string;
+        description: string;
         tags: string[];
         source: string;
         generated_at: string;
@@ -14227,17 +14227,17 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             }[];
         }>>;
         poster_analysis: z.ZodOptional<z.ZodObject<{
-            caption: z.ZodString;
+            description: z.ZodString;
             tags: z.ZodArray<z.ZodString, "many">;
             source: z.ZodString;
             generated_at: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            caption: string;
+            description: string;
             tags: string[];
             source: string;
             generated_at: string;
         }, {
-            caption: string;
+            description: string;
             tags: string[];
             source: string;
             generated_at: string;
@@ -14918,7 +14918,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             }[];
         } | undefined;
         poster_analysis?: {
-            caption: string;
+            description: string;
             tags: string[];
             source: string;
             generated_at: string;
@@ -15093,7 +15093,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             }[];
         } | undefined;
         poster_analysis?: {
-            caption: string;
+            description: string;
             tags: string[];
             source: string;
             generated_at: string;
@@ -15982,7 +15982,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             }[];
         } | undefined;
         poster_analysis?: {
-            caption: string;
+            description: string;
             tags: string[];
             source: string;
             generated_at: string;
@@ -16126,7 +16126,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
         }[];
     } | undefined;
     poster_analysis?: {
-        caption: string;
+        description: string;
         tags: string[];
         source: string;
         generated_at: string;
@@ -17006,7 +17006,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
             }[];
         } | undefined;
         poster_analysis?: {
-            caption: string;
+            description: string;
             tags: string[];
             source: string;
             generated_at: string;
@@ -17149,7 +17149,7 @@ export declare const Asset: z.ZodObject<z.objectUtil.extendShape<z.objectUtil.ex
         }[];
     } | undefined;
     poster_analysis?: {
-        caption: string;
+        description: string;
         tags: string[];
         source: string;
         generated_at: string;
@@ -21881,17 +21881,17 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         }[];
     }>>;
     poster_analysis: z.ZodOptional<z.ZodObject<{
-        caption: z.ZodString;
+        description: z.ZodString;
         tags: z.ZodArray<z.ZodString, "many">;
         source: z.ZodString;
         generated_at: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        caption: string;
+        description: string;
         tags: string[];
         source: string;
         generated_at: string;
     }, {
-        caption: string;
+        description: string;
         tags: string[];
         source: string;
         generated_at: string;
@@ -22851,17 +22851,17 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             }[];
         }>>;
         poster_analysis: z.ZodOptional<z.ZodObject<{
-            caption: z.ZodString;
+            description: z.ZodString;
             tags: z.ZodArray<z.ZodString, "many">;
             source: z.ZodString;
             generated_at: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            caption: string;
+            description: string;
             tags: string[];
             source: string;
             generated_at: string;
         }, {
-            caption: string;
+            description: string;
             tags: string[];
             source: string;
             generated_at: string;
@@ -23542,7 +23542,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             }[];
         } | undefined;
         poster_analysis?: {
-            caption: string;
+            description: string;
             tags: string[];
             source: string;
             generated_at: string;
@@ -23717,7 +23717,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             }[];
         } | undefined;
         poster_analysis?: {
-            caption: string;
+            description: string;
             tags: string[];
             source: string;
             generated_at: string;
@@ -24595,7 +24595,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             }[];
         } | undefined;
         poster_analysis?: {
-            caption: string;
+            description: string;
             tags: string[];
             source: string;
             generated_at: string;
@@ -24735,7 +24735,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         }[];
     } | undefined;
     poster_analysis?: {
-        caption: string;
+        description: string;
         tags: string[];
         source: string;
         generated_at: string;
@@ -25612,7 +25612,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             }[];
         } | undefined;
         poster_analysis?: {
-            caption: string;
+            description: string;
             tags: string[];
             source: string;
             generated_at: string;
@@ -25752,7 +25752,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         }[];
     } | undefined;
     poster_analysis?: {
-        caption: string;
+        description: string;
         tags: string[];
         source: string;
         generated_at: string;
@@ -25907,7 +25907,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         }[];
     } | undefined;
     poster_analysis?: {
-        caption: string;
+        description: string;
         tags: string[];
         source: string;
         generated_at: string;
@@ -26784,7 +26784,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
             }[];
         } | undefined;
         poster_analysis?: {
-            caption: string;
+            description: string;
             tags: string[];
             source: string;
             generated_at: string;
@@ -26924,7 +26924,7 @@ export declare const DbDtoFromAssetBase: z.ZodEffects<z.ZodObject<{
         }[];
     } | undefined;
     poster_analysis?: {
-        caption: string;
+        description: string;
         tags: string[];
         source: string;
         generated_at: string;
@@ -31651,17 +31651,17 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         }[];
     }>>;
     poster_analysis: z.ZodOptional<z.ZodObject<{
-        caption: z.ZodString;
+        description: z.ZodString;
         tags: z.ZodArray<z.ZodString, "many">;
         source: z.ZodString;
         generated_at: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        caption: string;
+        description: string;
         tags: string[];
         source: string;
         generated_at: string;
     }, {
-        caption: string;
+        description: string;
         tags: string[];
         source: string;
         generated_at: string;
@@ -32621,17 +32621,17 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             }[];
         }>>;
         poster_analysis: z.ZodOptional<z.ZodObject<{
-            caption: z.ZodString;
+            description: z.ZodString;
             tags: z.ZodArray<z.ZodString, "many">;
             source: z.ZodString;
             generated_at: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            caption: string;
+            description: string;
             tags: string[];
             source: string;
             generated_at: string;
         }, {
-            caption: string;
+            description: string;
             tags: string[];
             source: string;
             generated_at: string;
@@ -33312,7 +33312,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             }[];
         } | undefined;
         poster_analysis?: {
-            caption: string;
+            description: string;
             tags: string[];
             source: string;
             generated_at: string;
@@ -33487,7 +33487,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             }[];
         } | undefined;
         poster_analysis?: {
-            caption: string;
+            description: string;
             tags: string[];
             source: string;
             generated_at: string;
@@ -34376,7 +34376,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             }[];
         } | undefined;
         poster_analysis?: {
-            caption: string;
+            description: string;
             tags: string[];
             source: string;
             generated_at: string;
@@ -34520,7 +34520,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         }[];
     } | undefined;
     poster_analysis?: {
-        caption: string;
+        description: string;
         tags: string[];
         source: string;
         generated_at: string;
@@ -35400,7 +35400,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             }[];
         } | undefined;
         poster_analysis?: {
-            caption: string;
+            description: string;
             tags: string[];
             source: string;
             generated_at: string;
@@ -35543,7 +35543,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         }[];
     } | undefined;
     poster_analysis?: {
-        caption: string;
+        description: string;
         tags: string[];
         source: string;
         generated_at: string;
@@ -36453,7 +36453,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
             }[];
         } | undefined;
         poster_analysis?: {
-            caption: string;
+            description: string;
             tags: string[];
             source: string;
             generated_at: string;
@@ -36596,7 +36596,7 @@ export declare const DbDtoFromAsset: z.ZodEffects<z.ZodObject<z.objectUtil.exten
         }[];
     } | undefined;
     poster_analysis?: {
-        caption: string;
+        description: string;
         tags: string[];
         source: string;
         generated_at: string;
@@ -37544,7 +37544,7 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
             }[];
         } | undefined;
         poster_analysis?: {
-            caption: string;
+            description: string;
             tags: string[];
             source: string;
             generated_at: string;
@@ -37684,7 +37684,7 @@ export declare const DbDtoToAssetBase: z.ZodEffects<z.ZodObject<{
         }[];
     } | undefined;
     poster_analysis?: {
-        caption: string;
+        description: string;
         tags: string[];
         source: string;
         generated_at: string;
@@ -38662,7 +38662,7 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
             }[];
         } | undefined;
         poster_analysis?: {
-            caption: string;
+            description: string;
             tags: string[];
             source: string;
             generated_at: string;
@@ -38806,7 +38806,7 @@ export declare const DbDtoToAsset: z.ZodEffects<z.ZodObject<{
         }[];
     } | undefined;
     poster_analysis?: {
-        caption: string;
+        description: string;
         tags: string[];
         source: string;
         generated_at: string;
