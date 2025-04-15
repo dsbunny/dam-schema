@@ -1,4 +1,7 @@
 # Changelog
+## v13.0.5
+- Change from `caption` to `description` for `PosterAnalysis`.
+
 ## v12.0.4
 - Add `user_tags` pairing with `tags` under `metadata` from new `@dsbunny/metadata`, and `poster_analysis`.
 
