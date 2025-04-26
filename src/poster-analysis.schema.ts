@@ -9,7 +9,7 @@ export const PosterAnalysis = z.object({
 	  	.describe('Generated tags derived from the poster image'),
 	source: z.string()
 	  	.describe('Name or identifier of the service that generated the analysis'),
-	generated_at: z.string().datetime()
-	  	.describe('ISO timestamp when the analysis was generated')
+	generated_at: z.iso.datetime()
+	  	.describe('ISO datetime when the analysis was generated')
 });
 export type PosterAnalysis = z.infer<typeof PosterAnalysis>;

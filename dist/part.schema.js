@@ -2,9 +2,9 @@
 import { z } from 'zod';
 import { sqliteDateSchema } from './sqlite-date.schema.js';
 export const Part = z.object({
-    tenant_id: z.string().uuid()
+    tenant_id: z.uuid()
         .describe('The tenant ID of the upload'),
-    upload_id: z.string().uuid()
+    upload_id: z.uuid()
         .describe('The upload ID of the part'),
     part_number: z.number().min(1).max(10000)
         .describe('The part number of the upload'),
@@ -25,8 +25,8 @@ export const DbDtoFromPart = Part.transform((part) => {
     };
 });
 export const DbDtoToPart = z.object({
-    tenant_id: z.string().uuid(),
-    upload_id: z.string().uuid(),
+    tenant_id: z.uuid(),
+    upload_id: z.uuid(),
     part_number: z.number().min(1).max(10000),
     s3_etag: z.string().min(2).max(2048),
     size: z.number().max(5368709120), // 5GB

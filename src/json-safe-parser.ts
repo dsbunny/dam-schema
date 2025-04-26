@@ -9,7 +9,7 @@ function parseJsonPreprocessor(value: any, ctx: z.RefinementCtx) {
 	  	} catch(e: unknown) {
 			const err = (e instanceof Error) ? e : new Error(`Caught unknown error: ${e}`);
 			ctx.addIssue({
-				code: ZodIssueCode.custom,
+				code: "custom",
 				message: err.message,
 			});
 	  	}

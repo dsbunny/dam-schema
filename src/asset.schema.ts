@@ -31,7 +31,7 @@ export const AssetSummaryStateEnum = z.enum([
 export type AssetSummaryStateEnum = z.infer<typeof AssetSummaryStateEnum>;
 
 export const AssetBase = z.object({
-	tenant_id: z.string().uuid()
+	tenant_id: z.uuid()
 		.describe('The tenant ID of the asset'),
 	name: z.string().min(1).max(100)
 		.describe('The name of the asset'),
@@ -76,39 +76,39 @@ export const AssetBase = z.object({
 export type AssetBase = z.infer<typeof AssetBase>;
 
 export const AssetMetadata = z.object({
-	asset_id: z.string().uuid()
+	asset_id: z.uuid()
 		.describe('The UUID of the asset'),
-	create_timestamp: z.string().datetime()  // ISO 8601
-		.describe('The timestamp of when the asset was created'),
-	modify_timestamp: z.string().datetime()
-		.describe('The timestamp of when the asset was last modified'),
+	create_timestamp: z.iso.datetime()  // ISO 8601
+		.describe('The ISO datetime of when the asset was created'),
+	modify_timestamp: z.iso.datetime()
+		.describe('The ISO datetime of when the asset was last modified'),
 	is_deleted: z.boolean().default(false)
 		.describe('Whether the asset is deleted'),
 });
 
 // projection=poster
 export const AssetPoster = z.object({
-	poster_url: z.string().min(20).max(65535).optional()
+	poster_url: z.url().min(20).max(65535).optional()
 		.describe('The URL of the asset poster'),
 });
 
 // projection=animated_poster
 export const AssetAnimatedPoster = z.object({
-	animated_poster_url: z.string().min(20).max(2048).optional()
+	animated_poster_url: z.url().min(20).max(2048).optional()
 		.describe('The URL of the asset animated poster'),
 });
 
 // projection=prevue
 export const AssetPrevue = z.object({
-	prevue_url: z.string().min(20).max(65535).optional()
+	prevue_url: z.url().min(20).max(65535).optional()
 		.describe('The URL of the asset prevue'),
 });
 
 export const Asset =
-	AssetBase.merge(AssetMetadata)
-		.merge(AssetPoster)
-		.merge(AssetAnimatedPoster)
-		.merge(AssetPrevue);
+	AssetBase.extend(AssetMetadata)
+		.extend(AssetPoster)
+		.extend(AssetAnimatedPoster)
+		.extend(AssetPrevue);
 export type Asset = z.infer<typeof Asset>;
 
 // SQL date string to ISO 8601,
@@ -151,7 +151,7 @@ export const DbDtoFromAsset = Asset.transform((asset: Asset) => {
 });
 
 export const DbDtoToAssetBase = z.object({
-	tenant_id: z.string().uuid(),
+	tenant_id: z.uuid(),
 	name: z.string().min(1).max(100),
 	metadata: z.string().max(65535),
 	metadata_metadata: z.string().max(4096),
@@ -177,7 +177,7 @@ export const DbDtoToAssetBase = z.object({
 	const metadata_result = jsonSafeParser(Metadata).safeParse(dto.metadata);
 	if(!metadata_result.success) {
 		ctx.addIssue({
-			code: z.ZodIssueCode.custom,
+			code: "custom",
 			message: 'Invalid metadata',
 			fatal: true,
 		});
@@ -186,7 +186,7 @@ export const DbDtoToAssetBase = z.object({
 	const metadata_metadata_result = jsonSafeParser(MetadataMetadata).safeParse(dto.metadata_metadata);
 	if(!metadata_metadata_result.success) {
 		ctx.addIssue({
-			code: z.ZodIssueCode.custom,
+			code: "custom",
 			message: 'Invalid metadata metadata',
 			fatal: true,
 		});
@@ -195,7 +195,7 @@ export const DbDtoToAssetBase = z.object({
 	const user_tags_result = jsonSafeParser(z.array(z.string().max(64))).safeParse(dto.user_tags);
 	if(!user_tags_result.success) {
 		ctx.addIssue({
-			code: z.ZodIssueCode.custom,
+			code: "custom",
 			message: 'Invalid user tags',
 			fatal: true,
 		});
@@ -204,7 +204,7 @@ export const DbDtoToAssetBase = z.object({
 	const versions_result = jsonSafeParser(z.array(VersionMetadata)).safeParse(dto.versions);
 	if(!versions_result.success) {
 		ctx.addIssue({
-			code: z.ZodIssueCode.custom,
+			code: "custom",
 			message: 'Invalid versions',
 			fatal: true,
 		});
@@ -213,7 +213,7 @@ export const DbDtoToAssetBase = z.object({
 	const tags_result = jsonSafeParser(z.array(z.string().max(64))).safeParse(dto.tags);
 	if(!tags_result.success) {
 		ctx.addIssue({
-			code: z.ZodIssueCode.custom,
+			code: "custom",
 			message: 'Invalid tags',
 			fatal: true,
 		});
@@ -226,7 +226,7 @@ export const DbDtoToAssetBase = z.object({
 		: jsonSafeParser(PosterAnalysis).safeParse(dto.poster_analysis);
 	if(!poster_analysis_result.success) {
 		ctx.addIssue({
-			code: z.ZodIssueCode.custom,
+			code: "custom",
 			message: 'Invalid poster analysis',
 		});
 	}
@@ -235,7 +235,7 @@ export const DbDtoToAssetBase = z.object({
 		: jsonSafeParser(PosterMetadata).safeParse(dto.poster_metadata);
 	if(!poster_metadata_result.success) {
 		ctx.addIssue({
-			code: z.ZodIssueCode.custom,
+			code: "custom",
 			message: 'Invalid poster',
 		});
 	}
@@ -244,7 +244,7 @@ export const DbDtoToAssetBase = z.object({
 		: jsonSafeParser(AnimatedPosterMetadata).safeParse(dto.animated_poster_metadata);
 	if(!animated_poster_metadata_result.success) {
 		ctx.addIssue({
-			code: z.ZodIssueCode.custom,
+			code: "custom",
 			message: 'Invalid animated poster',
 		});
 	}
@@ -253,7 +253,7 @@ export const DbDtoToAssetBase = z.object({
 		: jsonSafeParser(PosterSeriesMetadata).safeParse(dto.poster_series_metadata);
 	if(!poster_series_metadata_result.success) {
 		ctx.addIssue({
-			code: z.ZodIssueCode.custom,
+			code: "custom",
 			message: 'Invalid poster series',
 		});
 	}
@@ -262,7 +262,7 @@ export const DbDtoToAssetBase = z.object({
 		: jsonSafeParser(TileSeriesMetadataMetadata).safeParse(dto.tile_series_metadata);
 	if(!tile_series_metadata_result.success) {
 		ctx.addIssue({
-			code: z.ZodIssueCode.custom,
+			code: "custom",
 			message: 'Invalid tile series',
 		});
 	}
@@ -271,7 +271,7 @@ export const DbDtoToAssetBase = z.object({
 		: jsonSafeParser(PrevueMetadata).safeParse(dto.prevue_metadata);
 	if(!prevue_metadata_result.success) {
 		ctx.addIssue({
-			code: z.ZodIssueCode.custom,
+			code: "custom",
 			message: 'Invalid prevue',
 		});
 	}
@@ -294,8 +294,8 @@ export const DbDtoToAssetBase = z.object({
 	};
 });
 export const DbDtoToAsset = z.object({
-	asset_id: z.string().uuid(),
-	tenant_id: z.string().uuid(),
+	asset_id: z.uuid(),
+	tenant_id: z.uuid(),
 	name: z.string().min(1).max(100),
 	metadata: z.string().max(65535),
 	metadata_metadata: z.string().max(4096),
@@ -324,7 +324,7 @@ export const DbDtoToAsset = z.object({
 	const metadata_result = jsonSafeParser(Metadata).safeParse(dto.metadata);
 	if(!metadata_result.success) {
 		ctx.addIssue({
-			code: z.ZodIssueCode.custom,
+			code: "custom",
 			message: 'Invalid metadata',
 			fatal: true,
 		});
@@ -333,7 +333,7 @@ export const DbDtoToAsset = z.object({
 	const metadata_metadata_result = jsonSafeParser(MetadataMetadata).safeParse(dto.metadata_metadata);
 	if(!metadata_metadata_result.success) {
 		ctx.addIssue({
-			code: z.ZodIssueCode.custom,
+			code: "custom",
 			message: 'Invalid metadata metadata',
 			fatal: true,
 		});
@@ -342,7 +342,7 @@ export const DbDtoToAsset = z.object({
 	const user_tags_result = jsonSafeParser(z.array(z.string().max(64))).safeParse(dto.user_tags);
 	if(!user_tags_result.success) {
 		ctx.addIssue({
-			code: z.ZodIssueCode.custom,
+			code: "custom",
 			message: 'Invalid user tags',
 			fatal: true,
 		});
@@ -351,7 +351,7 @@ export const DbDtoToAsset = z.object({
 	const versions_result = jsonSafeParser(z.array(VersionMetadata)).safeParse(dto.versions);
 	if(!versions_result.success) {
 		ctx.addIssue({
-			code: z.ZodIssueCode.custom,
+			code: "custom",
 			message: 'Invalid versions',
 			fatal: true,
 		});
@@ -360,7 +360,7 @@ export const DbDtoToAsset = z.object({
 	const tags_result = jsonSafeParser(z.array(z.string().max(64))).safeParse(dto.tags);
 	if(!tags_result.success) {
 		ctx.addIssue({
-			code: z.ZodIssueCode.custom,
+			code: "custom",
 			message: 'Invalid tags',
 			fatal: true,
 		});
@@ -373,7 +373,7 @@ export const DbDtoToAsset = z.object({
 		: jsonSafeParser(PosterAnalysis).safeParse(dto.poster_analysis);
 	if(!poster_analysis_result.success) {
 		ctx.addIssue({
-			code: z.ZodIssueCode.custom,
+			code: "custom",
 			message: 'Invalid poster analysis',
 		});
 	}
@@ -382,7 +382,7 @@ export const DbDtoToAsset = z.object({
 		: jsonSafeParser(PosterMetadata).safeParse(dto.poster_metadata);
 	if(!poster_metadata_result.success) {
 		ctx.addIssue({
-			code: z.ZodIssueCode.custom,
+			code: "custom",
 			message: 'Invalid poster',
 		});
 	}
@@ -391,7 +391,7 @@ export const DbDtoToAsset = z.object({
 		: jsonSafeParser(AnimatedPosterMetadata).safeParse(dto.animated_poster_metadata);
 	if(!animated_poster_metadata_result.success) {
 		ctx.addIssue({
-			code: z.ZodIssueCode.custom,
+			code: "custom",
 			message: 'Invalid animated poster',
 		});
 	}
@@ -400,7 +400,7 @@ export const DbDtoToAsset = z.object({
 		: jsonSafeParser(PosterSeriesMetadata).safeParse(dto.poster_series_metadata);
 	if(!poster_series_metadata_result.success) {
 		ctx.addIssue({
-			code: z.ZodIssueCode.custom,
+			code: "custom",
 			message: 'Invalid poster series',
 		});
 	}
@@ -409,7 +409,7 @@ export const DbDtoToAsset = z.object({
 		: jsonSafeParser(TileSeriesMetadataMetadata).safeParse(dto.tile_series_metadata);
 	if(!tile_series_metadata_result.success) {
 		ctx.addIssue({
-			code: z.ZodIssueCode.custom,
+			code: "custom",
 			message: 'Invalid tile series',
 		});
 	}
@@ -418,7 +418,7 @@ export const DbDtoToAsset = z.object({
 		: jsonSafeParser(PrevueMetadata).safeParse(dto.prevue_metadata);
 	if(!prevue_metadata_result.success) {
 		ctx.addIssue({
-			code: z.ZodIssueCode.custom,
+			code: "custom",
 			message: 'Invalid prevue',
 		});
 	}
@@ -443,7 +443,7 @@ export const DbDtoToAsset = z.object({
 });
 
 export const PresignedPosterUrl = z.object({
-	url: z.string().url().min(20).max(2048),
+	url: z.url().min(20).max(2048),
 	index: z.number().int().min(1).max(3),
 });
 export type PresignedPosterUrl = z.infer<typeof PresignedPosterUrl>;

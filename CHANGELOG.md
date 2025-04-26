@@ -1,4 +1,7 @@
 # Changelog
+## v14.0.6
+- Bump to `zod@4.0.0-beta`.
+
 ## v13.0.5
 - Change from `caption` to `description` for `PosterAnalysis`.
 

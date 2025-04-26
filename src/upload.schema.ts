@@ -17,18 +17,18 @@ export const UploadStateEnum = z.enum([
 export type UploadStateEnum = z.infer<typeof UploadStateEnum>;
 
 export const CanSaveStatus = z.object({
-	upload_id: z.string().uuid(),
+	upload_id: z.uuid(),
 	can_save: z.boolean(),
 	is_rejected: z.boolean(),
 	has_error: z.boolean(),
 	is_pending: z.boolean(),
 	is_processing: z.boolean(),
-	modify_timestamp: z.string().datetime(),
+	modify_timestamp: z.iso.datetime(),
 });
 export type CanSaveStatus = z.infer<typeof CanSaveStatus>;
 
 export const DbDtoToCanSaveStatus = z.object({
-	upload_id: z.string().uuid(),
+	upload_id: z.uuid(),
 	can_save: z.number(),
 	is_rejected: z.number(),
 	has_error: z.number(),
@@ -85,15 +85,15 @@ export type S3Metadata = z.infer<typeof S3Metadata>;
 export const S3Parts = z.array(z.number().min(20).max(5497558138880)).min(1).max(10000);
 export type S3Parts = z.infer<typeof S3Parts>;
 
-export const UploadMetadata = z.record(z.string().max(255));
+export const UploadMetadata = z.record(z.string(), z.string().max(255));
 export type UploadMetadata = z.infer<typeof UploadMetadata>;
 
 export const Upload = z.object({
-	upload_id: z.string().uuid()
+	upload_id: z.uuid()
 		.describe('The upload ID'),
-	tenant_id: z.string().uuid()
+	tenant_id: z.uuid()
 		.describe('The tenant ID of the upload'),
-	asset_id: z.string().uuid()
+	asset_id: z.uuid()
 		.describe('The asset ID of the upload'),
 	s3_upload_id: z.string().min(2).max(2048).optional()
 		.describe('The S3 upload ID of the upload'),
@@ -113,7 +113,7 @@ export const Upload = z.object({
 		.describe('The normalized filename of the upload'),
 	content_type: z.string().min(5).max(255)
 		.describe('The content type of the upload'),
-	s3_uri: z.string().url().min(20).max(2048)
+	s3_uri: z.url().min(20).max(2048)
 		.describe('The S3 URI of the upload'),
 	asset_name: z.string().min(1).max(255)
 		.describe('The asset name of the upload'),
@@ -129,10 +129,10 @@ export const Upload = z.object({
 		.describe('The status of the asset save'),
 	user_tags: z.array(z.string().max(64))
 		.describe('The tags of the upload'),
-	create_timestamp: z.string().datetime()  // ISO 8601
-		.describe('The timestamp when the upload was created'),
-	modify_timestamp: z.string().datetime()
-		.describe('The timestamp when the upload was last modified'),
+	create_timestamp: z.iso.datetime()  // ISO 8601
+		.describe('The ISO datetime when the upload was created'),
+	modify_timestamp: z.iso.datetime()
+		.describe('The ISO datetime when the upload was last modified'),
 	is_deleted: z.boolean().default(false)
 		.describe('Whether the upload is deleted'),
 });
@@ -156,9 +156,9 @@ export const DbDtoFromUpload = Upload.transform((upload: Upload) => {
 	};
 });
 export const DbDtoToUpload = z.object({
-	upload_id: z.string().uuid(),
-	tenant_id: z.string().uuid(),
-	asset_id: z.string().uuid(),
+	upload_id: z.uuid(),
+	tenant_id: z.uuid(),
+	asset_id: z.uuid(),
 	s3_upload_id: z.string().min(2).max(2048).nullable(),
 	s3_metadata: z.string().max(65535).nullable(),
 	s3_version_id: z.string().min(2).max(255).nullable(),
@@ -168,7 +168,7 @@ export const DbDtoToUpload = z.object({
 	origin_filename: z.string().min(1).max(255),
 	s3_filename: z.string().min(1).max(255),
 	content_type: z.string().min(5).max(255),
-	s3_uri: z.string().url().min(20).max(2048),
+	s3_uri: z.url().min(20).max(2048),
 	asset_name: z.string().min(1).max(255),
 	metadata_metadata: z.string().max(65535).nullable(),
 	upload_state: UploadStateEnum,
@@ -186,7 +186,7 @@ export const DbDtoToUpload = z.object({
 		: jsonSafeParser(S3Metadata).safeParse(dto.s3_metadata);
 	if(!s3_metadata_result.success) {
 		ctx.addIssue({
-			code: z.ZodIssueCode.custom,
+			code: "custom",
 			message: 'Invalid S3 metadata',
 			fatal: true,
 		});
@@ -197,7 +197,7 @@ export const DbDtoToUpload = z.object({
 		: jsonSafeParser(S3Parts).safeParse(dto.s3_parts);
 	if(!s3_parts_result.success) {
 		ctx.addIssue({
-			code: z.ZodIssueCode.custom,
+			code: "custom",
 			message: 'Invalid S3 parts',
 			fatal: true,
 		});
@@ -208,7 +208,7 @@ export const DbDtoToUpload = z.object({
 		: jsonSafeParser(MetadataMetadata).safeParse(dto.metadata_metadata);
 	if(!metadata_metadata_result.success) {
 		ctx.addIssue({
-			code: z.ZodIssueCode.custom,
+			code: "custom",
 			message: 'Invalid metadata-metadata',
 			fatal: true,
 		});
@@ -217,7 +217,7 @@ export const DbDtoToUpload = z.object({
 	const user_tags_result = jsonSafeParser(z.array(z.string().max(64))).safeParse(dto.user_tags);
 	if(!user_tags_result.success) {
 		ctx.addIssue({
-			code: z.ZodIssueCode.custom,
+			code: "custom",
 			message: 'Invalid tags',
 			fatal: true,
 		});
