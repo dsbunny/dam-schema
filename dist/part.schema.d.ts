@@ -8,7 +8,7 @@ export declare const Part: z.ZodObject<{
     create_timestamp: z.ZodString;
     modify_timestamp: z.ZodString;
     is_deleted: z.ZodBoolean;
-}, {}>;
+}, {}, {}>;
 export type Part = z.infer<typeof Part>;
 export declare const DbDtoFromPart: z.ZodPipe<z.ZodObject<{
     tenant_id: z.ZodUUID;
@@ -19,7 +19,7 @@ export declare const DbDtoFromPart: z.ZodPipe<z.ZodObject<{
     create_timestamp: z.ZodString;
     modify_timestamp: z.ZodString;
     is_deleted: z.ZodBoolean;
-}, {}>, z.ZodTransform<{
+}, {}, {}>, z.ZodTransform<{
     tenant_id: string;
     upload_id: string;
     part_number: number;
@@ -47,7 +47,7 @@ export declare const DbDtoToPart: z.ZodPipe<z.ZodObject<{
     create_timestamp: z.ZodPipe<z.ZodString, z.ZodTransform<string, string>>;
     modify_timestamp: z.ZodPipe<z.ZodString, z.ZodTransform<string, string>>;
     is_deleted: z.ZodDefault<z.ZodNumber>;
-}, {}>, z.ZodTransform<{
+}, {}, {}>, z.ZodTransform<{
     tenant_id: string;
     upload_id: string;
     part_number: number;

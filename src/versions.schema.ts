@@ -9,7 +9,7 @@ import {
 	PosterSeriesMetadata,
 	PrevueMetadata,
 	TileSeriesMetadataMetadata,
-} from '@dsbunny/metadata';
+} from '@dsbunny/metadata-schema';
 import { PosterAnalysis } from './poster-analysis.schema.js';
 
 // `file` and `poster` will be present if the version is not current.

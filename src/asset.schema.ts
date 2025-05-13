@@ -9,7 +9,7 @@ import {
 	PosterSeriesMetadata,
 	PrevueMetadata,
 	TileSeriesMetadataMetadata,
-} from '@dsbunny/metadata';
+} from '@dsbunny/metadata-schema';
 import { TranscodeStateEnum } from './transcode-state.js';
 import { VersionMetadata } from './versions.schema.js';
 import { jsonSafeParser } from './json-safe-parser.js';
@@ -105,10 +105,10 @@ export const AssetPrevue = z.object({
 });
 
 export const Asset =
-	AssetBase.extend(AssetMetadata)
-		.extend(AssetPoster)
-		.extend(AssetAnimatedPoster)
-		.extend(AssetPrevue);
+	AssetBase.extend(AssetMetadata.shape)
+		.extend(AssetPoster.shape)
+		.extend(AssetAnimatedPoster.shape)
+		.extend(AssetPrevue.shape);
 export type Asset = z.infer<typeof Asset>;
 
 // SQL date string to ISO 8601,

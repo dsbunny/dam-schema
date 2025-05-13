@@ -1,6 +1,6 @@
 // vim: tabstop=8 softtabstop=0 noexpandtab shiftwidth=8 nosmarttab
 import { z } from 'zod';
-import { AnimatedPosterMetadata, Metadata, MetadataMetadata, PosterMetadata, PosterSeriesMetadata, PrevueMetadata, TileSeriesMetadataMetadata, } from '@dsbunny/metadata';
+import { AnimatedPosterMetadata, Metadata, MetadataMetadata, PosterMetadata, PosterSeriesMetadata, PrevueMetadata, TileSeriesMetadataMetadata, } from '@dsbunny/metadata-schema';
 import { TranscodeStateEnum } from './transcode-state.js';
 import { VersionMetadata } from './versions.schema.js';
 import { jsonSafeParser } from './json-safe-parser.js';
@@ -82,10 +82,10 @@ export const AssetPrevue = z.object({
     prevue_url: z.url().min(20).max(65535).optional()
         .describe('The URL of the asset prevue'),
 });
-export const Asset = AssetBase.extend(AssetMetadata)
-    .extend(AssetPoster)
-    .extend(AssetAnimatedPoster)
-    .extend(AssetPrevue);
+export const Asset = AssetBase.extend(AssetMetadata.shape)
+    .extend(AssetPoster.shape)
+    .extend(AssetAnimatedPoster.shape)
+    .extend(AssetPrevue.shape);
 // SQL date string to ISO 8601,
 // e.g. "2023-10-15 15:09:50" to "2023-10-15T15:09:50.000Z"
 const sqliteDateSchema = z.string().transform((date) => {

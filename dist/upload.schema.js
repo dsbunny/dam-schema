@@ -1,6 +1,6 @@
 // vim: tabstop=8 softtabstop=0 noexpandtab shiftwidth=8 nosmarttab
 import { z } from 'zod';
-import { MetadataMetadata } from '@dsbunny/metadata';
+import { MetadataMetadata } from '@dsbunny/metadata-schema';
 import { S3CompleteStateEnum } from './s3-complete-state.schema.js';
 import { sqliteDateSchema } from './sqlite-date.schema.js';
 import { TranscodeStateEnum } from './transcode-state.js';
