@@ -92,7 +92,7 @@ export declare const Upload: z.ZodObject<{
     origin_filename: z.ZodString;
     s3_filename: z.ZodString;
     content_type: z.ZodString;
-    s3_uri: z.ZodURL;
+    s3_uri: z.ZodString;
     asset_name: z.ZodString;
     metadata_metadata: z.ZodOptional<z.ZodObject<{
         file: z.ZodObject<{
@@ -170,7 +170,7 @@ export declare const ValidatedUpload: z.ZodObject<{
     origin_filename: z.ZodString;
     s3_filename: z.ZodString;
     content_type: z.ZodString;
-    s3_uri: z.ZodURL;
+    s3_uri: z.ZodString;
     asset_name: z.ZodString;
     metadata_metadata: z.ZodOptional<z.ZodObject<{
         file: z.ZodObject<{
@@ -248,7 +248,7 @@ export declare const DbDtoFromUpload: z.ZodPipe<z.ZodObject<{
     origin_filename: z.ZodString;
     s3_filename: z.ZodString;
     content_type: z.ZodString;
-    s3_uri: z.ZodURL;
+    s3_uri: z.ZodString;
     asset_name: z.ZodString;
     metadata_metadata: z.ZodOptional<z.ZodObject<{
         file: z.ZodObject<{
@@ -391,7 +391,7 @@ export declare const DbDtoToUpload: z.ZodPipe<z.ZodObject<{
     origin_filename: z.ZodString;
     s3_filename: z.ZodString;
     content_type: z.ZodString;
-    s3_uri: z.ZodURL;
+    s3_uri: z.ZodString;
     asset_name: z.ZodString;
     metadata_metadata: z.ZodNullable<z.ZodString>;
     upload_state: z.ZodEnum<{

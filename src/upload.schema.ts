@@ -6,6 +6,7 @@ import { S3CompleteStateEnum } from './s3-complete-state.schema.js';
 import { sqliteDateSchema } from './sqlite-date.schema.js';
 import { TranscodeStateEnum } from './transcode-state.js';
 import { jsonSafeParser } from './json-safe-parser.js';
+import { S3URI } from './uri.schema.js';
 
 export const UploadStateEnum = z.enum([
 	'pending',
@@ -113,7 +114,7 @@ export const Upload = z.object({
 		.describe('The normalized filename of the upload'),
 	content_type: z.string().min(5).max(255)
 		.describe('The content type of the upload'),
-	s3_uri: z.url().min(20).max(2048)
+	s3_uri: S3URI.min(20).max(2048)
 		.describe('The S3 URI of the upload'),
 	asset_name: z.string().min(1).max(255)
 		.describe('The asset name of the upload'),
@@ -168,7 +169,7 @@ export const DbDtoToUpload = z.object({
 	origin_filename: z.string().min(1).max(255),
 	s3_filename: z.string().min(1).max(255),
 	content_type: z.string().min(5).max(255),
-	s3_uri: z.url().min(20).max(2048),
+	s3_uri: S3URI.min(20).max(2048),
 	asset_name: z.string().min(1).max(255),
 	metadata_metadata: z.string().max(65535).nullable(),
 	upload_state: UploadStateEnum,
