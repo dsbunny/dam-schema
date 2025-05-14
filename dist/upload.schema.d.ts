@@ -95,6 +95,10 @@ export declare const Upload: z.ZodObject<{
     s3_uri: z.ZodString;
     asset_name: z.ZodString;
     metadata_metadata: z.ZodOptional<z.ZodObject<{
+        type: z.ZodLiteral<"metadata">;
+        timings: z.ZodObject<{
+            metadata_http_duration: z.ZodNumber;
+        }, {}, {}>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -108,10 +112,6 @@ export declare const Upload: z.ZodObject<{
             s3_parts: z.ZodArray<z.ZodNumber>;
         }, {}, {}>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        type: z.ZodLiteral<"metadata">;
-        timings: z.ZodObject<{
-            metadata_http_duration: z.ZodNumber;
-        }, {}, {}>;
     }, {}, {}>>;
     upload_state: z.ZodEnum<{
         pending: "pending";
@@ -173,6 +173,10 @@ export declare const ValidatedUpload: z.ZodObject<{
     s3_uri: z.ZodString;
     asset_name: z.ZodString;
     metadata_metadata: z.ZodOptional<z.ZodObject<{
+        type: z.ZodLiteral<"metadata">;
+        timings: z.ZodObject<{
+            metadata_http_duration: z.ZodNumber;
+        }, {}, {}>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -186,10 +190,6 @@ export declare const ValidatedUpload: z.ZodObject<{
             s3_parts: z.ZodArray<z.ZodNumber>;
         }, {}, {}>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        type: z.ZodLiteral<"metadata">;
-        timings: z.ZodObject<{
-            metadata_http_duration: z.ZodNumber;
-        }, {}, {}>;
     }, {}, {}>>;
     upload_state: z.ZodEnum<{
         pending: "pending";
@@ -251,6 +251,10 @@ export declare const DbDtoFromUpload: z.ZodPipe<z.ZodObject<{
     s3_uri: z.ZodString;
     asset_name: z.ZodString;
     metadata_metadata: z.ZodOptional<z.ZodObject<{
+        type: z.ZodLiteral<"metadata">;
+        timings: z.ZodObject<{
+            metadata_http_duration: z.ZodNumber;
+        }, {}, {}>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -264,10 +268,6 @@ export declare const DbDtoFromUpload: z.ZodPipe<z.ZodObject<{
             s3_parts: z.ZodArray<z.ZodNumber>;
         }, {}, {}>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        type: z.ZodLiteral<"metadata">;
-        timings: z.ZodObject<{
-            metadata_http_duration: z.ZodNumber;
-        }, {}, {}>;
     }, {}, {}>>;
     upload_state: z.ZodEnum<{
         pending: "pending";
@@ -359,6 +359,10 @@ export declare const DbDtoFromUpload: z.ZodPipe<z.ZodObject<{
     s3_parts?: number[] | undefined;
     size?: number | undefined;
     metadata_metadata?: {
+        type: "metadata";
+        timings: {
+            metadata_http_duration: number;
+        };
         file: {
             s3_filename: string;
             content_type: string;
@@ -370,10 +374,6 @@ export declare const DbDtoFromUpload: z.ZodPipe<z.ZodObject<{
             s3_version_id: string;
             s3_etag: string;
             s3_parts: number[];
-        };
-        type: "metadata";
-        timings: {
-            metadata_http_duration: number;
         };
         tags?: string[] | undefined;
     } | undefined;
@@ -460,6 +460,10 @@ export declare const DbDtoToUpload: z.ZodPipe<z.ZodObject<{
     s3_parts?: number[] | undefined;
     size?: number | undefined;
     metadata_metadata?: {
+        type: "metadata";
+        timings: {
+            metadata_http_duration: number;
+        };
         file: {
             s3_filename: string;
             content_type: string;
@@ -471,10 +475,6 @@ export declare const DbDtoToUpload: z.ZodPipe<z.ZodObject<{
             s3_version_id: string;
             s3_etag: string;
             s3_parts: number[];
-        };
-        type: "metadata";
-        timings: {
-            metadata_http_duration: number;
         };
         tags?: string[] | undefined;
     } | undefined;
