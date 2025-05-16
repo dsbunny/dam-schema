@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from 'zod/v4';
 export declare const S3CompleteStateEnum: z.ZodEnum<{
     pending: "pending";
     error: "error";

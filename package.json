@@ -1,6 +1,6 @@
 {
 	"name": "@dsbunny/dam-schema",
-	"version": "14.0.6",
+	"version": "14.0.7",
 	"description": "Schema for the DAM",
 	"type": "module",
 	"main": "dist/index.js",
@@ -13,8 +13,8 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"dependencies": {
-		"@dsbunny/metadata-schema": "github:dsbunny/metadata-schema#ccdf958",
-		"zod": "4.0.0-beta.20250505T195954"
+		"@dsbunny/metadata-schema": "github:dsbunny/metadata-schema#70e306f",
+		"zod": "3.25.0-beta.20250515T215617"
 	},
 	"devDependencies": {
 		"typescript": "^5.5.3"

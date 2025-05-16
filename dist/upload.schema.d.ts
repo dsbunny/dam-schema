@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from 'zod/v4';
 export declare const UploadStateEnum: z.ZodEnum<{
     pending: "pending";
     error: "error";

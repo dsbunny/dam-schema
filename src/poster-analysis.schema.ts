@@ -1,6 +1,6 @@
 // vim: tabstop=8 softtabstop=0 noexpandtab shiftwidth=8 nosmarttab
 
-import { z } from 'zod';
+import { z } from 'zod/v4';
 
 export const PosterAnalysis = z.object({
 	description: z.string()

@@ -1,4 +1,7 @@
 # Changelog
+## v14.0.7
+- Bump to `zod@next` with `zod/v4` imports.
+
 ## v14.0.6
 - Bump to `zod@4.0.0-beta`.
 - Dependency rename `@dsbunny/metadata` → `@dsbunny/metadata-schema`.

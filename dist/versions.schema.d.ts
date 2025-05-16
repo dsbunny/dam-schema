@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from 'zod/v4';
 export declare const CurrentVersionMetadata: z.ZodObject<{
     is_current: z.ZodLiteral<true>;
     version: z.ZodNumber;

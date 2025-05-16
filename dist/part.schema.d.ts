@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from 'zod/v4';
 export declare const Part: z.ZodObject<{
     tenant_id: z.ZodUUID;
     upload_id: z.ZodUUID;
