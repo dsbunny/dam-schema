@@ -1,6 +1,6 @@
 {
 	"name": "@dsbunny/dam-schema",
-	"version": "14.0.7",
+	"version": "14.1.8",
 	"description": "Schema for the DAM",
 	"type": "module",
 	"main": "dist/index.js",

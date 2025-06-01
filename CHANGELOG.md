@@ -1,4 +1,7 @@
 # Changelog
+## v14.1.8
+- Add new API schema for the DAM service itself.
+
 ## v14.0.7
 - Bump to `zod@next` with `zod/v4` imports.
 

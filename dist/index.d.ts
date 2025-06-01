@@ -1,3 +1,4 @@
+export * from './api.schema.js';
 export * from './asset.schema.js';
 export * from './part.schema.js';
 export * from './poster-analysis.schema.js';
