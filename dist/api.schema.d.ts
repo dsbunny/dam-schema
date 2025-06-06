@@ -6993,35 +6993,6 @@ export declare const GetAssetDownloadLocationResponse: z.ZodObject<{
     expires: z.iso.ZodISODateTime;
 }, {}, {}>;
 export type GetAssetDownloadLocationResponse = z.infer<typeof GetAssetDownloadLocationResponse>;
-export declare const JsonPatchOperation: z.ZodDiscriminatedUnion<[z.ZodObject<{
-    path: z.ZodString;
-    op: z.ZodLiteral<"add">;
-    value: z.ZodAny;
-}, {}, {}>, z.ZodObject<{
-    path: z.ZodString;
-    op: z.ZodLiteral<"remove">;
-}, {}, {}>, z.ZodObject<{
-    path: z.ZodString;
-    op: z.ZodLiteral<"replace">;
-    value: z.ZodAny;
-}, {}, {}>, z.ZodObject<{
-    path: z.ZodString;
-    op: z.ZodLiteral<"move">;
-    from: z.ZodString;
-}, {}, {}>, z.ZodObject<{
-    path: z.ZodString;
-    op: z.ZodLiteral<"copy">;
-    from: z.ZodString;
-}, {}, {}>, z.ZodObject<{
-    path: z.ZodString;
-    op: z.ZodLiteral<"test">;
-    value: z.ZodAny;
-}, {}, {}>, z.ZodObject<{
-    path: z.ZodString;
-    op: z.ZodLiteral<"_get">;
-    value: z.ZodAny;
-}, {}, {}>]>;
-export type JsonPatchOperation = z.infer<typeof JsonPatchOperation>;
 export declare const UpdateAssetRequest: z.ZodArray<z.ZodDiscriminatedUnion<[z.ZodObject<{
     path: z.ZodString;
     op: z.ZodLiteral<"add">;
