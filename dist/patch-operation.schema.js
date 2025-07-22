@@ -6,8 +6,7 @@ export const JsonPatchOperation = z.discriminatedUnion([
     z.object({ path: z.string(), op: z.literal('replace'), value: z.any() }),
     z.object({ path: z.string(), op: z.literal('move'), from: z.string() }),
     z.object({ path: z.string(), op: z.literal('copy'), from: z.string() }),
-    z.object({ path: z.string(), op: z.literal('test'), value: z.any() }),
-    z.object({ path: z.string(), op: z.literal('_get'), value: z.any() }),
+    z.object({ path: z.string(), op: z.literal('test'), value: z.any(), not: z.boolean().optional() }),
 ])
     .describe('JSON Patch operation schema');
 //# sourceMappingURL=patch-operation.schema.js.map

@@ -1,4 +1,7 @@
 # Changelog
+## v14.1.9
+- Expose `JsonPatchOperation` schema.
+
 ## v14.1.8
 - Add new API schema for the DAM service itself.
 

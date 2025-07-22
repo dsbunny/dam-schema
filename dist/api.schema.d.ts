@@ -7016,10 +7016,7 @@ export declare const UpdateAssetRequest: z.ZodArray<z.ZodDiscriminatedUnion<[z.Z
     path: z.ZodString;
     op: z.ZodLiteral<"test">;
     value: z.ZodAny;
-}, {}, {}>, z.ZodObject<{
-    path: z.ZodString;
-    op: z.ZodLiteral<"_get">;
-    value: z.ZodAny;
+    not: z.ZodOptional<z.ZodBoolean>;
 }, {}, {}>]>>;
 export type UpdateAssetRequest = z.infer<typeof UpdateAssetRequest>;
 export declare const UpdateAssetResponse: z.ZodObject<{
@@ -8916,10 +8913,7 @@ export declare const UpdateUploadRequest: z.ZodArray<z.ZodDiscriminatedUnion<[z.
     path: z.ZodString;
     op: z.ZodLiteral<"test">;
     value: z.ZodAny;
-}, {}, {}>, z.ZodObject<{
-    path: z.ZodString;
-    op: z.ZodLiteral<"_get">;
-    value: z.ZodAny;
+    not: z.ZodOptional<z.ZodBoolean>;
 }, {}, {}>]>>;
 export type UpdateUploadRequest = z.infer<typeof UpdateUploadRequest>;
 export declare const UpdateUploadResponse: z.ZodObject<{}, {}, {}>;
