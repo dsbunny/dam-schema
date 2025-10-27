@@ -13,9 +13,9 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"devDependencies": {
-		"typescript": "^5.5.3",
-		"zod": "^4.1.11",
-		"@dsbunny/metadata-schema": "github:dsbunny/metadata-schema#936f939"
+		"typescript": "^5.9.3",
+		"zod": "^4.1.12",
+		"@dsbunny/metadata-schema": "github:dsbunny/metadata-schema#7faadd3"
 	},
 	"peerDependencies": {
 		"zod": "^4.0.0",
