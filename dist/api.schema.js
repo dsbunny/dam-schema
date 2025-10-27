@@ -1,5 +1,5 @@
 // vim: tabstop=8 softtabstop=0 noexpandtab shiftwidth=8 nosmarttab
-import { z } from 'zod/v4';
+import * as z from "zod";
 import { Asset, PresignedPosterUrl } from './asset.schema.js';
 import { Upload } from './upload.schema.js';
 import { JsonPatchOperation } from './patch-operation.schema.js';

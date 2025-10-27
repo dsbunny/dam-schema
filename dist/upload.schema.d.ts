@@ -1,4 +1,4 @@
-import { z } from 'zod/v4';
+import * as z from "zod";
 export declare const UploadStateEnum: z.ZodEnum<{
     pending: "pending";
     error: "error";
@@ -13,8 +13,8 @@ export declare const CanSaveStatus: z.ZodObject<{
     has_error: z.ZodBoolean;
     is_pending: z.ZodBoolean;
     is_processing: z.ZodBoolean;
-    modify_timestamp: z.iso.ZodISODateTime;
-}, {}, {}>;
+    modify_timestamp: z.ZodISODateTime;
+}, z.core.$strip>;
 export type CanSaveStatus = z.infer<typeof CanSaveStatus>;
 export declare const DbDtoToCanSaveStatus: z.ZodPipe<z.ZodObject<{
     upload_id: z.ZodUUID;
@@ -24,7 +24,7 @@ export declare const DbDtoToCanSaveStatus: z.ZodPipe<z.ZodObject<{
     is_pending: z.ZodNumber;
     is_processing: z.ZodNumber;
     modify_timestamp: z.ZodPipe<z.ZodString, z.ZodTransform<string, string>>;
-}, {}, {}>, z.ZodTransform<{
+}, z.core.$strip>, z.ZodTransform<{
     upload_id: string;
     can_save: boolean;
     is_rejected: boolean;
@@ -55,13 +55,13 @@ export declare const S3Metadata: z.ZodObject<{
         httpStatusCode: z.ZodNumber;
         requestId: z.ZodString;
         totalRetryDelay: z.ZodNumber;
-    }, {}, {}>;
+    }, z.core.$strip>;
     Bucket: z.ZodString;
     ETag: z.ZodString;
     Key: z.ZodString;
     Location: z.ZodString;
     VersionId: z.ZodString;
-}, {}, {}>;
+}, z.core.$strip>;
 export type S3Metadata = z.infer<typeof S3Metadata>;
 export declare const S3Parts: z.ZodArray<z.ZodNumber>;
 export type S3Parts = z.infer<typeof S3Parts>;
@@ -78,13 +78,13 @@ export declare const Upload: z.ZodObject<{
             httpStatusCode: z.ZodNumber;
             requestId: z.ZodString;
             totalRetryDelay: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         Bucket: z.ZodString;
         ETag: z.ZodString;
         Key: z.ZodString;
         Location: z.ZodString;
         VersionId: z.ZodString;
-    }, {}, {}>>;
+    }, z.core.$strip>>;
     s3_version_id: z.ZodOptional<z.ZodString>;
     s3_etag: z.ZodOptional<z.ZodString>;
     s3_parts: z.ZodOptional<z.ZodArray<z.ZodNumber>>;
@@ -98,7 +98,7 @@ export declare const Upload: z.ZodObject<{
         type: z.ZodLiteral<"metadata">;
         timings: z.ZodObject<{
             metadata_http_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -110,9 +110,9 @@ export declare const Upload: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>>;
+    }, z.core.$strip>>;
     upload_state: z.ZodEnum<{
         pending: "pending";
         error: "error";
@@ -140,10 +140,10 @@ export declare const Upload: z.ZodObject<{
         conflict: "conflict";
     }>;
     user_tags: z.ZodArray<z.ZodString>;
-    create_timestamp: z.iso.ZodISODateTime;
-    modify_timestamp: z.iso.ZodISODateTime;
+    create_timestamp: z.ZodISODateTime;
+    modify_timestamp: z.ZodISODateTime;
     is_deleted: z.ZodDefault<z.ZodBoolean>;
-}, {}, {}>;
+}, z.core.$strip>;
 export type Upload = z.infer<typeof Upload>;
 export declare const ValidatedUpload: z.ZodObject<{
     upload_id: z.ZodUUID;
@@ -156,13 +156,13 @@ export declare const ValidatedUpload: z.ZodObject<{
             httpStatusCode: z.ZodNumber;
             requestId: z.ZodString;
             totalRetryDelay: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         Bucket: z.ZodString;
         ETag: z.ZodString;
         Key: z.ZodString;
         Location: z.ZodString;
         VersionId: z.ZodString;
-    }, {}, {}>>;
+    }, z.core.$strip>>;
     s3_version_id: z.ZodNonOptional<z.ZodOptional<z.ZodString>>;
     s3_etag: z.ZodNonOptional<z.ZodOptional<z.ZodString>>;
     s3_parts: z.ZodNonOptional<z.ZodOptional<z.ZodArray<z.ZodNumber>>>;
@@ -176,7 +176,7 @@ export declare const ValidatedUpload: z.ZodObject<{
         type: z.ZodLiteral<"metadata">;
         timings: z.ZodObject<{
             metadata_http_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -188,9 +188,9 @@ export declare const ValidatedUpload: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>>;
+    }, z.core.$strip>>;
     upload_state: z.ZodEnum<{
         pending: "pending";
         error: "error";
@@ -218,10 +218,10 @@ export declare const ValidatedUpload: z.ZodObject<{
         conflict: "conflict";
     }>;
     user_tags: z.ZodArray<z.ZodString>;
-    create_timestamp: z.iso.ZodISODateTime;
-    modify_timestamp: z.iso.ZodISODateTime;
+    create_timestamp: z.ZodISODateTime;
+    modify_timestamp: z.ZodISODateTime;
     is_deleted: z.ZodDefault<z.ZodBoolean>;
-}, {}, {}>;
+}, z.core.$strip>;
 export type ValidatedUpload = z.infer<typeof ValidatedUpload>;
 export declare const DbDtoFromUpload: z.ZodPipe<z.ZodObject<{
     upload_id: z.ZodUUID;
@@ -234,13 +234,13 @@ export declare const DbDtoFromUpload: z.ZodPipe<z.ZodObject<{
             httpStatusCode: z.ZodNumber;
             requestId: z.ZodString;
             totalRetryDelay: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         Bucket: z.ZodString;
         ETag: z.ZodString;
         Key: z.ZodString;
         Location: z.ZodString;
         VersionId: z.ZodString;
-    }, {}, {}>>;
+    }, z.core.$strip>>;
     s3_version_id: z.ZodOptional<z.ZodString>;
     s3_etag: z.ZodOptional<z.ZodString>;
     s3_parts: z.ZodOptional<z.ZodArray<z.ZodNumber>>;
@@ -254,7 +254,7 @@ export declare const DbDtoFromUpload: z.ZodPipe<z.ZodObject<{
         type: z.ZodLiteral<"metadata">;
         timings: z.ZodObject<{
             metadata_http_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -266,9 +266,9 @@ export declare const DbDtoFromUpload: z.ZodPipe<z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>>;
+    }, z.core.$strip>>;
     upload_state: z.ZodEnum<{
         pending: "pending";
         error: "error";
@@ -296,10 +296,10 @@ export declare const DbDtoFromUpload: z.ZodPipe<z.ZodObject<{
         conflict: "conflict";
     }>;
     user_tags: z.ZodArray<z.ZodString>;
-    create_timestamp: z.iso.ZodISODateTime;
-    modify_timestamp: z.iso.ZodISODateTime;
+    create_timestamp: z.ZodISODateTime;
+    modify_timestamp: z.ZodISODateTime;
     is_deleted: z.ZodDefault<z.ZodBoolean>;
-}, {}, {}>, z.ZodTransform<{
+}, z.core.$strip>, z.ZodTransform<{
     s3_metadata: string;
     s3_parts: string;
     metadata_metadata: string;
@@ -424,7 +424,7 @@ export declare const DbDtoToUpload: z.ZodPipe<z.ZodObject<{
     create_timestamp: z.ZodPipe<z.ZodString, z.ZodTransform<string, string>>;
     modify_timestamp: z.ZodPipe<z.ZodString, z.ZodTransform<string, string>>;
     is_deleted: z.ZodDefault<z.ZodNumber>;
-}, {}, {}>, z.ZodTransform<{
+}, z.core.$strip>, z.ZodTransform<{
     upload_id: string;
     tenant_id: string;
     asset_id: string;

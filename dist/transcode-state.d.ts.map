@@ -1,1 +1,1 @@
-{"version":3,"file":"transcode-state.d.ts","sourceRoot":"","sources":["../src/transcode-state.ts"],"names":[],"mappings":"AAEA,OAAO,EAAE,CAAC,EAAE,MAAM,QAAQ,CAAC;AAE3B,eAAO,MAAM,kBAAkB;;;;;;EAOS,CAAC;AACzC,MAAM,MAAM,kBAAkB,GAAG,CAAC,CAAC,KAAK,CAAC,OAAO,kBAAkB,CAAC,CAAC"}
+{"version":3,"file":"transcode-state.d.ts","sourceRoot":"","sources":["../src/transcode-state.ts"],"names":[],"mappings":"AAEA,OAAO,KAAK,CAAC,MAAM,KAAK,CAAC;AAEzB,eAAO,MAAM,kBAAkB;;;;;;EAOS,CAAC;AACzC,MAAM,MAAM,kBAAkB,GAAG,CAAC,CAAC,KAAK,CAAC,OAAO,kBAAkB,CAAC,CAAC"}

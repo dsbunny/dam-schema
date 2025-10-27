@@ -12,11 +12,13 @@
 		"build": "tsc",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
-	"dependencies": {
-		"@dsbunny/metadata-schema": "github:dsbunny/metadata-schema#70e306f",
-		"zod": "3.25.0-beta.20250515T215617"
-	},
 	"devDependencies": {
-		"typescript": "^5.5.3"
+		"typescript": "^5.5.3",
+		"zod": "^4.1.11",
+		"@dsbunny/metadata-schema": "github:dsbunny/metadata-schema#936f939"
+	},
+	"peerDependencies": {
+		"zod": "^4.0.0",
+		"@dsbunny/metadata-schema": "github:dsbunny/metadata-schema"
 	}
 }

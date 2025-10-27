@@ -1,3 +1,3 @@
-import { z } from 'zod/v4';
-export declare function jsonSafeParser<T extends z.ZodTypeAny>(schema: T): z.ZodPipe<z.ZodTransform<any, unknown>, T>;
+import * as z from "zod";
+export declare function jsonSafeParser<T extends z.ZodTypeAny>(schema: T): z.ZodPipe<z.ZodTransform<any, any>, T>;
 //# sourceMappingURL=json-safe-parser.d.ts.map

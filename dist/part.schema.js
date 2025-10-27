@@ -1,5 +1,5 @@
 // vim: tabstop=8 softtabstop=0 noexpandtab shiftwidth=8 nosmarttab
-import { z } from 'zod/v4';
+import * as z from "zod";
 import { sqliteDateSchema } from './sqlite-date.schema.js';
 export const Part = z.object({
     tenant_id: z.uuid()

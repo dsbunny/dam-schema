@@ -1,4 +1,8 @@
 # Changelog
+## v14.2.10
+- Bump to `zod@4.1.11`.
+- Move Zod to `peerDependencies` so users can bring their own Zod.
+
 ## v14.1.9
 - Expose `JsonPatchOperation` schema.
 

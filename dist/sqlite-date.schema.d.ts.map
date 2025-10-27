@@ -1,1 +1,1 @@
-{"version":3,"file":"sqlite-date.schema.d.ts","sourceRoot":"","sources":["../src/sqlite-date.schema.ts"],"names":[],"mappings":"AAEA,OAAO,EAAE,CAAC,EAAE,MAAM,QAAQ,CAAC;AAI3B,eAAO,MAAM,gBAAgB,wDAE3B,CAAC"}
+{"version":3,"file":"sqlite-date.schema.d.ts","sourceRoot":"","sources":["../src/sqlite-date.schema.ts"],"names":[],"mappings":"AAEA,OAAO,KAAK,CAAC,MAAM,KAAK,CAAC;AAIzB,eAAO,MAAM,gBAAgB,wDAE3B,CAAC"}

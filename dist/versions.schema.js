@@ -1,5 +1,5 @@
 // vim: tabstop=8 softtabstop=0 noexpandtab shiftwidth=8 nosmarttab
-import { z } from 'zod/v4';
+import * as z from "zod";
 import { AnimatedPosterMetadata, FileStatAndChecksums, MetadataMetadata, PosterMetadata, PosterSeriesMetadata, PrevueMetadata, TileSeriesMetadataMetadata, } from '@dsbunny/metadata-schema';
 import { PosterAnalysis } from './poster-analysis.schema.js';
 // `file` and `poster` will be present if the version is not current.

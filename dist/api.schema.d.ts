@@ -1,19 +1,19 @@
-import { z } from 'zod/v4';
+import * as z from "zod";
 export declare const ErrorResponse: z.ZodObject<{
     code: z.ZodString;
     message: z.ZodString;
     detail: z.ZodString;
-    timestamp: z.iso.ZodISODateTime;
-}, {}, {}>;
+    timestamp: z.ZodISODateTime;
+}, z.core.$strip>;
 export type ErrorResponse = z.infer<typeof ErrorResponse>;
 export declare const WebHookRequest: z.ZodObject<{
     ref_id: z.ZodString;
     class: z.ZodString;
-}, {}, {}>;
+}, z.core.$strip>;
 export type WebHookRequest = z.infer<typeof WebHookRequest>;
-export declare const WebHookResponse: z.ZodObject<{}, {}, {}>;
+export declare const WebHookResponse: z.ZodObject<{}, z.core.$strip>;
 export type WebHookResponse = z.infer<typeof WebHookResponse>;
-export declare const ListAssetsRequest: z.ZodObject<{}, {}, {}>;
+export declare const ListAssetsRequest: z.ZodObject<{}, z.core.$strip>;
 export type ListAssetsRequest = z.infer<typeof ListAssetsRequest>;
 export declare const ListAssetsResponse: z.ZodObject<{
     assets: z.ZodArray<z.ZodObject<{
@@ -31,8 +31,8 @@ export declare const ListAssetsResponse: z.ZodObject<{
                     }>;
                     width: z.ZodNumber;
                     height: z.ZodNumber;
-                }, {}, {}>>;
-            }, {}, {}>>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -44,13 +44,13 @@ export declare const ListAssetsResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             timings: z.ZodObject<{
                 file_http_duration: z.ZodNumber;
                 file_ck_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>, z.ZodObject<{
+        }, z.core.$strip>, z.ZodObject<{
             type: z.ZodLiteral<"image">;
             sharp: z.ZodObject<{
                 orientation: z.ZodOptional<z.ZodNumber>;
@@ -107,18 +107,18 @@ export declare const ListAssetsResponse: z.ZodObject<{
                     r: z.ZodNumber;
                     g: z.ZodNumber;
                     b: z.ZodNumber;
-                }, {}, {}>, z.ZodNumber]>>;
+                }, z.core.$strip>, z.ZodNumber]>>;
                 levels: z.ZodOptional<z.ZodArray<z.ZodObject<{
                     width: z.ZodNumber;
                     height: z.ZodNumber;
-                }, {}, {}>>>;
+                }, z.core.$strip>>>;
                 subifds: z.ZodOptional<z.ZodNumber>;
                 resolutionUnit: z.ZodOptional<z.ZodEnum<{
                     inch: "inch";
                     cm: "cm";
                 }>>;
                 formatMagick: z.ZodOptional<z.ZodString>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             exif: z.ZodOptional<z.ZodObject<{
                 Image: z.ZodOptional<z.ZodObject<{
                     ProcessingSoftware: z.ZodOptional<z.ZodString>;
@@ -220,7 +220,7 @@ export declare const ListAssetsResponse: z.ZodObject<{
                     Interlace: z.ZodOptional<z.ZodNumber>;
                     TimeZoneOffset: z.ZodOptional<z.ZodNumber>;
                     SelfTimerMode: z.ZodOptional<z.ZodNumber>;
-                    DateTimeOriginal: z.ZodOptional<z.iso.ZodISODateTime>;
+                    DateTimeOriginal: z.ZodOptional<z.ZodISODateTime>;
                     CompressedBitsPerPixel: z.ZodOptional<z.ZodNumber>;
                     ShutterSpeedValue: z.ZodOptional<z.ZodNumber>;
                     ApertureValue: z.ZodOptional<z.ZodNumber>;
@@ -310,7 +310,7 @@ export declare const ListAssetsResponse: z.ZodObject<{
                     PreviewSettingsName: z.ZodOptional<z.ZodNumber>;
                     PreviewSettingsDigest: z.ZodOptional<z.ZodNumber>;
                     PreviewColorSpace: z.ZodOptional<z.ZodNumber>;
-                    PreviewDateTime: z.ZodOptional<z.iso.ZodISODateTime>;
+                    PreviewDateTime: z.ZodOptional<z.ZodISODateTime>;
                     SubTileBlockSize: z.ZodOptional<z.ZodNumber>;
                     RowInterleaveFactor: z.ZodOptional<z.ZodNumber>;
                     ProfileLookTableDims: z.ZodOptional<z.ZodNumber>;
@@ -342,7 +342,7 @@ export declare const ListAssetsResponse: z.ZodObject<{
                     ForwardMatrix3: z.ZodOptional<z.ZodNumber>;
                     MaskSubArea: z.ZodOptional<z.ZodNumber>;
                     ReductionMatrix3: z.ZodOptional<z.ZodNumber>;
-                }, {}, {}>>;
+                }, z.core.$strip>>;
                 Photo: z.ZodOptional<z.ZodObject<{
                     ExposureTime: z.ZodOptional<z.ZodNumber>;
                     FNumber: z.ZodOptional<z.ZodNumber>;
@@ -355,8 +355,8 @@ export declare const ListAssetsResponse: z.ZodObject<{
                     ISOSpeed: z.ZodOptional<z.ZodNumber>;
                     ISOSpeedLatitudeyyy: z.ZodOptional<z.ZodNumber>;
                     ISOSpeedLatitudezzz: z.ZodOptional<z.ZodNumber>;
-                    DateTimeOriginal: z.ZodOptional<z.iso.ZodISODateTime>;
-                    DateTimeDigitized: z.ZodOptional<z.iso.ZodISODateTime>;
+                    DateTimeOriginal: z.ZodOptional<z.ZodISODateTime>;
+                    DateTimeDigitized: z.ZodOptional<z.ZodISODateTime>;
                     OffsetTime: z.ZodOptional<z.ZodString>;
                     OffsetTimeOriginal: z.ZodOptional<z.ZodString>;
                     OffsetTimeDigitized: z.ZodOptional<z.ZodString>;
@@ -414,13 +414,13 @@ export declare const ListAssetsResponse: z.ZodObject<{
                     CompositeImage: z.ZodOptional<z.ZodNumber>;
                     SourceImageNumberOfCompositeImage: z.ZodOptional<z.ZodNumber>;
                     Gamma: z.ZodOptional<z.ZodNumber>;
-                }, {}, {}>>;
+                }, z.core.$strip>>;
                 Iop: z.ZodOptional<z.ZodObject<{
                     InteroperabilityIndex: z.ZodOptional<z.ZodString>;
                     RelatedImageFileFormat: z.ZodOptional<z.ZodString>;
                     RelatedImageWidth: z.ZodOptional<z.ZodNumber>;
                     RelatedImageLength: z.ZodOptional<z.ZodNumber>;
-                }, {}, {}>>;
+                }, z.core.$strip>>;
                 GPSInfo: z.ZodOptional<z.ZodObject<{
                     GPSVersionID: z.ZodOptional<z.ZodArray<z.ZodNumber>>;
                     GPSLatitudeRef: z.ZodOptional<z.ZodString>;
@@ -452,8 +452,8 @@ export declare const ListAssetsResponse: z.ZodObject<{
                     GPSDateStamp: z.ZodOptional<z.ZodString>;
                     GPSDifferential: z.ZodOptional<z.ZodNumber>;
                     GPSHPositioningError: z.ZodOptional<z.ZodNumber>;
-                }, {}, {}>>;
-            }, {}, {}>>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>>;
             icc: z.ZodOptional<z.ZodObject<{
                 version: z.ZodEnum<{
                     "2.0": "2.0";
@@ -498,7 +498,7 @@ export declare const ListAssetsResponse: z.ZodObject<{
                 }>>;
                 viewingConditionsDescription: z.ZodOptional<z.ZodString>;
                 whitepoint: z.ZodOptional<z.ZodTuple<[z.ZodNumber, z.ZodNumber, z.ZodNumber], null>>;
-            }, {}, {}>>;
+            }, z.core.$strip>>;
             iptc: z.ZodOptional<z.ZodObject<{
                 title: z.ZodOptional<z.ZodString>;
                 caption: z.ZodOptional<z.ZodString>;
@@ -511,7 +511,7 @@ export declare const ListAssetsResponse: z.ZodObject<{
                 headline: z.ZodOptional<z.ZodString>;
                 copyright: z.ZodOptional<z.ZodString>;
                 category: z.ZodOptional<z.ZodString>;
-            }, {}, {}>>;
+            }, z.core.$strip>>;
             xmp: z.ZodOptional<z.ZodObject<{
                 keywords: z.ZodOptional<z.ZodArray<z.ZodString>>;
                 title: z.ZodOptional<z.ZodString>;
@@ -521,7 +521,7 @@ export declare const ListAssetsResponse: z.ZodObject<{
                 creator: z.ZodOptional<z.ZodString>;
                 attribution: z.ZodOptional<z.ZodString>;
                 terms: z.ZodOptional<z.ZodString>;
-            }, {}, {}>>;
+            }, z.core.$strip>>;
             ffprobe: z.ZodObject<{
                 streams: z.ZodArray<z.ZodObject<{
                     index: z.ZodNumber;
@@ -581,9 +581,9 @@ export declare const ListAssetsResponse: z.ZodObject<{
                         clean_effects: z.ZodOptional<z.ZodNumber>;
                         attached_pic: z.ZodOptional<z.ZodNumber>;
                         timed_thumbnails: z.ZodOptional<z.ZodNumber>;
-                    }, {}, {}>>;
+                    }, z.core.$strip>>;
                     rotation: z.ZodOptional<z.ZodUnion<readonly [z.ZodString, z.ZodNumber]>>;
-                }, {}, {}>>;
+                }, z.core.$strip>>;
                 format: z.ZodObject<{
                     filename: z.ZodOptional<z.ZodString>;
                     nb_streams: z.ZodOptional<z.ZodNumber>;
@@ -596,8 +596,8 @@ export declare const ListAssetsResponse: z.ZodObject<{
                     bit_rate: z.ZodOptional<z.ZodNumber>;
                     probe_score: z.ZodOptional<z.ZodNumber>;
                     tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnion<readonly [z.ZodString, z.ZodNumber]>>>;
-                }, {}, {}>;
-            }, {}, {}>;
+                }, z.core.$strip>;
+            }, z.core.$strip>;
             hint: z.ZodOptional<z.ZodObject<{
                 type: z.ZodLiteral<"hint">;
                 poster: z.ZodArray<z.ZodObject<{
@@ -608,14 +608,14 @@ export declare const ListAssetsResponse: z.ZodObject<{
                     }>;
                     width: z.ZodNumber;
                     height: z.ZodNumber;
-                }, {}, {}>>;
-            }, {}, {}>>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>>;
             timings: z.ZodObject<{
                 file_http_duration: z.ZodNumber;
                 file_ck_duration: z.ZodNumber;
                 image_sharp_duration: z.ZodNumber;
                 image_ffprobe_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -627,9 +627,9 @@ export declare const ListAssetsResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>, z.ZodObject<{
+        }, z.core.$strip>, z.ZodObject<{
             type: z.ZodLiteral<"texture">;
             ktx: z.ZodOptional<z.ZodObject<{
                 $schema: z.ZodOptional<z.ZodString>;
@@ -943,26 +943,26 @@ export declare const ListAssetsResponse: z.ZodObject<{
                         KTX_SS_ZSTD: "KTX_SS_ZSTD";
                         KTX_SS_ZLIB: "KTX_SS_ZLIB";
                     }>;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 index: z.ZodObject<{
                     dataFormatDescriptor: z.ZodObject<{
                         byteOffset: z.ZodNumber;
                         byteLength: z.ZodNumber;
-                    }, {}, {}>;
+                    }, z.core.$strip>;
                     keyValueData: z.ZodObject<{
                         byteOffset: z.ZodNumber;
                         byteLength: z.ZodNumber;
-                    }, {}, {}>;
+                    }, z.core.$strip>;
                     supercompressionGlobalData: z.ZodObject<{
                         byteOffset: z.ZodNumber;
                         byteLength: z.ZodNumber;
-                    }, {}, {}>;
+                    }, z.core.$strip>;
                     levels: z.ZodArray<z.ZodObject<{
                         byteOffset: z.ZodNumber;
                         byteLength: z.ZodNumber;
                         uncompressedByteLength: z.ZodNumber;
-                    }, {}, {}>>;
-                }, {}, {}>;
+                    }, z.core.$strip>>;
+                }, z.core.$strip>;
                 dataFormatDescriptor: z.ZodObject<{
                     totalSize: z.ZodNumber;
                     blocks: z.ZodArray<z.ZodObject<{
@@ -1170,15 +1170,15 @@ export declare const ListAssetsResponse: z.ZodObject<{
                             samplePosition: z.ZodTuple<[z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber], null>;
                             sampleLower: z.ZodNumber;
                             sampleUpper: z.ZodNumber;
-                        }, {}, {}>>;
-                    }, {}, {}>>;
-                }, {}, {}>;
+                        }, z.core.$strip>>;
+                    }, z.core.$strip>>;
+                }, z.core.$strip>;
                 keyValueData: z.ZodObject<{
                     KTXorientation: z.ZodString;
                     KTXwriter: z.ZodString;
                     KTXwriterScParams: z.ZodString;
-                }, {}, {}>;
-            }, {}, {}>>;
+                }, z.core.$strip>;
+            }, z.core.$strip>>;
             hint: z.ZodOptional<z.ZodObject<{
                 type: z.ZodLiteral<"hint">;
                 poster: z.ZodArray<z.ZodObject<{
@@ -1189,13 +1189,13 @@ export declare const ListAssetsResponse: z.ZodObject<{
                     }>;
                     width: z.ZodNumber;
                     height: z.ZodNumber;
-                }, {}, {}>>;
-            }, {}, {}>>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>>;
             timings: z.ZodObject<{
                 file_http_duration: z.ZodNumber;
                 file_ck_duration: z.ZodNumber;
                 texture_ktxinfo_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -1207,9 +1207,9 @@ export declare const ListAssetsResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>, z.ZodObject<{
+        }, z.core.$strip>, z.ZodObject<{
             type: z.ZodLiteral<"video">;
             ffprobe: z.ZodObject<{
                 streams: z.ZodArray<z.ZodObject<{
@@ -1270,9 +1270,9 @@ export declare const ListAssetsResponse: z.ZodObject<{
                         clean_effects: z.ZodOptional<z.ZodNumber>;
                         attached_pic: z.ZodOptional<z.ZodNumber>;
                         timed_thumbnails: z.ZodOptional<z.ZodNumber>;
-                    }, {}, {}>>;
+                    }, z.core.$strip>>;
                     rotation: z.ZodOptional<z.ZodUnion<readonly [z.ZodString, z.ZodNumber]>>;
-                }, {}, {}>>;
+                }, z.core.$strip>>;
                 format: z.ZodObject<{
                     filename: z.ZodOptional<z.ZodString>;
                     nb_streams: z.ZodOptional<z.ZodNumber>;
@@ -1285,8 +1285,8 @@ export declare const ListAssetsResponse: z.ZodObject<{
                     bit_rate: z.ZodOptional<z.ZodNumber>;
                     probe_score: z.ZodOptional<z.ZodNumber>;
                     tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnion<readonly [z.ZodString, z.ZodNumber]>>>;
-                }, {}, {}>;
-            }, {}, {}>;
+                }, z.core.$strip>;
+            }, z.core.$strip>;
             codecs: z.ZodOptional<z.ZodArray<z.ZodString>>;
             hint: z.ZodOptional<z.ZodObject<{
                 type: z.ZodLiteral<"hint">;
@@ -1298,13 +1298,13 @@ export declare const ListAssetsResponse: z.ZodObject<{
                     }>;
                     width: z.ZodNumber;
                     height: z.ZodNumber;
-                }, {}, {}>>;
-            }, {}, {}>>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>>;
             timings: z.ZodObject<{
                 file_http_duration: z.ZodNumber;
                 file_ck_duration: z.ZodNumber;
                 video_ffprobe_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -1316,9 +1316,9 @@ export declare const ListAssetsResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>, z.ZodObject<{
+        }, z.core.$strip>, z.ZodObject<{
             type: z.ZodLiteral<"rejected">;
             error_text: z.ZodString;
             file: z.ZodObject<{
@@ -1332,18 +1332,18 @@ export declare const ListAssetsResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             timings: z.ZodObject<{
                 file_http_duration: z.ZodNumber;
                 file_ck_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>]>;
+        }, z.core.$strip>], "type">;
         metadata_metadata: z.ZodObject<{
             type: z.ZodLiteral<"metadata">;
             timings: z.ZodObject<{
                 metadata_http_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -1355,9 +1355,9 @@ export declare const ListAssetsResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         poster_metadata: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"poster">;
             poster: z.ZodArray<z.ZodObject<{
@@ -1377,7 +1377,7 @@ export declare const ListAssetsResponse: z.ZodObject<{
                     poster_sharp_duration: z.ZodOptional<z.ZodNumber>;
                     poster_ck_duration: z.ZodNumber;
                     poster_http_duration: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 file: z.ZodObject<{
                     s3_filename: z.ZodString;
                     content_type: z.ZodString;
@@ -1389,16 +1389,16 @@ export declare const ListAssetsResponse: z.ZodObject<{
                     s3_version_id: z.ZodString;
                     s3_etag: z.ZodString;
                     s3_parts: z.ZodArray<z.ZodNumber>;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         poster_analysis: z.ZodOptional<z.ZodObject<{
             description: z.ZodString;
             tags: z.ZodArray<z.ZodString>;
             source: z.ZodString;
-            generated_at: z.iso.ZodISODateTime;
-        }, {}, {}>>;
+            generated_at: z.ZodISODateTime;
+        }, z.core.$strip>>;
         animated_poster_metadata: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"animated-poster">;
             poster: z.ZodObject<{
@@ -1409,7 +1409,7 @@ export declare const ListAssetsResponse: z.ZodObject<{
                     animated_poster_ffmpeg_duration: z.ZodNumber;
                     animated_poster_ck_duration: z.ZodNumber;
                     animated_poster_http_duration: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 file: z.ZodObject<{
                     s3_filename: z.ZodString;
                     content_type: z.ZodString;
@@ -1421,10 +1421,10 @@ export declare const ListAssetsResponse: z.ZodObject<{
                     s3_version_id: z.ZodString;
                     s3_etag: z.ZodString;
                     s3_parts: z.ZodArray<z.ZodNumber>;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, {}, {}>;
-        }, {}, {}>>;
+            }, z.core.$strip>;
+        }, z.core.$strip>>;
         poster_series_metadata: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"poster-series">;
             series: z.ZodArray<z.ZodObject<{
@@ -1444,7 +1444,7 @@ export declare const ListAssetsResponse: z.ZodObject<{
                     poster_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
                     poster_series_ck_duration: z.ZodNumber;
                     poster_series_http_duration: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 file: z.ZodObject<{
                     s3_filename: z.ZodString;
                     content_type: z.ZodString;
@@ -1456,16 +1456,16 @@ export declare const ListAssetsResponse: z.ZodObject<{
                     s3_version_id: z.ZodString;
                     s3_etag: z.ZodString;
                     s3_parts: z.ZodArray<z.ZodNumber>;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         poster_series_selected_index: z.ZodOptional<z.ZodNumber>;
         tile_series_metadata: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"tile-series-metadata">;
             timings: z.ZodObject<{
                 metadata_http_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -1477,9 +1477,9 @@ export declare const ListAssetsResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>>;
+        }, z.core.$strip>>;
         prevue_metadata: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"prevue">;
             prevue: z.ZodObject<{
@@ -1490,7 +1490,7 @@ export declare const ListAssetsResponse: z.ZodObject<{
                     prevue_ffmpeg_duration: z.ZodNumber;
                     prevue_ck_duration: z.ZodNumber;
                     prevue_http_duration: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 file: z.ZodObject<{
                     s3_filename: z.ZodString;
                     content_type: z.ZodString;
@@ -1502,10 +1502,10 @@ export declare const ListAssetsResponse: z.ZodObject<{
                     s3_version_id: z.ZodString;
                     s3_etag: z.ZodString;
                     s3_parts: z.ZodArray<z.ZodNumber>;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, {}, {}>;
-        }, {}, {}>>;
+            }, z.core.$strip>;
+        }, z.core.$strip>>;
         metadata_state: z.ZodEnum<{
             pending: "pending";
             processing: "processing";
@@ -1559,7 +1559,7 @@ export declare const ListAssetsResponse: z.ZodObject<{
             is_current: z.ZodLiteral<true>;
             version: z.ZodNumber;
             origin_name: z.ZodString;
-        }, {}, {}>, z.ZodObject<{
+        }, z.core.$strip>, z.ZodObject<{
             is_current: z.ZodLiteral<false>;
             version: z.ZodNumber;
             origin_name: z.ZodString;
@@ -1575,12 +1575,12 @@ export declare const ListAssetsResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             metadata_metadata: z.ZodObject<{
                 type: z.ZodLiteral<"metadata">;
                 timings: z.ZodObject<{
                     metadata_http_duration: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 file: z.ZodObject<{
                     s3_filename: z.ZodString;
                     content_type: z.ZodString;
@@ -1592,9 +1592,9 @@ export declare const ListAssetsResponse: z.ZodObject<{
                     s3_version_id: z.ZodString;
                     s3_etag: z.ZodString;
                     s3_parts: z.ZodArray<z.ZodNumber>;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             poster_metadata: z.ZodOptional<z.ZodObject<{
                 type: z.ZodLiteral<"poster">;
                 poster: z.ZodArray<z.ZodObject<{
@@ -1614,7 +1614,7 @@ export declare const ListAssetsResponse: z.ZodObject<{
                         poster_sharp_duration: z.ZodOptional<z.ZodNumber>;
                         poster_ck_duration: z.ZodNumber;
                         poster_http_duration: z.ZodNumber;
-                    }, {}, {}>;
+                    }, z.core.$strip>;
                     file: z.ZodObject<{
                         s3_filename: z.ZodString;
                         content_type: z.ZodString;
@@ -1626,16 +1626,16 @@ export declare const ListAssetsResponse: z.ZodObject<{
                         s3_version_id: z.ZodString;
                         s3_etag: z.ZodString;
                         s3_parts: z.ZodArray<z.ZodNumber>;
-                    }, {}, {}>;
+                    }, z.core.$strip>;
                     tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-                }, {}, {}>>;
-            }, {}, {}>>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>>;
             poster_analysis: z.ZodOptional<z.ZodObject<{
                 description: z.ZodString;
                 tags: z.ZodArray<z.ZodString>;
                 source: z.ZodString;
-                generated_at: z.iso.ZodISODateTime;
-            }, {}, {}>>;
+                generated_at: z.ZodISODateTime;
+            }, z.core.$strip>>;
             animated_poster_metadata: z.ZodOptional<z.ZodObject<{
                 type: z.ZodLiteral<"animated-poster">;
                 poster: z.ZodObject<{
@@ -1646,7 +1646,7 @@ export declare const ListAssetsResponse: z.ZodObject<{
                         animated_poster_ffmpeg_duration: z.ZodNumber;
                         animated_poster_ck_duration: z.ZodNumber;
                         animated_poster_http_duration: z.ZodNumber;
-                    }, {}, {}>;
+                    }, z.core.$strip>;
                     file: z.ZodObject<{
                         s3_filename: z.ZodString;
                         content_type: z.ZodString;
@@ -1658,10 +1658,10 @@ export declare const ListAssetsResponse: z.ZodObject<{
                         s3_version_id: z.ZodString;
                         s3_etag: z.ZodString;
                         s3_parts: z.ZodArray<z.ZodNumber>;
-                    }, {}, {}>;
+                    }, z.core.$strip>;
                     tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-                }, {}, {}>;
-            }, {}, {}>>;
+                }, z.core.$strip>;
+            }, z.core.$strip>>;
             poster_series_metadata: z.ZodOptional<z.ZodObject<{
                 type: z.ZodLiteral<"poster-series">;
                 series: z.ZodArray<z.ZodObject<{
@@ -1681,7 +1681,7 @@ export declare const ListAssetsResponse: z.ZodObject<{
                         poster_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
                         poster_series_ck_duration: z.ZodNumber;
                         poster_series_http_duration: z.ZodNumber;
-                    }, {}, {}>;
+                    }, z.core.$strip>;
                     file: z.ZodObject<{
                         s3_filename: z.ZodString;
                         content_type: z.ZodString;
@@ -1693,15 +1693,15 @@ export declare const ListAssetsResponse: z.ZodObject<{
                         s3_version_id: z.ZodString;
                         s3_etag: z.ZodString;
                         s3_parts: z.ZodArray<z.ZodNumber>;
-                    }, {}, {}>;
+                    }, z.core.$strip>;
                     tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-                }, {}, {}>>;
-            }, {}, {}>>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>>;
             tile_series_metadata: z.ZodOptional<z.ZodObject<{
                 type: z.ZodLiteral<"tile-series-metadata">;
                 timings: z.ZodObject<{
                     metadata_http_duration: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 file: z.ZodObject<{
                     s3_filename: z.ZodString;
                     content_type: z.ZodString;
@@ -1713,9 +1713,9 @@ export declare const ListAssetsResponse: z.ZodObject<{
                     s3_version_id: z.ZodString;
                     s3_etag: z.ZodString;
                     s3_parts: z.ZodArray<z.ZodNumber>;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, {}, {}>>;
+            }, z.core.$strip>>;
             prevue_metadata: z.ZodOptional<z.ZodObject<{
                 type: z.ZodLiteral<"prevue">;
                 prevue: z.ZodObject<{
@@ -1726,7 +1726,7 @@ export declare const ListAssetsResponse: z.ZodObject<{
                         prevue_ffmpeg_duration: z.ZodNumber;
                         prevue_ck_duration: z.ZodNumber;
                         prevue_http_duration: z.ZodNumber;
-                    }, {}, {}>;
+                    }, z.core.$strip>;
                     file: z.ZodObject<{
                         s3_filename: z.ZodString;
                         content_type: z.ZodString;
@@ -1738,24 +1738,24 @@ export declare const ListAssetsResponse: z.ZodObject<{
                         s3_version_id: z.ZodString;
                         s3_etag: z.ZodString;
                         s3_parts: z.ZodArray<z.ZodNumber>;
-                    }, {}, {}>;
+                    }, z.core.$strip>;
                     tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-                }, {}, {}>;
-            }, {}, {}>>;
-        }, {}, {}>]>>;
+                }, z.core.$strip>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>]>>;
         tags: z.ZodArray<z.ZodString>;
         asset_id: z.ZodUUID;
-        create_timestamp: z.iso.ZodISODateTime;
-        modify_timestamp: z.iso.ZodISODateTime;
+        create_timestamp: z.ZodISODateTime;
+        modify_timestamp: z.ZodISODateTime;
         is_deleted: z.ZodDefault<z.ZodBoolean>;
         poster_url: z.ZodOptional<z.ZodURL>;
         animated_poster_url: z.ZodOptional<z.ZodURL>;
         prevue_url: z.ZodOptional<z.ZodURL>;
-    }, {}, {}>>;
+    }, z.core.$strip>>;
     next_token: z.ZodNullable<z.ZodString>;
-}, {}, {}>;
+}, z.core.$strip>;
 export type ListAssetsResponse = z.infer<typeof ListAssetsResponse>;
-export declare const ListDeletedAssetsRequest: z.ZodObject<{}, {}, {}>;
+export declare const ListDeletedAssetsRequest: z.ZodObject<{}, z.core.$strip>;
 export type ListDeletedAssetsRequest = z.infer<typeof ListDeletedAssetsRequest>;
 export declare const ListDeletedAssetsResponse: z.ZodObject<{
     assets: z.ZodArray<z.ZodObject<{
@@ -1773,8 +1773,8 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                     }>;
                     width: z.ZodNumber;
                     height: z.ZodNumber;
-                }, {}, {}>>;
-            }, {}, {}>>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -1786,13 +1786,13 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             timings: z.ZodObject<{
                 file_http_duration: z.ZodNumber;
                 file_ck_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>, z.ZodObject<{
+        }, z.core.$strip>, z.ZodObject<{
             type: z.ZodLiteral<"image">;
             sharp: z.ZodObject<{
                 orientation: z.ZodOptional<z.ZodNumber>;
@@ -1849,18 +1849,18 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                     r: z.ZodNumber;
                     g: z.ZodNumber;
                     b: z.ZodNumber;
-                }, {}, {}>, z.ZodNumber]>>;
+                }, z.core.$strip>, z.ZodNumber]>>;
                 levels: z.ZodOptional<z.ZodArray<z.ZodObject<{
                     width: z.ZodNumber;
                     height: z.ZodNumber;
-                }, {}, {}>>>;
+                }, z.core.$strip>>>;
                 subifds: z.ZodOptional<z.ZodNumber>;
                 resolutionUnit: z.ZodOptional<z.ZodEnum<{
                     inch: "inch";
                     cm: "cm";
                 }>>;
                 formatMagick: z.ZodOptional<z.ZodString>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             exif: z.ZodOptional<z.ZodObject<{
                 Image: z.ZodOptional<z.ZodObject<{
                     ProcessingSoftware: z.ZodOptional<z.ZodString>;
@@ -1962,7 +1962,7 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                     Interlace: z.ZodOptional<z.ZodNumber>;
                     TimeZoneOffset: z.ZodOptional<z.ZodNumber>;
                     SelfTimerMode: z.ZodOptional<z.ZodNumber>;
-                    DateTimeOriginal: z.ZodOptional<z.iso.ZodISODateTime>;
+                    DateTimeOriginal: z.ZodOptional<z.ZodISODateTime>;
                     CompressedBitsPerPixel: z.ZodOptional<z.ZodNumber>;
                     ShutterSpeedValue: z.ZodOptional<z.ZodNumber>;
                     ApertureValue: z.ZodOptional<z.ZodNumber>;
@@ -2052,7 +2052,7 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                     PreviewSettingsName: z.ZodOptional<z.ZodNumber>;
                     PreviewSettingsDigest: z.ZodOptional<z.ZodNumber>;
                     PreviewColorSpace: z.ZodOptional<z.ZodNumber>;
-                    PreviewDateTime: z.ZodOptional<z.iso.ZodISODateTime>;
+                    PreviewDateTime: z.ZodOptional<z.ZodISODateTime>;
                     SubTileBlockSize: z.ZodOptional<z.ZodNumber>;
                     RowInterleaveFactor: z.ZodOptional<z.ZodNumber>;
                     ProfileLookTableDims: z.ZodOptional<z.ZodNumber>;
@@ -2084,7 +2084,7 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                     ForwardMatrix3: z.ZodOptional<z.ZodNumber>;
                     MaskSubArea: z.ZodOptional<z.ZodNumber>;
                     ReductionMatrix3: z.ZodOptional<z.ZodNumber>;
-                }, {}, {}>>;
+                }, z.core.$strip>>;
                 Photo: z.ZodOptional<z.ZodObject<{
                     ExposureTime: z.ZodOptional<z.ZodNumber>;
                     FNumber: z.ZodOptional<z.ZodNumber>;
@@ -2097,8 +2097,8 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                     ISOSpeed: z.ZodOptional<z.ZodNumber>;
                     ISOSpeedLatitudeyyy: z.ZodOptional<z.ZodNumber>;
                     ISOSpeedLatitudezzz: z.ZodOptional<z.ZodNumber>;
-                    DateTimeOriginal: z.ZodOptional<z.iso.ZodISODateTime>;
-                    DateTimeDigitized: z.ZodOptional<z.iso.ZodISODateTime>;
+                    DateTimeOriginal: z.ZodOptional<z.ZodISODateTime>;
+                    DateTimeDigitized: z.ZodOptional<z.ZodISODateTime>;
                     OffsetTime: z.ZodOptional<z.ZodString>;
                     OffsetTimeOriginal: z.ZodOptional<z.ZodString>;
                     OffsetTimeDigitized: z.ZodOptional<z.ZodString>;
@@ -2156,13 +2156,13 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                     CompositeImage: z.ZodOptional<z.ZodNumber>;
                     SourceImageNumberOfCompositeImage: z.ZodOptional<z.ZodNumber>;
                     Gamma: z.ZodOptional<z.ZodNumber>;
-                }, {}, {}>>;
+                }, z.core.$strip>>;
                 Iop: z.ZodOptional<z.ZodObject<{
                     InteroperabilityIndex: z.ZodOptional<z.ZodString>;
                     RelatedImageFileFormat: z.ZodOptional<z.ZodString>;
                     RelatedImageWidth: z.ZodOptional<z.ZodNumber>;
                     RelatedImageLength: z.ZodOptional<z.ZodNumber>;
-                }, {}, {}>>;
+                }, z.core.$strip>>;
                 GPSInfo: z.ZodOptional<z.ZodObject<{
                     GPSVersionID: z.ZodOptional<z.ZodArray<z.ZodNumber>>;
                     GPSLatitudeRef: z.ZodOptional<z.ZodString>;
@@ -2194,8 +2194,8 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                     GPSDateStamp: z.ZodOptional<z.ZodString>;
                     GPSDifferential: z.ZodOptional<z.ZodNumber>;
                     GPSHPositioningError: z.ZodOptional<z.ZodNumber>;
-                }, {}, {}>>;
-            }, {}, {}>>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>>;
             icc: z.ZodOptional<z.ZodObject<{
                 version: z.ZodEnum<{
                     "2.0": "2.0";
@@ -2240,7 +2240,7 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                 }>>;
                 viewingConditionsDescription: z.ZodOptional<z.ZodString>;
                 whitepoint: z.ZodOptional<z.ZodTuple<[z.ZodNumber, z.ZodNumber, z.ZodNumber], null>>;
-            }, {}, {}>>;
+            }, z.core.$strip>>;
             iptc: z.ZodOptional<z.ZodObject<{
                 title: z.ZodOptional<z.ZodString>;
                 caption: z.ZodOptional<z.ZodString>;
@@ -2253,7 +2253,7 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                 headline: z.ZodOptional<z.ZodString>;
                 copyright: z.ZodOptional<z.ZodString>;
                 category: z.ZodOptional<z.ZodString>;
-            }, {}, {}>>;
+            }, z.core.$strip>>;
             xmp: z.ZodOptional<z.ZodObject<{
                 keywords: z.ZodOptional<z.ZodArray<z.ZodString>>;
                 title: z.ZodOptional<z.ZodString>;
@@ -2263,7 +2263,7 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                 creator: z.ZodOptional<z.ZodString>;
                 attribution: z.ZodOptional<z.ZodString>;
                 terms: z.ZodOptional<z.ZodString>;
-            }, {}, {}>>;
+            }, z.core.$strip>>;
             ffprobe: z.ZodObject<{
                 streams: z.ZodArray<z.ZodObject<{
                     index: z.ZodNumber;
@@ -2323,9 +2323,9 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                         clean_effects: z.ZodOptional<z.ZodNumber>;
                         attached_pic: z.ZodOptional<z.ZodNumber>;
                         timed_thumbnails: z.ZodOptional<z.ZodNumber>;
-                    }, {}, {}>>;
+                    }, z.core.$strip>>;
                     rotation: z.ZodOptional<z.ZodUnion<readonly [z.ZodString, z.ZodNumber]>>;
-                }, {}, {}>>;
+                }, z.core.$strip>>;
                 format: z.ZodObject<{
                     filename: z.ZodOptional<z.ZodString>;
                     nb_streams: z.ZodOptional<z.ZodNumber>;
@@ -2338,8 +2338,8 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                     bit_rate: z.ZodOptional<z.ZodNumber>;
                     probe_score: z.ZodOptional<z.ZodNumber>;
                     tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnion<readonly [z.ZodString, z.ZodNumber]>>>;
-                }, {}, {}>;
-            }, {}, {}>;
+                }, z.core.$strip>;
+            }, z.core.$strip>;
             hint: z.ZodOptional<z.ZodObject<{
                 type: z.ZodLiteral<"hint">;
                 poster: z.ZodArray<z.ZodObject<{
@@ -2350,14 +2350,14 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                     }>;
                     width: z.ZodNumber;
                     height: z.ZodNumber;
-                }, {}, {}>>;
-            }, {}, {}>>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>>;
             timings: z.ZodObject<{
                 file_http_duration: z.ZodNumber;
                 file_ck_duration: z.ZodNumber;
                 image_sharp_duration: z.ZodNumber;
                 image_ffprobe_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -2369,9 +2369,9 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>, z.ZodObject<{
+        }, z.core.$strip>, z.ZodObject<{
             type: z.ZodLiteral<"texture">;
             ktx: z.ZodOptional<z.ZodObject<{
                 $schema: z.ZodOptional<z.ZodString>;
@@ -2685,26 +2685,26 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                         KTX_SS_ZSTD: "KTX_SS_ZSTD";
                         KTX_SS_ZLIB: "KTX_SS_ZLIB";
                     }>;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 index: z.ZodObject<{
                     dataFormatDescriptor: z.ZodObject<{
                         byteOffset: z.ZodNumber;
                         byteLength: z.ZodNumber;
-                    }, {}, {}>;
+                    }, z.core.$strip>;
                     keyValueData: z.ZodObject<{
                         byteOffset: z.ZodNumber;
                         byteLength: z.ZodNumber;
-                    }, {}, {}>;
+                    }, z.core.$strip>;
                     supercompressionGlobalData: z.ZodObject<{
                         byteOffset: z.ZodNumber;
                         byteLength: z.ZodNumber;
-                    }, {}, {}>;
+                    }, z.core.$strip>;
                     levels: z.ZodArray<z.ZodObject<{
                         byteOffset: z.ZodNumber;
                         byteLength: z.ZodNumber;
                         uncompressedByteLength: z.ZodNumber;
-                    }, {}, {}>>;
-                }, {}, {}>;
+                    }, z.core.$strip>>;
+                }, z.core.$strip>;
                 dataFormatDescriptor: z.ZodObject<{
                     totalSize: z.ZodNumber;
                     blocks: z.ZodArray<z.ZodObject<{
@@ -2912,15 +2912,15 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                             samplePosition: z.ZodTuple<[z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber], null>;
                             sampleLower: z.ZodNumber;
                             sampleUpper: z.ZodNumber;
-                        }, {}, {}>>;
-                    }, {}, {}>>;
-                }, {}, {}>;
+                        }, z.core.$strip>>;
+                    }, z.core.$strip>>;
+                }, z.core.$strip>;
                 keyValueData: z.ZodObject<{
                     KTXorientation: z.ZodString;
                     KTXwriter: z.ZodString;
                     KTXwriterScParams: z.ZodString;
-                }, {}, {}>;
-            }, {}, {}>>;
+                }, z.core.$strip>;
+            }, z.core.$strip>>;
             hint: z.ZodOptional<z.ZodObject<{
                 type: z.ZodLiteral<"hint">;
                 poster: z.ZodArray<z.ZodObject<{
@@ -2931,13 +2931,13 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                     }>;
                     width: z.ZodNumber;
                     height: z.ZodNumber;
-                }, {}, {}>>;
-            }, {}, {}>>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>>;
             timings: z.ZodObject<{
                 file_http_duration: z.ZodNumber;
                 file_ck_duration: z.ZodNumber;
                 texture_ktxinfo_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -2949,9 +2949,9 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>, z.ZodObject<{
+        }, z.core.$strip>, z.ZodObject<{
             type: z.ZodLiteral<"video">;
             ffprobe: z.ZodObject<{
                 streams: z.ZodArray<z.ZodObject<{
@@ -3012,9 +3012,9 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                         clean_effects: z.ZodOptional<z.ZodNumber>;
                         attached_pic: z.ZodOptional<z.ZodNumber>;
                         timed_thumbnails: z.ZodOptional<z.ZodNumber>;
-                    }, {}, {}>>;
+                    }, z.core.$strip>>;
                     rotation: z.ZodOptional<z.ZodUnion<readonly [z.ZodString, z.ZodNumber]>>;
-                }, {}, {}>>;
+                }, z.core.$strip>>;
                 format: z.ZodObject<{
                     filename: z.ZodOptional<z.ZodString>;
                     nb_streams: z.ZodOptional<z.ZodNumber>;
@@ -3027,8 +3027,8 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                     bit_rate: z.ZodOptional<z.ZodNumber>;
                     probe_score: z.ZodOptional<z.ZodNumber>;
                     tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnion<readonly [z.ZodString, z.ZodNumber]>>>;
-                }, {}, {}>;
-            }, {}, {}>;
+                }, z.core.$strip>;
+            }, z.core.$strip>;
             codecs: z.ZodOptional<z.ZodArray<z.ZodString>>;
             hint: z.ZodOptional<z.ZodObject<{
                 type: z.ZodLiteral<"hint">;
@@ -3040,13 +3040,13 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                     }>;
                     width: z.ZodNumber;
                     height: z.ZodNumber;
-                }, {}, {}>>;
-            }, {}, {}>>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>>;
             timings: z.ZodObject<{
                 file_http_duration: z.ZodNumber;
                 file_ck_duration: z.ZodNumber;
                 video_ffprobe_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -3058,9 +3058,9 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>, z.ZodObject<{
+        }, z.core.$strip>, z.ZodObject<{
             type: z.ZodLiteral<"rejected">;
             error_text: z.ZodString;
             file: z.ZodObject<{
@@ -3074,18 +3074,18 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             timings: z.ZodObject<{
                 file_http_duration: z.ZodNumber;
                 file_ck_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>]>;
+        }, z.core.$strip>], "type">;
         metadata_metadata: z.ZodObject<{
             type: z.ZodLiteral<"metadata">;
             timings: z.ZodObject<{
                 metadata_http_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -3097,9 +3097,9 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         poster_metadata: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"poster">;
             poster: z.ZodArray<z.ZodObject<{
@@ -3119,7 +3119,7 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                     poster_sharp_duration: z.ZodOptional<z.ZodNumber>;
                     poster_ck_duration: z.ZodNumber;
                     poster_http_duration: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 file: z.ZodObject<{
                     s3_filename: z.ZodString;
                     content_type: z.ZodString;
@@ -3131,16 +3131,16 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                     s3_version_id: z.ZodString;
                     s3_etag: z.ZodString;
                     s3_parts: z.ZodArray<z.ZodNumber>;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         poster_analysis: z.ZodOptional<z.ZodObject<{
             description: z.ZodString;
             tags: z.ZodArray<z.ZodString>;
             source: z.ZodString;
-            generated_at: z.iso.ZodISODateTime;
-        }, {}, {}>>;
+            generated_at: z.ZodISODateTime;
+        }, z.core.$strip>>;
         animated_poster_metadata: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"animated-poster">;
             poster: z.ZodObject<{
@@ -3151,7 +3151,7 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                     animated_poster_ffmpeg_duration: z.ZodNumber;
                     animated_poster_ck_duration: z.ZodNumber;
                     animated_poster_http_duration: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 file: z.ZodObject<{
                     s3_filename: z.ZodString;
                     content_type: z.ZodString;
@@ -3163,10 +3163,10 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                     s3_version_id: z.ZodString;
                     s3_etag: z.ZodString;
                     s3_parts: z.ZodArray<z.ZodNumber>;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, {}, {}>;
-        }, {}, {}>>;
+            }, z.core.$strip>;
+        }, z.core.$strip>>;
         poster_series_metadata: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"poster-series">;
             series: z.ZodArray<z.ZodObject<{
@@ -3186,7 +3186,7 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                     poster_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
                     poster_series_ck_duration: z.ZodNumber;
                     poster_series_http_duration: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 file: z.ZodObject<{
                     s3_filename: z.ZodString;
                     content_type: z.ZodString;
@@ -3198,16 +3198,16 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                     s3_version_id: z.ZodString;
                     s3_etag: z.ZodString;
                     s3_parts: z.ZodArray<z.ZodNumber>;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         poster_series_selected_index: z.ZodOptional<z.ZodNumber>;
         tile_series_metadata: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"tile-series-metadata">;
             timings: z.ZodObject<{
                 metadata_http_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -3219,9 +3219,9 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>>;
+        }, z.core.$strip>>;
         prevue_metadata: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"prevue">;
             prevue: z.ZodObject<{
@@ -3232,7 +3232,7 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                     prevue_ffmpeg_duration: z.ZodNumber;
                     prevue_ck_duration: z.ZodNumber;
                     prevue_http_duration: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 file: z.ZodObject<{
                     s3_filename: z.ZodString;
                     content_type: z.ZodString;
@@ -3244,10 +3244,10 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                     s3_version_id: z.ZodString;
                     s3_etag: z.ZodString;
                     s3_parts: z.ZodArray<z.ZodNumber>;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, {}, {}>;
-        }, {}, {}>>;
+            }, z.core.$strip>;
+        }, z.core.$strip>>;
         metadata_state: z.ZodEnum<{
             pending: "pending";
             processing: "processing";
@@ -3301,7 +3301,7 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
             is_current: z.ZodLiteral<true>;
             version: z.ZodNumber;
             origin_name: z.ZodString;
-        }, {}, {}>, z.ZodObject<{
+        }, z.core.$strip>, z.ZodObject<{
             is_current: z.ZodLiteral<false>;
             version: z.ZodNumber;
             origin_name: z.ZodString;
@@ -3317,12 +3317,12 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             metadata_metadata: z.ZodObject<{
                 type: z.ZodLiteral<"metadata">;
                 timings: z.ZodObject<{
                     metadata_http_duration: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 file: z.ZodObject<{
                     s3_filename: z.ZodString;
                     content_type: z.ZodString;
@@ -3334,9 +3334,9 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                     s3_version_id: z.ZodString;
                     s3_etag: z.ZodString;
                     s3_parts: z.ZodArray<z.ZodNumber>;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             poster_metadata: z.ZodOptional<z.ZodObject<{
                 type: z.ZodLiteral<"poster">;
                 poster: z.ZodArray<z.ZodObject<{
@@ -3356,7 +3356,7 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                         poster_sharp_duration: z.ZodOptional<z.ZodNumber>;
                         poster_ck_duration: z.ZodNumber;
                         poster_http_duration: z.ZodNumber;
-                    }, {}, {}>;
+                    }, z.core.$strip>;
                     file: z.ZodObject<{
                         s3_filename: z.ZodString;
                         content_type: z.ZodString;
@@ -3368,16 +3368,16 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                         s3_version_id: z.ZodString;
                         s3_etag: z.ZodString;
                         s3_parts: z.ZodArray<z.ZodNumber>;
-                    }, {}, {}>;
+                    }, z.core.$strip>;
                     tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-                }, {}, {}>>;
-            }, {}, {}>>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>>;
             poster_analysis: z.ZodOptional<z.ZodObject<{
                 description: z.ZodString;
                 tags: z.ZodArray<z.ZodString>;
                 source: z.ZodString;
-                generated_at: z.iso.ZodISODateTime;
-            }, {}, {}>>;
+                generated_at: z.ZodISODateTime;
+            }, z.core.$strip>>;
             animated_poster_metadata: z.ZodOptional<z.ZodObject<{
                 type: z.ZodLiteral<"animated-poster">;
                 poster: z.ZodObject<{
@@ -3388,7 +3388,7 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                         animated_poster_ffmpeg_duration: z.ZodNumber;
                         animated_poster_ck_duration: z.ZodNumber;
                         animated_poster_http_duration: z.ZodNumber;
-                    }, {}, {}>;
+                    }, z.core.$strip>;
                     file: z.ZodObject<{
                         s3_filename: z.ZodString;
                         content_type: z.ZodString;
@@ -3400,10 +3400,10 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                         s3_version_id: z.ZodString;
                         s3_etag: z.ZodString;
                         s3_parts: z.ZodArray<z.ZodNumber>;
-                    }, {}, {}>;
+                    }, z.core.$strip>;
                     tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-                }, {}, {}>;
-            }, {}, {}>>;
+                }, z.core.$strip>;
+            }, z.core.$strip>>;
             poster_series_metadata: z.ZodOptional<z.ZodObject<{
                 type: z.ZodLiteral<"poster-series">;
                 series: z.ZodArray<z.ZodObject<{
@@ -3423,7 +3423,7 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                         poster_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
                         poster_series_ck_duration: z.ZodNumber;
                         poster_series_http_duration: z.ZodNumber;
-                    }, {}, {}>;
+                    }, z.core.$strip>;
                     file: z.ZodObject<{
                         s3_filename: z.ZodString;
                         content_type: z.ZodString;
@@ -3435,15 +3435,15 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                         s3_version_id: z.ZodString;
                         s3_etag: z.ZodString;
                         s3_parts: z.ZodArray<z.ZodNumber>;
-                    }, {}, {}>;
+                    }, z.core.$strip>;
                     tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-                }, {}, {}>>;
-            }, {}, {}>>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>>;
             tile_series_metadata: z.ZodOptional<z.ZodObject<{
                 type: z.ZodLiteral<"tile-series-metadata">;
                 timings: z.ZodObject<{
                     metadata_http_duration: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 file: z.ZodObject<{
                     s3_filename: z.ZodString;
                     content_type: z.ZodString;
@@ -3455,9 +3455,9 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                     s3_version_id: z.ZodString;
                     s3_etag: z.ZodString;
                     s3_parts: z.ZodArray<z.ZodNumber>;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, {}, {}>>;
+            }, z.core.$strip>>;
             prevue_metadata: z.ZodOptional<z.ZodObject<{
                 type: z.ZodLiteral<"prevue">;
                 prevue: z.ZodObject<{
@@ -3468,7 +3468,7 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                         prevue_ffmpeg_duration: z.ZodNumber;
                         prevue_ck_duration: z.ZodNumber;
                         prevue_http_duration: z.ZodNumber;
-                    }, {}, {}>;
+                    }, z.core.$strip>;
                     file: z.ZodObject<{
                         s3_filename: z.ZodString;
                         content_type: z.ZodString;
@@ -3480,31 +3480,31 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                         s3_version_id: z.ZodString;
                         s3_etag: z.ZodString;
                         s3_parts: z.ZodArray<z.ZodNumber>;
-                    }, {}, {}>;
+                    }, z.core.$strip>;
                     tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-                }, {}, {}>;
-            }, {}, {}>>;
-        }, {}, {}>]>>;
+                }, z.core.$strip>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>]>>;
         tags: z.ZodArray<z.ZodString>;
         asset_id: z.ZodUUID;
-        create_timestamp: z.iso.ZodISODateTime;
-        modify_timestamp: z.iso.ZodISODateTime;
+        create_timestamp: z.ZodISODateTime;
+        modify_timestamp: z.ZodISODateTime;
         is_deleted: z.ZodDefault<z.ZodBoolean>;
         poster_url: z.ZodOptional<z.ZodURL>;
         animated_poster_url: z.ZodOptional<z.ZodURL>;
         prevue_url: z.ZodOptional<z.ZodURL>;
-    }, {}, {}>>;
+    }, z.core.$strip>>;
     next_token: z.ZodNullable<z.ZodString>;
-}, {}, {}>;
+}, z.core.$strip>;
 export type ListDeletedAssetsResponse = z.infer<typeof ListDeletedAssetsResponse>;
-export declare const GetAssetSuggestionsRequest: z.ZodObject<{}, {}, {}>;
+export declare const GetAssetSuggestionsRequest: z.ZodObject<{}, z.core.$strip>;
 export type GetAssetSuggestionsRequest = z.infer<typeof GetAssetSuggestionsRequest>;
 export declare const GetAssetSuggestionsResponse: z.ZodObject<{
     c: z.ZodString;
     s: z.ZodArray<z.ZodString>;
-}, {}, {}>;
+}, z.core.$strip>;
 export type GetAssetSuggestionsResponse = z.infer<typeof GetAssetSuggestionsResponse>;
-export declare const GetAssetRequest: z.ZodObject<{}, {}, {}>;
+export declare const GetAssetRequest: z.ZodObject<{}, z.core.$strip>;
 export type GetAssetRequest = z.infer<typeof GetAssetRequest>;
 export declare const GetAssetResponse: z.ZodObject<{
     tenant_id: z.ZodUUID;
@@ -3521,8 +3521,8 @@ export declare const GetAssetResponse: z.ZodObject<{
                 }>;
                 width: z.ZodNumber;
                 height: z.ZodNumber;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -3534,13 +3534,13 @@ export declare const GetAssetResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         timings: z.ZodObject<{
             file_http_duration: z.ZodNumber;
             file_ck_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         type: z.ZodLiteral<"image">;
         sharp: z.ZodObject<{
             orientation: z.ZodOptional<z.ZodNumber>;
@@ -3597,18 +3597,18 @@ export declare const GetAssetResponse: z.ZodObject<{
                 r: z.ZodNumber;
                 g: z.ZodNumber;
                 b: z.ZodNumber;
-            }, {}, {}>, z.ZodNumber]>>;
+            }, z.core.$strip>, z.ZodNumber]>>;
             levels: z.ZodOptional<z.ZodArray<z.ZodObject<{
                 width: z.ZodNumber;
                 height: z.ZodNumber;
-            }, {}, {}>>>;
+            }, z.core.$strip>>>;
             subifds: z.ZodOptional<z.ZodNumber>;
             resolutionUnit: z.ZodOptional<z.ZodEnum<{
                 inch: "inch";
                 cm: "cm";
             }>>;
             formatMagick: z.ZodOptional<z.ZodString>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         exif: z.ZodOptional<z.ZodObject<{
             Image: z.ZodOptional<z.ZodObject<{
                 ProcessingSoftware: z.ZodOptional<z.ZodString>;
@@ -3710,7 +3710,7 @@ export declare const GetAssetResponse: z.ZodObject<{
                 Interlace: z.ZodOptional<z.ZodNumber>;
                 TimeZoneOffset: z.ZodOptional<z.ZodNumber>;
                 SelfTimerMode: z.ZodOptional<z.ZodNumber>;
-                DateTimeOriginal: z.ZodOptional<z.iso.ZodISODateTime>;
+                DateTimeOriginal: z.ZodOptional<z.ZodISODateTime>;
                 CompressedBitsPerPixel: z.ZodOptional<z.ZodNumber>;
                 ShutterSpeedValue: z.ZodOptional<z.ZodNumber>;
                 ApertureValue: z.ZodOptional<z.ZodNumber>;
@@ -3800,7 +3800,7 @@ export declare const GetAssetResponse: z.ZodObject<{
                 PreviewSettingsName: z.ZodOptional<z.ZodNumber>;
                 PreviewSettingsDigest: z.ZodOptional<z.ZodNumber>;
                 PreviewColorSpace: z.ZodOptional<z.ZodNumber>;
-                PreviewDateTime: z.ZodOptional<z.iso.ZodISODateTime>;
+                PreviewDateTime: z.ZodOptional<z.ZodISODateTime>;
                 SubTileBlockSize: z.ZodOptional<z.ZodNumber>;
                 RowInterleaveFactor: z.ZodOptional<z.ZodNumber>;
                 ProfileLookTableDims: z.ZodOptional<z.ZodNumber>;
@@ -3832,7 +3832,7 @@ export declare const GetAssetResponse: z.ZodObject<{
                 ForwardMatrix3: z.ZodOptional<z.ZodNumber>;
                 MaskSubArea: z.ZodOptional<z.ZodNumber>;
                 ReductionMatrix3: z.ZodOptional<z.ZodNumber>;
-            }, {}, {}>>;
+            }, z.core.$strip>>;
             Photo: z.ZodOptional<z.ZodObject<{
                 ExposureTime: z.ZodOptional<z.ZodNumber>;
                 FNumber: z.ZodOptional<z.ZodNumber>;
@@ -3845,8 +3845,8 @@ export declare const GetAssetResponse: z.ZodObject<{
                 ISOSpeed: z.ZodOptional<z.ZodNumber>;
                 ISOSpeedLatitudeyyy: z.ZodOptional<z.ZodNumber>;
                 ISOSpeedLatitudezzz: z.ZodOptional<z.ZodNumber>;
-                DateTimeOriginal: z.ZodOptional<z.iso.ZodISODateTime>;
-                DateTimeDigitized: z.ZodOptional<z.iso.ZodISODateTime>;
+                DateTimeOriginal: z.ZodOptional<z.ZodISODateTime>;
+                DateTimeDigitized: z.ZodOptional<z.ZodISODateTime>;
                 OffsetTime: z.ZodOptional<z.ZodString>;
                 OffsetTimeOriginal: z.ZodOptional<z.ZodString>;
                 OffsetTimeDigitized: z.ZodOptional<z.ZodString>;
@@ -3904,13 +3904,13 @@ export declare const GetAssetResponse: z.ZodObject<{
                 CompositeImage: z.ZodOptional<z.ZodNumber>;
                 SourceImageNumberOfCompositeImage: z.ZodOptional<z.ZodNumber>;
                 Gamma: z.ZodOptional<z.ZodNumber>;
-            }, {}, {}>>;
+            }, z.core.$strip>>;
             Iop: z.ZodOptional<z.ZodObject<{
                 InteroperabilityIndex: z.ZodOptional<z.ZodString>;
                 RelatedImageFileFormat: z.ZodOptional<z.ZodString>;
                 RelatedImageWidth: z.ZodOptional<z.ZodNumber>;
                 RelatedImageLength: z.ZodOptional<z.ZodNumber>;
-            }, {}, {}>>;
+            }, z.core.$strip>>;
             GPSInfo: z.ZodOptional<z.ZodObject<{
                 GPSVersionID: z.ZodOptional<z.ZodArray<z.ZodNumber>>;
                 GPSLatitudeRef: z.ZodOptional<z.ZodString>;
@@ -3942,8 +3942,8 @@ export declare const GetAssetResponse: z.ZodObject<{
                 GPSDateStamp: z.ZodOptional<z.ZodString>;
                 GPSDifferential: z.ZodOptional<z.ZodNumber>;
                 GPSHPositioningError: z.ZodOptional<z.ZodNumber>;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         icc: z.ZodOptional<z.ZodObject<{
             version: z.ZodEnum<{
                 "2.0": "2.0";
@@ -3988,7 +3988,7 @@ export declare const GetAssetResponse: z.ZodObject<{
             }>>;
             viewingConditionsDescription: z.ZodOptional<z.ZodString>;
             whitepoint: z.ZodOptional<z.ZodTuple<[z.ZodNumber, z.ZodNumber, z.ZodNumber], null>>;
-        }, {}, {}>>;
+        }, z.core.$strip>>;
         iptc: z.ZodOptional<z.ZodObject<{
             title: z.ZodOptional<z.ZodString>;
             caption: z.ZodOptional<z.ZodString>;
@@ -4001,7 +4001,7 @@ export declare const GetAssetResponse: z.ZodObject<{
             headline: z.ZodOptional<z.ZodString>;
             copyright: z.ZodOptional<z.ZodString>;
             category: z.ZodOptional<z.ZodString>;
-        }, {}, {}>>;
+        }, z.core.$strip>>;
         xmp: z.ZodOptional<z.ZodObject<{
             keywords: z.ZodOptional<z.ZodArray<z.ZodString>>;
             title: z.ZodOptional<z.ZodString>;
@@ -4011,7 +4011,7 @@ export declare const GetAssetResponse: z.ZodObject<{
             creator: z.ZodOptional<z.ZodString>;
             attribution: z.ZodOptional<z.ZodString>;
             terms: z.ZodOptional<z.ZodString>;
-        }, {}, {}>>;
+        }, z.core.$strip>>;
         ffprobe: z.ZodObject<{
             streams: z.ZodArray<z.ZodObject<{
                 index: z.ZodNumber;
@@ -4071,9 +4071,9 @@ export declare const GetAssetResponse: z.ZodObject<{
                     clean_effects: z.ZodOptional<z.ZodNumber>;
                     attached_pic: z.ZodOptional<z.ZodNumber>;
                     timed_thumbnails: z.ZodOptional<z.ZodNumber>;
-                }, {}, {}>>;
+                }, z.core.$strip>>;
                 rotation: z.ZodOptional<z.ZodUnion<readonly [z.ZodString, z.ZodNumber]>>;
-            }, {}, {}>>;
+            }, z.core.$strip>>;
             format: z.ZodObject<{
                 filename: z.ZodOptional<z.ZodString>;
                 nb_streams: z.ZodOptional<z.ZodNumber>;
@@ -4086,8 +4086,8 @@ export declare const GetAssetResponse: z.ZodObject<{
                 bit_rate: z.ZodOptional<z.ZodNumber>;
                 probe_score: z.ZodOptional<z.ZodNumber>;
                 tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnion<readonly [z.ZodString, z.ZodNumber]>>>;
-            }, {}, {}>;
-        }, {}, {}>;
+            }, z.core.$strip>;
+        }, z.core.$strip>;
         hint: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"hint">;
             poster: z.ZodArray<z.ZodObject<{
@@ -4098,14 +4098,14 @@ export declare const GetAssetResponse: z.ZodObject<{
                 }>;
                 width: z.ZodNumber;
                 height: z.ZodNumber;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         timings: z.ZodObject<{
             file_http_duration: z.ZodNumber;
             file_ck_duration: z.ZodNumber;
             image_sharp_duration: z.ZodNumber;
             image_ffprobe_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -4117,9 +4117,9 @@ export declare const GetAssetResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         type: z.ZodLiteral<"texture">;
         ktx: z.ZodOptional<z.ZodObject<{
             $schema: z.ZodOptional<z.ZodString>;
@@ -4433,26 +4433,26 @@ export declare const GetAssetResponse: z.ZodObject<{
                     KTX_SS_ZSTD: "KTX_SS_ZSTD";
                     KTX_SS_ZLIB: "KTX_SS_ZLIB";
                 }>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             index: z.ZodObject<{
                 dataFormatDescriptor: z.ZodObject<{
                     byteOffset: z.ZodNumber;
                     byteLength: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 keyValueData: z.ZodObject<{
                     byteOffset: z.ZodNumber;
                     byteLength: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 supercompressionGlobalData: z.ZodObject<{
                     byteOffset: z.ZodNumber;
                     byteLength: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 levels: z.ZodArray<z.ZodObject<{
                     byteOffset: z.ZodNumber;
                     byteLength: z.ZodNumber;
                     uncompressedByteLength: z.ZodNumber;
-                }, {}, {}>>;
-            }, {}, {}>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>;
             dataFormatDescriptor: z.ZodObject<{
                 totalSize: z.ZodNumber;
                 blocks: z.ZodArray<z.ZodObject<{
@@ -4660,15 +4660,15 @@ export declare const GetAssetResponse: z.ZodObject<{
                         samplePosition: z.ZodTuple<[z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber], null>;
                         sampleLower: z.ZodNumber;
                         sampleUpper: z.ZodNumber;
-                    }, {}, {}>>;
-                }, {}, {}>>;
-            }, {}, {}>;
+                    }, z.core.$strip>>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>;
             keyValueData: z.ZodObject<{
                 KTXorientation: z.ZodString;
                 KTXwriter: z.ZodString;
                 KTXwriterScParams: z.ZodString;
-            }, {}, {}>;
-        }, {}, {}>>;
+            }, z.core.$strip>;
+        }, z.core.$strip>>;
         hint: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"hint">;
             poster: z.ZodArray<z.ZodObject<{
@@ -4679,13 +4679,13 @@ export declare const GetAssetResponse: z.ZodObject<{
                 }>;
                 width: z.ZodNumber;
                 height: z.ZodNumber;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         timings: z.ZodObject<{
             file_http_duration: z.ZodNumber;
             file_ck_duration: z.ZodNumber;
             texture_ktxinfo_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -4697,9 +4697,9 @@ export declare const GetAssetResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         type: z.ZodLiteral<"video">;
         ffprobe: z.ZodObject<{
             streams: z.ZodArray<z.ZodObject<{
@@ -4760,9 +4760,9 @@ export declare const GetAssetResponse: z.ZodObject<{
                     clean_effects: z.ZodOptional<z.ZodNumber>;
                     attached_pic: z.ZodOptional<z.ZodNumber>;
                     timed_thumbnails: z.ZodOptional<z.ZodNumber>;
-                }, {}, {}>>;
+                }, z.core.$strip>>;
                 rotation: z.ZodOptional<z.ZodUnion<readonly [z.ZodString, z.ZodNumber]>>;
-            }, {}, {}>>;
+            }, z.core.$strip>>;
             format: z.ZodObject<{
                 filename: z.ZodOptional<z.ZodString>;
                 nb_streams: z.ZodOptional<z.ZodNumber>;
@@ -4775,8 +4775,8 @@ export declare const GetAssetResponse: z.ZodObject<{
                 bit_rate: z.ZodOptional<z.ZodNumber>;
                 probe_score: z.ZodOptional<z.ZodNumber>;
                 tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnion<readonly [z.ZodString, z.ZodNumber]>>>;
-            }, {}, {}>;
-        }, {}, {}>;
+            }, z.core.$strip>;
+        }, z.core.$strip>;
         codecs: z.ZodOptional<z.ZodArray<z.ZodString>>;
         hint: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"hint">;
@@ -4788,13 +4788,13 @@ export declare const GetAssetResponse: z.ZodObject<{
                 }>;
                 width: z.ZodNumber;
                 height: z.ZodNumber;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         timings: z.ZodObject<{
             file_http_duration: z.ZodNumber;
             file_ck_duration: z.ZodNumber;
             video_ffprobe_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -4806,9 +4806,9 @@ export declare const GetAssetResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         type: z.ZodLiteral<"rejected">;
         error_text: z.ZodString;
         file: z.ZodObject<{
@@ -4822,18 +4822,18 @@ export declare const GetAssetResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         timings: z.ZodObject<{
             file_http_duration: z.ZodNumber;
             file_ck_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>]>;
+    }, z.core.$strip>], "type">;
     metadata_metadata: z.ZodObject<{
         type: z.ZodLiteral<"metadata">;
         timings: z.ZodObject<{
             metadata_http_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -4845,9 +4845,9 @@ export declare const GetAssetResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>;
+    }, z.core.$strip>;
     poster_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"poster">;
         poster: z.ZodArray<z.ZodObject<{
@@ -4867,7 +4867,7 @@ export declare const GetAssetResponse: z.ZodObject<{
                 poster_sharp_duration: z.ZodOptional<z.ZodNumber>;
                 poster_ck_duration: z.ZodNumber;
                 poster_http_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -4879,16 +4879,16 @@ export declare const GetAssetResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>>;
-    }, {}, {}>>;
+        }, z.core.$strip>>;
+    }, z.core.$strip>>;
     poster_analysis: z.ZodOptional<z.ZodObject<{
         description: z.ZodString;
         tags: z.ZodArray<z.ZodString>;
         source: z.ZodString;
-        generated_at: z.iso.ZodISODateTime;
-    }, {}, {}>>;
+        generated_at: z.ZodISODateTime;
+    }, z.core.$strip>>;
     animated_poster_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"animated-poster">;
         poster: z.ZodObject<{
@@ -4899,7 +4899,7 @@ export declare const GetAssetResponse: z.ZodObject<{
                 animated_poster_ffmpeg_duration: z.ZodNumber;
                 animated_poster_ck_duration: z.ZodNumber;
                 animated_poster_http_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -4911,10 +4911,10 @@ export declare const GetAssetResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>;
-    }, {}, {}>>;
+        }, z.core.$strip>;
+    }, z.core.$strip>>;
     poster_series_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"poster-series">;
         series: z.ZodArray<z.ZodObject<{
@@ -4934,7 +4934,7 @@ export declare const GetAssetResponse: z.ZodObject<{
                 poster_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
                 poster_series_ck_duration: z.ZodNumber;
                 poster_series_http_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -4946,16 +4946,16 @@ export declare const GetAssetResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>>;
-    }, {}, {}>>;
+        }, z.core.$strip>>;
+    }, z.core.$strip>>;
     poster_series_selected_index: z.ZodOptional<z.ZodNumber>;
     tile_series_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"tile-series-metadata">;
         timings: z.ZodObject<{
             metadata_http_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -4967,9 +4967,9 @@ export declare const GetAssetResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>>;
+    }, z.core.$strip>>;
     prevue_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"prevue">;
         prevue: z.ZodObject<{
@@ -4980,7 +4980,7 @@ export declare const GetAssetResponse: z.ZodObject<{
                 prevue_ffmpeg_duration: z.ZodNumber;
                 prevue_ck_duration: z.ZodNumber;
                 prevue_http_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -4992,10 +4992,10 @@ export declare const GetAssetResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>;
-    }, {}, {}>>;
+        }, z.core.$strip>;
+    }, z.core.$strip>>;
     metadata_state: z.ZodEnum<{
         pending: "pending";
         processing: "processing";
@@ -5049,7 +5049,7 @@ export declare const GetAssetResponse: z.ZodObject<{
         is_current: z.ZodLiteral<true>;
         version: z.ZodNumber;
         origin_name: z.ZodString;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         is_current: z.ZodLiteral<false>;
         version: z.ZodNumber;
         origin_name: z.ZodString;
@@ -5065,12 +5065,12 @@ export declare const GetAssetResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         metadata_metadata: z.ZodObject<{
             type: z.ZodLiteral<"metadata">;
             timings: z.ZodObject<{
                 metadata_http_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -5082,9 +5082,9 @@ export declare const GetAssetResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         poster_metadata: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"poster">;
             poster: z.ZodArray<z.ZodObject<{
@@ -5104,7 +5104,7 @@ export declare const GetAssetResponse: z.ZodObject<{
                     poster_sharp_duration: z.ZodOptional<z.ZodNumber>;
                     poster_ck_duration: z.ZodNumber;
                     poster_http_duration: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 file: z.ZodObject<{
                     s3_filename: z.ZodString;
                     content_type: z.ZodString;
@@ -5116,16 +5116,16 @@ export declare const GetAssetResponse: z.ZodObject<{
                     s3_version_id: z.ZodString;
                     s3_etag: z.ZodString;
                     s3_parts: z.ZodArray<z.ZodNumber>;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         poster_analysis: z.ZodOptional<z.ZodObject<{
             description: z.ZodString;
             tags: z.ZodArray<z.ZodString>;
             source: z.ZodString;
-            generated_at: z.iso.ZodISODateTime;
-        }, {}, {}>>;
+            generated_at: z.ZodISODateTime;
+        }, z.core.$strip>>;
         animated_poster_metadata: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"animated-poster">;
             poster: z.ZodObject<{
@@ -5136,7 +5136,7 @@ export declare const GetAssetResponse: z.ZodObject<{
                     animated_poster_ffmpeg_duration: z.ZodNumber;
                     animated_poster_ck_duration: z.ZodNumber;
                     animated_poster_http_duration: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 file: z.ZodObject<{
                     s3_filename: z.ZodString;
                     content_type: z.ZodString;
@@ -5148,10 +5148,10 @@ export declare const GetAssetResponse: z.ZodObject<{
                     s3_version_id: z.ZodString;
                     s3_etag: z.ZodString;
                     s3_parts: z.ZodArray<z.ZodNumber>;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, {}, {}>;
-        }, {}, {}>>;
+            }, z.core.$strip>;
+        }, z.core.$strip>>;
         poster_series_metadata: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"poster-series">;
             series: z.ZodArray<z.ZodObject<{
@@ -5171,7 +5171,7 @@ export declare const GetAssetResponse: z.ZodObject<{
                     poster_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
                     poster_series_ck_duration: z.ZodNumber;
                     poster_series_http_duration: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 file: z.ZodObject<{
                     s3_filename: z.ZodString;
                     content_type: z.ZodString;
@@ -5183,15 +5183,15 @@ export declare const GetAssetResponse: z.ZodObject<{
                     s3_version_id: z.ZodString;
                     s3_etag: z.ZodString;
                     s3_parts: z.ZodArray<z.ZodNumber>;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         tile_series_metadata: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"tile-series-metadata">;
             timings: z.ZodObject<{
                 metadata_http_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -5203,9 +5203,9 @@ export declare const GetAssetResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>>;
+        }, z.core.$strip>>;
         prevue_metadata: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"prevue">;
             prevue: z.ZodObject<{
@@ -5216,7 +5216,7 @@ export declare const GetAssetResponse: z.ZodObject<{
                     prevue_ffmpeg_duration: z.ZodNumber;
                     prevue_ck_duration: z.ZodNumber;
                     prevue_http_duration: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 file: z.ZodObject<{
                     s3_filename: z.ZodString;
                     content_type: z.ZodString;
@@ -5228,26 +5228,26 @@ export declare const GetAssetResponse: z.ZodObject<{
                     s3_version_id: z.ZodString;
                     s3_etag: z.ZodString;
                     s3_parts: z.ZodArray<z.ZodNumber>;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, {}, {}>;
-        }, {}, {}>>;
-    }, {}, {}>]>>;
+            }, z.core.$strip>;
+        }, z.core.$strip>>;
+    }, z.core.$strip>]>>;
     tags: z.ZodArray<z.ZodString>;
     asset_id: z.ZodUUID;
-    create_timestamp: z.iso.ZodISODateTime;
-    modify_timestamp: z.iso.ZodISODateTime;
+    create_timestamp: z.ZodISODateTime;
+    modify_timestamp: z.ZodISODateTime;
     is_deleted: z.ZodDefault<z.ZodBoolean>;
     poster_url: z.ZodOptional<z.ZodURL>;
     animated_poster_url: z.ZodOptional<z.ZodURL>;
     prevue_url: z.ZodOptional<z.ZodURL>;
-}, {}, {}>;
+}, z.core.$strip>;
 export type GetAssetResponse = z.infer<typeof GetAssetResponse>;
-export declare const DeleteAssetRequest: z.ZodObject<{}, {}, {}>;
+export declare const DeleteAssetRequest: z.ZodObject<{}, z.core.$strip>;
 export type DeleteAssetRequest = z.infer<typeof DeleteAssetRequest>;
-export declare const DeleteAssetResponse: z.ZodObject<{}, {}, {}>;
+export declare const DeleteAssetResponse: z.ZodObject<{}, z.core.$strip>;
 export type DeleteAssetResponse = z.infer<typeof DeleteAssetResponse>;
-export declare const RecoverAssetRequest: z.ZodObject<{}, {}, {}>;
+export declare const RecoverAssetRequest: z.ZodObject<{}, z.core.$strip>;
 export type RecoverAssetRequest = z.infer<typeof RecoverAssetRequest>;
 export declare const RecoverAssetResponse: z.ZodObject<{
     tenant_id: z.ZodUUID;
@@ -5264,8 +5264,8 @@ export declare const RecoverAssetResponse: z.ZodObject<{
                 }>;
                 width: z.ZodNumber;
                 height: z.ZodNumber;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -5277,13 +5277,13 @@ export declare const RecoverAssetResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         timings: z.ZodObject<{
             file_http_duration: z.ZodNumber;
             file_ck_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         type: z.ZodLiteral<"image">;
         sharp: z.ZodObject<{
             orientation: z.ZodOptional<z.ZodNumber>;
@@ -5340,18 +5340,18 @@ export declare const RecoverAssetResponse: z.ZodObject<{
                 r: z.ZodNumber;
                 g: z.ZodNumber;
                 b: z.ZodNumber;
-            }, {}, {}>, z.ZodNumber]>>;
+            }, z.core.$strip>, z.ZodNumber]>>;
             levels: z.ZodOptional<z.ZodArray<z.ZodObject<{
                 width: z.ZodNumber;
                 height: z.ZodNumber;
-            }, {}, {}>>>;
+            }, z.core.$strip>>>;
             subifds: z.ZodOptional<z.ZodNumber>;
             resolutionUnit: z.ZodOptional<z.ZodEnum<{
                 inch: "inch";
                 cm: "cm";
             }>>;
             formatMagick: z.ZodOptional<z.ZodString>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         exif: z.ZodOptional<z.ZodObject<{
             Image: z.ZodOptional<z.ZodObject<{
                 ProcessingSoftware: z.ZodOptional<z.ZodString>;
@@ -5453,7 +5453,7 @@ export declare const RecoverAssetResponse: z.ZodObject<{
                 Interlace: z.ZodOptional<z.ZodNumber>;
                 TimeZoneOffset: z.ZodOptional<z.ZodNumber>;
                 SelfTimerMode: z.ZodOptional<z.ZodNumber>;
-                DateTimeOriginal: z.ZodOptional<z.iso.ZodISODateTime>;
+                DateTimeOriginal: z.ZodOptional<z.ZodISODateTime>;
                 CompressedBitsPerPixel: z.ZodOptional<z.ZodNumber>;
                 ShutterSpeedValue: z.ZodOptional<z.ZodNumber>;
                 ApertureValue: z.ZodOptional<z.ZodNumber>;
@@ -5543,7 +5543,7 @@ export declare const RecoverAssetResponse: z.ZodObject<{
                 PreviewSettingsName: z.ZodOptional<z.ZodNumber>;
                 PreviewSettingsDigest: z.ZodOptional<z.ZodNumber>;
                 PreviewColorSpace: z.ZodOptional<z.ZodNumber>;
-                PreviewDateTime: z.ZodOptional<z.iso.ZodISODateTime>;
+                PreviewDateTime: z.ZodOptional<z.ZodISODateTime>;
                 SubTileBlockSize: z.ZodOptional<z.ZodNumber>;
                 RowInterleaveFactor: z.ZodOptional<z.ZodNumber>;
                 ProfileLookTableDims: z.ZodOptional<z.ZodNumber>;
@@ -5575,7 +5575,7 @@ export declare const RecoverAssetResponse: z.ZodObject<{
                 ForwardMatrix3: z.ZodOptional<z.ZodNumber>;
                 MaskSubArea: z.ZodOptional<z.ZodNumber>;
                 ReductionMatrix3: z.ZodOptional<z.ZodNumber>;
-            }, {}, {}>>;
+            }, z.core.$strip>>;
             Photo: z.ZodOptional<z.ZodObject<{
                 ExposureTime: z.ZodOptional<z.ZodNumber>;
                 FNumber: z.ZodOptional<z.ZodNumber>;
@@ -5588,8 +5588,8 @@ export declare const RecoverAssetResponse: z.ZodObject<{
                 ISOSpeed: z.ZodOptional<z.ZodNumber>;
                 ISOSpeedLatitudeyyy: z.ZodOptional<z.ZodNumber>;
                 ISOSpeedLatitudezzz: z.ZodOptional<z.ZodNumber>;
-                DateTimeOriginal: z.ZodOptional<z.iso.ZodISODateTime>;
-                DateTimeDigitized: z.ZodOptional<z.iso.ZodISODateTime>;
+                DateTimeOriginal: z.ZodOptional<z.ZodISODateTime>;
+                DateTimeDigitized: z.ZodOptional<z.ZodISODateTime>;
                 OffsetTime: z.ZodOptional<z.ZodString>;
                 OffsetTimeOriginal: z.ZodOptional<z.ZodString>;
                 OffsetTimeDigitized: z.ZodOptional<z.ZodString>;
@@ -5647,13 +5647,13 @@ export declare const RecoverAssetResponse: z.ZodObject<{
                 CompositeImage: z.ZodOptional<z.ZodNumber>;
                 SourceImageNumberOfCompositeImage: z.ZodOptional<z.ZodNumber>;
                 Gamma: z.ZodOptional<z.ZodNumber>;
-            }, {}, {}>>;
+            }, z.core.$strip>>;
             Iop: z.ZodOptional<z.ZodObject<{
                 InteroperabilityIndex: z.ZodOptional<z.ZodString>;
                 RelatedImageFileFormat: z.ZodOptional<z.ZodString>;
                 RelatedImageWidth: z.ZodOptional<z.ZodNumber>;
                 RelatedImageLength: z.ZodOptional<z.ZodNumber>;
-            }, {}, {}>>;
+            }, z.core.$strip>>;
             GPSInfo: z.ZodOptional<z.ZodObject<{
                 GPSVersionID: z.ZodOptional<z.ZodArray<z.ZodNumber>>;
                 GPSLatitudeRef: z.ZodOptional<z.ZodString>;
@@ -5685,8 +5685,8 @@ export declare const RecoverAssetResponse: z.ZodObject<{
                 GPSDateStamp: z.ZodOptional<z.ZodString>;
                 GPSDifferential: z.ZodOptional<z.ZodNumber>;
                 GPSHPositioningError: z.ZodOptional<z.ZodNumber>;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         icc: z.ZodOptional<z.ZodObject<{
             version: z.ZodEnum<{
                 "2.0": "2.0";
@@ -5731,7 +5731,7 @@ export declare const RecoverAssetResponse: z.ZodObject<{
             }>>;
             viewingConditionsDescription: z.ZodOptional<z.ZodString>;
             whitepoint: z.ZodOptional<z.ZodTuple<[z.ZodNumber, z.ZodNumber, z.ZodNumber], null>>;
-        }, {}, {}>>;
+        }, z.core.$strip>>;
         iptc: z.ZodOptional<z.ZodObject<{
             title: z.ZodOptional<z.ZodString>;
             caption: z.ZodOptional<z.ZodString>;
@@ -5744,7 +5744,7 @@ export declare const RecoverAssetResponse: z.ZodObject<{
             headline: z.ZodOptional<z.ZodString>;
             copyright: z.ZodOptional<z.ZodString>;
             category: z.ZodOptional<z.ZodString>;
-        }, {}, {}>>;
+        }, z.core.$strip>>;
         xmp: z.ZodOptional<z.ZodObject<{
             keywords: z.ZodOptional<z.ZodArray<z.ZodString>>;
             title: z.ZodOptional<z.ZodString>;
@@ -5754,7 +5754,7 @@ export declare const RecoverAssetResponse: z.ZodObject<{
             creator: z.ZodOptional<z.ZodString>;
             attribution: z.ZodOptional<z.ZodString>;
             terms: z.ZodOptional<z.ZodString>;
-        }, {}, {}>>;
+        }, z.core.$strip>>;
         ffprobe: z.ZodObject<{
             streams: z.ZodArray<z.ZodObject<{
                 index: z.ZodNumber;
@@ -5814,9 +5814,9 @@ export declare const RecoverAssetResponse: z.ZodObject<{
                     clean_effects: z.ZodOptional<z.ZodNumber>;
                     attached_pic: z.ZodOptional<z.ZodNumber>;
                     timed_thumbnails: z.ZodOptional<z.ZodNumber>;
-                }, {}, {}>>;
+                }, z.core.$strip>>;
                 rotation: z.ZodOptional<z.ZodUnion<readonly [z.ZodString, z.ZodNumber]>>;
-            }, {}, {}>>;
+            }, z.core.$strip>>;
             format: z.ZodObject<{
                 filename: z.ZodOptional<z.ZodString>;
                 nb_streams: z.ZodOptional<z.ZodNumber>;
@@ -5829,8 +5829,8 @@ export declare const RecoverAssetResponse: z.ZodObject<{
                 bit_rate: z.ZodOptional<z.ZodNumber>;
                 probe_score: z.ZodOptional<z.ZodNumber>;
                 tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnion<readonly [z.ZodString, z.ZodNumber]>>>;
-            }, {}, {}>;
-        }, {}, {}>;
+            }, z.core.$strip>;
+        }, z.core.$strip>;
         hint: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"hint">;
             poster: z.ZodArray<z.ZodObject<{
@@ -5841,14 +5841,14 @@ export declare const RecoverAssetResponse: z.ZodObject<{
                 }>;
                 width: z.ZodNumber;
                 height: z.ZodNumber;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         timings: z.ZodObject<{
             file_http_duration: z.ZodNumber;
             file_ck_duration: z.ZodNumber;
             image_sharp_duration: z.ZodNumber;
             image_ffprobe_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -5860,9 +5860,9 @@ export declare const RecoverAssetResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         type: z.ZodLiteral<"texture">;
         ktx: z.ZodOptional<z.ZodObject<{
             $schema: z.ZodOptional<z.ZodString>;
@@ -6176,26 +6176,26 @@ export declare const RecoverAssetResponse: z.ZodObject<{
                     KTX_SS_ZSTD: "KTX_SS_ZSTD";
                     KTX_SS_ZLIB: "KTX_SS_ZLIB";
                 }>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             index: z.ZodObject<{
                 dataFormatDescriptor: z.ZodObject<{
                     byteOffset: z.ZodNumber;
                     byteLength: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 keyValueData: z.ZodObject<{
                     byteOffset: z.ZodNumber;
                     byteLength: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 supercompressionGlobalData: z.ZodObject<{
                     byteOffset: z.ZodNumber;
                     byteLength: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 levels: z.ZodArray<z.ZodObject<{
                     byteOffset: z.ZodNumber;
                     byteLength: z.ZodNumber;
                     uncompressedByteLength: z.ZodNumber;
-                }, {}, {}>>;
-            }, {}, {}>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>;
             dataFormatDescriptor: z.ZodObject<{
                 totalSize: z.ZodNumber;
                 blocks: z.ZodArray<z.ZodObject<{
@@ -6403,15 +6403,15 @@ export declare const RecoverAssetResponse: z.ZodObject<{
                         samplePosition: z.ZodTuple<[z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber], null>;
                         sampleLower: z.ZodNumber;
                         sampleUpper: z.ZodNumber;
-                    }, {}, {}>>;
-                }, {}, {}>>;
-            }, {}, {}>;
+                    }, z.core.$strip>>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>;
             keyValueData: z.ZodObject<{
                 KTXorientation: z.ZodString;
                 KTXwriter: z.ZodString;
                 KTXwriterScParams: z.ZodString;
-            }, {}, {}>;
-        }, {}, {}>>;
+            }, z.core.$strip>;
+        }, z.core.$strip>>;
         hint: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"hint">;
             poster: z.ZodArray<z.ZodObject<{
@@ -6422,13 +6422,13 @@ export declare const RecoverAssetResponse: z.ZodObject<{
                 }>;
                 width: z.ZodNumber;
                 height: z.ZodNumber;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         timings: z.ZodObject<{
             file_http_duration: z.ZodNumber;
             file_ck_duration: z.ZodNumber;
             texture_ktxinfo_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -6440,9 +6440,9 @@ export declare const RecoverAssetResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         type: z.ZodLiteral<"video">;
         ffprobe: z.ZodObject<{
             streams: z.ZodArray<z.ZodObject<{
@@ -6503,9 +6503,9 @@ export declare const RecoverAssetResponse: z.ZodObject<{
                     clean_effects: z.ZodOptional<z.ZodNumber>;
                     attached_pic: z.ZodOptional<z.ZodNumber>;
                     timed_thumbnails: z.ZodOptional<z.ZodNumber>;
-                }, {}, {}>>;
+                }, z.core.$strip>>;
                 rotation: z.ZodOptional<z.ZodUnion<readonly [z.ZodString, z.ZodNumber]>>;
-            }, {}, {}>>;
+            }, z.core.$strip>>;
             format: z.ZodObject<{
                 filename: z.ZodOptional<z.ZodString>;
                 nb_streams: z.ZodOptional<z.ZodNumber>;
@@ -6518,8 +6518,8 @@ export declare const RecoverAssetResponse: z.ZodObject<{
                 bit_rate: z.ZodOptional<z.ZodNumber>;
                 probe_score: z.ZodOptional<z.ZodNumber>;
                 tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnion<readonly [z.ZodString, z.ZodNumber]>>>;
-            }, {}, {}>;
-        }, {}, {}>;
+            }, z.core.$strip>;
+        }, z.core.$strip>;
         codecs: z.ZodOptional<z.ZodArray<z.ZodString>>;
         hint: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"hint">;
@@ -6531,13 +6531,13 @@ export declare const RecoverAssetResponse: z.ZodObject<{
                 }>;
                 width: z.ZodNumber;
                 height: z.ZodNumber;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         timings: z.ZodObject<{
             file_http_duration: z.ZodNumber;
             file_ck_duration: z.ZodNumber;
             video_ffprobe_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -6549,9 +6549,9 @@ export declare const RecoverAssetResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         type: z.ZodLiteral<"rejected">;
         error_text: z.ZodString;
         file: z.ZodObject<{
@@ -6565,18 +6565,18 @@ export declare const RecoverAssetResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         timings: z.ZodObject<{
             file_http_duration: z.ZodNumber;
             file_ck_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>]>;
+    }, z.core.$strip>], "type">;
     metadata_metadata: z.ZodObject<{
         type: z.ZodLiteral<"metadata">;
         timings: z.ZodObject<{
             metadata_http_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -6588,9 +6588,9 @@ export declare const RecoverAssetResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>;
+    }, z.core.$strip>;
     poster_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"poster">;
         poster: z.ZodArray<z.ZodObject<{
@@ -6610,7 +6610,7 @@ export declare const RecoverAssetResponse: z.ZodObject<{
                 poster_sharp_duration: z.ZodOptional<z.ZodNumber>;
                 poster_ck_duration: z.ZodNumber;
                 poster_http_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -6622,16 +6622,16 @@ export declare const RecoverAssetResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>>;
-    }, {}, {}>>;
+        }, z.core.$strip>>;
+    }, z.core.$strip>>;
     poster_analysis: z.ZodOptional<z.ZodObject<{
         description: z.ZodString;
         tags: z.ZodArray<z.ZodString>;
         source: z.ZodString;
-        generated_at: z.iso.ZodISODateTime;
-    }, {}, {}>>;
+        generated_at: z.ZodISODateTime;
+    }, z.core.$strip>>;
     animated_poster_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"animated-poster">;
         poster: z.ZodObject<{
@@ -6642,7 +6642,7 @@ export declare const RecoverAssetResponse: z.ZodObject<{
                 animated_poster_ffmpeg_duration: z.ZodNumber;
                 animated_poster_ck_duration: z.ZodNumber;
                 animated_poster_http_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -6654,10 +6654,10 @@ export declare const RecoverAssetResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>;
-    }, {}, {}>>;
+        }, z.core.$strip>;
+    }, z.core.$strip>>;
     poster_series_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"poster-series">;
         series: z.ZodArray<z.ZodObject<{
@@ -6677,7 +6677,7 @@ export declare const RecoverAssetResponse: z.ZodObject<{
                 poster_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
                 poster_series_ck_duration: z.ZodNumber;
                 poster_series_http_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -6689,16 +6689,16 @@ export declare const RecoverAssetResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>>;
-    }, {}, {}>>;
+        }, z.core.$strip>>;
+    }, z.core.$strip>>;
     poster_series_selected_index: z.ZodOptional<z.ZodNumber>;
     tile_series_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"tile-series-metadata">;
         timings: z.ZodObject<{
             metadata_http_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -6710,9 +6710,9 @@ export declare const RecoverAssetResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>>;
+    }, z.core.$strip>>;
     prevue_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"prevue">;
         prevue: z.ZodObject<{
@@ -6723,7 +6723,7 @@ export declare const RecoverAssetResponse: z.ZodObject<{
                 prevue_ffmpeg_duration: z.ZodNumber;
                 prevue_ck_duration: z.ZodNumber;
                 prevue_http_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -6735,10 +6735,10 @@ export declare const RecoverAssetResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>;
-    }, {}, {}>>;
+        }, z.core.$strip>;
+    }, z.core.$strip>>;
     metadata_state: z.ZodEnum<{
         pending: "pending";
         processing: "processing";
@@ -6792,7 +6792,7 @@ export declare const RecoverAssetResponse: z.ZodObject<{
         is_current: z.ZodLiteral<true>;
         version: z.ZodNumber;
         origin_name: z.ZodString;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         is_current: z.ZodLiteral<false>;
         version: z.ZodNumber;
         origin_name: z.ZodString;
@@ -6808,12 +6808,12 @@ export declare const RecoverAssetResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         metadata_metadata: z.ZodObject<{
             type: z.ZodLiteral<"metadata">;
             timings: z.ZodObject<{
                 metadata_http_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -6825,9 +6825,9 @@ export declare const RecoverAssetResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         poster_metadata: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"poster">;
             poster: z.ZodArray<z.ZodObject<{
@@ -6847,7 +6847,7 @@ export declare const RecoverAssetResponse: z.ZodObject<{
                     poster_sharp_duration: z.ZodOptional<z.ZodNumber>;
                     poster_ck_duration: z.ZodNumber;
                     poster_http_duration: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 file: z.ZodObject<{
                     s3_filename: z.ZodString;
                     content_type: z.ZodString;
@@ -6859,16 +6859,16 @@ export declare const RecoverAssetResponse: z.ZodObject<{
                     s3_version_id: z.ZodString;
                     s3_etag: z.ZodString;
                     s3_parts: z.ZodArray<z.ZodNumber>;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         poster_analysis: z.ZodOptional<z.ZodObject<{
             description: z.ZodString;
             tags: z.ZodArray<z.ZodString>;
             source: z.ZodString;
-            generated_at: z.iso.ZodISODateTime;
-        }, {}, {}>>;
+            generated_at: z.ZodISODateTime;
+        }, z.core.$strip>>;
         animated_poster_metadata: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"animated-poster">;
             poster: z.ZodObject<{
@@ -6879,7 +6879,7 @@ export declare const RecoverAssetResponse: z.ZodObject<{
                     animated_poster_ffmpeg_duration: z.ZodNumber;
                     animated_poster_ck_duration: z.ZodNumber;
                     animated_poster_http_duration: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 file: z.ZodObject<{
                     s3_filename: z.ZodString;
                     content_type: z.ZodString;
@@ -6891,10 +6891,10 @@ export declare const RecoverAssetResponse: z.ZodObject<{
                     s3_version_id: z.ZodString;
                     s3_etag: z.ZodString;
                     s3_parts: z.ZodArray<z.ZodNumber>;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, {}, {}>;
-        }, {}, {}>>;
+            }, z.core.$strip>;
+        }, z.core.$strip>>;
         poster_series_metadata: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"poster-series">;
             series: z.ZodArray<z.ZodObject<{
@@ -6914,7 +6914,7 @@ export declare const RecoverAssetResponse: z.ZodObject<{
                     poster_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
                     poster_series_ck_duration: z.ZodNumber;
                     poster_series_http_duration: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 file: z.ZodObject<{
                     s3_filename: z.ZodString;
                     content_type: z.ZodString;
@@ -6926,15 +6926,15 @@ export declare const RecoverAssetResponse: z.ZodObject<{
                     s3_version_id: z.ZodString;
                     s3_etag: z.ZodString;
                     s3_parts: z.ZodArray<z.ZodNumber>;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         tile_series_metadata: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"tile-series-metadata">;
             timings: z.ZodObject<{
                 metadata_http_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -6946,9 +6946,9 @@ export declare const RecoverAssetResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>>;
+        }, z.core.$strip>>;
         prevue_metadata: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"prevue">;
             prevue: z.ZodObject<{
@@ -6959,7 +6959,7 @@ export declare const RecoverAssetResponse: z.ZodObject<{
                     prevue_ffmpeg_duration: z.ZodNumber;
                     prevue_ck_duration: z.ZodNumber;
                     prevue_http_duration: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 file: z.ZodObject<{
                     s3_filename: z.ZodString;
                     content_type: z.ZodString;
@@ -6971,53 +6971,53 @@ export declare const RecoverAssetResponse: z.ZodObject<{
                     s3_version_id: z.ZodString;
                     s3_etag: z.ZodString;
                     s3_parts: z.ZodArray<z.ZodNumber>;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, {}, {}>;
-        }, {}, {}>>;
-    }, {}, {}>]>>;
+            }, z.core.$strip>;
+        }, z.core.$strip>>;
+    }, z.core.$strip>]>>;
     tags: z.ZodArray<z.ZodString>;
     asset_id: z.ZodUUID;
-    create_timestamp: z.iso.ZodISODateTime;
-    modify_timestamp: z.iso.ZodISODateTime;
+    create_timestamp: z.ZodISODateTime;
+    modify_timestamp: z.ZodISODateTime;
     is_deleted: z.ZodDefault<z.ZodBoolean>;
     poster_url: z.ZodOptional<z.ZodURL>;
     animated_poster_url: z.ZodOptional<z.ZodURL>;
     prevue_url: z.ZodOptional<z.ZodURL>;
-}, {}, {}>;
+}, z.core.$strip>;
 export type RecoverAssetResponse = z.infer<typeof RecoverAssetResponse>;
-export declare const GetAssetDownloadLocationRequest: z.ZodObject<{}, {}, {}>;
+export declare const GetAssetDownloadLocationRequest: z.ZodObject<{}, z.core.$strip>;
 export type GetAssetDownloadLocationRequest = z.infer<typeof GetAssetDownloadLocationRequest>;
 export declare const GetAssetDownloadLocationResponse: z.ZodObject<{
     url: z.ZodURL;
-    expires: z.iso.ZodISODateTime;
-}, {}, {}>;
+    expires: z.ZodISODateTime;
+}, z.core.$strip>;
 export type GetAssetDownloadLocationResponse = z.infer<typeof GetAssetDownloadLocationResponse>;
 export declare const UpdateAssetRequest: z.ZodArray<z.ZodDiscriminatedUnion<[z.ZodObject<{
     path: z.ZodString;
     op: z.ZodLiteral<"add">;
     value: z.ZodAny;
-}, {}, {}>, z.ZodObject<{
+}, z.core.$strip>, z.ZodObject<{
     path: z.ZodString;
     op: z.ZodLiteral<"remove">;
-}, {}, {}>, z.ZodObject<{
+}, z.core.$strip>, z.ZodObject<{
     path: z.ZodString;
     op: z.ZodLiteral<"replace">;
     value: z.ZodAny;
-}, {}, {}>, z.ZodObject<{
+}, z.core.$strip>, z.ZodObject<{
     path: z.ZodString;
     op: z.ZodLiteral<"move">;
     from: z.ZodString;
-}, {}, {}>, z.ZodObject<{
+}, z.core.$strip>, z.ZodObject<{
     path: z.ZodString;
     op: z.ZodLiteral<"copy">;
     from: z.ZodString;
-}, {}, {}>, z.ZodObject<{
+}, z.core.$strip>, z.ZodObject<{
     path: z.ZodString;
     op: z.ZodLiteral<"test">;
     value: z.ZodAny;
     not: z.ZodOptional<z.ZodBoolean>;
-}, {}, {}>]>>;
+}, z.core.$strip>], "op">>;
 export type UpdateAssetRequest = z.infer<typeof UpdateAssetRequest>;
 export declare const UpdateAssetResponse: z.ZodObject<{
     tenant_id: z.ZodUUID;
@@ -7034,8 +7034,8 @@ export declare const UpdateAssetResponse: z.ZodObject<{
                 }>;
                 width: z.ZodNumber;
                 height: z.ZodNumber;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -7047,13 +7047,13 @@ export declare const UpdateAssetResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         timings: z.ZodObject<{
             file_http_duration: z.ZodNumber;
             file_ck_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         type: z.ZodLiteral<"image">;
         sharp: z.ZodObject<{
             orientation: z.ZodOptional<z.ZodNumber>;
@@ -7110,18 +7110,18 @@ export declare const UpdateAssetResponse: z.ZodObject<{
                 r: z.ZodNumber;
                 g: z.ZodNumber;
                 b: z.ZodNumber;
-            }, {}, {}>, z.ZodNumber]>>;
+            }, z.core.$strip>, z.ZodNumber]>>;
             levels: z.ZodOptional<z.ZodArray<z.ZodObject<{
                 width: z.ZodNumber;
                 height: z.ZodNumber;
-            }, {}, {}>>>;
+            }, z.core.$strip>>>;
             subifds: z.ZodOptional<z.ZodNumber>;
             resolutionUnit: z.ZodOptional<z.ZodEnum<{
                 inch: "inch";
                 cm: "cm";
             }>>;
             formatMagick: z.ZodOptional<z.ZodString>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         exif: z.ZodOptional<z.ZodObject<{
             Image: z.ZodOptional<z.ZodObject<{
                 ProcessingSoftware: z.ZodOptional<z.ZodString>;
@@ -7223,7 +7223,7 @@ export declare const UpdateAssetResponse: z.ZodObject<{
                 Interlace: z.ZodOptional<z.ZodNumber>;
                 TimeZoneOffset: z.ZodOptional<z.ZodNumber>;
                 SelfTimerMode: z.ZodOptional<z.ZodNumber>;
-                DateTimeOriginal: z.ZodOptional<z.iso.ZodISODateTime>;
+                DateTimeOriginal: z.ZodOptional<z.ZodISODateTime>;
                 CompressedBitsPerPixel: z.ZodOptional<z.ZodNumber>;
                 ShutterSpeedValue: z.ZodOptional<z.ZodNumber>;
                 ApertureValue: z.ZodOptional<z.ZodNumber>;
@@ -7313,7 +7313,7 @@ export declare const UpdateAssetResponse: z.ZodObject<{
                 PreviewSettingsName: z.ZodOptional<z.ZodNumber>;
                 PreviewSettingsDigest: z.ZodOptional<z.ZodNumber>;
                 PreviewColorSpace: z.ZodOptional<z.ZodNumber>;
-                PreviewDateTime: z.ZodOptional<z.iso.ZodISODateTime>;
+                PreviewDateTime: z.ZodOptional<z.ZodISODateTime>;
                 SubTileBlockSize: z.ZodOptional<z.ZodNumber>;
                 RowInterleaveFactor: z.ZodOptional<z.ZodNumber>;
                 ProfileLookTableDims: z.ZodOptional<z.ZodNumber>;
@@ -7345,7 +7345,7 @@ export declare const UpdateAssetResponse: z.ZodObject<{
                 ForwardMatrix3: z.ZodOptional<z.ZodNumber>;
                 MaskSubArea: z.ZodOptional<z.ZodNumber>;
                 ReductionMatrix3: z.ZodOptional<z.ZodNumber>;
-            }, {}, {}>>;
+            }, z.core.$strip>>;
             Photo: z.ZodOptional<z.ZodObject<{
                 ExposureTime: z.ZodOptional<z.ZodNumber>;
                 FNumber: z.ZodOptional<z.ZodNumber>;
@@ -7358,8 +7358,8 @@ export declare const UpdateAssetResponse: z.ZodObject<{
                 ISOSpeed: z.ZodOptional<z.ZodNumber>;
                 ISOSpeedLatitudeyyy: z.ZodOptional<z.ZodNumber>;
                 ISOSpeedLatitudezzz: z.ZodOptional<z.ZodNumber>;
-                DateTimeOriginal: z.ZodOptional<z.iso.ZodISODateTime>;
-                DateTimeDigitized: z.ZodOptional<z.iso.ZodISODateTime>;
+                DateTimeOriginal: z.ZodOptional<z.ZodISODateTime>;
+                DateTimeDigitized: z.ZodOptional<z.ZodISODateTime>;
                 OffsetTime: z.ZodOptional<z.ZodString>;
                 OffsetTimeOriginal: z.ZodOptional<z.ZodString>;
                 OffsetTimeDigitized: z.ZodOptional<z.ZodString>;
@@ -7417,13 +7417,13 @@ export declare const UpdateAssetResponse: z.ZodObject<{
                 CompositeImage: z.ZodOptional<z.ZodNumber>;
                 SourceImageNumberOfCompositeImage: z.ZodOptional<z.ZodNumber>;
                 Gamma: z.ZodOptional<z.ZodNumber>;
-            }, {}, {}>>;
+            }, z.core.$strip>>;
             Iop: z.ZodOptional<z.ZodObject<{
                 InteroperabilityIndex: z.ZodOptional<z.ZodString>;
                 RelatedImageFileFormat: z.ZodOptional<z.ZodString>;
                 RelatedImageWidth: z.ZodOptional<z.ZodNumber>;
                 RelatedImageLength: z.ZodOptional<z.ZodNumber>;
-            }, {}, {}>>;
+            }, z.core.$strip>>;
             GPSInfo: z.ZodOptional<z.ZodObject<{
                 GPSVersionID: z.ZodOptional<z.ZodArray<z.ZodNumber>>;
                 GPSLatitudeRef: z.ZodOptional<z.ZodString>;
@@ -7455,8 +7455,8 @@ export declare const UpdateAssetResponse: z.ZodObject<{
                 GPSDateStamp: z.ZodOptional<z.ZodString>;
                 GPSDifferential: z.ZodOptional<z.ZodNumber>;
                 GPSHPositioningError: z.ZodOptional<z.ZodNumber>;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         icc: z.ZodOptional<z.ZodObject<{
             version: z.ZodEnum<{
                 "2.0": "2.0";
@@ -7501,7 +7501,7 @@ export declare const UpdateAssetResponse: z.ZodObject<{
             }>>;
             viewingConditionsDescription: z.ZodOptional<z.ZodString>;
             whitepoint: z.ZodOptional<z.ZodTuple<[z.ZodNumber, z.ZodNumber, z.ZodNumber], null>>;
-        }, {}, {}>>;
+        }, z.core.$strip>>;
         iptc: z.ZodOptional<z.ZodObject<{
             title: z.ZodOptional<z.ZodString>;
             caption: z.ZodOptional<z.ZodString>;
@@ -7514,7 +7514,7 @@ export declare const UpdateAssetResponse: z.ZodObject<{
             headline: z.ZodOptional<z.ZodString>;
             copyright: z.ZodOptional<z.ZodString>;
             category: z.ZodOptional<z.ZodString>;
-        }, {}, {}>>;
+        }, z.core.$strip>>;
         xmp: z.ZodOptional<z.ZodObject<{
             keywords: z.ZodOptional<z.ZodArray<z.ZodString>>;
             title: z.ZodOptional<z.ZodString>;
@@ -7524,7 +7524,7 @@ export declare const UpdateAssetResponse: z.ZodObject<{
             creator: z.ZodOptional<z.ZodString>;
             attribution: z.ZodOptional<z.ZodString>;
             terms: z.ZodOptional<z.ZodString>;
-        }, {}, {}>>;
+        }, z.core.$strip>>;
         ffprobe: z.ZodObject<{
             streams: z.ZodArray<z.ZodObject<{
                 index: z.ZodNumber;
@@ -7584,9 +7584,9 @@ export declare const UpdateAssetResponse: z.ZodObject<{
                     clean_effects: z.ZodOptional<z.ZodNumber>;
                     attached_pic: z.ZodOptional<z.ZodNumber>;
                     timed_thumbnails: z.ZodOptional<z.ZodNumber>;
-                }, {}, {}>>;
+                }, z.core.$strip>>;
                 rotation: z.ZodOptional<z.ZodUnion<readonly [z.ZodString, z.ZodNumber]>>;
-            }, {}, {}>>;
+            }, z.core.$strip>>;
             format: z.ZodObject<{
                 filename: z.ZodOptional<z.ZodString>;
                 nb_streams: z.ZodOptional<z.ZodNumber>;
@@ -7599,8 +7599,8 @@ export declare const UpdateAssetResponse: z.ZodObject<{
                 bit_rate: z.ZodOptional<z.ZodNumber>;
                 probe_score: z.ZodOptional<z.ZodNumber>;
                 tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnion<readonly [z.ZodString, z.ZodNumber]>>>;
-            }, {}, {}>;
-        }, {}, {}>;
+            }, z.core.$strip>;
+        }, z.core.$strip>;
         hint: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"hint">;
             poster: z.ZodArray<z.ZodObject<{
@@ -7611,14 +7611,14 @@ export declare const UpdateAssetResponse: z.ZodObject<{
                 }>;
                 width: z.ZodNumber;
                 height: z.ZodNumber;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         timings: z.ZodObject<{
             file_http_duration: z.ZodNumber;
             file_ck_duration: z.ZodNumber;
             image_sharp_duration: z.ZodNumber;
             image_ffprobe_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -7630,9 +7630,9 @@ export declare const UpdateAssetResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         type: z.ZodLiteral<"texture">;
         ktx: z.ZodOptional<z.ZodObject<{
             $schema: z.ZodOptional<z.ZodString>;
@@ -7946,26 +7946,26 @@ export declare const UpdateAssetResponse: z.ZodObject<{
                     KTX_SS_ZSTD: "KTX_SS_ZSTD";
                     KTX_SS_ZLIB: "KTX_SS_ZLIB";
                 }>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             index: z.ZodObject<{
                 dataFormatDescriptor: z.ZodObject<{
                     byteOffset: z.ZodNumber;
                     byteLength: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 keyValueData: z.ZodObject<{
                     byteOffset: z.ZodNumber;
                     byteLength: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 supercompressionGlobalData: z.ZodObject<{
                     byteOffset: z.ZodNumber;
                     byteLength: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 levels: z.ZodArray<z.ZodObject<{
                     byteOffset: z.ZodNumber;
                     byteLength: z.ZodNumber;
                     uncompressedByteLength: z.ZodNumber;
-                }, {}, {}>>;
-            }, {}, {}>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>;
             dataFormatDescriptor: z.ZodObject<{
                 totalSize: z.ZodNumber;
                 blocks: z.ZodArray<z.ZodObject<{
@@ -8173,15 +8173,15 @@ export declare const UpdateAssetResponse: z.ZodObject<{
                         samplePosition: z.ZodTuple<[z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber], null>;
                         sampleLower: z.ZodNumber;
                         sampleUpper: z.ZodNumber;
-                    }, {}, {}>>;
-                }, {}, {}>>;
-            }, {}, {}>;
+                    }, z.core.$strip>>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>;
             keyValueData: z.ZodObject<{
                 KTXorientation: z.ZodString;
                 KTXwriter: z.ZodString;
                 KTXwriterScParams: z.ZodString;
-            }, {}, {}>;
-        }, {}, {}>>;
+            }, z.core.$strip>;
+        }, z.core.$strip>>;
         hint: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"hint">;
             poster: z.ZodArray<z.ZodObject<{
@@ -8192,13 +8192,13 @@ export declare const UpdateAssetResponse: z.ZodObject<{
                 }>;
                 width: z.ZodNumber;
                 height: z.ZodNumber;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         timings: z.ZodObject<{
             file_http_duration: z.ZodNumber;
             file_ck_duration: z.ZodNumber;
             texture_ktxinfo_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -8210,9 +8210,9 @@ export declare const UpdateAssetResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         type: z.ZodLiteral<"video">;
         ffprobe: z.ZodObject<{
             streams: z.ZodArray<z.ZodObject<{
@@ -8273,9 +8273,9 @@ export declare const UpdateAssetResponse: z.ZodObject<{
                     clean_effects: z.ZodOptional<z.ZodNumber>;
                     attached_pic: z.ZodOptional<z.ZodNumber>;
                     timed_thumbnails: z.ZodOptional<z.ZodNumber>;
-                }, {}, {}>>;
+                }, z.core.$strip>>;
                 rotation: z.ZodOptional<z.ZodUnion<readonly [z.ZodString, z.ZodNumber]>>;
-            }, {}, {}>>;
+            }, z.core.$strip>>;
             format: z.ZodObject<{
                 filename: z.ZodOptional<z.ZodString>;
                 nb_streams: z.ZodOptional<z.ZodNumber>;
@@ -8288,8 +8288,8 @@ export declare const UpdateAssetResponse: z.ZodObject<{
                 bit_rate: z.ZodOptional<z.ZodNumber>;
                 probe_score: z.ZodOptional<z.ZodNumber>;
                 tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnion<readonly [z.ZodString, z.ZodNumber]>>>;
-            }, {}, {}>;
-        }, {}, {}>;
+            }, z.core.$strip>;
+        }, z.core.$strip>;
         codecs: z.ZodOptional<z.ZodArray<z.ZodString>>;
         hint: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"hint">;
@@ -8301,13 +8301,13 @@ export declare const UpdateAssetResponse: z.ZodObject<{
                 }>;
                 width: z.ZodNumber;
                 height: z.ZodNumber;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         timings: z.ZodObject<{
             file_http_duration: z.ZodNumber;
             file_ck_duration: z.ZodNumber;
             video_ffprobe_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -8319,9 +8319,9 @@ export declare const UpdateAssetResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         type: z.ZodLiteral<"rejected">;
         error_text: z.ZodString;
         file: z.ZodObject<{
@@ -8335,18 +8335,18 @@ export declare const UpdateAssetResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         timings: z.ZodObject<{
             file_http_duration: z.ZodNumber;
             file_ck_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>]>;
+    }, z.core.$strip>], "type">;
     metadata_metadata: z.ZodObject<{
         type: z.ZodLiteral<"metadata">;
         timings: z.ZodObject<{
             metadata_http_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -8358,9 +8358,9 @@ export declare const UpdateAssetResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>;
+    }, z.core.$strip>;
     poster_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"poster">;
         poster: z.ZodArray<z.ZodObject<{
@@ -8380,7 +8380,7 @@ export declare const UpdateAssetResponse: z.ZodObject<{
                 poster_sharp_duration: z.ZodOptional<z.ZodNumber>;
                 poster_ck_duration: z.ZodNumber;
                 poster_http_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -8392,16 +8392,16 @@ export declare const UpdateAssetResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>>;
-    }, {}, {}>>;
+        }, z.core.$strip>>;
+    }, z.core.$strip>>;
     poster_analysis: z.ZodOptional<z.ZodObject<{
         description: z.ZodString;
         tags: z.ZodArray<z.ZodString>;
         source: z.ZodString;
-        generated_at: z.iso.ZodISODateTime;
-    }, {}, {}>>;
+        generated_at: z.ZodISODateTime;
+    }, z.core.$strip>>;
     animated_poster_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"animated-poster">;
         poster: z.ZodObject<{
@@ -8412,7 +8412,7 @@ export declare const UpdateAssetResponse: z.ZodObject<{
                 animated_poster_ffmpeg_duration: z.ZodNumber;
                 animated_poster_ck_duration: z.ZodNumber;
                 animated_poster_http_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -8424,10 +8424,10 @@ export declare const UpdateAssetResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>;
-    }, {}, {}>>;
+        }, z.core.$strip>;
+    }, z.core.$strip>>;
     poster_series_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"poster-series">;
         series: z.ZodArray<z.ZodObject<{
@@ -8447,7 +8447,7 @@ export declare const UpdateAssetResponse: z.ZodObject<{
                 poster_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
                 poster_series_ck_duration: z.ZodNumber;
                 poster_series_http_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -8459,16 +8459,16 @@ export declare const UpdateAssetResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>>;
-    }, {}, {}>>;
+        }, z.core.$strip>>;
+    }, z.core.$strip>>;
     poster_series_selected_index: z.ZodOptional<z.ZodNumber>;
     tile_series_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"tile-series-metadata">;
         timings: z.ZodObject<{
             metadata_http_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -8480,9 +8480,9 @@ export declare const UpdateAssetResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>>;
+    }, z.core.$strip>>;
     prevue_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"prevue">;
         prevue: z.ZodObject<{
@@ -8493,7 +8493,7 @@ export declare const UpdateAssetResponse: z.ZodObject<{
                 prevue_ffmpeg_duration: z.ZodNumber;
                 prevue_ck_duration: z.ZodNumber;
                 prevue_http_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -8505,10 +8505,10 @@ export declare const UpdateAssetResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>;
-    }, {}, {}>>;
+        }, z.core.$strip>;
+    }, z.core.$strip>>;
     metadata_state: z.ZodEnum<{
         pending: "pending";
         processing: "processing";
@@ -8562,7 +8562,7 @@ export declare const UpdateAssetResponse: z.ZodObject<{
         is_current: z.ZodLiteral<true>;
         version: z.ZodNumber;
         origin_name: z.ZodString;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         is_current: z.ZodLiteral<false>;
         version: z.ZodNumber;
         origin_name: z.ZodString;
@@ -8578,12 +8578,12 @@ export declare const UpdateAssetResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         metadata_metadata: z.ZodObject<{
             type: z.ZodLiteral<"metadata">;
             timings: z.ZodObject<{
                 metadata_http_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -8595,9 +8595,9 @@ export declare const UpdateAssetResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         poster_metadata: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"poster">;
             poster: z.ZodArray<z.ZodObject<{
@@ -8617,7 +8617,7 @@ export declare const UpdateAssetResponse: z.ZodObject<{
                     poster_sharp_duration: z.ZodOptional<z.ZodNumber>;
                     poster_ck_duration: z.ZodNumber;
                     poster_http_duration: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 file: z.ZodObject<{
                     s3_filename: z.ZodString;
                     content_type: z.ZodString;
@@ -8629,16 +8629,16 @@ export declare const UpdateAssetResponse: z.ZodObject<{
                     s3_version_id: z.ZodString;
                     s3_etag: z.ZodString;
                     s3_parts: z.ZodArray<z.ZodNumber>;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         poster_analysis: z.ZodOptional<z.ZodObject<{
             description: z.ZodString;
             tags: z.ZodArray<z.ZodString>;
             source: z.ZodString;
-            generated_at: z.iso.ZodISODateTime;
-        }, {}, {}>>;
+            generated_at: z.ZodISODateTime;
+        }, z.core.$strip>>;
         animated_poster_metadata: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"animated-poster">;
             poster: z.ZodObject<{
@@ -8649,7 +8649,7 @@ export declare const UpdateAssetResponse: z.ZodObject<{
                     animated_poster_ffmpeg_duration: z.ZodNumber;
                     animated_poster_ck_duration: z.ZodNumber;
                     animated_poster_http_duration: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 file: z.ZodObject<{
                     s3_filename: z.ZodString;
                     content_type: z.ZodString;
@@ -8661,10 +8661,10 @@ export declare const UpdateAssetResponse: z.ZodObject<{
                     s3_version_id: z.ZodString;
                     s3_etag: z.ZodString;
                     s3_parts: z.ZodArray<z.ZodNumber>;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, {}, {}>;
-        }, {}, {}>>;
+            }, z.core.$strip>;
+        }, z.core.$strip>>;
         poster_series_metadata: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"poster-series">;
             series: z.ZodArray<z.ZodObject<{
@@ -8684,7 +8684,7 @@ export declare const UpdateAssetResponse: z.ZodObject<{
                     poster_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
                     poster_series_ck_duration: z.ZodNumber;
                     poster_series_http_duration: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 file: z.ZodObject<{
                     s3_filename: z.ZodString;
                     content_type: z.ZodString;
@@ -8696,15 +8696,15 @@ export declare const UpdateAssetResponse: z.ZodObject<{
                     s3_version_id: z.ZodString;
                     s3_etag: z.ZodString;
                     s3_parts: z.ZodArray<z.ZodNumber>;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         tile_series_metadata: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"tile-series-metadata">;
             timings: z.ZodObject<{
                 metadata_http_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -8716,9 +8716,9 @@ export declare const UpdateAssetResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>>;
+        }, z.core.$strip>>;
         prevue_metadata: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"prevue">;
             prevue: z.ZodObject<{
@@ -8729,7 +8729,7 @@ export declare const UpdateAssetResponse: z.ZodObject<{
                     prevue_ffmpeg_duration: z.ZodNumber;
                     prevue_ck_duration: z.ZodNumber;
                     prevue_http_duration: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 file: z.ZodObject<{
                     s3_filename: z.ZodString;
                     content_type: z.ZodString;
@@ -8741,50 +8741,50 @@ export declare const UpdateAssetResponse: z.ZodObject<{
                     s3_version_id: z.ZodString;
                     s3_etag: z.ZodString;
                     s3_parts: z.ZodArray<z.ZodNumber>;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, {}, {}>;
-        }, {}, {}>>;
-    }, {}, {}>]>>;
+            }, z.core.$strip>;
+        }, z.core.$strip>>;
+    }, z.core.$strip>]>>;
     tags: z.ZodArray<z.ZodString>;
     asset_id: z.ZodUUID;
-    create_timestamp: z.iso.ZodISODateTime;
-    modify_timestamp: z.iso.ZodISODateTime;
+    create_timestamp: z.ZodISODateTime;
+    modify_timestamp: z.ZodISODateTime;
     is_deleted: z.ZodDefault<z.ZodBoolean>;
     poster_url: z.ZodOptional<z.ZodURL>;
     animated_poster_url: z.ZodOptional<z.ZodURL>;
     prevue_url: z.ZodOptional<z.ZodURL>;
-}, {}, {}>;
+}, z.core.$strip>;
 export type UpdateAssetResponse = z.infer<typeof UpdateAssetResponse>;
-export declare const ListAssetPostersRequest: z.ZodObject<{}, {}, {}>;
+export declare const ListAssetPostersRequest: z.ZodObject<{}, z.core.$strip>;
 export type ListAssetPostersRequest = z.infer<typeof ListAssetPostersRequest>;
 export declare const ListAssetPostersResponse: z.ZodArray<z.ZodObject<{
     url: z.ZodURL;
     index: z.ZodNumber;
-}, {}, {}>>;
+}, z.core.$strip>>;
 export type ListAssetPostersResponse = z.infer<typeof ListAssetPostersResponse>;
-export declare const UpdateAssetPosterRequest: z.coerce.ZodCoercedNumber;
+export declare const UpdateAssetPosterRequest: z.ZodCoercedNumber<unknown>;
 export type UpdateAssetPosterRequest = z.infer<typeof UpdateAssetPosterRequest>;
-export declare const UpdateAssetPosterResponse: z.ZodObject<{}, {}, {}>;
+export declare const UpdateAssetPosterResponse: z.ZodObject<{}, z.core.$strip>;
 export type UpdateAssetPosterResponse = z.infer<typeof UpdateAssetPosterResponse>;
-export declare const GetAssetPosterRequest: z.ZodObject<{}, {}, {}>;
+export declare const GetAssetPosterRequest: z.ZodObject<{}, z.core.$strip>;
 export type GetAssetPosterRequest = z.infer<typeof GetAssetPosterRequest>;
 export declare const GetAssetPosterResponse: z.ZodURL;
 export type GetAssetPosterResponse = z.infer<typeof GetAssetPosterResponse>;
-export declare const GetAssetThumbnailRequest: z.ZodObject<{}, {}, {}>;
+export declare const GetAssetThumbnailRequest: z.ZodObject<{}, z.core.$strip>;
 export type GetAssetThumbnailRequest = z.infer<typeof GetAssetThumbnailRequest>;
 export declare const GetAssetThumbnailResponse: z.ZodURL;
 export type GetAssetThumbnailResponse = z.infer<typeof GetAssetThumbnailResponse>;
 export declare const CreateUploadRequest: z.ZodObject<{
     filename: z.ZodString;
-}, {}, {}>;
+}, z.core.$strip>;
 export type CreateUploadRequest = z.infer<typeof CreateUploadRequest>;
 export declare const CreateUploadResponse: z.ZodObject<{
     uploadId: z.ZodString;
     assetName: z.ZodString;
-}, {}, {}>;
+}, z.core.$strip>;
 export type CreateUploadResponse = z.infer<typeof CreateUploadResponse>;
-export declare const GetUploadRequest: z.ZodObject<{}, {}, {}>;
+export declare const GetUploadRequest: z.ZodObject<{}, z.core.$strip>;
 export type GetUploadRequest = z.infer<typeof GetUploadRequest>;
 export declare const GetUploadResponse: z.ZodObject<{
     upload_id: z.ZodUUID;
@@ -8797,13 +8797,13 @@ export declare const GetUploadResponse: z.ZodObject<{
             httpStatusCode: z.ZodNumber;
             requestId: z.ZodString;
             totalRetryDelay: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         Bucket: z.ZodString;
         ETag: z.ZodString;
         Key: z.ZodString;
         Location: z.ZodString;
         VersionId: z.ZodString;
-    }, {}, {}>>;
+    }, z.core.$strip>>;
     s3_version_id: z.ZodOptional<z.ZodString>;
     s3_etag: z.ZodOptional<z.ZodString>;
     s3_parts: z.ZodOptional<z.ZodArray<z.ZodNumber>>;
@@ -8817,7 +8817,7 @@ export declare const GetUploadResponse: z.ZodObject<{
         type: z.ZodLiteral<"metadata">;
         timings: z.ZodObject<{
             metadata_http_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -8829,9 +8829,9 @@ export declare const GetUploadResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>>;
+    }, z.core.$strip>>;
     upload_state: z.ZodEnum<{
         pending: "pending";
         error: "error";
@@ -8859,79 +8859,79 @@ export declare const GetUploadResponse: z.ZodObject<{
         conflict: "conflict";
     }>;
     user_tags: z.ZodArray<z.ZodString>;
-    create_timestamp: z.iso.ZodISODateTime;
-    modify_timestamp: z.iso.ZodISODateTime;
+    create_timestamp: z.ZodISODateTime;
+    modify_timestamp: z.ZodISODateTime;
     is_deleted: z.ZodDefault<z.ZodBoolean>;
-}, {}, {}>;
+}, z.core.$strip>;
 export type GetUploadResponse = z.infer<typeof GetUploadResponse>;
 export declare const CreateUploadVersionRequest: z.ZodObject<{
     filename: z.ZodString;
-}, {}, {}>;
+}, z.core.$strip>;
 export type CreateUploadVersionRequest = z.infer<typeof CreateUploadVersionRequest>;
 export declare const CreateUploadVersionResponse: z.ZodObject<{
     uploadId: z.ZodString;
     assetName: z.ZodString;
-}, {}, {}>;
+}, z.core.$strip>;
 export type CreateUploadVersionResponse = z.infer<typeof CreateUploadVersionResponse>;
 export declare const CreateUploadUrlRequest: z.ZodObject<{
     partNumber: z.ZodNumber;
-}, {}, {}>;
+}, z.core.$strip>;
 export type CreateUploadUrlRequest = z.infer<typeof CreateUploadUrlRequest>;
 export declare const CreateUploadUrlResponse: z.ZodObject<{
     url: z.ZodString;
-    expires: z.iso.ZodISODateTime;
-}, {}, {}>;
+    expires: z.ZodISODateTime;
+}, z.core.$strip>;
 export type CreateUploadUrlResponse = z.infer<typeof CreateUploadUrlResponse>;
 export declare const UploadPartRequest: z.ZodObject<{
     partNumber: z.ZodNumber;
     ETag: z.ZodString;
     size: z.ZodNumber;
-}, {}, {}>;
+}, z.core.$strip>;
 export type UploadPartRequest = z.infer<typeof UploadPartRequest>;
-export declare const UploadPartResponse: z.ZodObject<{}, {}, {}>;
+export declare const UploadPartResponse: z.ZodObject<{}, z.core.$strip>;
 export type UploadPartResponse = z.infer<typeof UploadPartResponse>;
 export declare const UpdateUploadRequest: z.ZodArray<z.ZodDiscriminatedUnion<[z.ZodObject<{
     path: z.ZodString;
     op: z.ZodLiteral<"add">;
     value: z.ZodAny;
-}, {}, {}>, z.ZodObject<{
+}, z.core.$strip>, z.ZodObject<{
     path: z.ZodString;
     op: z.ZodLiteral<"remove">;
-}, {}, {}>, z.ZodObject<{
+}, z.core.$strip>, z.ZodObject<{
     path: z.ZodString;
     op: z.ZodLiteral<"replace">;
     value: z.ZodAny;
-}, {}, {}>, z.ZodObject<{
+}, z.core.$strip>, z.ZodObject<{
     path: z.ZodString;
     op: z.ZodLiteral<"move">;
     from: z.ZodString;
-}, {}, {}>, z.ZodObject<{
+}, z.core.$strip>, z.ZodObject<{
     path: z.ZodString;
     op: z.ZodLiteral<"copy">;
     from: z.ZodString;
-}, {}, {}>, z.ZodObject<{
+}, z.core.$strip>, z.ZodObject<{
     path: z.ZodString;
     op: z.ZodLiteral<"test">;
     value: z.ZodAny;
     not: z.ZodOptional<z.ZodBoolean>;
-}, {}, {}>]>>;
+}, z.core.$strip>], "op">>;
 export type UpdateUploadRequest = z.infer<typeof UpdateUploadRequest>;
-export declare const UpdateUploadResponse: z.ZodObject<{}, {}, {}>;
+export declare const UpdateUploadResponse: z.ZodObject<{}, z.core.$strip>;
 export type UpdateUploadResponse = z.infer<typeof UpdateUploadResponse>;
-export declare const UploadCompleteRequest: z.ZodObject<{}, {}, {}>;
+export declare const UploadCompleteRequest: z.ZodObject<{}, z.core.$strip>;
 export type UploadCompleteRequest = z.infer<typeof UploadCompleteRequest>;
-export declare const UploadCompleteResponse: z.ZodObject<{}, {}, {}>;
+export declare const UploadCompleteResponse: z.ZodObject<{}, z.core.$strip>;
 export type UploadCompleteResponse = z.infer<typeof UploadCompleteResponse>;
-export declare const UploadPollRequest: z.ZodObject<{}, {}, {}>;
+export declare const UploadPollRequest: z.ZodObject<{}, z.core.$strip>;
 export type UploadPollRequest = z.infer<typeof UploadPollRequest>;
 export declare const UploadPollResponse: z.ZodObject<{
     itemsDone: z.ZodArray<z.ZodString>;
     itemsFailed: z.ZodArray<z.ZodString>;
     itemsRejected: z.ZodArray<z.ZodString>;
     itemsProgress: z.ZodArray<z.ZodString>;
-}, {}, {}>;
+}, z.core.$strip>;
 export type UploadPollResponse = z.infer<typeof UploadPollResponse>;
-export declare const CreateAssetFromUploadRequest: z.ZodObject<{}, {}, {}>;
+export declare const CreateAssetFromUploadRequest: z.ZodObject<{}, z.core.$strip>;
 export type CreateAssetFromUploadRequest = z.infer<typeof CreateAssetFromUploadRequest>;
 export declare const CreateAssetFromUploadResponse: z.ZodObject<{
     tenant_id: z.ZodUUID;
@@ -8948,8 +8948,8 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
                 }>;
                 width: z.ZodNumber;
                 height: z.ZodNumber;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -8961,13 +8961,13 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         timings: z.ZodObject<{
             file_http_duration: z.ZodNumber;
             file_ck_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         type: z.ZodLiteral<"image">;
         sharp: z.ZodObject<{
             orientation: z.ZodOptional<z.ZodNumber>;
@@ -9024,18 +9024,18 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
                 r: z.ZodNumber;
                 g: z.ZodNumber;
                 b: z.ZodNumber;
-            }, {}, {}>, z.ZodNumber]>>;
+            }, z.core.$strip>, z.ZodNumber]>>;
             levels: z.ZodOptional<z.ZodArray<z.ZodObject<{
                 width: z.ZodNumber;
                 height: z.ZodNumber;
-            }, {}, {}>>>;
+            }, z.core.$strip>>>;
             subifds: z.ZodOptional<z.ZodNumber>;
             resolutionUnit: z.ZodOptional<z.ZodEnum<{
                 inch: "inch";
                 cm: "cm";
             }>>;
             formatMagick: z.ZodOptional<z.ZodString>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         exif: z.ZodOptional<z.ZodObject<{
             Image: z.ZodOptional<z.ZodObject<{
                 ProcessingSoftware: z.ZodOptional<z.ZodString>;
@@ -9137,7 +9137,7 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
                 Interlace: z.ZodOptional<z.ZodNumber>;
                 TimeZoneOffset: z.ZodOptional<z.ZodNumber>;
                 SelfTimerMode: z.ZodOptional<z.ZodNumber>;
-                DateTimeOriginal: z.ZodOptional<z.iso.ZodISODateTime>;
+                DateTimeOriginal: z.ZodOptional<z.ZodISODateTime>;
                 CompressedBitsPerPixel: z.ZodOptional<z.ZodNumber>;
                 ShutterSpeedValue: z.ZodOptional<z.ZodNumber>;
                 ApertureValue: z.ZodOptional<z.ZodNumber>;
@@ -9227,7 +9227,7 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
                 PreviewSettingsName: z.ZodOptional<z.ZodNumber>;
                 PreviewSettingsDigest: z.ZodOptional<z.ZodNumber>;
                 PreviewColorSpace: z.ZodOptional<z.ZodNumber>;
-                PreviewDateTime: z.ZodOptional<z.iso.ZodISODateTime>;
+                PreviewDateTime: z.ZodOptional<z.ZodISODateTime>;
                 SubTileBlockSize: z.ZodOptional<z.ZodNumber>;
                 RowInterleaveFactor: z.ZodOptional<z.ZodNumber>;
                 ProfileLookTableDims: z.ZodOptional<z.ZodNumber>;
@@ -9259,7 +9259,7 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
                 ForwardMatrix3: z.ZodOptional<z.ZodNumber>;
                 MaskSubArea: z.ZodOptional<z.ZodNumber>;
                 ReductionMatrix3: z.ZodOptional<z.ZodNumber>;
-            }, {}, {}>>;
+            }, z.core.$strip>>;
             Photo: z.ZodOptional<z.ZodObject<{
                 ExposureTime: z.ZodOptional<z.ZodNumber>;
                 FNumber: z.ZodOptional<z.ZodNumber>;
@@ -9272,8 +9272,8 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
                 ISOSpeed: z.ZodOptional<z.ZodNumber>;
                 ISOSpeedLatitudeyyy: z.ZodOptional<z.ZodNumber>;
                 ISOSpeedLatitudezzz: z.ZodOptional<z.ZodNumber>;
-                DateTimeOriginal: z.ZodOptional<z.iso.ZodISODateTime>;
-                DateTimeDigitized: z.ZodOptional<z.iso.ZodISODateTime>;
+                DateTimeOriginal: z.ZodOptional<z.ZodISODateTime>;
+                DateTimeDigitized: z.ZodOptional<z.ZodISODateTime>;
                 OffsetTime: z.ZodOptional<z.ZodString>;
                 OffsetTimeOriginal: z.ZodOptional<z.ZodString>;
                 OffsetTimeDigitized: z.ZodOptional<z.ZodString>;
@@ -9331,13 +9331,13 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
                 CompositeImage: z.ZodOptional<z.ZodNumber>;
                 SourceImageNumberOfCompositeImage: z.ZodOptional<z.ZodNumber>;
                 Gamma: z.ZodOptional<z.ZodNumber>;
-            }, {}, {}>>;
+            }, z.core.$strip>>;
             Iop: z.ZodOptional<z.ZodObject<{
                 InteroperabilityIndex: z.ZodOptional<z.ZodString>;
                 RelatedImageFileFormat: z.ZodOptional<z.ZodString>;
                 RelatedImageWidth: z.ZodOptional<z.ZodNumber>;
                 RelatedImageLength: z.ZodOptional<z.ZodNumber>;
-            }, {}, {}>>;
+            }, z.core.$strip>>;
             GPSInfo: z.ZodOptional<z.ZodObject<{
                 GPSVersionID: z.ZodOptional<z.ZodArray<z.ZodNumber>>;
                 GPSLatitudeRef: z.ZodOptional<z.ZodString>;
@@ -9369,8 +9369,8 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
                 GPSDateStamp: z.ZodOptional<z.ZodString>;
                 GPSDifferential: z.ZodOptional<z.ZodNumber>;
                 GPSHPositioningError: z.ZodOptional<z.ZodNumber>;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         icc: z.ZodOptional<z.ZodObject<{
             version: z.ZodEnum<{
                 "2.0": "2.0";
@@ -9415,7 +9415,7 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
             }>>;
             viewingConditionsDescription: z.ZodOptional<z.ZodString>;
             whitepoint: z.ZodOptional<z.ZodTuple<[z.ZodNumber, z.ZodNumber, z.ZodNumber], null>>;
-        }, {}, {}>>;
+        }, z.core.$strip>>;
         iptc: z.ZodOptional<z.ZodObject<{
             title: z.ZodOptional<z.ZodString>;
             caption: z.ZodOptional<z.ZodString>;
@@ -9428,7 +9428,7 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
             headline: z.ZodOptional<z.ZodString>;
             copyright: z.ZodOptional<z.ZodString>;
             category: z.ZodOptional<z.ZodString>;
-        }, {}, {}>>;
+        }, z.core.$strip>>;
         xmp: z.ZodOptional<z.ZodObject<{
             keywords: z.ZodOptional<z.ZodArray<z.ZodString>>;
             title: z.ZodOptional<z.ZodString>;
@@ -9438,7 +9438,7 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
             creator: z.ZodOptional<z.ZodString>;
             attribution: z.ZodOptional<z.ZodString>;
             terms: z.ZodOptional<z.ZodString>;
-        }, {}, {}>>;
+        }, z.core.$strip>>;
         ffprobe: z.ZodObject<{
             streams: z.ZodArray<z.ZodObject<{
                 index: z.ZodNumber;
@@ -9498,9 +9498,9 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
                     clean_effects: z.ZodOptional<z.ZodNumber>;
                     attached_pic: z.ZodOptional<z.ZodNumber>;
                     timed_thumbnails: z.ZodOptional<z.ZodNumber>;
-                }, {}, {}>>;
+                }, z.core.$strip>>;
                 rotation: z.ZodOptional<z.ZodUnion<readonly [z.ZodString, z.ZodNumber]>>;
-            }, {}, {}>>;
+            }, z.core.$strip>>;
             format: z.ZodObject<{
                 filename: z.ZodOptional<z.ZodString>;
                 nb_streams: z.ZodOptional<z.ZodNumber>;
@@ -9513,8 +9513,8 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
                 bit_rate: z.ZodOptional<z.ZodNumber>;
                 probe_score: z.ZodOptional<z.ZodNumber>;
                 tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnion<readonly [z.ZodString, z.ZodNumber]>>>;
-            }, {}, {}>;
-        }, {}, {}>;
+            }, z.core.$strip>;
+        }, z.core.$strip>;
         hint: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"hint">;
             poster: z.ZodArray<z.ZodObject<{
@@ -9525,14 +9525,14 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
                 }>;
                 width: z.ZodNumber;
                 height: z.ZodNumber;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         timings: z.ZodObject<{
             file_http_duration: z.ZodNumber;
             file_ck_duration: z.ZodNumber;
             image_sharp_duration: z.ZodNumber;
             image_ffprobe_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -9544,9 +9544,9 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         type: z.ZodLiteral<"texture">;
         ktx: z.ZodOptional<z.ZodObject<{
             $schema: z.ZodOptional<z.ZodString>;
@@ -9860,26 +9860,26 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
                     KTX_SS_ZSTD: "KTX_SS_ZSTD";
                     KTX_SS_ZLIB: "KTX_SS_ZLIB";
                 }>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             index: z.ZodObject<{
                 dataFormatDescriptor: z.ZodObject<{
                     byteOffset: z.ZodNumber;
                     byteLength: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 keyValueData: z.ZodObject<{
                     byteOffset: z.ZodNumber;
                     byteLength: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 supercompressionGlobalData: z.ZodObject<{
                     byteOffset: z.ZodNumber;
                     byteLength: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 levels: z.ZodArray<z.ZodObject<{
                     byteOffset: z.ZodNumber;
                     byteLength: z.ZodNumber;
                     uncompressedByteLength: z.ZodNumber;
-                }, {}, {}>>;
-            }, {}, {}>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>;
             dataFormatDescriptor: z.ZodObject<{
                 totalSize: z.ZodNumber;
                 blocks: z.ZodArray<z.ZodObject<{
@@ -10087,15 +10087,15 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
                         samplePosition: z.ZodTuple<[z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber], null>;
                         sampleLower: z.ZodNumber;
                         sampleUpper: z.ZodNumber;
-                    }, {}, {}>>;
-                }, {}, {}>>;
-            }, {}, {}>;
+                    }, z.core.$strip>>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>;
             keyValueData: z.ZodObject<{
                 KTXorientation: z.ZodString;
                 KTXwriter: z.ZodString;
                 KTXwriterScParams: z.ZodString;
-            }, {}, {}>;
-        }, {}, {}>>;
+            }, z.core.$strip>;
+        }, z.core.$strip>>;
         hint: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"hint">;
             poster: z.ZodArray<z.ZodObject<{
@@ -10106,13 +10106,13 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
                 }>;
                 width: z.ZodNumber;
                 height: z.ZodNumber;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         timings: z.ZodObject<{
             file_http_duration: z.ZodNumber;
             file_ck_duration: z.ZodNumber;
             texture_ktxinfo_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -10124,9 +10124,9 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         type: z.ZodLiteral<"video">;
         ffprobe: z.ZodObject<{
             streams: z.ZodArray<z.ZodObject<{
@@ -10187,9 +10187,9 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
                     clean_effects: z.ZodOptional<z.ZodNumber>;
                     attached_pic: z.ZodOptional<z.ZodNumber>;
                     timed_thumbnails: z.ZodOptional<z.ZodNumber>;
-                }, {}, {}>>;
+                }, z.core.$strip>>;
                 rotation: z.ZodOptional<z.ZodUnion<readonly [z.ZodString, z.ZodNumber]>>;
-            }, {}, {}>>;
+            }, z.core.$strip>>;
             format: z.ZodObject<{
                 filename: z.ZodOptional<z.ZodString>;
                 nb_streams: z.ZodOptional<z.ZodNumber>;
@@ -10202,8 +10202,8 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
                 bit_rate: z.ZodOptional<z.ZodNumber>;
                 probe_score: z.ZodOptional<z.ZodNumber>;
                 tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnion<readonly [z.ZodString, z.ZodNumber]>>>;
-            }, {}, {}>;
-        }, {}, {}>;
+            }, z.core.$strip>;
+        }, z.core.$strip>;
         codecs: z.ZodOptional<z.ZodArray<z.ZodString>>;
         hint: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"hint">;
@@ -10215,13 +10215,13 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
                 }>;
                 width: z.ZodNumber;
                 height: z.ZodNumber;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         timings: z.ZodObject<{
             file_http_duration: z.ZodNumber;
             file_ck_duration: z.ZodNumber;
             video_ffprobe_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -10233,9 +10233,9 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         type: z.ZodLiteral<"rejected">;
         error_text: z.ZodString;
         file: z.ZodObject<{
@@ -10249,18 +10249,18 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         timings: z.ZodObject<{
             file_http_duration: z.ZodNumber;
             file_ck_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>]>;
+    }, z.core.$strip>], "type">;
     metadata_metadata: z.ZodObject<{
         type: z.ZodLiteral<"metadata">;
         timings: z.ZodObject<{
             metadata_http_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -10272,9 +10272,9 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>;
+    }, z.core.$strip>;
     poster_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"poster">;
         poster: z.ZodArray<z.ZodObject<{
@@ -10294,7 +10294,7 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
                 poster_sharp_duration: z.ZodOptional<z.ZodNumber>;
                 poster_ck_duration: z.ZodNumber;
                 poster_http_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -10306,16 +10306,16 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>>;
-    }, {}, {}>>;
+        }, z.core.$strip>>;
+    }, z.core.$strip>>;
     poster_analysis: z.ZodOptional<z.ZodObject<{
         description: z.ZodString;
         tags: z.ZodArray<z.ZodString>;
         source: z.ZodString;
-        generated_at: z.iso.ZodISODateTime;
-    }, {}, {}>>;
+        generated_at: z.ZodISODateTime;
+    }, z.core.$strip>>;
     animated_poster_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"animated-poster">;
         poster: z.ZodObject<{
@@ -10326,7 +10326,7 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
                 animated_poster_ffmpeg_duration: z.ZodNumber;
                 animated_poster_ck_duration: z.ZodNumber;
                 animated_poster_http_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -10338,10 +10338,10 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>;
-    }, {}, {}>>;
+        }, z.core.$strip>;
+    }, z.core.$strip>>;
     poster_series_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"poster-series">;
         series: z.ZodArray<z.ZodObject<{
@@ -10361,7 +10361,7 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
                 poster_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
                 poster_series_ck_duration: z.ZodNumber;
                 poster_series_http_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -10373,16 +10373,16 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>>;
-    }, {}, {}>>;
+        }, z.core.$strip>>;
+    }, z.core.$strip>>;
     poster_series_selected_index: z.ZodOptional<z.ZodNumber>;
     tile_series_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"tile-series-metadata">;
         timings: z.ZodObject<{
             metadata_http_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -10394,9 +10394,9 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>>;
+    }, z.core.$strip>>;
     prevue_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"prevue">;
         prevue: z.ZodObject<{
@@ -10407,7 +10407,7 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
                 prevue_ffmpeg_duration: z.ZodNumber;
                 prevue_ck_duration: z.ZodNumber;
                 prevue_http_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -10419,10 +10419,10 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>;
-    }, {}, {}>>;
+        }, z.core.$strip>;
+    }, z.core.$strip>>;
     metadata_state: z.ZodEnum<{
         pending: "pending";
         processing: "processing";
@@ -10476,7 +10476,7 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
         is_current: z.ZodLiteral<true>;
         version: z.ZodNumber;
         origin_name: z.ZodString;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         is_current: z.ZodLiteral<false>;
         version: z.ZodNumber;
         origin_name: z.ZodString;
@@ -10492,12 +10492,12 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         metadata_metadata: z.ZodObject<{
             type: z.ZodLiteral<"metadata">;
             timings: z.ZodObject<{
                 metadata_http_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -10509,9 +10509,9 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         poster_metadata: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"poster">;
             poster: z.ZodArray<z.ZodObject<{
@@ -10531,7 +10531,7 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
                     poster_sharp_duration: z.ZodOptional<z.ZodNumber>;
                     poster_ck_duration: z.ZodNumber;
                     poster_http_duration: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 file: z.ZodObject<{
                     s3_filename: z.ZodString;
                     content_type: z.ZodString;
@@ -10543,16 +10543,16 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
                     s3_version_id: z.ZodString;
                     s3_etag: z.ZodString;
                     s3_parts: z.ZodArray<z.ZodNumber>;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         poster_analysis: z.ZodOptional<z.ZodObject<{
             description: z.ZodString;
             tags: z.ZodArray<z.ZodString>;
             source: z.ZodString;
-            generated_at: z.iso.ZodISODateTime;
-        }, {}, {}>>;
+            generated_at: z.ZodISODateTime;
+        }, z.core.$strip>>;
         animated_poster_metadata: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"animated-poster">;
             poster: z.ZodObject<{
@@ -10563,7 +10563,7 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
                     animated_poster_ffmpeg_duration: z.ZodNumber;
                     animated_poster_ck_duration: z.ZodNumber;
                     animated_poster_http_duration: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 file: z.ZodObject<{
                     s3_filename: z.ZodString;
                     content_type: z.ZodString;
@@ -10575,10 +10575,10 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
                     s3_version_id: z.ZodString;
                     s3_etag: z.ZodString;
                     s3_parts: z.ZodArray<z.ZodNumber>;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, {}, {}>;
-        }, {}, {}>>;
+            }, z.core.$strip>;
+        }, z.core.$strip>>;
         poster_series_metadata: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"poster-series">;
             series: z.ZodArray<z.ZodObject<{
@@ -10598,7 +10598,7 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
                     poster_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
                     poster_series_ck_duration: z.ZodNumber;
                     poster_series_http_duration: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 file: z.ZodObject<{
                     s3_filename: z.ZodString;
                     content_type: z.ZodString;
@@ -10610,15 +10610,15 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
                     s3_version_id: z.ZodString;
                     s3_etag: z.ZodString;
                     s3_parts: z.ZodArray<z.ZodNumber>;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         tile_series_metadata: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"tile-series-metadata">;
             timings: z.ZodObject<{
                 metadata_http_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -10630,9 +10630,9 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>>;
+        }, z.core.$strip>>;
         prevue_metadata: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"prevue">;
             prevue: z.ZodObject<{
@@ -10643,7 +10643,7 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
                     prevue_ffmpeg_duration: z.ZodNumber;
                     prevue_ck_duration: z.ZodNumber;
                     prevue_http_duration: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 file: z.ZodObject<{
                     s3_filename: z.ZodString;
                     content_type: z.ZodString;
@@ -10655,22 +10655,22 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
                     s3_version_id: z.ZodString;
                     s3_etag: z.ZodString;
                     s3_parts: z.ZodArray<z.ZodNumber>;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, {}, {}>;
-        }, {}, {}>>;
-    }, {}, {}>]>>;
+            }, z.core.$strip>;
+        }, z.core.$strip>>;
+    }, z.core.$strip>]>>;
     tags: z.ZodArray<z.ZodString>;
     asset_id: z.ZodUUID;
-    create_timestamp: z.iso.ZodISODateTime;
-    modify_timestamp: z.iso.ZodISODateTime;
+    create_timestamp: z.ZodISODateTime;
+    modify_timestamp: z.ZodISODateTime;
     is_deleted: z.ZodDefault<z.ZodBoolean>;
     poster_url: z.ZodOptional<z.ZodURL>;
     animated_poster_url: z.ZodOptional<z.ZodURL>;
     prevue_url: z.ZodOptional<z.ZodURL>;
-}, {}, {}>;
+}, z.core.$strip>;
 export type CreateAssetFromUploadResponse = z.infer<typeof CreateAssetFromUploadResponse>;
-export declare const CreateAssetFromUploadVersionRequest: z.ZodObject<{}, {}, {}>;
+export declare const CreateAssetFromUploadVersionRequest: z.ZodObject<{}, z.core.$strip>;
 export type CreateAssetFromUploadVersionRequest = z.infer<typeof CreateAssetFromUploadVersionRequest>;
 export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
     tenant_id: z.ZodUUID;
@@ -10687,8 +10687,8 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
                 }>;
                 width: z.ZodNumber;
                 height: z.ZodNumber;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -10700,13 +10700,13 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         timings: z.ZodObject<{
             file_http_duration: z.ZodNumber;
             file_ck_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         type: z.ZodLiteral<"image">;
         sharp: z.ZodObject<{
             orientation: z.ZodOptional<z.ZodNumber>;
@@ -10763,18 +10763,18 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
                 r: z.ZodNumber;
                 g: z.ZodNumber;
                 b: z.ZodNumber;
-            }, {}, {}>, z.ZodNumber]>>;
+            }, z.core.$strip>, z.ZodNumber]>>;
             levels: z.ZodOptional<z.ZodArray<z.ZodObject<{
                 width: z.ZodNumber;
                 height: z.ZodNumber;
-            }, {}, {}>>>;
+            }, z.core.$strip>>>;
             subifds: z.ZodOptional<z.ZodNumber>;
             resolutionUnit: z.ZodOptional<z.ZodEnum<{
                 inch: "inch";
                 cm: "cm";
             }>>;
             formatMagick: z.ZodOptional<z.ZodString>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         exif: z.ZodOptional<z.ZodObject<{
             Image: z.ZodOptional<z.ZodObject<{
                 ProcessingSoftware: z.ZodOptional<z.ZodString>;
@@ -10876,7 +10876,7 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
                 Interlace: z.ZodOptional<z.ZodNumber>;
                 TimeZoneOffset: z.ZodOptional<z.ZodNumber>;
                 SelfTimerMode: z.ZodOptional<z.ZodNumber>;
-                DateTimeOriginal: z.ZodOptional<z.iso.ZodISODateTime>;
+                DateTimeOriginal: z.ZodOptional<z.ZodISODateTime>;
                 CompressedBitsPerPixel: z.ZodOptional<z.ZodNumber>;
                 ShutterSpeedValue: z.ZodOptional<z.ZodNumber>;
                 ApertureValue: z.ZodOptional<z.ZodNumber>;
@@ -10966,7 +10966,7 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
                 PreviewSettingsName: z.ZodOptional<z.ZodNumber>;
                 PreviewSettingsDigest: z.ZodOptional<z.ZodNumber>;
                 PreviewColorSpace: z.ZodOptional<z.ZodNumber>;
-                PreviewDateTime: z.ZodOptional<z.iso.ZodISODateTime>;
+                PreviewDateTime: z.ZodOptional<z.ZodISODateTime>;
                 SubTileBlockSize: z.ZodOptional<z.ZodNumber>;
                 RowInterleaveFactor: z.ZodOptional<z.ZodNumber>;
                 ProfileLookTableDims: z.ZodOptional<z.ZodNumber>;
@@ -10998,7 +10998,7 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
                 ForwardMatrix3: z.ZodOptional<z.ZodNumber>;
                 MaskSubArea: z.ZodOptional<z.ZodNumber>;
                 ReductionMatrix3: z.ZodOptional<z.ZodNumber>;
-            }, {}, {}>>;
+            }, z.core.$strip>>;
             Photo: z.ZodOptional<z.ZodObject<{
                 ExposureTime: z.ZodOptional<z.ZodNumber>;
                 FNumber: z.ZodOptional<z.ZodNumber>;
@@ -11011,8 +11011,8 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
                 ISOSpeed: z.ZodOptional<z.ZodNumber>;
                 ISOSpeedLatitudeyyy: z.ZodOptional<z.ZodNumber>;
                 ISOSpeedLatitudezzz: z.ZodOptional<z.ZodNumber>;
-                DateTimeOriginal: z.ZodOptional<z.iso.ZodISODateTime>;
-                DateTimeDigitized: z.ZodOptional<z.iso.ZodISODateTime>;
+                DateTimeOriginal: z.ZodOptional<z.ZodISODateTime>;
+                DateTimeDigitized: z.ZodOptional<z.ZodISODateTime>;
                 OffsetTime: z.ZodOptional<z.ZodString>;
                 OffsetTimeOriginal: z.ZodOptional<z.ZodString>;
                 OffsetTimeDigitized: z.ZodOptional<z.ZodString>;
@@ -11070,13 +11070,13 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
                 CompositeImage: z.ZodOptional<z.ZodNumber>;
                 SourceImageNumberOfCompositeImage: z.ZodOptional<z.ZodNumber>;
                 Gamma: z.ZodOptional<z.ZodNumber>;
-            }, {}, {}>>;
+            }, z.core.$strip>>;
             Iop: z.ZodOptional<z.ZodObject<{
                 InteroperabilityIndex: z.ZodOptional<z.ZodString>;
                 RelatedImageFileFormat: z.ZodOptional<z.ZodString>;
                 RelatedImageWidth: z.ZodOptional<z.ZodNumber>;
                 RelatedImageLength: z.ZodOptional<z.ZodNumber>;
-            }, {}, {}>>;
+            }, z.core.$strip>>;
             GPSInfo: z.ZodOptional<z.ZodObject<{
                 GPSVersionID: z.ZodOptional<z.ZodArray<z.ZodNumber>>;
                 GPSLatitudeRef: z.ZodOptional<z.ZodString>;
@@ -11108,8 +11108,8 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
                 GPSDateStamp: z.ZodOptional<z.ZodString>;
                 GPSDifferential: z.ZodOptional<z.ZodNumber>;
                 GPSHPositioningError: z.ZodOptional<z.ZodNumber>;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         icc: z.ZodOptional<z.ZodObject<{
             version: z.ZodEnum<{
                 "2.0": "2.0";
@@ -11154,7 +11154,7 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
             }>>;
             viewingConditionsDescription: z.ZodOptional<z.ZodString>;
             whitepoint: z.ZodOptional<z.ZodTuple<[z.ZodNumber, z.ZodNumber, z.ZodNumber], null>>;
-        }, {}, {}>>;
+        }, z.core.$strip>>;
         iptc: z.ZodOptional<z.ZodObject<{
             title: z.ZodOptional<z.ZodString>;
             caption: z.ZodOptional<z.ZodString>;
@@ -11167,7 +11167,7 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
             headline: z.ZodOptional<z.ZodString>;
             copyright: z.ZodOptional<z.ZodString>;
             category: z.ZodOptional<z.ZodString>;
-        }, {}, {}>>;
+        }, z.core.$strip>>;
         xmp: z.ZodOptional<z.ZodObject<{
             keywords: z.ZodOptional<z.ZodArray<z.ZodString>>;
             title: z.ZodOptional<z.ZodString>;
@@ -11177,7 +11177,7 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
             creator: z.ZodOptional<z.ZodString>;
             attribution: z.ZodOptional<z.ZodString>;
             terms: z.ZodOptional<z.ZodString>;
-        }, {}, {}>>;
+        }, z.core.$strip>>;
         ffprobe: z.ZodObject<{
             streams: z.ZodArray<z.ZodObject<{
                 index: z.ZodNumber;
@@ -11237,9 +11237,9 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
                     clean_effects: z.ZodOptional<z.ZodNumber>;
                     attached_pic: z.ZodOptional<z.ZodNumber>;
                     timed_thumbnails: z.ZodOptional<z.ZodNumber>;
-                }, {}, {}>>;
+                }, z.core.$strip>>;
                 rotation: z.ZodOptional<z.ZodUnion<readonly [z.ZodString, z.ZodNumber]>>;
-            }, {}, {}>>;
+            }, z.core.$strip>>;
             format: z.ZodObject<{
                 filename: z.ZodOptional<z.ZodString>;
                 nb_streams: z.ZodOptional<z.ZodNumber>;
@@ -11252,8 +11252,8 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
                 bit_rate: z.ZodOptional<z.ZodNumber>;
                 probe_score: z.ZodOptional<z.ZodNumber>;
                 tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnion<readonly [z.ZodString, z.ZodNumber]>>>;
-            }, {}, {}>;
-        }, {}, {}>;
+            }, z.core.$strip>;
+        }, z.core.$strip>;
         hint: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"hint">;
             poster: z.ZodArray<z.ZodObject<{
@@ -11264,14 +11264,14 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
                 }>;
                 width: z.ZodNumber;
                 height: z.ZodNumber;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         timings: z.ZodObject<{
             file_http_duration: z.ZodNumber;
             file_ck_duration: z.ZodNumber;
             image_sharp_duration: z.ZodNumber;
             image_ffprobe_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -11283,9 +11283,9 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         type: z.ZodLiteral<"texture">;
         ktx: z.ZodOptional<z.ZodObject<{
             $schema: z.ZodOptional<z.ZodString>;
@@ -11599,26 +11599,26 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
                     KTX_SS_ZSTD: "KTX_SS_ZSTD";
                     KTX_SS_ZLIB: "KTX_SS_ZLIB";
                 }>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             index: z.ZodObject<{
                 dataFormatDescriptor: z.ZodObject<{
                     byteOffset: z.ZodNumber;
                     byteLength: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 keyValueData: z.ZodObject<{
                     byteOffset: z.ZodNumber;
                     byteLength: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 supercompressionGlobalData: z.ZodObject<{
                     byteOffset: z.ZodNumber;
                     byteLength: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 levels: z.ZodArray<z.ZodObject<{
                     byteOffset: z.ZodNumber;
                     byteLength: z.ZodNumber;
                     uncompressedByteLength: z.ZodNumber;
-                }, {}, {}>>;
-            }, {}, {}>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>;
             dataFormatDescriptor: z.ZodObject<{
                 totalSize: z.ZodNumber;
                 blocks: z.ZodArray<z.ZodObject<{
@@ -11826,15 +11826,15 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
                         samplePosition: z.ZodTuple<[z.ZodNumber, z.ZodNumber, z.ZodNumber, z.ZodNumber], null>;
                         sampleLower: z.ZodNumber;
                         sampleUpper: z.ZodNumber;
-                    }, {}, {}>>;
-                }, {}, {}>>;
-            }, {}, {}>;
+                    }, z.core.$strip>>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>;
             keyValueData: z.ZodObject<{
                 KTXorientation: z.ZodString;
                 KTXwriter: z.ZodString;
                 KTXwriterScParams: z.ZodString;
-            }, {}, {}>;
-        }, {}, {}>>;
+            }, z.core.$strip>;
+        }, z.core.$strip>>;
         hint: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"hint">;
             poster: z.ZodArray<z.ZodObject<{
@@ -11845,13 +11845,13 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
                 }>;
                 width: z.ZodNumber;
                 height: z.ZodNumber;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         timings: z.ZodObject<{
             file_http_duration: z.ZodNumber;
             file_ck_duration: z.ZodNumber;
             texture_ktxinfo_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -11863,9 +11863,9 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         type: z.ZodLiteral<"video">;
         ffprobe: z.ZodObject<{
             streams: z.ZodArray<z.ZodObject<{
@@ -11926,9 +11926,9 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
                     clean_effects: z.ZodOptional<z.ZodNumber>;
                     attached_pic: z.ZodOptional<z.ZodNumber>;
                     timed_thumbnails: z.ZodOptional<z.ZodNumber>;
-                }, {}, {}>>;
+                }, z.core.$strip>>;
                 rotation: z.ZodOptional<z.ZodUnion<readonly [z.ZodString, z.ZodNumber]>>;
-            }, {}, {}>>;
+            }, z.core.$strip>>;
             format: z.ZodObject<{
                 filename: z.ZodOptional<z.ZodString>;
                 nb_streams: z.ZodOptional<z.ZodNumber>;
@@ -11941,8 +11941,8 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
                 bit_rate: z.ZodOptional<z.ZodNumber>;
                 probe_score: z.ZodOptional<z.ZodNumber>;
                 tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnion<readonly [z.ZodString, z.ZodNumber]>>>;
-            }, {}, {}>;
-        }, {}, {}>;
+            }, z.core.$strip>;
+        }, z.core.$strip>;
         codecs: z.ZodOptional<z.ZodArray<z.ZodString>>;
         hint: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"hint">;
@@ -11954,13 +11954,13 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
                 }>;
                 width: z.ZodNumber;
                 height: z.ZodNumber;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         timings: z.ZodObject<{
             file_http_duration: z.ZodNumber;
             file_ck_duration: z.ZodNumber;
             video_ffprobe_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -11972,9 +11972,9 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         type: z.ZodLiteral<"rejected">;
         error_text: z.ZodString;
         file: z.ZodObject<{
@@ -11988,18 +11988,18 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         timings: z.ZodObject<{
             file_http_duration: z.ZodNumber;
             file_ck_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>]>;
+    }, z.core.$strip>], "type">;
     metadata_metadata: z.ZodObject<{
         type: z.ZodLiteral<"metadata">;
         timings: z.ZodObject<{
             metadata_http_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -12011,9 +12011,9 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>;
+    }, z.core.$strip>;
     poster_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"poster">;
         poster: z.ZodArray<z.ZodObject<{
@@ -12033,7 +12033,7 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
                 poster_sharp_duration: z.ZodOptional<z.ZodNumber>;
                 poster_ck_duration: z.ZodNumber;
                 poster_http_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -12045,16 +12045,16 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>>;
-    }, {}, {}>>;
+        }, z.core.$strip>>;
+    }, z.core.$strip>>;
     poster_analysis: z.ZodOptional<z.ZodObject<{
         description: z.ZodString;
         tags: z.ZodArray<z.ZodString>;
         source: z.ZodString;
-        generated_at: z.iso.ZodISODateTime;
-    }, {}, {}>>;
+        generated_at: z.ZodISODateTime;
+    }, z.core.$strip>>;
     animated_poster_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"animated-poster">;
         poster: z.ZodObject<{
@@ -12065,7 +12065,7 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
                 animated_poster_ffmpeg_duration: z.ZodNumber;
                 animated_poster_ck_duration: z.ZodNumber;
                 animated_poster_http_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -12077,10 +12077,10 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>;
-    }, {}, {}>>;
+        }, z.core.$strip>;
+    }, z.core.$strip>>;
     poster_series_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"poster-series">;
         series: z.ZodArray<z.ZodObject<{
@@ -12100,7 +12100,7 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
                 poster_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
                 poster_series_ck_duration: z.ZodNumber;
                 poster_series_http_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -12112,16 +12112,16 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>>;
-    }, {}, {}>>;
+        }, z.core.$strip>>;
+    }, z.core.$strip>>;
     poster_series_selected_index: z.ZodOptional<z.ZodNumber>;
     tile_series_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"tile-series-metadata">;
         timings: z.ZodObject<{
             metadata_http_duration: z.ZodNumber;
-        }, {}, {}>;
+        }, z.core.$strip>;
         file: z.ZodObject<{
             s3_filename: z.ZodString;
             content_type: z.ZodString;
@@ -12133,9 +12133,9 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    }, {}, {}>>;
+    }, z.core.$strip>>;
     prevue_metadata: z.ZodOptional<z.ZodObject<{
         type: z.ZodLiteral<"prevue">;
         prevue: z.ZodObject<{
@@ -12146,7 +12146,7 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
                 prevue_ffmpeg_duration: z.ZodNumber;
                 prevue_ck_duration: z.ZodNumber;
                 prevue_http_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -12158,10 +12158,10 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>;
-    }, {}, {}>>;
+        }, z.core.$strip>;
+    }, z.core.$strip>>;
     metadata_state: z.ZodEnum<{
         pending: "pending";
         processing: "processing";
@@ -12215,7 +12215,7 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
         is_current: z.ZodLiteral<true>;
         version: z.ZodNumber;
         origin_name: z.ZodString;
-    }, {}, {}>, z.ZodObject<{
+    }, z.core.$strip>, z.ZodObject<{
         is_current: z.ZodLiteral<false>;
         version: z.ZodNumber;
         origin_name: z.ZodString;
@@ -12231,12 +12231,12 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
             s3_version_id: z.ZodString;
             s3_etag: z.ZodString;
             s3_parts: z.ZodArray<z.ZodNumber>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         metadata_metadata: z.ZodObject<{
             type: z.ZodLiteral<"metadata">;
             timings: z.ZodObject<{
                 metadata_http_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -12248,9 +12248,9 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>;
+        }, z.core.$strip>;
         poster_metadata: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"poster">;
             poster: z.ZodArray<z.ZodObject<{
@@ -12270,7 +12270,7 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
                     poster_sharp_duration: z.ZodOptional<z.ZodNumber>;
                     poster_ck_duration: z.ZodNumber;
                     poster_http_duration: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 file: z.ZodObject<{
                     s3_filename: z.ZodString;
                     content_type: z.ZodString;
@@ -12282,16 +12282,16 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
                     s3_version_id: z.ZodString;
                     s3_etag: z.ZodString;
                     s3_parts: z.ZodArray<z.ZodNumber>;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         poster_analysis: z.ZodOptional<z.ZodObject<{
             description: z.ZodString;
             tags: z.ZodArray<z.ZodString>;
             source: z.ZodString;
-            generated_at: z.iso.ZodISODateTime;
-        }, {}, {}>>;
+            generated_at: z.ZodISODateTime;
+        }, z.core.$strip>>;
         animated_poster_metadata: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"animated-poster">;
             poster: z.ZodObject<{
@@ -12302,7 +12302,7 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
                     animated_poster_ffmpeg_duration: z.ZodNumber;
                     animated_poster_ck_duration: z.ZodNumber;
                     animated_poster_http_duration: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 file: z.ZodObject<{
                     s3_filename: z.ZodString;
                     content_type: z.ZodString;
@@ -12314,10 +12314,10 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
                     s3_version_id: z.ZodString;
                     s3_etag: z.ZodString;
                     s3_parts: z.ZodArray<z.ZodNumber>;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, {}, {}>;
-        }, {}, {}>>;
+            }, z.core.$strip>;
+        }, z.core.$strip>>;
         poster_series_metadata: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"poster-series">;
             series: z.ZodArray<z.ZodObject<{
@@ -12337,7 +12337,7 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
                     poster_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
                     poster_series_ck_duration: z.ZodNumber;
                     poster_series_http_duration: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 file: z.ZodObject<{
                     s3_filename: z.ZodString;
                     content_type: z.ZodString;
@@ -12349,15 +12349,15 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
                     s3_version_id: z.ZodString;
                     s3_etag: z.ZodString;
                     s3_parts: z.ZodArray<z.ZodNumber>;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, {}, {}>>;
-        }, {}, {}>>;
+            }, z.core.$strip>>;
+        }, z.core.$strip>>;
         tile_series_metadata: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"tile-series-metadata">;
             timings: z.ZodObject<{
                 metadata_http_duration: z.ZodNumber;
-            }, {}, {}>;
+            }, z.core.$strip>;
             file: z.ZodObject<{
                 s3_filename: z.ZodString;
                 content_type: z.ZodString;
@@ -12369,9 +12369,9 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
                 s3_version_id: z.ZodString;
                 s3_etag: z.ZodString;
                 s3_parts: z.ZodArray<z.ZodNumber>;
-            }, {}, {}>;
+            }, z.core.$strip>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        }, {}, {}>>;
+        }, z.core.$strip>>;
         prevue_metadata: z.ZodOptional<z.ZodObject<{
             type: z.ZodLiteral<"prevue">;
             prevue: z.ZodObject<{
@@ -12382,7 +12382,7 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
                     prevue_ffmpeg_duration: z.ZodNumber;
                     prevue_ck_duration: z.ZodNumber;
                     prevue_http_duration: z.ZodNumber;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 file: z.ZodObject<{
                     s3_filename: z.ZodString;
                     content_type: z.ZodString;
@@ -12394,19 +12394,19 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
                     s3_version_id: z.ZodString;
                     s3_etag: z.ZodString;
                     s3_parts: z.ZodArray<z.ZodNumber>;
-                }, {}, {}>;
+                }, z.core.$strip>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, {}, {}>;
-        }, {}, {}>>;
-    }, {}, {}>]>>;
+            }, z.core.$strip>;
+        }, z.core.$strip>>;
+    }, z.core.$strip>]>>;
     tags: z.ZodArray<z.ZodString>;
     asset_id: z.ZodUUID;
-    create_timestamp: z.iso.ZodISODateTime;
-    modify_timestamp: z.iso.ZodISODateTime;
+    create_timestamp: z.ZodISODateTime;
+    modify_timestamp: z.ZodISODateTime;
     is_deleted: z.ZodDefault<z.ZodBoolean>;
     poster_url: z.ZodOptional<z.ZodURL>;
     animated_poster_url: z.ZodOptional<z.ZodURL>;
     prevue_url: z.ZodOptional<z.ZodURL>;
-}, {}, {}>;
+}, z.core.$strip>;
 export type CreateAssetFromUploadVersionResponse = z.infer<typeof CreateAssetFromUploadVersionResponse>;
 //# sourceMappingURL=api.schema.d.ts.map
