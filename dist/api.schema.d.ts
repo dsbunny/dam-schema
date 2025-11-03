@@ -3504,6 +3504,12 @@ export declare const GetAssetSuggestionsResponse: z.ZodObject<{
     s: z.ZodArray<z.ZodString>;
 }, z.core.$strip>;
 export type GetAssetSuggestionsResponse = z.infer<typeof GetAssetSuggestionsResponse>;
+export declare const GetAssetAvailabilityRequest: z.ZodObject<{}, z.core.$strip>;
+export type GetAssetAvailabilityRequest = z.infer<typeof GetAssetAvailabilityRequest>;
+export declare const GetAssetAvailabilityResponse: z.ZodObject<{
+    is_available: z.ZodBoolean;
+}, z.core.$strip>;
+export type GetAssetAvailabilityResponse = z.infer<typeof GetAssetAvailabilityResponse>;
 export declare const GetAssetRequest: z.ZodObject<{}, z.core.$strip>;
 export type GetAssetRequest = z.infer<typeof GetAssetRequest>;
 export declare const GetAssetResponse: z.ZodObject<{

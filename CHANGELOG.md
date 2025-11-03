@@ -1,4 +1,7 @@
 # Changelog
+## v14.3.11
+- Add API for name availability.
+
 ## v14.2.10
 - Bump to `zod@4.1.11`.
 - Move Zod to `peerDependencies` so users can bring their own Zod.

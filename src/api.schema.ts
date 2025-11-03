@@ -66,6 +66,16 @@ export const GetAssetSuggestionsResponse = z.object({
 	.describe('Get asset suggestions response schema');
 export type GetAssetSuggestionsResponse = z.infer<typeof GetAssetSuggestionsResponse>;
 
+export const GetAssetAvailabilityRequest = z.object({})
+	.describe('Get asset availability request schema');
+export type GetAssetAvailabilityRequest = z.infer<typeof GetAssetAvailabilityRequest>;
+export const GetAssetAvailabilityResponse = z.object({
+	is_available: z.boolean()
+		.describe('Indicates if the asset name is available'),
+})
+	.describe('Get asset availability response schema');
+export type GetAssetAvailabilityResponse = z.infer<typeof GetAssetAvailabilityResponse>;
+
 export const GetAssetRequest = z.object({})
 	.describe('Get asset request schema');
 export type GetAssetRequest = z.infer<typeof GetAssetRequest>;

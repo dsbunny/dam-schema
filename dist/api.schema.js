@@ -49,6 +49,13 @@ export const GetAssetSuggestionsResponse = z.object({
         .describe('Asset name suggestions for given input'),
 })
     .describe('Get asset suggestions response schema');
+export const GetAssetAvailabilityRequest = z.object({})
+    .describe('Get asset availability request schema');
+export const GetAssetAvailabilityResponse = z.object({
+    is_available: z.boolean()
+        .describe('Indicates if the asset name is available'),
+})
+    .describe('Get asset availability response schema');
 export const GetAssetRequest = z.object({})
     .describe('Get asset request schema');
 export const GetAssetResponse = Asset
