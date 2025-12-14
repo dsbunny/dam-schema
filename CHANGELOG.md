@@ -1,4 +1,12 @@
 # Changelog
+## v15.1.13
+- Add `user_tags` and `system_tags` to `CreateUploadRequest` to enable the _Publisher_ to set `is:schedule` tag.
+- Add `system_tags` to `Upload` and `Asset` schemas.
+
+## v15.0.12
+- Rename `UpdateAssetRequest` to `PatchAssetRequest` and set a limit of 50 operations.
+- Add `ListUploadsRequest` schema for retrieving multiple upload IDs in one request.
+
 ## v14.3.11
 - Add API for name availability.
 

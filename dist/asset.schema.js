@@ -52,6 +52,8 @@ export const AssetBase = z.object({
         .describe('Whether the asset is settled, not expected to change'),
     user_tags: z.array(z.string().max(64))
         .describe('The user tags of the asset'),
+    system_tags: z.array(z.string().max(64))
+        .describe('The system tags of the asset'),
     versions: z.array(VersionMetadata)
         .describe('The versions of the asset'),
     tags: z.array(z.string().max(64))
@@ -98,6 +100,7 @@ export const DbDtoFromAssetBase = AssetBase.transform((asset) => {
         metadata_metadata: JSON.stringify(asset.metadata_metadata),
         versions: JSON.stringify(asset.versions),
         user_tags: JSON.stringify(asset.user_tags),
+        system_tags: JSON.stringify(asset.system_tags),
         tags: JSON.stringify(asset.tags),
     };
 });
@@ -119,6 +122,7 @@ export const DbDtoFromAsset = Asset.transform((asset) => {
         tile_series_state: asset.tile_series_state ?? null,
         prevue_state: asset.prevue_state ?? null,
         user_tags: JSON.stringify(asset.user_tags),
+        system_tags: JSON.stringify(asset.system_tags),
         versions: JSON.stringify(asset.versions),
         tags: JSON.stringify(asset.tags),
     };
@@ -143,6 +147,7 @@ export const DbDtoToAssetBase = z.object({
     prevue_state: SkippableTranscodeStateEnum,
     is_settled: z.number(),
     user_tags: z.string().max(65535),
+    system_tags: z.string().max(65535),
     versions: z.string().max(65535),
     tags: z.string().max(65535),
 })
@@ -170,6 +175,15 @@ export const DbDtoToAssetBase = z.object({
         ctx.addIssue({
             code: "custom",
             message: 'Invalid user tags',
+            fatal: true,
+        });
+        return z.NEVER;
+    }
+    const system_tags_result = jsonSafeParser(z.array(z.string().max(64))).safeParse(dto.system_tags);
+    if (!system_tags_result.success) {
+        ctx.addIssue({
+            code: "custom",
+            message: 'Invalid system tags',
             fatal: true,
         });
         return z.NEVER;
@@ -260,6 +274,7 @@ export const DbDtoToAssetBase = z.object({
         prevue_metadata: prevue_metadata_result.data,
         is_settled: Boolean(dto.is_settled),
         user_tags: user_tags_result.data,
+        system_tags: system_tags_result.data,
         versions: versions_result.data,
         tags: tags_result.data,
     };
@@ -285,6 +300,7 @@ export const DbDtoToAsset = z.object({
     prevue_state: SkippableTranscodeStateEnum,
     is_settled: z.number(),
     user_tags: z.string(),
+    system_tags: z.string(),
     versions: z.string(),
     tags: z.string(),
     create_timestamp: sqliteDateSchema,
@@ -319,6 +335,15 @@ export const DbDtoToAsset = z.object({
         });
         return z.NEVER;
     }
+    const system_tags_result = jsonSafeParser(z.array(z.string().max(64))).safeParse(dto.system_tags);
+    if (!system_tags_result.success) {
+        ctx.addIssue({
+            code: "custom",
+            message: 'Invalid system tags',
+            fatal: true,
+        });
+        return z.NEVER;
+    }
     const versions_result = jsonSafeParser(z.array(VersionMetadata)).safeParse(dto.versions);
     if (!versions_result.success) {
         ctx.addIssue({
@@ -405,6 +430,7 @@ export const DbDtoToAsset = z.object({
         prevue_metadata: prevue_metadata_result.data,
         is_settled: Boolean(dto.is_settled),
         user_tags: user_tags_result.data,
+        system_tags: system_tags_result.data,
         versions: versions_result.data,
         tags: tags_result.data,
         is_deleted: Boolean(dto.is_deleted),

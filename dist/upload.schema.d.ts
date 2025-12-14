@@ -140,6 +140,7 @@ export declare const Upload: z.ZodObject<{
         conflict: "conflict";
     }>;
     user_tags: z.ZodArray<z.ZodString>;
+    system_tags: z.ZodArray<z.ZodString>;
     create_timestamp: z.ZodISODateTime;
     modify_timestamp: z.ZodISODateTime;
     is_deleted: z.ZodDefault<z.ZodBoolean>;
@@ -218,6 +219,7 @@ export declare const ValidatedUpload: z.ZodObject<{
         conflict: "conflict";
     }>;
     user_tags: z.ZodArray<z.ZodString>;
+    system_tags: z.ZodArray<z.ZodString>;
     create_timestamp: z.ZodISODateTime;
     modify_timestamp: z.ZodISODateTime;
     is_deleted: z.ZodDefault<z.ZodBoolean>;
@@ -296,6 +298,7 @@ export declare const DbDtoFromUpload: z.ZodPipe<z.ZodObject<{
         conflict: "conflict";
     }>;
     user_tags: z.ZodArray<z.ZodString>;
+    system_tags: z.ZodArray<z.ZodString>;
     create_timestamp: z.ZodISODateTime;
     modify_timestamp: z.ZodISODateTime;
     is_deleted: z.ZodDefault<z.ZodBoolean>;
@@ -316,6 +319,7 @@ export declare const DbDtoFromUpload: z.ZodPipe<z.ZodObject<{
     s3_complete_state: "pending" | "error" | "completing" | "completed";
     metadata_state: "pending" | "processing" | "processed" | "rejected" | "error";
     save_state: "pending" | "error" | "saving" | "saved" | "conflict";
+    system_tags: string[];
     create_timestamp: string;
     modify_timestamp: string;
     is_deleted: boolean;
@@ -337,6 +341,7 @@ export declare const DbDtoFromUpload: z.ZodPipe<z.ZodObject<{
     metadata_state: "pending" | "processing" | "processed" | "rejected" | "error";
     save_state: "pending" | "error" | "saving" | "saved" | "conflict";
     user_tags: string[];
+    system_tags: string[];
     create_timestamp: string;
     modify_timestamp: string;
     is_deleted: boolean;
@@ -421,6 +426,7 @@ export declare const DbDtoToUpload: z.ZodPipe<z.ZodObject<{
         conflict: "conflict";
     }>;
     user_tags: z.ZodString;
+    system_tags: z.ZodString;
     create_timestamp: z.ZodPipe<z.ZodString, z.ZodTransform<string, string>>;
     modify_timestamp: z.ZodPipe<z.ZodString, z.ZodTransform<string, string>>;
     is_deleted: z.ZodDefault<z.ZodNumber>;
@@ -438,6 +444,7 @@ export declare const DbDtoToUpload: z.ZodPipe<z.ZodObject<{
     metadata_state: "pending" | "processing" | "processed" | "rejected" | "error";
     save_state: "pending" | "error" | "saving" | "saved" | "conflict";
     user_tags: string[];
+    system_tags: string[];
     create_timestamp: string;
     modify_timestamp: string;
     is_deleted: boolean;
@@ -499,6 +506,7 @@ export declare const DbDtoToUpload: z.ZodPipe<z.ZodObject<{
     metadata_state: "pending" | "processing" | "processed" | "rejected" | "error";
     save_state: "pending" | "error" | "saving" | "saved" | "conflict";
     user_tags: string;
+    system_tags: string;
     create_timestamp: string;
     modify_timestamp: string;
     is_deleted: number;

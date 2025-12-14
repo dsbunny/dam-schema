@@ -115,6 +115,8 @@ export const Upload = z.object({
         .describe('The status of the asset save'),
     user_tags: z.array(z.string().max(64))
         .describe('The tags of the upload'),
+    system_tags: z.array(z.string().max(64))
+        .describe('The system tags of the upload'),
     create_timestamp: z.iso.datetime() // ISO 8601
         .describe('The ISO datetime when the upload was created'),
     modify_timestamp: z.iso.datetime()
@@ -158,6 +160,7 @@ export const DbDtoToUpload = z.object({
     metadata_state: TranscodeStateEnum,
     save_state: SaveStateEnum,
     user_tags: z.string().max(65535),
+    system_tags: z.string().max(65535),
     create_timestamp: sqliteDateSchema,
     modify_timestamp: sqliteDateSchema,
     is_deleted: z.number().default(0),
@@ -205,6 +208,15 @@ export const DbDtoToUpload = z.object({
         });
         return z.NEVER;
     }
+    const system_tags_result = jsonSafeParser(z.array(z.string().max(64))).safeParse(dto.system_tags);
+    if (!system_tags_result.success) {
+        ctx.addIssue({
+            code: "custom",
+            message: 'Invalid system tags',
+            fatal: true,
+        });
+        return z.NEVER;
+    }
     return {
         ...dto,
         s3_upload_id: dto.s3_upload_id ?? undefined,
@@ -215,6 +227,7 @@ export const DbDtoToUpload = z.object({
         size: dto.size ?? undefined,
         metadata_metadata: metadata_metadata_result.data,
         user_tags: user_tags_result.data,
+        system_tags: system_tags_result.data,
         is_deleted: Boolean(dto.is_deleted),
     };
 });

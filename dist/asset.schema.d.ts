@@ -1554,6 +1554,7 @@ export declare const AssetBase: z.ZodObject<{
     }>;
     is_settled: z.ZodBoolean;
     user_tags: z.ZodArray<z.ZodString>;
+    system_tags: z.ZodArray<z.ZodString>;
     versions: z.ZodArray<z.ZodUnion<[z.ZodObject<{
         is_current: z.ZodLiteral<true>;
         version: z.ZodNumber;
@@ -3299,6 +3300,7 @@ export declare const Asset: z.ZodObject<{
     }>;
     is_settled: z.ZodBoolean;
     user_tags: z.ZodArray<z.ZodString>;
+    system_tags: z.ZodArray<z.ZodString>;
     versions: z.ZodArray<z.ZodUnion<[z.ZodObject<{
         is_current: z.ZodLiteral<true>;
         version: z.ZodNumber;
@@ -5036,6 +5038,7 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
     }>;
     is_settled: z.ZodBoolean;
     user_tags: z.ZodArray<z.ZodString>;
+    system_tags: z.ZodArray<z.ZodString>;
     versions: z.ZodArray<z.ZodUnion<[z.ZodObject<{
         is_current: z.ZodLiteral<true>;
         version: z.ZodNumber;
@@ -5230,6 +5233,7 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
     metadata_metadata: string;
     versions: string;
     user_tags: string;
+    system_tags: string;
     tags: string;
     tenant_id: string;
     name: string;
@@ -6169,6 +6173,7 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
     prevue_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     is_settled: boolean;
     user_tags: string[];
+    system_tags: string[];
     versions: ({
         is_current: true;
         version: number;
@@ -8030,6 +8035,7 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
     }>;
     is_settled: z.ZodBoolean;
     user_tags: z.ZodArray<z.ZodString>;
+    system_tags: z.ZodArray<z.ZodString>;
     versions: z.ZodArray<z.ZodUnion<[z.ZodObject<{
         is_current: z.ZodLiteral<true>;
         version: z.ZodNumber;
@@ -8242,6 +8248,7 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
     tile_series_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     prevue_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     user_tags: string;
+    system_tags: string;
     versions: string;
     tags: string;
     tenant_id: string;
@@ -9044,6 +9051,7 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
     prevue_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     is_settled: boolean;
     user_tags: string[];
+    system_tags: string[];
     versions: ({
         is_current: true;
         version: number;
@@ -9434,6 +9442,7 @@ export declare const DbDtoToAssetBase: z.ZodPipe<z.ZodObject<{
     }>;
     is_settled: z.ZodNumber;
     user_tags: z.ZodString;
+    system_tags: z.ZodString;
     versions: z.ZodString;
     tags: z.ZodString;
 }, z.core.$strip>, z.ZodTransform<{
@@ -10225,6 +10234,7 @@ export declare const DbDtoToAssetBase: z.ZodPipe<z.ZodObject<{
     prevue_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     is_settled: boolean;
     user_tags: string[];
+    system_tags: string[];
     versions: ({
         is_current: true;
         version: number;
@@ -10566,6 +10576,7 @@ export declare const DbDtoToAssetBase: z.ZodPipe<z.ZodObject<{
     prevue_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     is_settled: number;
     user_tags: string;
+    system_tags: string;
     versions: string;
     tags: string;
 }>>;
@@ -10631,6 +10642,7 @@ export declare const DbDtoToAsset: z.ZodPipe<z.ZodObject<{
     }>;
     is_settled: z.ZodNumber;
     user_tags: z.ZodString;
+    system_tags: z.ZodString;
     versions: z.ZodString;
     tags: z.ZodString;
     create_timestamp: z.ZodPipe<z.ZodString, z.ZodTransform<string, string>>;
@@ -11425,6 +11437,7 @@ export declare const DbDtoToAsset: z.ZodPipe<z.ZodObject<{
     prevue_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     is_settled: boolean;
     user_tags: string[];
+    system_tags: string[];
     versions: ({
         is_current: true;
         version: number;
@@ -11774,6 +11787,7 @@ export declare const DbDtoToAsset: z.ZodPipe<z.ZodObject<{
     prevue_state: "pending" | "processing" | "processed" | "rejected" | "error" | "skipped";
     is_settled: number;
     user_tags: string;
+    system_tags: string;
     versions: string;
     tags: string;
     create_timestamp: string;

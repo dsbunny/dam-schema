@@ -1555,6 +1555,7 @@ export declare const ListAssetsResponse: z.ZodObject<{
         }>;
         is_settled: z.ZodBoolean;
         user_tags: z.ZodArray<z.ZodString>;
+        system_tags: z.ZodArray<z.ZodString>;
         versions: z.ZodArray<z.ZodUnion<[z.ZodObject<{
             is_current: z.ZodLiteral<true>;
             version: z.ZodNumber;
@@ -3297,6 +3298,7 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
         }>;
         is_settled: z.ZodBoolean;
         user_tags: z.ZodArray<z.ZodString>;
+        system_tags: z.ZodArray<z.ZodString>;
         versions: z.ZodArray<z.ZodUnion<[z.ZodObject<{
             is_current: z.ZodLiteral<true>;
             version: z.ZodNumber;
@@ -5051,6 +5053,7 @@ export declare const GetAssetResponse: z.ZodObject<{
     }>;
     is_settled: z.ZodBoolean;
     user_tags: z.ZodArray<z.ZodString>;
+    system_tags: z.ZodArray<z.ZodString>;
     versions: z.ZodArray<z.ZodUnion<[z.ZodObject<{
         is_current: z.ZodLiteral<true>;
         version: z.ZodNumber;
@@ -6794,6 +6797,7 @@ export declare const RecoverAssetResponse: z.ZodObject<{
     }>;
     is_settled: z.ZodBoolean;
     user_tags: z.ZodArray<z.ZodString>;
+    system_tags: z.ZodArray<z.ZodString>;
     versions: z.ZodArray<z.ZodUnion<[z.ZodObject<{
         is_current: z.ZodLiteral<true>;
         version: z.ZodNumber;
@@ -6999,7 +7003,7 @@ export declare const GetAssetDownloadLocationResponse: z.ZodObject<{
     expires: z.ZodISODateTime;
 }, z.core.$strip>;
 export type GetAssetDownloadLocationResponse = z.infer<typeof GetAssetDownloadLocationResponse>;
-export declare const UpdateAssetRequest: z.ZodArray<z.ZodDiscriminatedUnion<[z.ZodObject<{
+export declare const PatchAssetRequest: z.ZodArray<z.ZodDiscriminatedUnion<[z.ZodObject<{
     path: z.ZodString;
     op: z.ZodLiteral<"add">;
     value: z.ZodAny;
@@ -7024,8 +7028,8 @@ export declare const UpdateAssetRequest: z.ZodArray<z.ZodDiscriminatedUnion<[z.Z
     value: z.ZodAny;
     not: z.ZodOptional<z.ZodBoolean>;
 }, z.core.$strip>], "op">>;
-export type UpdateAssetRequest = z.infer<typeof UpdateAssetRequest>;
-export declare const UpdateAssetResponse: z.ZodObject<{
+export type PatchAssetRequest = z.infer<typeof PatchAssetRequest>;
+export declare const PatchAssetResponse: z.ZodObject<{
     tenant_id: z.ZodUUID;
     name: z.ZodString;
     metadata: z.ZodDiscriminatedUnion<[z.ZodObject<{
@@ -8564,6 +8568,7 @@ export declare const UpdateAssetResponse: z.ZodObject<{
     }>;
     is_settled: z.ZodBoolean;
     user_tags: z.ZodArray<z.ZodString>;
+    system_tags: z.ZodArray<z.ZodString>;
     versions: z.ZodArray<z.ZodUnion<[z.ZodObject<{
         is_current: z.ZodLiteral<true>;
         version: z.ZodNumber;
@@ -8761,7 +8766,7 @@ export declare const UpdateAssetResponse: z.ZodObject<{
     animated_poster_url: z.ZodOptional<z.ZodURL>;
     prevue_url: z.ZodOptional<z.ZodURL>;
 }, z.core.$strip>;
-export type UpdateAssetResponse = z.infer<typeof UpdateAssetResponse>;
+export type PatchAssetResponse = z.infer<typeof PatchAssetResponse>;
 export declare const ListAssetPostersRequest: z.ZodObject<{}, z.core.$strip>;
 export type ListAssetPostersRequest = z.infer<typeof ListAssetPostersRequest>;
 export declare const ListAssetPostersResponse: z.ZodArray<z.ZodObject<{
@@ -8781,8 +8786,94 @@ export declare const GetAssetThumbnailRequest: z.ZodObject<{}, z.core.$strip>;
 export type GetAssetThumbnailRequest = z.infer<typeof GetAssetThumbnailRequest>;
 export declare const GetAssetThumbnailResponse: z.ZodURL;
 export type GetAssetThumbnailResponse = z.infer<typeof GetAssetThumbnailResponse>;
+export declare const ListUploadsRequest: z.ZodObject<{}, z.core.$strip>;
+export type ListUploadsRequest = z.infer<typeof ListUploadsRequest>;
+export declare const ListUploadsResponse: z.ZodObject<{
+    uploads: z.ZodArray<z.ZodObject<{
+        upload_id: z.ZodUUID;
+        tenant_id: z.ZodUUID;
+        asset_id: z.ZodUUID;
+        s3_upload_id: z.ZodOptional<z.ZodString>;
+        s3_metadata: z.ZodOptional<z.ZodObject<{
+            $metadata: z.ZodObject<{
+                attempts: z.ZodNumber;
+                httpStatusCode: z.ZodNumber;
+                requestId: z.ZodString;
+                totalRetryDelay: z.ZodNumber;
+            }, z.core.$strip>;
+            Bucket: z.ZodString;
+            ETag: z.ZodString;
+            Key: z.ZodString;
+            Location: z.ZodString;
+            VersionId: z.ZodString;
+        }, z.core.$strip>>;
+        s3_version_id: z.ZodOptional<z.ZodString>;
+        s3_etag: z.ZodOptional<z.ZodString>;
+        s3_parts: z.ZodOptional<z.ZodArray<z.ZodNumber>>;
+        size: z.ZodOptional<z.ZodNumber>;
+        origin_filename: z.ZodString;
+        s3_filename: z.ZodString;
+        content_type: z.ZodString;
+        s3_uri: z.ZodString;
+        asset_name: z.ZodString;
+        metadata_metadata: z.ZodOptional<z.ZodObject<{
+            type: z.ZodLiteral<"metadata">;
+            timings: z.ZodObject<{
+                metadata_http_duration: z.ZodNumber;
+            }, z.core.$strip>;
+            file: z.ZodObject<{
+                s3_filename: z.ZodString;
+                content_type: z.ZodString;
+                size: z.ZodNumber;
+                mtime: z.ZodString;
+                md5: z.ZodString;
+                sha256: z.ZodString;
+                s3_uri: z.ZodString;
+                s3_version_id: z.ZodString;
+                s3_etag: z.ZodString;
+                s3_parts: z.ZodArray<z.ZodNumber>;
+            }, z.core.$strip>;
+            tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        }, z.core.$strip>>;
+        upload_state: z.ZodEnum<{
+            pending: "pending";
+            error: "error";
+            uploading: "uploading";
+            uploaded: "uploaded";
+        }>;
+        s3_complete_state: z.ZodEnum<{
+            pending: "pending";
+            error: "error";
+            completing: "completing";
+            completed: "completed";
+        }>;
+        metadata_state: z.ZodEnum<{
+            pending: "pending";
+            processing: "processing";
+            processed: "processed";
+            rejected: "rejected";
+            error: "error";
+        }>;
+        save_state: z.ZodEnum<{
+            pending: "pending";
+            error: "error";
+            saving: "saving";
+            saved: "saved";
+            conflict: "conflict";
+        }>;
+        user_tags: z.ZodArray<z.ZodString>;
+        system_tags: z.ZodArray<z.ZodString>;
+        create_timestamp: z.ZodISODateTime;
+        modify_timestamp: z.ZodISODateTime;
+        is_deleted: z.ZodDefault<z.ZodBoolean>;
+    }, z.core.$strip>>;
+    next_token: z.ZodNullable<z.ZodString>;
+}, z.core.$strip>;
+export type ListUploadsResponse = z.infer<typeof ListUploadsResponse>;
 export declare const CreateUploadRequest: z.ZodObject<{
     filename: z.ZodString;
+    user_tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+    system_tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
 }, z.core.$strip>;
 export type CreateUploadRequest = z.infer<typeof CreateUploadRequest>;
 export declare const CreateUploadResponse: z.ZodObject<{
@@ -8865,6 +8956,7 @@ export declare const GetUploadResponse: z.ZodObject<{
         conflict: "conflict";
     }>;
     user_tags: z.ZodArray<z.ZodString>;
+    system_tags: z.ZodArray<z.ZodString>;
     create_timestamp: z.ZodISODateTime;
     modify_timestamp: z.ZodISODateTime;
     is_deleted: z.ZodDefault<z.ZodBoolean>;
@@ -8896,7 +8988,7 @@ export declare const UploadPartRequest: z.ZodObject<{
 export type UploadPartRequest = z.infer<typeof UploadPartRequest>;
 export declare const UploadPartResponse: z.ZodObject<{}, z.core.$strip>;
 export type UploadPartResponse = z.infer<typeof UploadPartResponse>;
-export declare const UpdateUploadRequest: z.ZodArray<z.ZodDiscriminatedUnion<[z.ZodObject<{
+export declare const PatchUploadRequest: z.ZodArray<z.ZodDiscriminatedUnion<[z.ZodObject<{
     path: z.ZodString;
     op: z.ZodLiteral<"add">;
     value: z.ZodAny;
@@ -8921,9 +9013,9 @@ export declare const UpdateUploadRequest: z.ZodArray<z.ZodDiscriminatedUnion<[z.
     value: z.ZodAny;
     not: z.ZodOptional<z.ZodBoolean>;
 }, z.core.$strip>], "op">>;
-export type UpdateUploadRequest = z.infer<typeof UpdateUploadRequest>;
-export declare const UpdateUploadResponse: z.ZodObject<{}, z.core.$strip>;
-export type UpdateUploadResponse = z.infer<typeof UpdateUploadResponse>;
+export type PatchUploadRequest = z.infer<typeof PatchUploadRequest>;
+export declare const PatchUploadResponse: z.ZodObject<{}, z.core.$strip>;
+export type PatchUploadResponse = z.infer<typeof PatchUploadResponse>;
 export declare const UploadCompleteRequest: z.ZodObject<{}, z.core.$strip>;
 export type UploadCompleteRequest = z.infer<typeof UploadCompleteRequest>;
 export declare const UploadCompleteResponse: z.ZodObject<{}, z.core.$strip>;
@@ -10478,6 +10570,7 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
     }>;
     is_settled: z.ZodBoolean;
     user_tags: z.ZodArray<z.ZodString>;
+    system_tags: z.ZodArray<z.ZodString>;
     versions: z.ZodArray<z.ZodUnion<[z.ZodObject<{
         is_current: z.ZodLiteral<true>;
         version: z.ZodNumber;
@@ -12217,6 +12310,7 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
     }>;
     is_settled: z.ZodBoolean;
     user_tags: z.ZodArray<z.ZodString>;
+    system_tags: z.ZodArray<z.ZodString>;
     versions: z.ZodArray<z.ZodUnion<[z.ZodObject<{
         is_current: z.ZodLiteral<true>;
         version: z.ZodNumber;

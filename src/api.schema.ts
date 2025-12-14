@@ -107,12 +107,12 @@ export const GetAssetDownloadLocationResponse = z.object({
 	.describe('Get download location response schema');
 export type GetAssetDownloadLocationResponse = z.infer<typeof GetAssetDownloadLocationResponse>;
 
-export const UpdateAssetRequest = z.array(JsonPatchOperation)
-	.describe('Update asset request schema');
-export type UpdateAssetRequest = z.infer<typeof UpdateAssetRequest>;
-export const UpdateAssetResponse = Asset
-	.describe('Update asset response schema');
-export type UpdateAssetResponse = z.infer<typeof UpdateAssetResponse>;
+export const PatchAssetRequest = z.array(JsonPatchOperation).max(50)
+	.describe('Patch asset request schema');
+export type PatchAssetRequest = z.infer<typeof PatchAssetRequest>;
+export const PatchAssetResponse = Asset
+	.describe('Patch asset response schema');
+export type PatchAssetResponse = z.infer<typeof PatchAssetResponse>;
 
 export const ListAssetPostersRequest = z.object({})
 	.describe('List asset posters request schema');
@@ -144,8 +144,23 @@ export type GetAssetThumbnailResponse = z.infer<typeof GetAssetThumbnailResponse
 // #endregion
 
 // #region Uploads
+export const ListUploadsRequest = z.object({})
+	.describe('List uploads request schema');
+export type ListUploadsRequest = z.infer<typeof ListUploadsRequest>;
+export const ListUploadsResponse = z.object({
+	uploads: z.array(Upload),
+	next_token: z.string().nullable(),
+})
+	.describe('List uploads response schema');
+export type ListUploadsResponse = z.infer<typeof ListUploadsResponse>;
+
 export const CreateUploadRequest = z.object({
 	filename: z.string()
+		.describe('Original name of the file to be uploaded.'),
+	user_tags: z.array(z.string().max(64)).optional()
+		.describe('List of user-defined tags associated with the upload.'),
+	system_tags: z.array(z.string().max(64)).optional()
+		.describe('List of system-defined tags associated with the upload.'),
 })
 	.describe('Create upload request schema');
 export type CreateUploadRequest = z.infer<typeof CreateUploadRequest>;
@@ -208,12 +223,12 @@ export const UploadPartResponse = z.object({})
 	.describe('Upload part response schema');
 export type UploadPartResponse = z.infer<typeof UploadPartResponse>;
 
-export const UpdateUploadRequest = z.array(JsonPatchOperation)
-	.describe('Update upload request schema');
-export type UpdateUploadRequest = z.infer<typeof UpdateUploadRequest>;
-export const UpdateUploadResponse = z.object({})
-	.describe('Update upload response schema');
-export type UpdateUploadResponse = z.infer<typeof UpdateUploadResponse>;
+export const PatchUploadRequest = z.array(JsonPatchOperation).max(50)
+	.describe('Patch upload request schema');
+export type PatchUploadRequest = z.infer<typeof PatchUploadRequest>;
+export const PatchUploadResponse = z.object({})
+	.describe('Patch upload response schema');
+export type PatchUploadResponse = z.infer<typeof PatchUploadResponse>;
 
 export const UploadCompleteRequest = z.object({})
 	.describe('Upload complete request schema');

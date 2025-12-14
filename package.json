@@ -1,6 +1,6 @@
 {
 	"name": "@dsbunny/dam-schema",
-	"version": "14.3.11",
+	"version": "15.1.13",
 	"description": "Schema for the DAM",
 	"type": "module",
 	"main": "dist/index.js",
@@ -10,12 +10,15 @@
 	"private": false,
 	"scripts": {
 		"build": "tsc",
+		"clean": "rm -rf dist node_modules package-lock.json",
+		"pull:upstream": "./scripts/pull-upstream.sh",
+		"rebuild": "npm run clean && npm run pull:upstream && npm install && npm run build",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"devDependencies": {
 		"typescript": "^5.9.3",
 		"zod": "^4.1.12",
-		"@dsbunny/metadata-schema": "github:dsbunny/metadata-schema#7faadd3"
+		"@dsbunny/metadata-schema": "github:dsbunny/metadata-schema#87456bf"
 	},
 	"peerDependencies": {
 		"zod": "^4.0.0",
