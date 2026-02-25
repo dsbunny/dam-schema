@@ -17,7 +17,7 @@
 	},
 	"devDependencies": {
 		"@dsbunny/error-schema": "github:dsbunny/error-schema#be4645d",
-		"@dsbunny/metadata-schema": "github:dsbunny/metadata-schema#8ea0323",
+		"@dsbunny/metadata-schema": "github:dsbunny/metadata-schema#1a3fd37",
 		"@dsbunny/robust-task-schema": "github:dsbunny/robust-task-schema#0586477",
 		"@dsbunny/webhook-schema": "github:dsbunny/webhook-schema#4178b06",
 		"typescript": "^5.9.3",
