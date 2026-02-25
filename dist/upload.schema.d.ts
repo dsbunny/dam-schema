@@ -1,11 +1,4 @@
 import * as z from "zod";
-export declare const UploadStateEnum: z.ZodEnum<{
-    pending: "pending";
-    error: "error";
-    uploading: "uploading";
-    uploaded: "uploaded";
-}>;
-export type UploadStateEnum = z.infer<typeof UploadStateEnum>;
 export declare const CanSaveStatus: z.ZodObject<{
     upload_id: z.ZodUUID;
     can_save: z.ZodBoolean;
@@ -41,14 +34,6 @@ export declare const DbDtoToCanSaveStatus: z.ZodPipe<z.ZodObject<{
     is_processing: number;
     modify_timestamp: string;
 }>>;
-export declare const SaveStateEnum: z.ZodEnum<{
-    pending: "pending";
-    error: "error";
-    saving: "saving";
-    saved: "saved";
-    conflict: "conflict";
-}>;
-export type SaveStateEnum = z.infer<typeof SaveStateEnum>;
 export declare const S3Metadata: z.ZodObject<{
     $metadata: z.ZodObject<{
         attempts: z.ZodNumber;
@@ -63,8 +48,12 @@ export declare const S3Metadata: z.ZodObject<{
     VersionId: z.ZodString;
 }, z.core.$strip>;
 export type S3Metadata = z.infer<typeof S3Metadata>;
-export declare const S3Parts: z.ZodArray<z.ZodNumber>;
-export type S3Parts = z.infer<typeof S3Parts>;
+export declare const S3Part: z.ZodObject<{
+    part_number: z.ZodNumber;
+    etag: z.ZodString;
+    size: z.ZodNumber;
+}, z.core.$strip>;
+export type S3Part = z.infer<typeof S3Part>;
 export declare const UploadMetadata: z.ZodRecord<z.ZodString, z.ZodString>;
 export type UploadMetadata = z.infer<typeof UploadMetadata>;
 export declare const Upload: z.ZodObject<{
@@ -87,7 +76,11 @@ export declare const Upload: z.ZodObject<{
     }, z.core.$strip>>;
     s3_version_id: z.ZodOptional<z.ZodString>;
     s3_etag: z.ZodOptional<z.ZodString>;
-    s3_parts: z.ZodOptional<z.ZodArray<z.ZodNumber>>;
+    s3_parts: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        part_number: z.ZodNumber;
+        etag: z.ZodString;
+        size: z.ZodNumber;
+    }, z.core.$strip>>>;
     size: z.ZodOptional<z.ZodNumber>;
     origin_filename: z.ZodString;
     s3_filename: z.ZodString;
@@ -113,31 +106,71 @@ export declare const Upload: z.ZodObject<{
         }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
     }, z.core.$strip>>;
-    upload_state: z.ZodEnum<{
+    task_upload_status: z.ZodEnum<{
         pending: "pending";
-        error: "error";
-        uploading: "uploading";
-        uploaded: "uploaded";
-    }>;
-    s3_complete_state: z.ZodEnum<{
-        pending: "pending";
-        error: "error";
-        completing: "completing";
-        completed: "completed";
-    }>;
-    metadata_state: z.ZodEnum<{
-        pending: "pending";
-        processing: "processing";
-        processed: "processed";
+        running: "running";
+        succeeded: "succeeded";
+        failed: "failed";
         rejected: "rejected";
-        error: "error";
+        blocked: "blocked";
+        skipped: "skipped";
+        "pending-paused": "pending-paused";
+        "blocked-paused": "blocked-paused";
     }>;
-    save_state: z.ZodEnum<{
+    task_s3_complete_state: z.ZodEnum<{
         pending: "pending";
-        error: "error";
-        saving: "saving";
-        saved: "saved";
-        conflict: "conflict";
+        running: "running";
+        succeeded: "succeeded";
+        failed: "failed";
+        rejected: "rejected";
+        blocked: "blocked";
+        skipped: "skipped";
+        "pending-paused": "pending-paused";
+        "blocked-paused": "blocked-paused";
+    }>;
+    task_s3_complete_status: z.ZodEnum<{
+        pending: "pending";
+        running: "running";
+        succeeded: "succeeded";
+        failed: "failed";
+        rejected: "rejected";
+        blocked: "blocked";
+        skipped: "skipped";
+        "pending-paused": "pending-paused";
+        "blocked-paused": "blocked-paused";
+    }>;
+    task_gen_metadata_state: z.ZodEnum<{
+        pending: "pending";
+        running: "running";
+        succeeded: "succeeded";
+        failed: "failed";
+        rejected: "rejected";
+        blocked: "blocked";
+        skipped: "skipped";
+        "pending-paused": "pending-paused";
+        "blocked-paused": "blocked-paused";
+    }>;
+    task_gen_metadata_status: z.ZodEnum<{
+        pending: "pending";
+        running: "running";
+        succeeded: "succeeded";
+        failed: "failed";
+        rejected: "rejected";
+        blocked: "blocked";
+        skipped: "skipped";
+        "pending-paused": "pending-paused";
+        "blocked-paused": "blocked-paused";
+    }>;
+    task_save_status: z.ZodEnum<{
+        pending: "pending";
+        running: "running";
+        succeeded: "succeeded";
+        failed: "failed";
+        rejected: "rejected";
+        blocked: "blocked";
+        skipped: "skipped";
+        "pending-paused": "pending-paused";
+        "blocked-paused": "blocked-paused";
     }>;
     user_tags: z.ZodArray<z.ZodString>;
     system_tags: z.ZodArray<z.ZodString>;
@@ -166,7 +199,11 @@ export declare const ValidatedUpload: z.ZodObject<{
     }, z.core.$strip>>;
     s3_version_id: z.ZodNonOptional<z.ZodOptional<z.ZodString>>;
     s3_etag: z.ZodNonOptional<z.ZodOptional<z.ZodString>>;
-    s3_parts: z.ZodNonOptional<z.ZodOptional<z.ZodArray<z.ZodNumber>>>;
+    s3_parts: z.ZodNonOptional<z.ZodOptional<z.ZodArray<z.ZodObject<{
+        part_number: z.ZodNumber;
+        etag: z.ZodString;
+        size: z.ZodNumber;
+    }, z.core.$strip>>>>;
     size: z.ZodNonOptional<z.ZodOptional<z.ZodNumber>>;
     origin_filename: z.ZodString;
     s3_filename: z.ZodString;
@@ -192,31 +229,71 @@ export declare const ValidatedUpload: z.ZodObject<{
         }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
     }, z.core.$strip>>;
-    upload_state: z.ZodEnum<{
+    task_upload_status: z.ZodEnum<{
         pending: "pending";
-        error: "error";
-        uploading: "uploading";
-        uploaded: "uploaded";
-    }>;
-    s3_complete_state: z.ZodEnum<{
-        pending: "pending";
-        error: "error";
-        completing: "completing";
-        completed: "completed";
-    }>;
-    metadata_state: z.ZodEnum<{
-        pending: "pending";
-        processing: "processing";
-        processed: "processed";
+        running: "running";
+        succeeded: "succeeded";
+        failed: "failed";
         rejected: "rejected";
-        error: "error";
+        blocked: "blocked";
+        skipped: "skipped";
+        "pending-paused": "pending-paused";
+        "blocked-paused": "blocked-paused";
     }>;
-    save_state: z.ZodEnum<{
+    task_s3_complete_state: z.ZodEnum<{
         pending: "pending";
-        error: "error";
-        saving: "saving";
-        saved: "saved";
-        conflict: "conflict";
+        running: "running";
+        succeeded: "succeeded";
+        failed: "failed";
+        rejected: "rejected";
+        blocked: "blocked";
+        skipped: "skipped";
+        "pending-paused": "pending-paused";
+        "blocked-paused": "blocked-paused";
+    }>;
+    task_s3_complete_status: z.ZodEnum<{
+        pending: "pending";
+        running: "running";
+        succeeded: "succeeded";
+        failed: "failed";
+        rejected: "rejected";
+        blocked: "blocked";
+        skipped: "skipped";
+        "pending-paused": "pending-paused";
+        "blocked-paused": "blocked-paused";
+    }>;
+    task_gen_metadata_state: z.ZodEnum<{
+        pending: "pending";
+        running: "running";
+        succeeded: "succeeded";
+        failed: "failed";
+        rejected: "rejected";
+        blocked: "blocked";
+        skipped: "skipped";
+        "pending-paused": "pending-paused";
+        "blocked-paused": "blocked-paused";
+    }>;
+    task_gen_metadata_status: z.ZodEnum<{
+        pending: "pending";
+        running: "running";
+        succeeded: "succeeded";
+        failed: "failed";
+        rejected: "rejected";
+        blocked: "blocked";
+        skipped: "skipped";
+        "pending-paused": "pending-paused";
+        "blocked-paused": "blocked-paused";
+    }>;
+    task_save_status: z.ZodEnum<{
+        pending: "pending";
+        running: "running";
+        succeeded: "succeeded";
+        failed: "failed";
+        rejected: "rejected";
+        blocked: "blocked";
+        skipped: "skipped";
+        "pending-paused": "pending-paused";
+        "blocked-paused": "blocked-paused";
     }>;
     user_tags: z.ZodArray<z.ZodString>;
     system_tags: z.ZodArray<z.ZodString>;
@@ -245,7 +322,11 @@ export declare const DbDtoFromUpload: z.ZodPipe<z.ZodObject<{
     }, z.core.$strip>>;
     s3_version_id: z.ZodOptional<z.ZodString>;
     s3_etag: z.ZodOptional<z.ZodString>;
-    s3_parts: z.ZodOptional<z.ZodArray<z.ZodNumber>>;
+    s3_parts: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        part_number: z.ZodNumber;
+        etag: z.ZodString;
+        size: z.ZodNumber;
+    }, z.core.$strip>>>;
     size: z.ZodOptional<z.ZodNumber>;
     origin_filename: z.ZodString;
     s3_filename: z.ZodString;
@@ -271,31 +352,71 @@ export declare const DbDtoFromUpload: z.ZodPipe<z.ZodObject<{
         }, z.core.$strip>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
     }, z.core.$strip>>;
-    upload_state: z.ZodEnum<{
+    task_upload_status: z.ZodEnum<{
         pending: "pending";
-        error: "error";
-        uploading: "uploading";
-        uploaded: "uploaded";
-    }>;
-    s3_complete_state: z.ZodEnum<{
-        pending: "pending";
-        error: "error";
-        completing: "completing";
-        completed: "completed";
-    }>;
-    metadata_state: z.ZodEnum<{
-        pending: "pending";
-        processing: "processing";
-        processed: "processed";
+        running: "running";
+        succeeded: "succeeded";
+        failed: "failed";
         rejected: "rejected";
-        error: "error";
+        blocked: "blocked";
+        skipped: "skipped";
+        "pending-paused": "pending-paused";
+        "blocked-paused": "blocked-paused";
     }>;
-    save_state: z.ZodEnum<{
+    task_s3_complete_state: z.ZodEnum<{
         pending: "pending";
-        error: "error";
-        saving: "saving";
-        saved: "saved";
-        conflict: "conflict";
+        running: "running";
+        succeeded: "succeeded";
+        failed: "failed";
+        rejected: "rejected";
+        blocked: "blocked";
+        skipped: "skipped";
+        "pending-paused": "pending-paused";
+        "blocked-paused": "blocked-paused";
+    }>;
+    task_s3_complete_status: z.ZodEnum<{
+        pending: "pending";
+        running: "running";
+        succeeded: "succeeded";
+        failed: "failed";
+        rejected: "rejected";
+        blocked: "blocked";
+        skipped: "skipped";
+        "pending-paused": "pending-paused";
+        "blocked-paused": "blocked-paused";
+    }>;
+    task_gen_metadata_state: z.ZodEnum<{
+        pending: "pending";
+        running: "running";
+        succeeded: "succeeded";
+        failed: "failed";
+        rejected: "rejected";
+        blocked: "blocked";
+        skipped: "skipped";
+        "pending-paused": "pending-paused";
+        "blocked-paused": "blocked-paused";
+    }>;
+    task_gen_metadata_status: z.ZodEnum<{
+        pending: "pending";
+        running: "running";
+        succeeded: "succeeded";
+        failed: "failed";
+        rejected: "rejected";
+        blocked: "blocked";
+        skipped: "skipped";
+        "pending-paused": "pending-paused";
+        "blocked-paused": "blocked-paused";
+    }>;
+    task_save_status: z.ZodEnum<{
+        pending: "pending";
+        running: "running";
+        succeeded: "succeeded";
+        failed: "failed";
+        rejected: "rejected";
+        blocked: "blocked";
+        skipped: "skipped";
+        "pending-paused": "pending-paused";
+        "blocked-paused": "blocked-paused";
     }>;
     user_tags: z.ZodArray<z.ZodString>;
     system_tags: z.ZodArray<z.ZodString>;
@@ -306,7 +427,10 @@ export declare const DbDtoFromUpload: z.ZodPipe<z.ZodObject<{
     s3_metadata: string;
     s3_parts: string;
     metadata_metadata: string;
+    task_s3_complete_state: string;
+    task_gen_metadata_state: string;
     user_tags: string;
+    system_tags: string;
     upload_id: string;
     tenant_id: string;
     asset_id: string;
@@ -315,11 +439,10 @@ export declare const DbDtoFromUpload: z.ZodPipe<z.ZodObject<{
     content_type: string;
     s3_uri: string;
     asset_name: string;
-    upload_state: "pending" | "error" | "uploading" | "uploaded";
-    s3_complete_state: "pending" | "error" | "completing" | "completed";
-    metadata_state: "pending" | "processing" | "processed" | "rejected" | "error";
-    save_state: "pending" | "error" | "saving" | "saved" | "conflict";
-    system_tags: string[];
+    task_upload_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_s3_complete_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_save_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
     create_timestamp: string;
     modify_timestamp: string;
     is_deleted: boolean;
@@ -336,10 +459,12 @@ export declare const DbDtoFromUpload: z.ZodPipe<z.ZodObject<{
     content_type: string;
     s3_uri: string;
     asset_name: string;
-    upload_state: "pending" | "error" | "uploading" | "uploaded";
-    s3_complete_state: "pending" | "error" | "completing" | "completed";
-    metadata_state: "pending" | "processing" | "processed" | "rejected" | "error";
-    save_state: "pending" | "error" | "saving" | "saved" | "conflict";
+    task_upload_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_s3_complete_state: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_s3_complete_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_metadata_state: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_save_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
     user_tags: string[];
     system_tags: string[];
     create_timestamp: string;
@@ -361,7 +486,11 @@ export declare const DbDtoFromUpload: z.ZodPipe<z.ZodObject<{
     } | undefined;
     s3_version_id?: string | undefined;
     s3_etag?: string | undefined;
-    s3_parts?: number[] | undefined;
+    s3_parts?: {
+        part_number: number;
+        etag: string;
+        size: number;
+    }[] | undefined;
     size?: number | undefined;
     metadata_metadata?: {
         type: "metadata";
@@ -399,31 +528,51 @@ export declare const DbDtoToUpload: z.ZodPipe<z.ZodObject<{
     s3_uri: z.ZodString;
     asset_name: z.ZodString;
     metadata_metadata: z.ZodNullable<z.ZodString>;
-    upload_state: z.ZodEnum<{
+    task_upload_status: z.ZodEnum<{
         pending: "pending";
-        error: "error";
-        uploading: "uploading";
-        uploaded: "uploaded";
-    }>;
-    s3_complete_state: z.ZodEnum<{
-        pending: "pending";
-        error: "error";
-        completing: "completing";
-        completed: "completed";
-    }>;
-    metadata_state: z.ZodEnum<{
-        pending: "pending";
-        processing: "processing";
-        processed: "processed";
+        running: "running";
+        succeeded: "succeeded";
+        failed: "failed";
         rejected: "rejected";
-        error: "error";
+        blocked: "blocked";
+        skipped: "skipped";
+        "pending-paused": "pending-paused";
+        "blocked-paused": "blocked-paused";
     }>;
-    save_state: z.ZodEnum<{
+    task_s3_complete_state: z.ZodString;
+    task_s3_complete_status: z.ZodEnum<{
         pending: "pending";
-        error: "error";
-        saving: "saving";
-        saved: "saved";
-        conflict: "conflict";
+        running: "running";
+        succeeded: "succeeded";
+        failed: "failed";
+        rejected: "rejected";
+        blocked: "blocked";
+        skipped: "skipped";
+        "pending-paused": "pending-paused";
+        "blocked-paused": "blocked-paused";
+    }>;
+    task_gen_metadata_state: z.ZodString;
+    task_gen_metadata_status: z.ZodEnum<{
+        pending: "pending";
+        running: "running";
+        succeeded: "succeeded";
+        failed: "failed";
+        rejected: "rejected";
+        blocked: "blocked";
+        skipped: "skipped";
+        "pending-paused": "pending-paused";
+        "blocked-paused": "blocked-paused";
+    }>;
+    task_save_status: z.ZodEnum<{
+        pending: "pending";
+        running: "running";
+        succeeded: "succeeded";
+        failed: "failed";
+        rejected: "rejected";
+        blocked: "blocked";
+        skipped: "skipped";
+        "pending-paused": "pending-paused";
+        "blocked-paused": "blocked-paused";
     }>;
     user_tags: z.ZodString;
     system_tags: z.ZodString;
@@ -439,10 +588,12 @@ export declare const DbDtoToUpload: z.ZodPipe<z.ZodObject<{
     content_type: string;
     s3_uri: string;
     asset_name: string;
-    upload_state: "pending" | "error" | "uploading" | "uploaded";
-    s3_complete_state: "pending" | "error" | "completing" | "completed";
-    metadata_state: "pending" | "processing" | "processed" | "rejected" | "error";
-    save_state: "pending" | "error" | "saving" | "saved" | "conflict";
+    task_upload_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_s3_complete_state: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_s3_complete_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_metadata_state: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_save_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
     user_tags: string[];
     system_tags: string[];
     create_timestamp: string;
@@ -464,7 +615,11 @@ export declare const DbDtoToUpload: z.ZodPipe<z.ZodObject<{
     } | undefined;
     s3_version_id?: string | undefined;
     s3_etag?: string | undefined;
-    s3_parts?: number[] | undefined;
+    s3_parts?: {
+        part_number: number;
+        etag: string;
+        size: number;
+    }[] | undefined;
     size?: number | undefined;
     metadata_metadata?: {
         type: "metadata";
@@ -501,10 +656,12 @@ export declare const DbDtoToUpload: z.ZodPipe<z.ZodObject<{
     s3_uri: string;
     asset_name: string;
     metadata_metadata: string | null;
-    upload_state: "pending" | "error" | "uploading" | "uploaded";
-    s3_complete_state: "pending" | "error" | "completing" | "completed";
-    metadata_state: "pending" | "processing" | "processed" | "rejected" | "error";
-    save_state: "pending" | "error" | "saving" | "saved" | "conflict";
+    task_upload_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_s3_complete_state: string;
+    task_s3_complete_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_metadata_state: string;
+    task_gen_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_save_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
     user_tags: string;
     system_tags: string;
     create_timestamp: string;

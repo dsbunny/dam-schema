@@ -1,19 +1,11 @@
 // vim: tabstop=8 softtabstop=0 noexpandtab shiftwidth=8 nosmarttab
 import * as z from "zod";
 import { AnimatedPosterMetadata, Metadata, MetadataMetadata, PosterMetadata, PosterSeriesMetadata, PrevueMetadata, TileSeriesMetadataMetadata, } from '@dsbunny/metadata-schema';
-import { TranscodeStateEnum } from './transcode-state.js';
-import { VersionMetadata } from './versions.schema.js';
+import { RobustTask } from "@dsbunny/robust-task-schema";
 import { jsonSafeParser } from './json-safe-parser.js';
 import { PosterAnalysis } from './poster-analysis.schema.js';
-export const SkippableTranscodeStateEnum = z.enum([...TranscodeStateEnum.options, 'skipped'])
-    .describe('The state of the transcode, including skipped');
-export const AssetSummaryStateEnum = z.enum([
-    'pending',
-    'ok',
-    'rejected',
-    'error',
-])
-    .describe('The state of the asset');
+import { TranscodeTaskStateSchema } from "./transcode.schema.js";
+import { VersionMetadata } from './versions.schema.js';
 export const AssetBase = z.object({
     tenant_id: z.uuid()
         .describe('The tenant ID of the asset'),
@@ -36,18 +28,49 @@ export const AssetBase = z.object({
         .describe('The tile entries of the asset'),
     prevue_metadata: PrevueMetadata.optional()
         .describe('The prevue entry of the asset'),
-    metadata_state: TranscodeStateEnum
+    // Re-generation tasks
+    task_gen_metadata_state: TranscodeTaskStateSchema
+        .describe('The state of the metadata transcode'),
+    task_gen_metadata_status: z.enum(RobustTask.StatusValues)
         .describe('The status of the metadata transcode'),
-    poster_state: SkippableTranscodeStateEnum
+    task_save_metadata_status: z.enum(RobustTask.StatusValues)
+        .describe('The status of the metadata save'),
+    // Poster generation tasks
+    task_gen_poster_state: TranscodeTaskStateSchema
+        .describe('The state of the poster transcode'),
+    task_gen_poster_status: z.enum(RobustTask.StatusValues)
         .describe('The status of the poster transcode'),
-    animated_poster_state: SkippableTranscodeStateEnum
+    task_save_poster_status: z.enum(RobustTask.StatusValues)
+        .describe('The status of the poster save'),
+    // Animated poster generation tasks
+    task_gen_animated_poster_state: TranscodeTaskStateSchema
+        .describe('The state of the animated poster transcode'),
+    task_gen_animated_poster_status: z.enum(RobustTask.StatusValues)
         .describe('The status of the animated poster transcode'),
-    poster_series_state: SkippableTranscodeStateEnum
+    task_save_animated_poster_status: z.enum(RobustTask.StatusValues)
+        .describe('The status of the animated poster save'),
+    // Poster series generation tasks
+    task_gen_poster_series_state: TranscodeTaskStateSchema
+        .describe('The state of the poster series transcode'),
+    task_gen_poster_series_status: z.enum(RobustTask.StatusValues)
         .describe('The status of the poster series transcode'),
-    tile_series_state: SkippableTranscodeStateEnum
+    task_save_poster_series_status: z.enum(RobustTask.StatusValues)
+        .describe('The status of the poster series save'),
+    // Tile series generation tasks
+    task_gen_tile_series_state: TranscodeTaskStateSchema
+        .describe('The state of the tile series transcode'),
+    task_gen_tile_series_status: z.enum(RobustTask.StatusValues)
         .describe('The status of the tile series transcode'),
-    prevue_state: SkippableTranscodeStateEnum
+    task_save_tile_series_status: z.enum(RobustTask.StatusValues)
+        .describe('The status of the tile series save'),
+    // Prevue generation tasks
+    task_gen_prevue_state: TranscodeTaskStateSchema
+        .describe('The state of the prevue transcode'),
+    task_gen_prevue_status: z.enum(RobustTask.StatusValues)
         .describe('The status of the prevue transcode'),
+    task_save_prevue_status: z.enum(RobustTask.StatusValues)
+        .describe('The status of the prevue save'),
+    // Whether all generation tasks have settled (succeeded, failed, or skipped)
     is_settled: z.boolean()
         .describe('Whether the asset is settled, not expected to change'),
     user_tags: z.array(z.string().max(64))
@@ -98,9 +121,15 @@ export const DbDtoFromAssetBase = AssetBase.transform((asset) => {
         ...asset,
         metadata: JSON.stringify(asset.metadata),
         metadata_metadata: JSON.stringify(asset.metadata_metadata),
-        versions: JSON.stringify(asset.versions),
+        task_gen_metadata_state: JSON.stringify(asset.task_gen_metadata_state),
+        task_gen_poster_state: JSON.stringify(asset.task_gen_poster_state),
+        task_gen_animated_poster_state: JSON.stringify(asset.task_gen_animated_poster_state),
+        task_gen_poster_series_state: JSON.stringify(asset.task_gen_poster_series_state),
+        task_gen_tile_series_state: JSON.stringify(asset.task_gen_tile_series_state),
+        task_gen_prevue_state: JSON.stringify(asset.task_gen_prevue_state),
         user_tags: JSON.stringify(asset.user_tags),
         system_tags: JSON.stringify(asset.system_tags),
+        versions: JSON.stringify(asset.versions),
         tags: JSON.stringify(asset.tags),
     };
 });
@@ -116,11 +145,12 @@ export const DbDtoFromAsset = Asset.transform((asset) => {
         poster_series_selected_index: asset.poster_series_selected_index ?? null,
         tile_series_metadata: JSON.stringify(asset.tile_series_metadata) ?? null,
         prevue_metadata: JSON.stringify(asset.prevue_metadata) ?? null,
-        poster_state: asset.poster_state ?? null,
-        animated_poster_state: asset.animated_poster_state ?? null,
-        poster_series_state: asset.poster_series_state ?? null,
-        tile_series_state: asset.tile_series_state ?? null,
-        prevue_state: asset.prevue_state ?? null,
+        task_gen_metadata_state: JSON.stringify(asset.task_gen_metadata_state),
+        task_gen_poster_state: JSON.stringify(asset.task_gen_poster_state),
+        task_gen_animated_poster_state: JSON.stringify(asset.task_gen_animated_poster_state),
+        task_gen_poster_series_state: JSON.stringify(asset.task_gen_poster_series_state),
+        task_gen_tile_series_state: JSON.stringify(asset.task_gen_tile_series_state),
+        task_gen_prevue_state: JSON.stringify(asset.task_gen_prevue_state),
         user_tags: JSON.stringify(asset.user_tags),
         system_tags: JSON.stringify(asset.system_tags),
         versions: JSON.stringify(asset.versions),
@@ -139,12 +169,24 @@ export const DbDtoToAssetBase = z.object({
     poster_series_selected_index: z.number().int().min(1).max(3).nullable(),
     tile_series_metadata: z.string().max(16777216).nullable(),
     prevue_metadata: z.string().max(4096).nullable(),
-    metadata_state: TranscodeStateEnum,
-    poster_state: SkippableTranscodeStateEnum,
-    animated_poster_state: SkippableTranscodeStateEnum,
-    poster_series_state: SkippableTranscodeStateEnum,
-    tile_series_state: SkippableTranscodeStateEnum,
-    prevue_state: SkippableTranscodeStateEnum,
+    task_gen_metadata_state: z.string().min(1).max(65535),
+    task_gen_metadata_status: z.enum(RobustTask.StatusValues),
+    task_save_metadata_status: z.enum(RobustTask.StatusValues),
+    task_gen_poster_state: z.string().min(1).max(65535),
+    task_gen_poster_status: z.enum(RobustTask.StatusValues),
+    task_save_poster_status: z.enum(RobustTask.StatusValues),
+    task_gen_animated_poster_state: z.string().min(1).max(65535),
+    task_gen_animated_poster_status: z.enum(RobustTask.StatusValues),
+    task_save_animated_poster_status: z.enum(RobustTask.StatusValues),
+    task_gen_poster_series_state: z.string().min(1).max(65535),
+    task_gen_poster_series_status: z.enum(RobustTask.StatusValues),
+    task_save_poster_series_status: z.enum(RobustTask.StatusValues),
+    task_gen_tile_series_state: z.string().min(1).max(65535),
+    task_gen_tile_series_status: z.enum(RobustTask.StatusValues),
+    task_save_tile_series_status: z.enum(RobustTask.StatusValues),
+    task_gen_prevue_state: z.string().min(1).max(65535),
+    task_gen_prevue_status: z.enum(RobustTask.StatusValues),
+    task_save_prevue_status: z.enum(RobustTask.StatusValues),
     is_settled: z.number(),
     user_tags: z.string().max(65535),
     system_tags: z.string().max(65535),
@@ -166,6 +208,60 @@ export const DbDtoToAssetBase = z.object({
         ctx.addIssue({
             code: "custom",
             message: 'Invalid metadata metadata',
+            fatal: true,
+        });
+        return z.NEVER;
+    }
+    const task_gen_metadata_state_result = jsonSafeParser(TranscodeTaskStateSchema).safeParse(dto.task_gen_metadata_state);
+    if (!task_gen_metadata_state_result.success) {
+        ctx.addIssue({
+            code: "custom",
+            message: 'Invalid gen_metadata task state',
+            fatal: true,
+        });
+        return z.NEVER;
+    }
+    const task_gen_poster_state_result = jsonSafeParser(TranscodeTaskStateSchema).safeParse(dto.task_gen_poster_state);
+    if (!task_gen_poster_state_result.success) {
+        ctx.addIssue({
+            code: "custom",
+            message: 'Invalid gen_poster task state',
+            fatal: true,
+        });
+        return z.NEVER;
+    }
+    const task_gen_animated_poster_state_result = jsonSafeParser(TranscodeTaskStateSchema).safeParse(dto.task_gen_animated_poster_state);
+    if (!task_gen_animated_poster_state_result.success) {
+        ctx.addIssue({
+            code: "custom",
+            message: 'Invalid gen_animated_poster task state',
+            fatal: true,
+        });
+        return z.NEVER;
+    }
+    const task_gen_poster_series_state_result = jsonSafeParser(TranscodeTaskStateSchema).safeParse(dto.task_gen_poster_series_state);
+    if (!task_gen_poster_series_state_result.success) {
+        ctx.addIssue({
+            code: "custom",
+            message: 'Invalid gen_poster_series task state',
+            fatal: true,
+        });
+        return z.NEVER;
+    }
+    const task_gen_tile_series_state_result = jsonSafeParser(TranscodeTaskStateSchema).safeParse(dto.task_gen_tile_series_state);
+    if (!task_gen_tile_series_state_result.success) {
+        ctx.addIssue({
+            code: "custom",
+            message: 'Invalid gen_tile_series task state',
+            fatal: true,
+        });
+        return z.NEVER;
+    }
+    const task_gen_prevue_state_result = jsonSafeParser(TranscodeTaskStateSchema).safeParse(dto.task_gen_prevue_state);
+    if (!task_gen_prevue_state_result.success) {
+        ctx.addIssue({
+            code: "custom",
+            message: 'Invalid gen_prevue task state',
             fatal: true,
         });
         return z.NEVER;
@@ -272,6 +368,12 @@ export const DbDtoToAssetBase = z.object({
         poster_series_selected_index: dto.poster_series_selected_index ?? undefined,
         tile_series_metadata: tile_series_metadata_result.data,
         prevue_metadata: prevue_metadata_result.data,
+        task_gen_metadata_state: task_gen_metadata_state_result.data,
+        task_gen_poster_state: task_gen_poster_state_result.data,
+        task_gen_animated_poster_state: task_gen_animated_poster_state_result.data,
+        task_gen_poster_series_state: task_gen_poster_series_state_result.data,
+        task_gen_tile_series_state: task_gen_tile_series_state_result.data,
+        task_gen_prevue_state: task_gen_prevue_state_result.data,
         is_settled: Boolean(dto.is_settled),
         user_tags: user_tags_result.data,
         system_tags: system_tags_result.data,
@@ -292,12 +394,24 @@ export const DbDtoToAsset = z.object({
     poster_series_selected_index: z.number().int().min(1).max(3).nullable(),
     tile_series_metadata: z.string().max(16777216).nullable(),
     prevue_metadata: z.string().max(4096).nullable(),
-    metadata_state: TranscodeStateEnum,
-    poster_state: SkippableTranscodeStateEnum,
-    animated_poster_state: SkippableTranscodeStateEnum,
-    poster_series_state: SkippableTranscodeStateEnum,
-    tile_series_state: SkippableTranscodeStateEnum,
-    prevue_state: SkippableTranscodeStateEnum,
+    task_gen_metadata_state: z.string().min(1).max(65535),
+    task_gen_metadata_status: z.enum(RobustTask.StatusValues),
+    task_save_metadata_status: z.enum(RobustTask.StatusValues),
+    task_gen_poster_state: z.string().min(1).max(65535),
+    task_gen_poster_status: z.enum(RobustTask.StatusValues),
+    task_save_poster_status: z.enum(RobustTask.StatusValues),
+    task_gen_animated_poster_state: z.string().min(1).max(65535),
+    task_gen_animated_poster_status: z.enum(RobustTask.StatusValues),
+    task_save_animated_poster_status: z.enum(RobustTask.StatusValues),
+    task_gen_poster_series_state: z.string().min(1).max(65535),
+    task_gen_poster_series_status: z.enum(RobustTask.StatusValues),
+    task_save_poster_series_status: z.enum(RobustTask.StatusValues),
+    task_gen_tile_series_state: z.string().min(1).max(65535),
+    task_gen_tile_series_status: z.enum(RobustTask.StatusValues),
+    task_save_tile_series_status: z.enum(RobustTask.StatusValues),
+    task_gen_prevue_state: z.string().min(1).max(65535),
+    task_gen_prevue_status: z.enum(RobustTask.StatusValues),
+    task_save_prevue_status: z.enum(RobustTask.StatusValues),
     is_settled: z.number(),
     user_tags: z.string(),
     system_tags: z.string(),
@@ -326,6 +440,60 @@ export const DbDtoToAsset = z.object({
         });
         return z.NEVER;
     }
+    const task_gen_metadata_state_result = jsonSafeParser(TranscodeTaskStateSchema).safeParse(dto.task_gen_metadata_state);
+    if (!task_gen_metadata_state_result.success) {
+        ctx.addIssue({
+            code: "custom",
+            message: 'Invalid gen_metadata task state',
+            fatal: true,
+        });
+        return z.NEVER;
+    }
+    const task_gen_poster_state_result = jsonSafeParser(TranscodeTaskStateSchema).safeParse(dto.task_gen_poster_state);
+    if (!task_gen_poster_state_result.success) {
+        ctx.addIssue({
+            code: "custom",
+            message: 'Invalid gen_poster task state',
+            fatal: true,
+        });
+        return z.NEVER;
+    }
+    const task_gen_animated_poster_state_result = jsonSafeParser(TranscodeTaskStateSchema).safeParse(dto.task_gen_animated_poster_state);
+    if (!task_gen_animated_poster_state_result.success) {
+        ctx.addIssue({
+            code: "custom",
+            message: 'Invalid gen_animated_poster task state',
+            fatal: true,
+        });
+        return z.NEVER;
+    }
+    const task_gen_poster_series_state_result = jsonSafeParser(TranscodeTaskStateSchema).safeParse(dto.task_gen_poster_series_state);
+    if (!task_gen_poster_series_state_result.success) {
+        ctx.addIssue({
+            code: "custom",
+            message: 'Invalid gen_poster_series task state',
+            fatal: true,
+        });
+        return z.NEVER;
+    }
+    const task_gen_tile_series_state_result = jsonSafeParser(TranscodeTaskStateSchema).safeParse(dto.task_gen_tile_series_state);
+    if (!task_gen_tile_series_state_result.success) {
+        ctx.addIssue({
+            code: "custom",
+            message: 'Invalid gen_tile_series task state',
+            fatal: true,
+        });
+        return z.NEVER;
+    }
+    const task_gen_prevue_state_result = jsonSafeParser(TranscodeTaskStateSchema).safeParse(dto.task_gen_prevue_state);
+    if (!task_gen_prevue_state_result.success) {
+        ctx.addIssue({
+            code: "custom",
+            message: 'Invalid gen_prevue task state',
+            fatal: true,
+        });
+        return z.NEVER;
+    }
     const user_tags_result = jsonSafeParser(z.array(z.string().max(64))).safeParse(dto.user_tags);
     if (!user_tags_result.success) {
         ctx.addIssue({
@@ -428,6 +596,12 @@ export const DbDtoToAsset = z.object({
         poster_series_selected_index: dto.poster_series_selected_index ?? undefined,
         tile_series_metadata: tile_series_metadata_result.data,
         prevue_metadata: prevue_metadata_result.data,
+        task_gen_metadata_state: task_gen_metadata_state_result.data,
+        task_gen_poster_state: task_gen_poster_state_result.data,
+        task_gen_animated_poster_state: task_gen_animated_poster_state_result.data,
+        task_gen_poster_series_state: task_gen_poster_series_state_result.data,
+        task_gen_tile_series_state: task_gen_tile_series_state_result.data,
+        task_gen_prevue_state: task_gen_prevue_state_result.data,
         is_settled: Boolean(dto.is_settled),
         user_tags: user_tags_result.data,
         system_tags: system_tags_result.data,
@@ -435,9 +609,5 @@ export const DbDtoToAsset = z.object({
         tags: tags_result.data,
         is_deleted: Boolean(dto.is_deleted),
     };
-});
-export const PresignedPosterUrl = z.object({
-    url: z.url().min(20).max(2048),
-    index: z.number().int().min(1).max(3),
 });
 //# sourceMappingURL=asset.schema.js.map

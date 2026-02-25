@@ -1,18 +1,10 @@
 // vim: tabstop=8 softtabstop=0 noexpandtab shiftwidth=8 nosmarttab
 import * as z from "zod";
 import { MetadataMetadata } from '@dsbunny/metadata-schema';
-import { S3CompleteStateEnum } from './s3-complete-state.schema.js';
+import { RobustTask } from "@dsbunny/robust-task-schema";
 import { sqliteDateSchema } from './sqlite-date.schema.js';
-import { TranscodeStateEnum } from './transcode-state.js';
 import { jsonSafeParser } from './json-safe-parser.js';
 import { S3URI } from './uri.schema.js';
-export const UploadStateEnum = z.enum([
-    'pending',
-    'uploading',
-    'uploaded',
-    'error',
-])
-    .describe('The state of the upload job');
 export const CanSaveStatus = z.object({
     upload_id: z.uuid(),
     can_save: z.boolean(),
@@ -41,14 +33,6 @@ export const DbDtoToCanSaveStatus = z.object({
         is_processing: Boolean(dto.is_processing),
     };
 });
-export const SaveStateEnum = z.enum([
-    'pending',
-    'saving',
-    'saved',
-    'conflict',
-    'error',
-])
-    .describe('The state of saving the asset');
 export const S3Metadata = z.object({
     "$metadata": z.object({
         attempts: z.number()
@@ -72,7 +56,14 @@ export const S3Metadata = z.object({
     VersionId: z.string()
         .describe('Version ID of the newly created object, in case the bucket has versioning turned on.'),
 });
-export const S3Parts = z.array(z.number().min(20).max(5497558138880)).min(1).max(10000);
+export const S3Part = z.object({
+    part_number: z.number().min(1).max(10000)
+        .describe('The part number of the part. This is a positive integer between 1 and 10,000.'),
+    etag: z.string().min(2).max(2048)
+        .describe('The entity tag returned when the part was uploaded.'),
+    size: z.number().min(20).max(5497558138880) // 5TB
+        .describe('The size of the part in bytes.'),
+});
 export const UploadMetadata = z.record(z.string(), z.string().max(255));
 export const Upload = z.object({
     upload_id: z.uuid()
@@ -89,7 +80,7 @@ export const Upload = z.object({
         .describe('The S3 version ID of the upload'),
     s3_etag: z.string().min(2).max(2048).optional()
         .describe('The S3 ETag of the upload'),
-    s3_parts: S3Parts.optional()
+    s3_parts: z.array(S3Part).optional()
         .describe('The S3 parts of the upload'),
     size: z.number().min(20).max(5497558138880).optional() // 5TB
         .describe('The size of the upload in bytes'),
@@ -105,14 +96,15 @@ export const Upload = z.object({
         .describe('The asset name of the upload'),
     metadata_metadata: MetadataMetadata.optional()
         .describe('The metadata of the upload'),
-    upload_state: UploadStateEnum
-        .describe('The status of the upload job'),
-    s3_complete_state: S3CompleteStateEnum
-        .describe('The status of the upload completion'),
-    metadata_state: TranscodeStateEnum
-        .describe('The status of the metadata transcode'),
-    save_state: SaveStateEnum
-        .describe('The status of the asset save'),
+    // `upload` is a client driven state machine
+    task_upload_status: z.enum(RobustTask.StatusValues),
+    // `s3_complete` and `gen_metadata` are server driven state machines
+    task_s3_complete_state: z.enum(RobustTask.StatusValues),
+    task_s3_complete_status: z.enum(RobustTask.StatusValues),
+    task_gen_metadata_state: z.enum(RobustTask.StatusValues),
+    task_gen_metadata_status: z.enum(RobustTask.StatusValues),
+    // `save` is a server driven state machine
+    task_save_status: z.enum(RobustTask.StatusValues),
     user_tags: z.array(z.string().max(64))
         .describe('The tags of the upload'),
     system_tags: z.array(z.string().max(64))
@@ -136,7 +128,10 @@ export const DbDtoFromUpload = Upload.transform((upload) => {
         s3_metadata: JSON.stringify(upload.s3_metadata),
         s3_parts: JSON.stringify(upload.s3_parts),
         metadata_metadata: JSON.stringify(upload.metadata_metadata),
+        task_s3_complete_state: JSON.stringify(upload.task_s3_complete_state),
+        task_gen_metadata_state: JSON.stringify(upload.task_gen_metadata_state),
         user_tags: JSON.stringify(upload.user_tags),
+        system_tags: JSON.stringify(upload.system_tags),
     };
 });
 export const DbDtoToUpload = z.object({
@@ -155,10 +150,12 @@ export const DbDtoToUpload = z.object({
     s3_uri: S3URI.min(20).max(2048),
     asset_name: z.string().min(1).max(255),
     metadata_metadata: z.string().max(65535).nullable(),
-    upload_state: UploadStateEnum,
-    s3_complete_state: S3CompleteStateEnum,
-    metadata_state: TranscodeStateEnum,
-    save_state: SaveStateEnum,
+    task_upload_status: z.enum(RobustTask.StatusValues),
+    task_s3_complete_state: z.string().min(1).max(65535),
+    task_s3_complete_status: z.enum(RobustTask.StatusValues),
+    task_gen_metadata_state: z.string().min(1).max(65535),
+    task_gen_metadata_status: z.enum(RobustTask.StatusValues),
+    task_save_status: z.enum(RobustTask.StatusValues),
     user_tags: z.string().max(65535),
     system_tags: z.string().max(65535),
     create_timestamp: sqliteDateSchema,
@@ -179,7 +176,7 @@ export const DbDtoToUpload = z.object({
     }
     const s3_parts_result = !dto.s3_parts
         ? { success: true, data: undefined }
-        : jsonSafeParser(S3Parts).safeParse(dto.s3_parts);
+        : jsonSafeParser(z.array(S3Part)).safeParse(dto.s3_parts);
     if (!s3_parts_result.success) {
         ctx.addIssue({
             code: "custom",
@@ -195,6 +192,24 @@ export const DbDtoToUpload = z.object({
         ctx.addIssue({
             code: "custom",
             message: 'Invalid metadata-metadata',
+            fatal: true,
+        });
+        return z.NEVER;
+    }
+    const task_s3_complete_state_result = jsonSafeParser(z.enum(RobustTask.StatusValues)).safeParse(dto.task_s3_complete_state);
+    if (!task_s3_complete_state_result.success) {
+        ctx.addIssue({
+            code: "custom",
+            message: 'Invalid s3_complete task state',
+            fatal: true,
+        });
+        return z.NEVER;
+    }
+    const task_gen_metadata_state_result = jsonSafeParser(z.enum(RobustTask.StatusValues)).safeParse(dto.task_gen_metadata_state);
+    if (!task_gen_metadata_state_result.success) {
+        ctx.addIssue({
+            code: "custom",
+            message: 'Invalid gen_metadata task state',
             fatal: true,
         });
         return z.NEVER;
@@ -226,6 +241,8 @@ export const DbDtoToUpload = z.object({
         s3_parts: s3_parts_result.data,
         size: dto.size ?? undefined,
         metadata_metadata: metadata_metadata_result.data,
+        task_s3_complete_state: task_s3_complete_state_result.data,
+        task_gen_metadata_state: task_gen_metadata_state_result.data,
         user_tags: user_tags_result.data,
         system_tags: system_tags_result.data,
         is_deleted: Boolean(dto.is_deleted),

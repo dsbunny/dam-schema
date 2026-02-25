@@ -1,37 +1,11 @@
 // vim: tabstop=8 softtabstop=0 noexpandtab shiftwidth=8 nosmarttab
 
 import * as z from "zod";
-import { Asset, PresignedPosterUrl } from './asset.schema.js';
-import { Upload } from './upload.schema.js';
+import { ErrorResponse } from "@dsbunny/error-schema";
+import { Asset } from './asset.schema.js';
 import { JsonPatchOperation } from './patch-operation.schema.js';
-
-// #region Errors
-export const ErrorResponse = z.object({
-	code: z.string()
-		.describe('Error code representing the type of error.'),
-	message: z.string()
-		.describe('Error message describing the issue.'),
-	detail: z.string()
-		.describe('Additional details about the error, if available.'),
-	timestamp: z.iso.datetime()
-		.describe('Timestamp when the error occurred (ISO_8601 format).'),
-})
-	.describe('Error response schema');
-export type ErrorResponse = z.infer<typeof ErrorResponse>;
-// #endregion
-
-// #region WebHook
-export const WebHookRequest = z.object({
-	ref_id: z.string(),
-	class: z.string(),
-})
-	  .describe('WebHook request schema');
-export type WebHookRequest = z.infer<typeof WebHookRequest>;
-
-export const WebHookResponse = z.object({})
-	  .describe('WebHook response schema');
-export type WebHookResponse = z.infer<typeof WebHookResponse>;
-// #endregion
+import { PresignedIndexedUrl } from './presigned-url.schema.js';
+import { Upload } from './upload.schema.js';
 
 // #region Assets
 export const ListAssetsRequest = z.object({})
@@ -117,7 +91,7 @@ export type PatchAssetResponse = z.infer<typeof PatchAssetResponse>;
 export const ListAssetPostersRequest = z.object({})
 	.describe('List asset posters request schema');
 export type ListAssetPostersRequest = z.infer<typeof ListAssetPostersRequest>;
-export const ListAssetPostersResponse = z.array(PresignedPosterUrl)
+export const ListAssetPostersResponse = z.array(PresignedIndexedUrl)
 	.describe('List asset posters response schema');
 export type ListAssetPostersResponse = z.infer<typeof ListAssetPostersResponse>;
 
@@ -266,4 +240,86 @@ export type CreateAssetFromUploadVersionRequest = z.infer<typeof CreateAssetFrom
 export const CreateAssetFromUploadVersionResponse = Asset
 	.describe('Create asset from upload version response schema');
 export type CreateAssetFromUploadVersionResponse = z.infer<typeof CreateAssetFromUploadVersionResponse>;
+// #endregion
+
+// #region API
+export const DamAssetRequest = z.union([
+	ListAssetsRequest,
+	ListDeletedAssetsRequest,
+	GetAssetSuggestionsRequest,
+	GetAssetAvailabilityRequest,
+	GetAssetRequest,
+	DeleteAssetRequest,
+	RecoverAssetRequest,
+	GetAssetDownloadLocationRequest,
+	PatchAssetRequest,
+	ListAssetPostersRequest,
+	UpdateAssetPosterRequest,
+	GetAssetPosterRequest,
+	GetAssetThumbnailRequest,
+])
+	.describe('DAM API request schema');
+export type DamAssetRequest = z.infer<typeof DamAssetRequest>;
+
+export const DamUploadRequest = z.union([
+	ListUploadsRequest,
+	CreateUploadRequest,
+	GetUploadRequest,
+	CreateUploadVersionRequest,
+	CreateUploadUrlRequest,
+	UploadPartRequest,
+	PatchUploadRequest,
+	UploadCompleteRequest,
+	UploadPollRequest,
+	CreateAssetFromUploadRequest,
+	CreateAssetFromUploadVersionRequest,
+])
+	.describe('DAM API request schema');
+export type DamUploadRequest = z.infer<typeof DamUploadRequest>;
+
+export const DamRequest = z.union([
+	DamAssetRequest,
+	DamUploadRequest,
+])
+	.describe('DAM API request schema');
+export type DamRequest = z.infer<typeof DamRequest>;
+
+export const DamAssetResponse = z.union([
+	ListAssetsResponse,
+	ListDeletedAssetsResponse,
+	GetAssetSuggestionsResponse,
+	GetAssetAvailabilityResponse,
+	GetAssetResponse,
+	DeleteAssetResponse,
+	RecoverAssetResponse,
+	GetAssetDownloadLocationResponse,
+	PatchAssetResponse,
+	ListAssetPostersResponse,
+	UpdateAssetPosterResponse,
+	GetAssetPosterResponse,
+	GetAssetThumbnailResponse,
+	ErrorResponse,
+])
+	.describe('DAM API response schema');
+export type DamAssetResponse = z.infer<typeof DamAssetResponse>;
+
+export const DamUploadResponse = z.union([
+	ListUploadsResponse,
+	CreateUploadResponse,
+	GetUploadResponse,
+	CreateUploadVersionResponse,
+	CreateUploadUrlResponse,
+	UploadPartResponse,
+	PatchUploadResponse,
+	UploadCompleteResponse,
+	UploadPollResponse,
+	CreateAssetFromUploadResponse,
+	CreateAssetFromUploadVersionResponse,
+	ErrorResponse,
+])
+	.describe('DAM API response schema');
+export type DamUploadResponse = z.infer<typeof DamUploadResponse>;
+
+// `DamResponse` exceeds the maximum length the compiler will serialize.
+export type DamResponse = DamAssetResponse | DamUploadResponse;
 // #endregion

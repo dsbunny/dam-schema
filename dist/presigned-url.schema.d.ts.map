@@ -1,0 +1,1 @@
+{"version":3,"file":"presigned-url.schema.d.ts","sourceRoot":"","sources":["../src/presigned-url.schema.ts"],"names":[],"mappings":"AAEA,OAAO,KAAK,CAAC,MAAM,KAAK,CAAC;AAEzB,eAAO,MAAM,YAAY;;;iBAGvB,CAAC;AACH,MAAM,MAAM,YAAY,GAAG,CAAC,CAAC,KAAK,CAAC,OAAO,YAAY,CAAC,CAAC;AAExD,eAAO,MAAM,mBAAmB;;;;iBAE9B,CAAC;AACH,MAAM,MAAM,mBAAmB,GAAG,CAAC,CAAC,KAAK,CAAC,OAAO,mBAAmB,CAAC,CAAC"}

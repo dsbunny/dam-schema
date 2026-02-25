@@ -1,0 +1,1 @@
+{"version":3,"file":"s3-client-config.schema.d.ts","sourceRoot":"","sources":["../src/s3-client-config.schema.ts"],"names":[],"mappings":"AAEA,OAAO,KAAK,CAAC,MAAM,KAAK,CAAC;AAEzB,eAAO,MAAM,oBAAoB;;;;;;;;iBAeuB,CAAC;AACzD,MAAM,MAAM,cAAc,GAAG,CAAC,CAAC,KAAK,CAAC,OAAO,oBAAoB,CAAC,CAAC"}

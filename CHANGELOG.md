@@ -1,4 +1,16 @@
 # Changelog
+## v16.0.15
+- Bump to `zod@4.3.6`.
+- Add `@dsbunny/robust-task-schema` dependency for task state and status.
+- Add schema for DAM raised WebHooks.
+- Move `DamTasks*` from `dam-schema` to `dam-worker-pool` for internal usage.
+
+## v16.0.14
+- New internal schema for asynchronous tasks.
+- Migrate to `@dsbunny/error-schema` and `@dsbunny/webhook-schema`.
+- New composite `DamAssetRequest`/`DamAssetResponse`, and `DamUploadRequest`/`DamUploadResponse` for public API.  Split for _assets_ and _uploads_ due to compiler limitations.
+- Replace `parts` table with additional fields within `s3_parts` column now presented as `Array<S3Part>`.
+
 ## v15.1.13
 - Add `user_tags` and `system_tags` to `CreateUploadRequest` to enable the _Publisher_ to set `is:schedule` tag.
 - Add `system_tags` to `Upload` and `Asset` schemas.

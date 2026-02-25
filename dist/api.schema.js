@@ -1,30 +1,10 @@
 // vim: tabstop=8 softtabstop=0 noexpandtab shiftwidth=8 nosmarttab
 import * as z from "zod";
-import { Asset, PresignedPosterUrl } from './asset.schema.js';
-import { Upload } from './upload.schema.js';
+import { ErrorResponse } from "@dsbunny/error-schema";
+import { Asset } from './asset.schema.js';
 import { JsonPatchOperation } from './patch-operation.schema.js';
-// #region Errors
-export const ErrorResponse = z.object({
-    code: z.string()
-        .describe('Error code representing the type of error.'),
-    message: z.string()
-        .describe('Error message describing the issue.'),
-    detail: z.string()
-        .describe('Additional details about the error, if available.'),
-    timestamp: z.iso.datetime()
-        .describe('Timestamp when the error occurred (ISO_8601 format).'),
-})
-    .describe('Error response schema');
-// #endregion
-// #region WebHook
-export const WebHookRequest = z.object({
-    ref_id: z.string(),
-    class: z.string(),
-})
-    .describe('WebHook request schema');
-export const WebHookResponse = z.object({})
-    .describe('WebHook response schema');
-// #endregion
+import { PresignedIndexedUrl } from './presigned-url.schema.js';
+import { Upload } from './upload.schema.js';
 // #region Assets
 export const ListAssetsRequest = z.object({})
     .describe('List assets request schema');
@@ -81,7 +61,7 @@ export const PatchAssetResponse = Asset
     .describe('Patch asset response schema');
 export const ListAssetPostersRequest = z.object({})
     .describe('List asset posters request schema');
-export const ListAssetPostersResponse = z.array(PresignedPosterUrl)
+export const ListAssetPostersResponse = z.array(PresignedIndexedUrl)
     .describe('List asset posters response schema');
 export const UpdateAssetPosterRequest = z.coerce.number().min(1).max(3)
     .describe('Update asset poster request schema');
@@ -187,5 +167,74 @@ export const CreateAssetFromUploadVersionRequest = z.object({})
     .describe('Create asset from upload version request schema');
 export const CreateAssetFromUploadVersionResponse = Asset
     .describe('Create asset from upload version response schema');
+// #endregion
+// #region API
+export const DamAssetRequest = z.union([
+    ListAssetsRequest,
+    ListDeletedAssetsRequest,
+    GetAssetSuggestionsRequest,
+    GetAssetAvailabilityRequest,
+    GetAssetRequest,
+    DeleteAssetRequest,
+    RecoverAssetRequest,
+    GetAssetDownloadLocationRequest,
+    PatchAssetRequest,
+    ListAssetPostersRequest,
+    UpdateAssetPosterRequest,
+    GetAssetPosterRequest,
+    GetAssetThumbnailRequest,
+])
+    .describe('DAM API request schema');
+export const DamUploadRequest = z.union([
+    ListUploadsRequest,
+    CreateUploadRequest,
+    GetUploadRequest,
+    CreateUploadVersionRequest,
+    CreateUploadUrlRequest,
+    UploadPartRequest,
+    PatchUploadRequest,
+    UploadCompleteRequest,
+    UploadPollRequest,
+    CreateAssetFromUploadRequest,
+    CreateAssetFromUploadVersionRequest,
+])
+    .describe('DAM API request schema');
+export const DamRequest = z.union([
+    DamAssetRequest,
+    DamUploadRequest,
+])
+    .describe('DAM API request schema');
+export const DamAssetResponse = z.union([
+    ListAssetsResponse,
+    ListDeletedAssetsResponse,
+    GetAssetSuggestionsResponse,
+    GetAssetAvailabilityResponse,
+    GetAssetResponse,
+    DeleteAssetResponse,
+    RecoverAssetResponse,
+    GetAssetDownloadLocationResponse,
+    PatchAssetResponse,
+    ListAssetPostersResponse,
+    UpdateAssetPosterResponse,
+    GetAssetPosterResponse,
+    GetAssetThumbnailResponse,
+    ErrorResponse,
+])
+    .describe('DAM API response schema');
+export const DamUploadResponse = z.union([
+    ListUploadsResponse,
+    CreateUploadResponse,
+    GetUploadResponse,
+    CreateUploadVersionResponse,
+    CreateUploadUrlResponse,
+    UploadPartResponse,
+    PatchUploadResponse,
+    UploadCompleteResponse,
+    UploadPollResponse,
+    CreateAssetFromUploadResponse,
+    CreateAssetFromUploadVersionResponse,
+    ErrorResponse,
+])
+    .describe('DAM API response schema');
 // #endregion
 //# sourceMappingURL=api.schema.js.map
