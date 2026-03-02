@@ -117,17 +117,194 @@ export declare const Upload: z.ZodObject<{
         "pending-paused": "pending-paused";
         "blocked-paused": "blocked-paused";
     }>;
-    task_s3_complete_state: z.ZodEnum<{
-        pending: "pending";
-        running: "running";
-        succeeded: "succeeded";
-        failed: "failed";
-        rejected: "rejected";
-        blocked: "blocked";
-        skipped: "skipped";
-        "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
-    }>;
+    task_s3_complete_state: z.ZodObject<{
+        status: z.ZodEnum<{
+            pending: "pending";
+            running: "running";
+            succeeded: "succeeded";
+            failed: "failed";
+            rejected: "rejected";
+            blocked: "blocked";
+            skipped: "skipped";
+            "pending-paused": "pending-paused";
+            "blocked-paused": "blocked-paused";
+        }>;
+        createdAt: z.ZodISODateTime;
+        startedAt: z.ZodOptional<z.ZodISODateTime>;
+        updatedAt: z.ZodOptional<z.ZodISODateTime>;
+        finishedAt: z.ZodOptional<z.ZodISODateTime>;
+        attempts: z.ZodNumber;
+        runtimeToken: z.ZodOptional<z.ZodString>;
+        error: z.ZodOptional<z.ZodObject<{
+            message: z.ZodString;
+            code: z.ZodOptional<z.ZodString>;
+            stack: z.ZodOptional<z.ZodString>;
+            timestamp: z.ZodISODateTime;
+        }, z.core.$strip>>;
+        rejection: z.ZodOptional<z.ZodObject<{
+            reason: z.ZodString;
+            issues: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            timestamp: z.ZodISODateTime;
+        }, z.core.$strip>>;
+        progress: z.ZodOptional<z.ZodNumber>;
+        result: z.ZodOptional<z.ZodObject<{
+            metadata: z.ZodUnion<readonly [z.ZodObject<{
+                type: z.ZodLiteral<"metadata">;
+                timings: z.ZodObject<{
+                    metadata_http_duration: z.ZodNumber;
+                }, z.core.$strip>;
+                file: z.ZodObject<{
+                    s3_filename: z.ZodString;
+                    content_type: z.ZodString;
+                    size: z.ZodNumber;
+                    mtime: z.ZodString;
+                    md5: z.ZodString;
+                    sha256: z.ZodString;
+                    s3_uri: z.ZodString;
+                    s3_version_id: z.ZodString;
+                    s3_etag: z.ZodString;
+                    s3_parts: z.ZodArray<z.ZodNumber>;
+                }, z.core.$strip>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            }, z.core.$strip>, z.ZodDiscriminatedUnion<[z.ZodObject<{
+                type: z.ZodLiteral<"poster">;
+                poster: z.ZodArray<z.ZodObject<{
+                    type: z.ZodLiteral<"poster-image">;
+                    quality: z.ZodEnum<{
+                        medium: "medium";
+                        high: "high";
+                        sample: "sample";
+                    }>;
+                    width: z.ZodNumber;
+                    height: z.ZodNumber;
+                    blurhash: z.ZodOptional<z.ZodString>;
+                    timings: z.ZodObject<{
+                        poster_canvas_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_ffmpeg_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_avifenc_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_sharp_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_ck_duration: z.ZodNumber;
+                        poster_http_duration: z.ZodNumber;
+                    }, z.core.$strip>;
+                    file: z.ZodObject<{
+                        s3_filename: z.ZodString;
+                        content_type: z.ZodString;
+                        size: z.ZodNumber;
+                        mtime: z.ZodString;
+                        md5: z.ZodString;
+                        sha256: z.ZodString;
+                        s3_uri: z.ZodString;
+                        s3_version_id: z.ZodString;
+                        s3_etag: z.ZodString;
+                        s3_parts: z.ZodArray<z.ZodNumber>;
+                    }, z.core.$strip>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>, z.ZodObject<{
+                type: z.ZodLiteral<"animated-poster">;
+                poster: z.ZodObject<{
+                    type: z.ZodLiteral<"animated-poster-image">;
+                    width: z.ZodNumber;
+                    height: z.ZodNumber;
+                    timings: z.ZodObject<{
+                        animated_poster_ffmpeg_duration: z.ZodNumber;
+                        animated_poster_ck_duration: z.ZodNumber;
+                        animated_poster_http_duration: z.ZodNumber;
+                    }, z.core.$strip>;
+                    file: z.ZodObject<{
+                        s3_filename: z.ZodString;
+                        content_type: z.ZodString;
+                        size: z.ZodNumber;
+                        mtime: z.ZodString;
+                        md5: z.ZodString;
+                        sha256: z.ZodString;
+                        s3_uri: z.ZodString;
+                        s3_version_id: z.ZodString;
+                        s3_etag: z.ZodString;
+                        s3_parts: z.ZodArray<z.ZodNumber>;
+                    }, z.core.$strip>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+                }, z.core.$strip>;
+            }, z.core.$strip>, z.ZodObject<{
+                type: z.ZodLiteral<"poster-series">;
+                series: z.ZodArray<z.ZodObject<{
+                    type: z.ZodLiteral<"poster-series-image">;
+                    index: z.ZodNumber;
+                    quality: z.ZodEnum<{
+                        medium: "medium";
+                        high: "high";
+                        sample: "sample";
+                    }>;
+                    width: z.ZodNumber;
+                    height: z.ZodNumber;
+                    blurhash: z.ZodOptional<z.ZodString>;
+                    timings: z.ZodObject<{
+                        poster_series_ffmpeg_duration: z.ZodNumber;
+                        poster_series_avifenc_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_series_ck_duration: z.ZodNumber;
+                        poster_series_http_duration: z.ZodNumber;
+                    }, z.core.$strip>;
+                    file: z.ZodObject<{
+                        s3_filename: z.ZodString;
+                        content_type: z.ZodString;
+                        size: z.ZodNumber;
+                        mtime: z.ZodString;
+                        md5: z.ZodString;
+                        sha256: z.ZodString;
+                        s3_uri: z.ZodString;
+                        s3_version_id: z.ZodString;
+                        s3_etag: z.ZodString;
+                        s3_parts: z.ZodArray<z.ZodNumber>;
+                    }, z.core.$strip>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>, z.ZodObject<{
+                type: z.ZodLiteral<"tile-series-metadata">;
+                timings: z.ZodObject<{
+                    metadata_http_duration: z.ZodNumber;
+                }, z.core.$strip>;
+                file: z.ZodObject<{
+                    s3_filename: z.ZodString;
+                    content_type: z.ZodString;
+                    size: z.ZodNumber;
+                    mtime: z.ZodString;
+                    md5: z.ZodString;
+                    sha256: z.ZodString;
+                    s3_uri: z.ZodString;
+                    s3_version_id: z.ZodString;
+                    s3_etag: z.ZodString;
+                    s3_parts: z.ZodArray<z.ZodNumber>;
+                }, z.core.$strip>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            }, z.core.$strip>, z.ZodObject<{
+                type: z.ZodLiteral<"prevue">;
+                prevue: z.ZodObject<{
+                    type: z.ZodLiteral<"prevue-video">;
+                    width: z.ZodNumber;
+                    height: z.ZodNumber;
+                    timings: z.ZodObject<{
+                        prevue_ffmpeg_duration: z.ZodNumber;
+                        prevue_ck_duration: z.ZodNumber;
+                        prevue_http_duration: z.ZodNumber;
+                    }, z.core.$strip>;
+                    file: z.ZodObject<{
+                        s3_filename: z.ZodString;
+                        content_type: z.ZodString;
+                        size: z.ZodNumber;
+                        mtime: z.ZodString;
+                        md5: z.ZodString;
+                        sha256: z.ZodString;
+                        s3_uri: z.ZodString;
+                        s3_version_id: z.ZodString;
+                        s3_etag: z.ZodString;
+                        s3_parts: z.ZodArray<z.ZodNumber>;
+                    }, z.core.$strip>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+                }, z.core.$strip>;
+            }, z.core.$strip>], "type">]>;
+        }, z.core.$strip>>;
+    }, z.core.$strip>;
     task_s3_complete_status: z.ZodEnum<{
         pending: "pending";
         running: "running";
@@ -139,17 +316,194 @@ export declare const Upload: z.ZodObject<{
         "pending-paused": "pending-paused";
         "blocked-paused": "blocked-paused";
     }>;
-    task_gen_metadata_state: z.ZodEnum<{
-        pending: "pending";
-        running: "running";
-        succeeded: "succeeded";
-        failed: "failed";
-        rejected: "rejected";
-        blocked: "blocked";
-        skipped: "skipped";
-        "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
-    }>;
+    task_gen_metadata_state: z.ZodObject<{
+        status: z.ZodEnum<{
+            pending: "pending";
+            running: "running";
+            succeeded: "succeeded";
+            failed: "failed";
+            rejected: "rejected";
+            blocked: "blocked";
+            skipped: "skipped";
+            "pending-paused": "pending-paused";
+            "blocked-paused": "blocked-paused";
+        }>;
+        createdAt: z.ZodISODateTime;
+        startedAt: z.ZodOptional<z.ZodISODateTime>;
+        updatedAt: z.ZodOptional<z.ZodISODateTime>;
+        finishedAt: z.ZodOptional<z.ZodISODateTime>;
+        attempts: z.ZodNumber;
+        runtimeToken: z.ZodOptional<z.ZodString>;
+        error: z.ZodOptional<z.ZodObject<{
+            message: z.ZodString;
+            code: z.ZodOptional<z.ZodString>;
+            stack: z.ZodOptional<z.ZodString>;
+            timestamp: z.ZodISODateTime;
+        }, z.core.$strip>>;
+        rejection: z.ZodOptional<z.ZodObject<{
+            reason: z.ZodString;
+            issues: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            timestamp: z.ZodISODateTime;
+        }, z.core.$strip>>;
+        progress: z.ZodOptional<z.ZodNumber>;
+        result: z.ZodOptional<z.ZodObject<{
+            metadata: z.ZodUnion<readonly [z.ZodObject<{
+                type: z.ZodLiteral<"metadata">;
+                timings: z.ZodObject<{
+                    metadata_http_duration: z.ZodNumber;
+                }, z.core.$strip>;
+                file: z.ZodObject<{
+                    s3_filename: z.ZodString;
+                    content_type: z.ZodString;
+                    size: z.ZodNumber;
+                    mtime: z.ZodString;
+                    md5: z.ZodString;
+                    sha256: z.ZodString;
+                    s3_uri: z.ZodString;
+                    s3_version_id: z.ZodString;
+                    s3_etag: z.ZodString;
+                    s3_parts: z.ZodArray<z.ZodNumber>;
+                }, z.core.$strip>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            }, z.core.$strip>, z.ZodDiscriminatedUnion<[z.ZodObject<{
+                type: z.ZodLiteral<"poster">;
+                poster: z.ZodArray<z.ZodObject<{
+                    type: z.ZodLiteral<"poster-image">;
+                    quality: z.ZodEnum<{
+                        medium: "medium";
+                        high: "high";
+                        sample: "sample";
+                    }>;
+                    width: z.ZodNumber;
+                    height: z.ZodNumber;
+                    blurhash: z.ZodOptional<z.ZodString>;
+                    timings: z.ZodObject<{
+                        poster_canvas_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_ffmpeg_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_avifenc_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_sharp_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_ck_duration: z.ZodNumber;
+                        poster_http_duration: z.ZodNumber;
+                    }, z.core.$strip>;
+                    file: z.ZodObject<{
+                        s3_filename: z.ZodString;
+                        content_type: z.ZodString;
+                        size: z.ZodNumber;
+                        mtime: z.ZodString;
+                        md5: z.ZodString;
+                        sha256: z.ZodString;
+                        s3_uri: z.ZodString;
+                        s3_version_id: z.ZodString;
+                        s3_etag: z.ZodString;
+                        s3_parts: z.ZodArray<z.ZodNumber>;
+                    }, z.core.$strip>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>, z.ZodObject<{
+                type: z.ZodLiteral<"animated-poster">;
+                poster: z.ZodObject<{
+                    type: z.ZodLiteral<"animated-poster-image">;
+                    width: z.ZodNumber;
+                    height: z.ZodNumber;
+                    timings: z.ZodObject<{
+                        animated_poster_ffmpeg_duration: z.ZodNumber;
+                        animated_poster_ck_duration: z.ZodNumber;
+                        animated_poster_http_duration: z.ZodNumber;
+                    }, z.core.$strip>;
+                    file: z.ZodObject<{
+                        s3_filename: z.ZodString;
+                        content_type: z.ZodString;
+                        size: z.ZodNumber;
+                        mtime: z.ZodString;
+                        md5: z.ZodString;
+                        sha256: z.ZodString;
+                        s3_uri: z.ZodString;
+                        s3_version_id: z.ZodString;
+                        s3_etag: z.ZodString;
+                        s3_parts: z.ZodArray<z.ZodNumber>;
+                    }, z.core.$strip>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+                }, z.core.$strip>;
+            }, z.core.$strip>, z.ZodObject<{
+                type: z.ZodLiteral<"poster-series">;
+                series: z.ZodArray<z.ZodObject<{
+                    type: z.ZodLiteral<"poster-series-image">;
+                    index: z.ZodNumber;
+                    quality: z.ZodEnum<{
+                        medium: "medium";
+                        high: "high";
+                        sample: "sample";
+                    }>;
+                    width: z.ZodNumber;
+                    height: z.ZodNumber;
+                    blurhash: z.ZodOptional<z.ZodString>;
+                    timings: z.ZodObject<{
+                        poster_series_ffmpeg_duration: z.ZodNumber;
+                        poster_series_avifenc_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_series_ck_duration: z.ZodNumber;
+                        poster_series_http_duration: z.ZodNumber;
+                    }, z.core.$strip>;
+                    file: z.ZodObject<{
+                        s3_filename: z.ZodString;
+                        content_type: z.ZodString;
+                        size: z.ZodNumber;
+                        mtime: z.ZodString;
+                        md5: z.ZodString;
+                        sha256: z.ZodString;
+                        s3_uri: z.ZodString;
+                        s3_version_id: z.ZodString;
+                        s3_etag: z.ZodString;
+                        s3_parts: z.ZodArray<z.ZodNumber>;
+                    }, z.core.$strip>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>, z.ZodObject<{
+                type: z.ZodLiteral<"tile-series-metadata">;
+                timings: z.ZodObject<{
+                    metadata_http_duration: z.ZodNumber;
+                }, z.core.$strip>;
+                file: z.ZodObject<{
+                    s3_filename: z.ZodString;
+                    content_type: z.ZodString;
+                    size: z.ZodNumber;
+                    mtime: z.ZodString;
+                    md5: z.ZodString;
+                    sha256: z.ZodString;
+                    s3_uri: z.ZodString;
+                    s3_version_id: z.ZodString;
+                    s3_etag: z.ZodString;
+                    s3_parts: z.ZodArray<z.ZodNumber>;
+                }, z.core.$strip>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            }, z.core.$strip>, z.ZodObject<{
+                type: z.ZodLiteral<"prevue">;
+                prevue: z.ZodObject<{
+                    type: z.ZodLiteral<"prevue-video">;
+                    width: z.ZodNumber;
+                    height: z.ZodNumber;
+                    timings: z.ZodObject<{
+                        prevue_ffmpeg_duration: z.ZodNumber;
+                        prevue_ck_duration: z.ZodNumber;
+                        prevue_http_duration: z.ZodNumber;
+                    }, z.core.$strip>;
+                    file: z.ZodObject<{
+                        s3_filename: z.ZodString;
+                        content_type: z.ZodString;
+                        size: z.ZodNumber;
+                        mtime: z.ZodString;
+                        md5: z.ZodString;
+                        sha256: z.ZodString;
+                        s3_uri: z.ZodString;
+                        s3_version_id: z.ZodString;
+                        s3_etag: z.ZodString;
+                        s3_parts: z.ZodArray<z.ZodNumber>;
+                    }, z.core.$strip>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+                }, z.core.$strip>;
+            }, z.core.$strip>], "type">]>;
+        }, z.core.$strip>>;
+    }, z.core.$strip>;
     task_gen_metadata_status: z.ZodEnum<{
         pending: "pending";
         running: "running";
@@ -240,17 +594,194 @@ export declare const ValidatedUpload: z.ZodObject<{
         "pending-paused": "pending-paused";
         "blocked-paused": "blocked-paused";
     }>;
-    task_s3_complete_state: z.ZodEnum<{
-        pending: "pending";
-        running: "running";
-        succeeded: "succeeded";
-        failed: "failed";
-        rejected: "rejected";
-        blocked: "blocked";
-        skipped: "skipped";
-        "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
-    }>;
+    task_s3_complete_state: z.ZodObject<{
+        status: z.ZodEnum<{
+            pending: "pending";
+            running: "running";
+            succeeded: "succeeded";
+            failed: "failed";
+            rejected: "rejected";
+            blocked: "blocked";
+            skipped: "skipped";
+            "pending-paused": "pending-paused";
+            "blocked-paused": "blocked-paused";
+        }>;
+        createdAt: z.ZodISODateTime;
+        startedAt: z.ZodOptional<z.ZodISODateTime>;
+        updatedAt: z.ZodOptional<z.ZodISODateTime>;
+        finishedAt: z.ZodOptional<z.ZodISODateTime>;
+        attempts: z.ZodNumber;
+        runtimeToken: z.ZodOptional<z.ZodString>;
+        error: z.ZodOptional<z.ZodObject<{
+            message: z.ZodString;
+            code: z.ZodOptional<z.ZodString>;
+            stack: z.ZodOptional<z.ZodString>;
+            timestamp: z.ZodISODateTime;
+        }, z.core.$strip>>;
+        rejection: z.ZodOptional<z.ZodObject<{
+            reason: z.ZodString;
+            issues: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            timestamp: z.ZodISODateTime;
+        }, z.core.$strip>>;
+        progress: z.ZodOptional<z.ZodNumber>;
+        result: z.ZodOptional<z.ZodObject<{
+            metadata: z.ZodUnion<readonly [z.ZodObject<{
+                type: z.ZodLiteral<"metadata">;
+                timings: z.ZodObject<{
+                    metadata_http_duration: z.ZodNumber;
+                }, z.core.$strip>;
+                file: z.ZodObject<{
+                    s3_filename: z.ZodString;
+                    content_type: z.ZodString;
+                    size: z.ZodNumber;
+                    mtime: z.ZodString;
+                    md5: z.ZodString;
+                    sha256: z.ZodString;
+                    s3_uri: z.ZodString;
+                    s3_version_id: z.ZodString;
+                    s3_etag: z.ZodString;
+                    s3_parts: z.ZodArray<z.ZodNumber>;
+                }, z.core.$strip>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            }, z.core.$strip>, z.ZodDiscriminatedUnion<[z.ZodObject<{
+                type: z.ZodLiteral<"poster">;
+                poster: z.ZodArray<z.ZodObject<{
+                    type: z.ZodLiteral<"poster-image">;
+                    quality: z.ZodEnum<{
+                        medium: "medium";
+                        high: "high";
+                        sample: "sample";
+                    }>;
+                    width: z.ZodNumber;
+                    height: z.ZodNumber;
+                    blurhash: z.ZodOptional<z.ZodString>;
+                    timings: z.ZodObject<{
+                        poster_canvas_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_ffmpeg_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_avifenc_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_sharp_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_ck_duration: z.ZodNumber;
+                        poster_http_duration: z.ZodNumber;
+                    }, z.core.$strip>;
+                    file: z.ZodObject<{
+                        s3_filename: z.ZodString;
+                        content_type: z.ZodString;
+                        size: z.ZodNumber;
+                        mtime: z.ZodString;
+                        md5: z.ZodString;
+                        sha256: z.ZodString;
+                        s3_uri: z.ZodString;
+                        s3_version_id: z.ZodString;
+                        s3_etag: z.ZodString;
+                        s3_parts: z.ZodArray<z.ZodNumber>;
+                    }, z.core.$strip>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>, z.ZodObject<{
+                type: z.ZodLiteral<"animated-poster">;
+                poster: z.ZodObject<{
+                    type: z.ZodLiteral<"animated-poster-image">;
+                    width: z.ZodNumber;
+                    height: z.ZodNumber;
+                    timings: z.ZodObject<{
+                        animated_poster_ffmpeg_duration: z.ZodNumber;
+                        animated_poster_ck_duration: z.ZodNumber;
+                        animated_poster_http_duration: z.ZodNumber;
+                    }, z.core.$strip>;
+                    file: z.ZodObject<{
+                        s3_filename: z.ZodString;
+                        content_type: z.ZodString;
+                        size: z.ZodNumber;
+                        mtime: z.ZodString;
+                        md5: z.ZodString;
+                        sha256: z.ZodString;
+                        s3_uri: z.ZodString;
+                        s3_version_id: z.ZodString;
+                        s3_etag: z.ZodString;
+                        s3_parts: z.ZodArray<z.ZodNumber>;
+                    }, z.core.$strip>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+                }, z.core.$strip>;
+            }, z.core.$strip>, z.ZodObject<{
+                type: z.ZodLiteral<"poster-series">;
+                series: z.ZodArray<z.ZodObject<{
+                    type: z.ZodLiteral<"poster-series-image">;
+                    index: z.ZodNumber;
+                    quality: z.ZodEnum<{
+                        medium: "medium";
+                        high: "high";
+                        sample: "sample";
+                    }>;
+                    width: z.ZodNumber;
+                    height: z.ZodNumber;
+                    blurhash: z.ZodOptional<z.ZodString>;
+                    timings: z.ZodObject<{
+                        poster_series_ffmpeg_duration: z.ZodNumber;
+                        poster_series_avifenc_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_series_ck_duration: z.ZodNumber;
+                        poster_series_http_duration: z.ZodNumber;
+                    }, z.core.$strip>;
+                    file: z.ZodObject<{
+                        s3_filename: z.ZodString;
+                        content_type: z.ZodString;
+                        size: z.ZodNumber;
+                        mtime: z.ZodString;
+                        md5: z.ZodString;
+                        sha256: z.ZodString;
+                        s3_uri: z.ZodString;
+                        s3_version_id: z.ZodString;
+                        s3_etag: z.ZodString;
+                        s3_parts: z.ZodArray<z.ZodNumber>;
+                    }, z.core.$strip>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>, z.ZodObject<{
+                type: z.ZodLiteral<"tile-series-metadata">;
+                timings: z.ZodObject<{
+                    metadata_http_duration: z.ZodNumber;
+                }, z.core.$strip>;
+                file: z.ZodObject<{
+                    s3_filename: z.ZodString;
+                    content_type: z.ZodString;
+                    size: z.ZodNumber;
+                    mtime: z.ZodString;
+                    md5: z.ZodString;
+                    sha256: z.ZodString;
+                    s3_uri: z.ZodString;
+                    s3_version_id: z.ZodString;
+                    s3_etag: z.ZodString;
+                    s3_parts: z.ZodArray<z.ZodNumber>;
+                }, z.core.$strip>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            }, z.core.$strip>, z.ZodObject<{
+                type: z.ZodLiteral<"prevue">;
+                prevue: z.ZodObject<{
+                    type: z.ZodLiteral<"prevue-video">;
+                    width: z.ZodNumber;
+                    height: z.ZodNumber;
+                    timings: z.ZodObject<{
+                        prevue_ffmpeg_duration: z.ZodNumber;
+                        prevue_ck_duration: z.ZodNumber;
+                        prevue_http_duration: z.ZodNumber;
+                    }, z.core.$strip>;
+                    file: z.ZodObject<{
+                        s3_filename: z.ZodString;
+                        content_type: z.ZodString;
+                        size: z.ZodNumber;
+                        mtime: z.ZodString;
+                        md5: z.ZodString;
+                        sha256: z.ZodString;
+                        s3_uri: z.ZodString;
+                        s3_version_id: z.ZodString;
+                        s3_etag: z.ZodString;
+                        s3_parts: z.ZodArray<z.ZodNumber>;
+                    }, z.core.$strip>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+                }, z.core.$strip>;
+            }, z.core.$strip>], "type">]>;
+        }, z.core.$strip>>;
+    }, z.core.$strip>;
     task_s3_complete_status: z.ZodEnum<{
         pending: "pending";
         running: "running";
@@ -262,17 +793,194 @@ export declare const ValidatedUpload: z.ZodObject<{
         "pending-paused": "pending-paused";
         "blocked-paused": "blocked-paused";
     }>;
-    task_gen_metadata_state: z.ZodEnum<{
-        pending: "pending";
-        running: "running";
-        succeeded: "succeeded";
-        failed: "failed";
-        rejected: "rejected";
-        blocked: "blocked";
-        skipped: "skipped";
-        "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
-    }>;
+    task_gen_metadata_state: z.ZodObject<{
+        status: z.ZodEnum<{
+            pending: "pending";
+            running: "running";
+            succeeded: "succeeded";
+            failed: "failed";
+            rejected: "rejected";
+            blocked: "blocked";
+            skipped: "skipped";
+            "pending-paused": "pending-paused";
+            "blocked-paused": "blocked-paused";
+        }>;
+        createdAt: z.ZodISODateTime;
+        startedAt: z.ZodOptional<z.ZodISODateTime>;
+        updatedAt: z.ZodOptional<z.ZodISODateTime>;
+        finishedAt: z.ZodOptional<z.ZodISODateTime>;
+        attempts: z.ZodNumber;
+        runtimeToken: z.ZodOptional<z.ZodString>;
+        error: z.ZodOptional<z.ZodObject<{
+            message: z.ZodString;
+            code: z.ZodOptional<z.ZodString>;
+            stack: z.ZodOptional<z.ZodString>;
+            timestamp: z.ZodISODateTime;
+        }, z.core.$strip>>;
+        rejection: z.ZodOptional<z.ZodObject<{
+            reason: z.ZodString;
+            issues: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            timestamp: z.ZodISODateTime;
+        }, z.core.$strip>>;
+        progress: z.ZodOptional<z.ZodNumber>;
+        result: z.ZodOptional<z.ZodObject<{
+            metadata: z.ZodUnion<readonly [z.ZodObject<{
+                type: z.ZodLiteral<"metadata">;
+                timings: z.ZodObject<{
+                    metadata_http_duration: z.ZodNumber;
+                }, z.core.$strip>;
+                file: z.ZodObject<{
+                    s3_filename: z.ZodString;
+                    content_type: z.ZodString;
+                    size: z.ZodNumber;
+                    mtime: z.ZodString;
+                    md5: z.ZodString;
+                    sha256: z.ZodString;
+                    s3_uri: z.ZodString;
+                    s3_version_id: z.ZodString;
+                    s3_etag: z.ZodString;
+                    s3_parts: z.ZodArray<z.ZodNumber>;
+                }, z.core.$strip>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            }, z.core.$strip>, z.ZodDiscriminatedUnion<[z.ZodObject<{
+                type: z.ZodLiteral<"poster">;
+                poster: z.ZodArray<z.ZodObject<{
+                    type: z.ZodLiteral<"poster-image">;
+                    quality: z.ZodEnum<{
+                        medium: "medium";
+                        high: "high";
+                        sample: "sample";
+                    }>;
+                    width: z.ZodNumber;
+                    height: z.ZodNumber;
+                    blurhash: z.ZodOptional<z.ZodString>;
+                    timings: z.ZodObject<{
+                        poster_canvas_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_ffmpeg_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_avifenc_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_sharp_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_ck_duration: z.ZodNumber;
+                        poster_http_duration: z.ZodNumber;
+                    }, z.core.$strip>;
+                    file: z.ZodObject<{
+                        s3_filename: z.ZodString;
+                        content_type: z.ZodString;
+                        size: z.ZodNumber;
+                        mtime: z.ZodString;
+                        md5: z.ZodString;
+                        sha256: z.ZodString;
+                        s3_uri: z.ZodString;
+                        s3_version_id: z.ZodString;
+                        s3_etag: z.ZodString;
+                        s3_parts: z.ZodArray<z.ZodNumber>;
+                    }, z.core.$strip>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>, z.ZodObject<{
+                type: z.ZodLiteral<"animated-poster">;
+                poster: z.ZodObject<{
+                    type: z.ZodLiteral<"animated-poster-image">;
+                    width: z.ZodNumber;
+                    height: z.ZodNumber;
+                    timings: z.ZodObject<{
+                        animated_poster_ffmpeg_duration: z.ZodNumber;
+                        animated_poster_ck_duration: z.ZodNumber;
+                        animated_poster_http_duration: z.ZodNumber;
+                    }, z.core.$strip>;
+                    file: z.ZodObject<{
+                        s3_filename: z.ZodString;
+                        content_type: z.ZodString;
+                        size: z.ZodNumber;
+                        mtime: z.ZodString;
+                        md5: z.ZodString;
+                        sha256: z.ZodString;
+                        s3_uri: z.ZodString;
+                        s3_version_id: z.ZodString;
+                        s3_etag: z.ZodString;
+                        s3_parts: z.ZodArray<z.ZodNumber>;
+                    }, z.core.$strip>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+                }, z.core.$strip>;
+            }, z.core.$strip>, z.ZodObject<{
+                type: z.ZodLiteral<"poster-series">;
+                series: z.ZodArray<z.ZodObject<{
+                    type: z.ZodLiteral<"poster-series-image">;
+                    index: z.ZodNumber;
+                    quality: z.ZodEnum<{
+                        medium: "medium";
+                        high: "high";
+                        sample: "sample";
+                    }>;
+                    width: z.ZodNumber;
+                    height: z.ZodNumber;
+                    blurhash: z.ZodOptional<z.ZodString>;
+                    timings: z.ZodObject<{
+                        poster_series_ffmpeg_duration: z.ZodNumber;
+                        poster_series_avifenc_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_series_ck_duration: z.ZodNumber;
+                        poster_series_http_duration: z.ZodNumber;
+                    }, z.core.$strip>;
+                    file: z.ZodObject<{
+                        s3_filename: z.ZodString;
+                        content_type: z.ZodString;
+                        size: z.ZodNumber;
+                        mtime: z.ZodString;
+                        md5: z.ZodString;
+                        sha256: z.ZodString;
+                        s3_uri: z.ZodString;
+                        s3_version_id: z.ZodString;
+                        s3_etag: z.ZodString;
+                        s3_parts: z.ZodArray<z.ZodNumber>;
+                    }, z.core.$strip>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>, z.ZodObject<{
+                type: z.ZodLiteral<"tile-series-metadata">;
+                timings: z.ZodObject<{
+                    metadata_http_duration: z.ZodNumber;
+                }, z.core.$strip>;
+                file: z.ZodObject<{
+                    s3_filename: z.ZodString;
+                    content_type: z.ZodString;
+                    size: z.ZodNumber;
+                    mtime: z.ZodString;
+                    md5: z.ZodString;
+                    sha256: z.ZodString;
+                    s3_uri: z.ZodString;
+                    s3_version_id: z.ZodString;
+                    s3_etag: z.ZodString;
+                    s3_parts: z.ZodArray<z.ZodNumber>;
+                }, z.core.$strip>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            }, z.core.$strip>, z.ZodObject<{
+                type: z.ZodLiteral<"prevue">;
+                prevue: z.ZodObject<{
+                    type: z.ZodLiteral<"prevue-video">;
+                    width: z.ZodNumber;
+                    height: z.ZodNumber;
+                    timings: z.ZodObject<{
+                        prevue_ffmpeg_duration: z.ZodNumber;
+                        prevue_ck_duration: z.ZodNumber;
+                        prevue_http_duration: z.ZodNumber;
+                    }, z.core.$strip>;
+                    file: z.ZodObject<{
+                        s3_filename: z.ZodString;
+                        content_type: z.ZodString;
+                        size: z.ZodNumber;
+                        mtime: z.ZodString;
+                        md5: z.ZodString;
+                        sha256: z.ZodString;
+                        s3_uri: z.ZodString;
+                        s3_version_id: z.ZodString;
+                        s3_etag: z.ZodString;
+                        s3_parts: z.ZodArray<z.ZodNumber>;
+                    }, z.core.$strip>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+                }, z.core.$strip>;
+            }, z.core.$strip>], "type">]>;
+        }, z.core.$strip>>;
+    }, z.core.$strip>;
     task_gen_metadata_status: z.ZodEnum<{
         pending: "pending";
         running: "running";
@@ -363,17 +1071,194 @@ export declare const DbDtoFromUpload: z.ZodPipe<z.ZodObject<{
         "pending-paused": "pending-paused";
         "blocked-paused": "blocked-paused";
     }>;
-    task_s3_complete_state: z.ZodEnum<{
-        pending: "pending";
-        running: "running";
-        succeeded: "succeeded";
-        failed: "failed";
-        rejected: "rejected";
-        blocked: "blocked";
-        skipped: "skipped";
-        "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
-    }>;
+    task_s3_complete_state: z.ZodObject<{
+        status: z.ZodEnum<{
+            pending: "pending";
+            running: "running";
+            succeeded: "succeeded";
+            failed: "failed";
+            rejected: "rejected";
+            blocked: "blocked";
+            skipped: "skipped";
+            "pending-paused": "pending-paused";
+            "blocked-paused": "blocked-paused";
+        }>;
+        createdAt: z.ZodISODateTime;
+        startedAt: z.ZodOptional<z.ZodISODateTime>;
+        updatedAt: z.ZodOptional<z.ZodISODateTime>;
+        finishedAt: z.ZodOptional<z.ZodISODateTime>;
+        attempts: z.ZodNumber;
+        runtimeToken: z.ZodOptional<z.ZodString>;
+        error: z.ZodOptional<z.ZodObject<{
+            message: z.ZodString;
+            code: z.ZodOptional<z.ZodString>;
+            stack: z.ZodOptional<z.ZodString>;
+            timestamp: z.ZodISODateTime;
+        }, z.core.$strip>>;
+        rejection: z.ZodOptional<z.ZodObject<{
+            reason: z.ZodString;
+            issues: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            timestamp: z.ZodISODateTime;
+        }, z.core.$strip>>;
+        progress: z.ZodOptional<z.ZodNumber>;
+        result: z.ZodOptional<z.ZodObject<{
+            metadata: z.ZodUnion<readonly [z.ZodObject<{
+                type: z.ZodLiteral<"metadata">;
+                timings: z.ZodObject<{
+                    metadata_http_duration: z.ZodNumber;
+                }, z.core.$strip>;
+                file: z.ZodObject<{
+                    s3_filename: z.ZodString;
+                    content_type: z.ZodString;
+                    size: z.ZodNumber;
+                    mtime: z.ZodString;
+                    md5: z.ZodString;
+                    sha256: z.ZodString;
+                    s3_uri: z.ZodString;
+                    s3_version_id: z.ZodString;
+                    s3_etag: z.ZodString;
+                    s3_parts: z.ZodArray<z.ZodNumber>;
+                }, z.core.$strip>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            }, z.core.$strip>, z.ZodDiscriminatedUnion<[z.ZodObject<{
+                type: z.ZodLiteral<"poster">;
+                poster: z.ZodArray<z.ZodObject<{
+                    type: z.ZodLiteral<"poster-image">;
+                    quality: z.ZodEnum<{
+                        medium: "medium";
+                        high: "high";
+                        sample: "sample";
+                    }>;
+                    width: z.ZodNumber;
+                    height: z.ZodNumber;
+                    blurhash: z.ZodOptional<z.ZodString>;
+                    timings: z.ZodObject<{
+                        poster_canvas_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_ffmpeg_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_avifenc_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_sharp_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_ck_duration: z.ZodNumber;
+                        poster_http_duration: z.ZodNumber;
+                    }, z.core.$strip>;
+                    file: z.ZodObject<{
+                        s3_filename: z.ZodString;
+                        content_type: z.ZodString;
+                        size: z.ZodNumber;
+                        mtime: z.ZodString;
+                        md5: z.ZodString;
+                        sha256: z.ZodString;
+                        s3_uri: z.ZodString;
+                        s3_version_id: z.ZodString;
+                        s3_etag: z.ZodString;
+                        s3_parts: z.ZodArray<z.ZodNumber>;
+                    }, z.core.$strip>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>, z.ZodObject<{
+                type: z.ZodLiteral<"animated-poster">;
+                poster: z.ZodObject<{
+                    type: z.ZodLiteral<"animated-poster-image">;
+                    width: z.ZodNumber;
+                    height: z.ZodNumber;
+                    timings: z.ZodObject<{
+                        animated_poster_ffmpeg_duration: z.ZodNumber;
+                        animated_poster_ck_duration: z.ZodNumber;
+                        animated_poster_http_duration: z.ZodNumber;
+                    }, z.core.$strip>;
+                    file: z.ZodObject<{
+                        s3_filename: z.ZodString;
+                        content_type: z.ZodString;
+                        size: z.ZodNumber;
+                        mtime: z.ZodString;
+                        md5: z.ZodString;
+                        sha256: z.ZodString;
+                        s3_uri: z.ZodString;
+                        s3_version_id: z.ZodString;
+                        s3_etag: z.ZodString;
+                        s3_parts: z.ZodArray<z.ZodNumber>;
+                    }, z.core.$strip>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+                }, z.core.$strip>;
+            }, z.core.$strip>, z.ZodObject<{
+                type: z.ZodLiteral<"poster-series">;
+                series: z.ZodArray<z.ZodObject<{
+                    type: z.ZodLiteral<"poster-series-image">;
+                    index: z.ZodNumber;
+                    quality: z.ZodEnum<{
+                        medium: "medium";
+                        high: "high";
+                        sample: "sample";
+                    }>;
+                    width: z.ZodNumber;
+                    height: z.ZodNumber;
+                    blurhash: z.ZodOptional<z.ZodString>;
+                    timings: z.ZodObject<{
+                        poster_series_ffmpeg_duration: z.ZodNumber;
+                        poster_series_avifenc_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_series_ck_duration: z.ZodNumber;
+                        poster_series_http_duration: z.ZodNumber;
+                    }, z.core.$strip>;
+                    file: z.ZodObject<{
+                        s3_filename: z.ZodString;
+                        content_type: z.ZodString;
+                        size: z.ZodNumber;
+                        mtime: z.ZodString;
+                        md5: z.ZodString;
+                        sha256: z.ZodString;
+                        s3_uri: z.ZodString;
+                        s3_version_id: z.ZodString;
+                        s3_etag: z.ZodString;
+                        s3_parts: z.ZodArray<z.ZodNumber>;
+                    }, z.core.$strip>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>, z.ZodObject<{
+                type: z.ZodLiteral<"tile-series-metadata">;
+                timings: z.ZodObject<{
+                    metadata_http_duration: z.ZodNumber;
+                }, z.core.$strip>;
+                file: z.ZodObject<{
+                    s3_filename: z.ZodString;
+                    content_type: z.ZodString;
+                    size: z.ZodNumber;
+                    mtime: z.ZodString;
+                    md5: z.ZodString;
+                    sha256: z.ZodString;
+                    s3_uri: z.ZodString;
+                    s3_version_id: z.ZodString;
+                    s3_etag: z.ZodString;
+                    s3_parts: z.ZodArray<z.ZodNumber>;
+                }, z.core.$strip>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            }, z.core.$strip>, z.ZodObject<{
+                type: z.ZodLiteral<"prevue">;
+                prevue: z.ZodObject<{
+                    type: z.ZodLiteral<"prevue-video">;
+                    width: z.ZodNumber;
+                    height: z.ZodNumber;
+                    timings: z.ZodObject<{
+                        prevue_ffmpeg_duration: z.ZodNumber;
+                        prevue_ck_duration: z.ZodNumber;
+                        prevue_http_duration: z.ZodNumber;
+                    }, z.core.$strip>;
+                    file: z.ZodObject<{
+                        s3_filename: z.ZodString;
+                        content_type: z.ZodString;
+                        size: z.ZodNumber;
+                        mtime: z.ZodString;
+                        md5: z.ZodString;
+                        sha256: z.ZodString;
+                        s3_uri: z.ZodString;
+                        s3_version_id: z.ZodString;
+                        s3_etag: z.ZodString;
+                        s3_parts: z.ZodArray<z.ZodNumber>;
+                    }, z.core.$strip>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+                }, z.core.$strip>;
+            }, z.core.$strip>], "type">]>;
+        }, z.core.$strip>>;
+    }, z.core.$strip>;
     task_s3_complete_status: z.ZodEnum<{
         pending: "pending";
         running: "running";
@@ -385,17 +1270,194 @@ export declare const DbDtoFromUpload: z.ZodPipe<z.ZodObject<{
         "pending-paused": "pending-paused";
         "blocked-paused": "blocked-paused";
     }>;
-    task_gen_metadata_state: z.ZodEnum<{
-        pending: "pending";
-        running: "running";
-        succeeded: "succeeded";
-        failed: "failed";
-        rejected: "rejected";
-        blocked: "blocked";
-        skipped: "skipped";
-        "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
-    }>;
+    task_gen_metadata_state: z.ZodObject<{
+        status: z.ZodEnum<{
+            pending: "pending";
+            running: "running";
+            succeeded: "succeeded";
+            failed: "failed";
+            rejected: "rejected";
+            blocked: "blocked";
+            skipped: "skipped";
+            "pending-paused": "pending-paused";
+            "blocked-paused": "blocked-paused";
+        }>;
+        createdAt: z.ZodISODateTime;
+        startedAt: z.ZodOptional<z.ZodISODateTime>;
+        updatedAt: z.ZodOptional<z.ZodISODateTime>;
+        finishedAt: z.ZodOptional<z.ZodISODateTime>;
+        attempts: z.ZodNumber;
+        runtimeToken: z.ZodOptional<z.ZodString>;
+        error: z.ZodOptional<z.ZodObject<{
+            message: z.ZodString;
+            code: z.ZodOptional<z.ZodString>;
+            stack: z.ZodOptional<z.ZodString>;
+            timestamp: z.ZodISODateTime;
+        }, z.core.$strip>>;
+        rejection: z.ZodOptional<z.ZodObject<{
+            reason: z.ZodString;
+            issues: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            timestamp: z.ZodISODateTime;
+        }, z.core.$strip>>;
+        progress: z.ZodOptional<z.ZodNumber>;
+        result: z.ZodOptional<z.ZodObject<{
+            metadata: z.ZodUnion<readonly [z.ZodObject<{
+                type: z.ZodLiteral<"metadata">;
+                timings: z.ZodObject<{
+                    metadata_http_duration: z.ZodNumber;
+                }, z.core.$strip>;
+                file: z.ZodObject<{
+                    s3_filename: z.ZodString;
+                    content_type: z.ZodString;
+                    size: z.ZodNumber;
+                    mtime: z.ZodString;
+                    md5: z.ZodString;
+                    sha256: z.ZodString;
+                    s3_uri: z.ZodString;
+                    s3_version_id: z.ZodString;
+                    s3_etag: z.ZodString;
+                    s3_parts: z.ZodArray<z.ZodNumber>;
+                }, z.core.$strip>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            }, z.core.$strip>, z.ZodDiscriminatedUnion<[z.ZodObject<{
+                type: z.ZodLiteral<"poster">;
+                poster: z.ZodArray<z.ZodObject<{
+                    type: z.ZodLiteral<"poster-image">;
+                    quality: z.ZodEnum<{
+                        medium: "medium";
+                        high: "high";
+                        sample: "sample";
+                    }>;
+                    width: z.ZodNumber;
+                    height: z.ZodNumber;
+                    blurhash: z.ZodOptional<z.ZodString>;
+                    timings: z.ZodObject<{
+                        poster_canvas_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_ffmpeg_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_avifenc_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_sharp_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_ck_duration: z.ZodNumber;
+                        poster_http_duration: z.ZodNumber;
+                    }, z.core.$strip>;
+                    file: z.ZodObject<{
+                        s3_filename: z.ZodString;
+                        content_type: z.ZodString;
+                        size: z.ZodNumber;
+                        mtime: z.ZodString;
+                        md5: z.ZodString;
+                        sha256: z.ZodString;
+                        s3_uri: z.ZodString;
+                        s3_version_id: z.ZodString;
+                        s3_etag: z.ZodString;
+                        s3_parts: z.ZodArray<z.ZodNumber>;
+                    }, z.core.$strip>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>, z.ZodObject<{
+                type: z.ZodLiteral<"animated-poster">;
+                poster: z.ZodObject<{
+                    type: z.ZodLiteral<"animated-poster-image">;
+                    width: z.ZodNumber;
+                    height: z.ZodNumber;
+                    timings: z.ZodObject<{
+                        animated_poster_ffmpeg_duration: z.ZodNumber;
+                        animated_poster_ck_duration: z.ZodNumber;
+                        animated_poster_http_duration: z.ZodNumber;
+                    }, z.core.$strip>;
+                    file: z.ZodObject<{
+                        s3_filename: z.ZodString;
+                        content_type: z.ZodString;
+                        size: z.ZodNumber;
+                        mtime: z.ZodString;
+                        md5: z.ZodString;
+                        sha256: z.ZodString;
+                        s3_uri: z.ZodString;
+                        s3_version_id: z.ZodString;
+                        s3_etag: z.ZodString;
+                        s3_parts: z.ZodArray<z.ZodNumber>;
+                    }, z.core.$strip>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+                }, z.core.$strip>;
+            }, z.core.$strip>, z.ZodObject<{
+                type: z.ZodLiteral<"poster-series">;
+                series: z.ZodArray<z.ZodObject<{
+                    type: z.ZodLiteral<"poster-series-image">;
+                    index: z.ZodNumber;
+                    quality: z.ZodEnum<{
+                        medium: "medium";
+                        high: "high";
+                        sample: "sample";
+                    }>;
+                    width: z.ZodNumber;
+                    height: z.ZodNumber;
+                    blurhash: z.ZodOptional<z.ZodString>;
+                    timings: z.ZodObject<{
+                        poster_series_ffmpeg_duration: z.ZodNumber;
+                        poster_series_avifenc_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
+                        poster_series_ck_duration: z.ZodNumber;
+                        poster_series_http_duration: z.ZodNumber;
+                    }, z.core.$strip>;
+                    file: z.ZodObject<{
+                        s3_filename: z.ZodString;
+                        content_type: z.ZodString;
+                        size: z.ZodNumber;
+                        mtime: z.ZodString;
+                        md5: z.ZodString;
+                        sha256: z.ZodString;
+                        s3_uri: z.ZodString;
+                        s3_version_id: z.ZodString;
+                        s3_etag: z.ZodString;
+                        s3_parts: z.ZodArray<z.ZodNumber>;
+                    }, z.core.$strip>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+                }, z.core.$strip>>;
+            }, z.core.$strip>, z.ZodObject<{
+                type: z.ZodLiteral<"tile-series-metadata">;
+                timings: z.ZodObject<{
+                    metadata_http_duration: z.ZodNumber;
+                }, z.core.$strip>;
+                file: z.ZodObject<{
+                    s3_filename: z.ZodString;
+                    content_type: z.ZodString;
+                    size: z.ZodNumber;
+                    mtime: z.ZodString;
+                    md5: z.ZodString;
+                    sha256: z.ZodString;
+                    s3_uri: z.ZodString;
+                    s3_version_id: z.ZodString;
+                    s3_etag: z.ZodString;
+                    s3_parts: z.ZodArray<z.ZodNumber>;
+                }, z.core.$strip>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            }, z.core.$strip>, z.ZodObject<{
+                type: z.ZodLiteral<"prevue">;
+                prevue: z.ZodObject<{
+                    type: z.ZodLiteral<"prevue-video">;
+                    width: z.ZodNumber;
+                    height: z.ZodNumber;
+                    timings: z.ZodObject<{
+                        prevue_ffmpeg_duration: z.ZodNumber;
+                        prevue_ck_duration: z.ZodNumber;
+                        prevue_http_duration: z.ZodNumber;
+                    }, z.core.$strip>;
+                    file: z.ZodObject<{
+                        s3_filename: z.ZodString;
+                        content_type: z.ZodString;
+                        size: z.ZodNumber;
+                        mtime: z.ZodString;
+                        md5: z.ZodString;
+                        sha256: z.ZodString;
+                        s3_uri: z.ZodString;
+                        s3_version_id: z.ZodString;
+                        s3_etag: z.ZodString;
+                        s3_parts: z.ZodArray<z.ZodNumber>;
+                    }, z.core.$strip>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
+                }, z.core.$strip>;
+            }, z.core.$strip>], "type">]>;
+        }, z.core.$strip>>;
+    }, z.core.$strip>;
     task_gen_metadata_status: z.ZodEnum<{
         pending: "pending";
         running: "running";
@@ -460,9 +1522,347 @@ export declare const DbDtoFromUpload: z.ZodPipe<z.ZodObject<{
     s3_uri: string;
     asset_name: string;
     task_upload_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_s3_complete_state: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_s3_complete_state: {
+        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+        createdAt: string;
+        attempts: number;
+        startedAt?: string | undefined;
+        updatedAt?: string | undefined;
+        finishedAt?: string | undefined;
+        runtimeToken?: string | undefined;
+        error?: {
+            message: string;
+            timestamp: string;
+            code?: string | undefined;
+            stack?: string | undefined;
+        } | undefined;
+        rejection?: {
+            reason: string;
+            timestamp: string;
+            issues?: string[] | undefined;
+        } | undefined;
+        progress?: number | undefined;
+        result?: {
+            metadata: {
+                type: "metadata";
+                timings: {
+                    metadata_http_duration: number;
+                };
+                file: {
+                    s3_filename: string;
+                    content_type: string;
+                    size: number;
+                    mtime: string;
+                    md5: string;
+                    sha256: string;
+                    s3_uri: string;
+                    s3_version_id: string;
+                    s3_etag: string;
+                    s3_parts: number[];
+                };
+                tags?: string[] | undefined;
+            } | {
+                type: "poster";
+                poster: {
+                    type: "poster-image";
+                    quality: "medium" | "high" | "sample";
+                    width: number;
+                    height: number;
+                    timings: {
+                        poster_ck_duration: number;
+                        poster_http_duration: number;
+                        poster_canvas_duration?: number | undefined;
+                        poster_ffmpeg_duration?: number | undefined;
+                        poster_avifenc_duration?: number | undefined;
+                        poster_sharp_duration?: number | undefined;
+                    };
+                    file: {
+                        s3_filename: string;
+                        content_type: string;
+                        size: number;
+                        mtime: string;
+                        md5: string;
+                        sha256: string;
+                        s3_uri: string;
+                        s3_version_id: string;
+                        s3_etag: string;
+                        s3_parts: number[];
+                    };
+                    blurhash?: string | undefined;
+                    tags?: string[] | undefined;
+                }[];
+            } | {
+                type: "animated-poster";
+                poster: {
+                    type: "animated-poster-image";
+                    width: number;
+                    height: number;
+                    timings: {
+                        animated_poster_ffmpeg_duration: number;
+                        animated_poster_ck_duration: number;
+                        animated_poster_http_duration: number;
+                    };
+                    file: {
+                        s3_filename: string;
+                        content_type: string;
+                        size: number;
+                        mtime: string;
+                        md5: string;
+                        sha256: string;
+                        s3_uri: string;
+                        s3_version_id: string;
+                        s3_etag: string;
+                        s3_parts: number[];
+                    };
+                    tags?: string[] | undefined;
+                };
+            } | {
+                type: "poster-series";
+                series: {
+                    type: "poster-series-image";
+                    index: number;
+                    quality: "medium" | "high" | "sample";
+                    width: number;
+                    height: number;
+                    timings: {
+                        poster_series_ffmpeg_duration: number;
+                        poster_series_ck_duration: number;
+                        poster_series_http_duration: number;
+                        poster_series_avifenc_duration?: number | undefined;
+                        poster_series_sharp_duration?: number | undefined;
+                    };
+                    file: {
+                        s3_filename: string;
+                        content_type: string;
+                        size: number;
+                        mtime: string;
+                        md5: string;
+                        sha256: string;
+                        s3_uri: string;
+                        s3_version_id: string;
+                        s3_etag: string;
+                        s3_parts: number[];
+                    };
+                    blurhash?: string | undefined;
+                    tags?: string[] | undefined;
+                }[];
+            } | {
+                type: "tile-series-metadata";
+                timings: {
+                    metadata_http_duration: number;
+                };
+                file: {
+                    s3_filename: string;
+                    content_type: string;
+                    size: number;
+                    mtime: string;
+                    md5: string;
+                    sha256: string;
+                    s3_uri: string;
+                    s3_version_id: string;
+                    s3_etag: string;
+                    s3_parts: number[];
+                };
+                tags?: string[] | undefined;
+            } | {
+                type: "prevue";
+                prevue: {
+                    type: "prevue-video";
+                    width: number;
+                    height: number;
+                    timings: {
+                        prevue_ffmpeg_duration: number;
+                        prevue_ck_duration: number;
+                        prevue_http_duration: number;
+                    };
+                    file: {
+                        s3_filename: string;
+                        content_type: string;
+                        size: number;
+                        mtime: string;
+                        md5: string;
+                        sha256: string;
+                        s3_uri: string;
+                        s3_version_id: string;
+                        s3_etag: string;
+                        s3_parts: number[];
+                    };
+                    tags?: string[] | undefined;
+                };
+            };
+        } | undefined;
+    };
     task_s3_complete_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_gen_metadata_state: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_metadata_state: {
+        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+        createdAt: string;
+        attempts: number;
+        startedAt?: string | undefined;
+        updatedAt?: string | undefined;
+        finishedAt?: string | undefined;
+        runtimeToken?: string | undefined;
+        error?: {
+            message: string;
+            timestamp: string;
+            code?: string | undefined;
+            stack?: string | undefined;
+        } | undefined;
+        rejection?: {
+            reason: string;
+            timestamp: string;
+            issues?: string[] | undefined;
+        } | undefined;
+        progress?: number | undefined;
+        result?: {
+            metadata: {
+                type: "metadata";
+                timings: {
+                    metadata_http_duration: number;
+                };
+                file: {
+                    s3_filename: string;
+                    content_type: string;
+                    size: number;
+                    mtime: string;
+                    md5: string;
+                    sha256: string;
+                    s3_uri: string;
+                    s3_version_id: string;
+                    s3_etag: string;
+                    s3_parts: number[];
+                };
+                tags?: string[] | undefined;
+            } | {
+                type: "poster";
+                poster: {
+                    type: "poster-image";
+                    quality: "medium" | "high" | "sample";
+                    width: number;
+                    height: number;
+                    timings: {
+                        poster_ck_duration: number;
+                        poster_http_duration: number;
+                        poster_canvas_duration?: number | undefined;
+                        poster_ffmpeg_duration?: number | undefined;
+                        poster_avifenc_duration?: number | undefined;
+                        poster_sharp_duration?: number | undefined;
+                    };
+                    file: {
+                        s3_filename: string;
+                        content_type: string;
+                        size: number;
+                        mtime: string;
+                        md5: string;
+                        sha256: string;
+                        s3_uri: string;
+                        s3_version_id: string;
+                        s3_etag: string;
+                        s3_parts: number[];
+                    };
+                    blurhash?: string | undefined;
+                    tags?: string[] | undefined;
+                }[];
+            } | {
+                type: "animated-poster";
+                poster: {
+                    type: "animated-poster-image";
+                    width: number;
+                    height: number;
+                    timings: {
+                        animated_poster_ffmpeg_duration: number;
+                        animated_poster_ck_duration: number;
+                        animated_poster_http_duration: number;
+                    };
+                    file: {
+                        s3_filename: string;
+                        content_type: string;
+                        size: number;
+                        mtime: string;
+                        md5: string;
+                        sha256: string;
+                        s3_uri: string;
+                        s3_version_id: string;
+                        s3_etag: string;
+                        s3_parts: number[];
+                    };
+                    tags?: string[] | undefined;
+                };
+            } | {
+                type: "poster-series";
+                series: {
+                    type: "poster-series-image";
+                    index: number;
+                    quality: "medium" | "high" | "sample";
+                    width: number;
+                    height: number;
+                    timings: {
+                        poster_series_ffmpeg_duration: number;
+                        poster_series_ck_duration: number;
+                        poster_series_http_duration: number;
+                        poster_series_avifenc_duration?: number | undefined;
+                        poster_series_sharp_duration?: number | undefined;
+                    };
+                    file: {
+                        s3_filename: string;
+                        content_type: string;
+                        size: number;
+                        mtime: string;
+                        md5: string;
+                        sha256: string;
+                        s3_uri: string;
+                        s3_version_id: string;
+                        s3_etag: string;
+                        s3_parts: number[];
+                    };
+                    blurhash?: string | undefined;
+                    tags?: string[] | undefined;
+                }[];
+            } | {
+                type: "tile-series-metadata";
+                timings: {
+                    metadata_http_duration: number;
+                };
+                file: {
+                    s3_filename: string;
+                    content_type: string;
+                    size: number;
+                    mtime: string;
+                    md5: string;
+                    sha256: string;
+                    s3_uri: string;
+                    s3_version_id: string;
+                    s3_etag: string;
+                    s3_parts: number[];
+                };
+                tags?: string[] | undefined;
+            } | {
+                type: "prevue";
+                prevue: {
+                    type: "prevue-video";
+                    width: number;
+                    height: number;
+                    timings: {
+                        prevue_ffmpeg_duration: number;
+                        prevue_ck_duration: number;
+                        prevue_http_duration: number;
+                    };
+                    file: {
+                        s3_filename: string;
+                        content_type: string;
+                        size: number;
+                        mtime: string;
+                        md5: string;
+                        sha256: string;
+                        s3_uri: string;
+                        s3_version_id: string;
+                        s3_etag: string;
+                        s3_parts: number[];
+                    };
+                    tags?: string[] | undefined;
+                };
+            };
+        } | undefined;
+    };
     task_gen_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
     task_save_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
     user_tags: string[];
@@ -539,7 +1939,7 @@ export declare const DbDtoToUpload: z.ZodPipe<z.ZodObject<{
         "pending-paused": "pending-paused";
         "blocked-paused": "blocked-paused";
     }>;
-    task_s3_complete_state: z.ZodString;
+    task_s3_complete_state: z.ZodNullable<z.ZodString>;
     task_s3_complete_status: z.ZodEnum<{
         pending: "pending";
         running: "running";
@@ -551,7 +1951,7 @@ export declare const DbDtoToUpload: z.ZodPipe<z.ZodObject<{
         "pending-paused": "pending-paused";
         "blocked-paused": "blocked-paused";
     }>;
-    task_gen_metadata_state: z.ZodString;
+    task_gen_metadata_state: z.ZodNullable<z.ZodString>;
     task_gen_metadata_status: z.ZodEnum<{
         pending: "pending";
         running: "running";
@@ -589,9 +1989,347 @@ export declare const DbDtoToUpload: z.ZodPipe<z.ZodObject<{
     s3_uri: string;
     asset_name: string;
     task_upload_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_s3_complete_state: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_s3_complete_state: {
+        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+        createdAt: string;
+        attempts: number;
+        startedAt?: string | undefined;
+        updatedAt?: string | undefined;
+        finishedAt?: string | undefined;
+        runtimeToken?: string | undefined;
+        error?: {
+            message: string;
+            timestamp: string;
+            code?: string | undefined;
+            stack?: string | undefined;
+        } | undefined;
+        rejection?: {
+            reason: string;
+            timestamp: string;
+            issues?: string[] | undefined;
+        } | undefined;
+        progress?: number | undefined;
+        result?: {
+            metadata: {
+                type: "metadata";
+                timings: {
+                    metadata_http_duration: number;
+                };
+                file: {
+                    s3_filename: string;
+                    content_type: string;
+                    size: number;
+                    mtime: string;
+                    md5: string;
+                    sha256: string;
+                    s3_uri: string;
+                    s3_version_id: string;
+                    s3_etag: string;
+                    s3_parts: number[];
+                };
+                tags?: string[] | undefined;
+            } | {
+                type: "poster";
+                poster: {
+                    type: "poster-image";
+                    quality: "medium" | "high" | "sample";
+                    width: number;
+                    height: number;
+                    timings: {
+                        poster_ck_duration: number;
+                        poster_http_duration: number;
+                        poster_canvas_duration?: number | undefined;
+                        poster_ffmpeg_duration?: number | undefined;
+                        poster_avifenc_duration?: number | undefined;
+                        poster_sharp_duration?: number | undefined;
+                    };
+                    file: {
+                        s3_filename: string;
+                        content_type: string;
+                        size: number;
+                        mtime: string;
+                        md5: string;
+                        sha256: string;
+                        s3_uri: string;
+                        s3_version_id: string;
+                        s3_etag: string;
+                        s3_parts: number[];
+                    };
+                    blurhash?: string | undefined;
+                    tags?: string[] | undefined;
+                }[];
+            } | {
+                type: "animated-poster";
+                poster: {
+                    type: "animated-poster-image";
+                    width: number;
+                    height: number;
+                    timings: {
+                        animated_poster_ffmpeg_duration: number;
+                        animated_poster_ck_duration: number;
+                        animated_poster_http_duration: number;
+                    };
+                    file: {
+                        s3_filename: string;
+                        content_type: string;
+                        size: number;
+                        mtime: string;
+                        md5: string;
+                        sha256: string;
+                        s3_uri: string;
+                        s3_version_id: string;
+                        s3_etag: string;
+                        s3_parts: number[];
+                    };
+                    tags?: string[] | undefined;
+                };
+            } | {
+                type: "poster-series";
+                series: {
+                    type: "poster-series-image";
+                    index: number;
+                    quality: "medium" | "high" | "sample";
+                    width: number;
+                    height: number;
+                    timings: {
+                        poster_series_ffmpeg_duration: number;
+                        poster_series_ck_duration: number;
+                        poster_series_http_duration: number;
+                        poster_series_avifenc_duration?: number | undefined;
+                        poster_series_sharp_duration?: number | undefined;
+                    };
+                    file: {
+                        s3_filename: string;
+                        content_type: string;
+                        size: number;
+                        mtime: string;
+                        md5: string;
+                        sha256: string;
+                        s3_uri: string;
+                        s3_version_id: string;
+                        s3_etag: string;
+                        s3_parts: number[];
+                    };
+                    blurhash?: string | undefined;
+                    tags?: string[] | undefined;
+                }[];
+            } | {
+                type: "tile-series-metadata";
+                timings: {
+                    metadata_http_duration: number;
+                };
+                file: {
+                    s3_filename: string;
+                    content_type: string;
+                    size: number;
+                    mtime: string;
+                    md5: string;
+                    sha256: string;
+                    s3_uri: string;
+                    s3_version_id: string;
+                    s3_etag: string;
+                    s3_parts: number[];
+                };
+                tags?: string[] | undefined;
+            } | {
+                type: "prevue";
+                prevue: {
+                    type: "prevue-video";
+                    width: number;
+                    height: number;
+                    timings: {
+                        prevue_ffmpeg_duration: number;
+                        prevue_ck_duration: number;
+                        prevue_http_duration: number;
+                    };
+                    file: {
+                        s3_filename: string;
+                        content_type: string;
+                        size: number;
+                        mtime: string;
+                        md5: string;
+                        sha256: string;
+                        s3_uri: string;
+                        s3_version_id: string;
+                        s3_etag: string;
+                        s3_parts: number[];
+                    };
+                    tags?: string[] | undefined;
+                };
+            };
+        } | undefined;
+    };
     task_s3_complete_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_gen_metadata_state: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_metadata_state: {
+        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+        createdAt: string;
+        attempts: number;
+        startedAt?: string | undefined;
+        updatedAt?: string | undefined;
+        finishedAt?: string | undefined;
+        runtimeToken?: string | undefined;
+        error?: {
+            message: string;
+            timestamp: string;
+            code?: string | undefined;
+            stack?: string | undefined;
+        } | undefined;
+        rejection?: {
+            reason: string;
+            timestamp: string;
+            issues?: string[] | undefined;
+        } | undefined;
+        progress?: number | undefined;
+        result?: {
+            metadata: {
+                type: "metadata";
+                timings: {
+                    metadata_http_duration: number;
+                };
+                file: {
+                    s3_filename: string;
+                    content_type: string;
+                    size: number;
+                    mtime: string;
+                    md5: string;
+                    sha256: string;
+                    s3_uri: string;
+                    s3_version_id: string;
+                    s3_etag: string;
+                    s3_parts: number[];
+                };
+                tags?: string[] | undefined;
+            } | {
+                type: "poster";
+                poster: {
+                    type: "poster-image";
+                    quality: "medium" | "high" | "sample";
+                    width: number;
+                    height: number;
+                    timings: {
+                        poster_ck_duration: number;
+                        poster_http_duration: number;
+                        poster_canvas_duration?: number | undefined;
+                        poster_ffmpeg_duration?: number | undefined;
+                        poster_avifenc_duration?: number | undefined;
+                        poster_sharp_duration?: number | undefined;
+                    };
+                    file: {
+                        s3_filename: string;
+                        content_type: string;
+                        size: number;
+                        mtime: string;
+                        md5: string;
+                        sha256: string;
+                        s3_uri: string;
+                        s3_version_id: string;
+                        s3_etag: string;
+                        s3_parts: number[];
+                    };
+                    blurhash?: string | undefined;
+                    tags?: string[] | undefined;
+                }[];
+            } | {
+                type: "animated-poster";
+                poster: {
+                    type: "animated-poster-image";
+                    width: number;
+                    height: number;
+                    timings: {
+                        animated_poster_ffmpeg_duration: number;
+                        animated_poster_ck_duration: number;
+                        animated_poster_http_duration: number;
+                    };
+                    file: {
+                        s3_filename: string;
+                        content_type: string;
+                        size: number;
+                        mtime: string;
+                        md5: string;
+                        sha256: string;
+                        s3_uri: string;
+                        s3_version_id: string;
+                        s3_etag: string;
+                        s3_parts: number[];
+                    };
+                    tags?: string[] | undefined;
+                };
+            } | {
+                type: "poster-series";
+                series: {
+                    type: "poster-series-image";
+                    index: number;
+                    quality: "medium" | "high" | "sample";
+                    width: number;
+                    height: number;
+                    timings: {
+                        poster_series_ffmpeg_duration: number;
+                        poster_series_ck_duration: number;
+                        poster_series_http_duration: number;
+                        poster_series_avifenc_duration?: number | undefined;
+                        poster_series_sharp_duration?: number | undefined;
+                    };
+                    file: {
+                        s3_filename: string;
+                        content_type: string;
+                        size: number;
+                        mtime: string;
+                        md5: string;
+                        sha256: string;
+                        s3_uri: string;
+                        s3_version_id: string;
+                        s3_etag: string;
+                        s3_parts: number[];
+                    };
+                    blurhash?: string | undefined;
+                    tags?: string[] | undefined;
+                }[];
+            } | {
+                type: "tile-series-metadata";
+                timings: {
+                    metadata_http_duration: number;
+                };
+                file: {
+                    s3_filename: string;
+                    content_type: string;
+                    size: number;
+                    mtime: string;
+                    md5: string;
+                    sha256: string;
+                    s3_uri: string;
+                    s3_version_id: string;
+                    s3_etag: string;
+                    s3_parts: number[];
+                };
+                tags?: string[] | undefined;
+            } | {
+                type: "prevue";
+                prevue: {
+                    type: "prevue-video";
+                    width: number;
+                    height: number;
+                    timings: {
+                        prevue_ffmpeg_duration: number;
+                        prevue_ck_duration: number;
+                        prevue_http_duration: number;
+                    };
+                    file: {
+                        s3_filename: string;
+                        content_type: string;
+                        size: number;
+                        mtime: string;
+                        md5: string;
+                        sha256: string;
+                        s3_uri: string;
+                        s3_version_id: string;
+                        s3_etag: string;
+                        s3_parts: number[];
+                    };
+                    tags?: string[] | undefined;
+                };
+            };
+        } | undefined;
+    };
     task_gen_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
     task_save_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
     user_tags: string[];
@@ -657,9 +2395,9 @@ export declare const DbDtoToUpload: z.ZodPipe<z.ZodObject<{
     asset_name: string;
     metadata_metadata: string | null;
     task_upload_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_s3_complete_state: string;
+    task_s3_complete_state: string | null;
     task_s3_complete_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_gen_metadata_state: string;
+    task_gen_metadata_state: string | null;
     task_gen_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
     task_save_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
     user_tags: string;

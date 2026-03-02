@@ -5,6 +5,7 @@ import { MetadataMetadata } from '@dsbunny/metadata-schema';
 import { RobustTask } from "@dsbunny/robust-task-schema";
 import { sqliteDateSchema } from './sqlite-date.schema.js';
 import { jsonSafeParser } from './json-safe-parser.js';
+import { TranscodeTaskStateSchema } from "./transcode.schema.js";
 import { S3URI } from './uri.schema.js';
 
 export const CanSaveStatus = z.object({
@@ -110,9 +111,9 @@ export const Upload = z.object({
 	// `upload` is a client driven state machine
 	task_upload_status: z.enum(RobustTask.StatusValues),
 	// `s3_complete` and `gen_metadata` are server driven state machines
-	task_s3_complete_state: z.enum(RobustTask.StatusValues),
+	task_s3_complete_state: TranscodeTaskStateSchema,
 	task_s3_complete_status: z.enum(RobustTask.StatusValues),
-	task_gen_metadata_state: z.enum(RobustTask.StatusValues),
+	task_gen_metadata_state: TranscodeTaskStateSchema,
 	task_gen_metadata_status: z.enum(RobustTask.StatusValues),
 	// `save` is a server driven state machine
 	task_save_status: z.enum(RobustTask.StatusValues),
@@ -166,9 +167,9 @@ export const DbDtoToUpload = z.object({
 	asset_name: z.string().min(1).max(255),
 	metadata_metadata: z.string().max(65535).nullable(),
 	task_upload_status: z.enum(RobustTask.StatusValues),
-	task_s3_complete_state: z.string().min(1).max(65535),
+	task_s3_complete_state: z.string().max(65535).nullable(),
 	task_s3_complete_status: z.enum(RobustTask.StatusValues),
-	task_gen_metadata_state: z.string().min(1).max(65535),
+	task_gen_metadata_state: z.string().max(65535).nullable(),
 	task_gen_metadata_status: z.enum(RobustTask.StatusValues),
 	task_save_status: z.enum(RobustTask.StatusValues),
 	user_tags: z.string().max(65535),
@@ -211,7 +212,7 @@ export const DbDtoToUpload = z.object({
 		});
 		return z.NEVER;
 	}
-	const task_s3_complete_state_result = jsonSafeParser(z.enum(RobustTask.StatusValues)).safeParse(dto.task_s3_complete_state);
+	const task_s3_complete_state_result = jsonSafeParser(TranscodeTaskStateSchema).safeParse(dto.task_s3_complete_state);
 	if(!task_s3_complete_state_result.success) {
 		ctx.addIssue({
 			code: "custom",
@@ -220,7 +221,7 @@ export const DbDtoToUpload = z.object({
 		});
 		return z.NEVER;
 	}
-	const task_gen_metadata_state_result = jsonSafeParser(z.enum(RobustTask.StatusValues)).safeParse(dto.task_gen_metadata_state);
+	const task_gen_metadata_state_result = jsonSafeParser(TranscodeTaskStateSchema).safeParse(dto.task_gen_metadata_state);
 	if(!task_gen_metadata_state_result.success) {
 		ctx.addIssue({
 			code: "custom",
