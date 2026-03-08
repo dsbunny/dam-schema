@@ -5,6 +5,7 @@ import { MetadataMetadata } from '@dsbunny/metadata-schema';
 import { RobustTask } from "@dsbunny/robust-task-schema";
 import { sqliteDateSchema } from './sqlite-date.schema.js';
 import { jsonSafeParser } from './json-safe-parser.js';
+import { CompleteMultipartUploadResponse, S3CompleteTaskStateSchema } from './s3-complete.schema.js';
 import { TranscodeTaskStateSchema } from "./transcode.schema.js";
 import { S3URI } from './uri.schema.js';
 
@@ -39,31 +40,6 @@ export const DbDtoToCanSaveStatus = z.object({
 	};
 });
 
-export const S3Metadata = z.object({
-	"$metadata": z.object({
-		attempts: z.number()
-			.describe('The number of times this operation was attempted.'),
-		httpStatusCode: z.number()
-			.describe('The status code of the last HTTP response received for this operation.'),
-		requestId: z.string()
-			.describe('A unique identifier for the last request sent for this operation. Often requested by AWS service teams to aid in debugging.'),
-		totalRetryDelay: z.number()
-			.describe('The total amount of time (in milliseconds) that was spent waiting between retry attempts.'),
-	})
-		.describe('Metadata pertaining to this request.'),
-	Bucket: z.string()
-		.describe('The name of the bucket that contains the newly created object.'),
-	ETag: z.string()
-		.describe('Entity tag that identifies the newly created object\'s data.'),
-	Key: z.string()
-		.describe('The object key of the newly created object.'),
-	Location: z.string()
-		.describe('The URI that identifies the newly created object.'),
-	VersionId: z.string()
-		.describe('Version ID of the newly created object, in case the bucket has versioning turned on.'),
-});
-export type S3Metadata = z.infer<typeof S3Metadata>;
-
 export const S3Part = z.object({
 	part_number: z.number().min(1).max(10000)
 		.describe('The part number of the part. This is a positive integer between 1 and 10,000.'),
@@ -86,7 +62,7 @@ export const Upload = z.object({
 		.describe('The asset ID of the upload'),
 	s3_upload_id: z.string().min(2).max(2048).optional()
 		.describe('The S3 upload ID of the upload'),
-	s3_metadata: S3Metadata.optional()
+	s3_metadata: CompleteMultipartUploadResponse.optional()
 		.describe('The S3 metadata of the upload'),
 	s3_version_id: z.string().min(2).max(255).optional()
 		.describe('The S3 version ID of the upload'),
@@ -111,7 +87,7 @@ export const Upload = z.object({
 	// `upload` is a client driven state machine
 	task_upload_status: z.enum(RobustTask.StatusValues),
 	// `s3_complete` and `gen_metadata` are server driven state machines
-	task_s3_complete_state: TranscodeTaskStateSchema,
+	task_s3_complete_state: S3CompleteTaskStateSchema,
 	task_s3_complete_status: z.enum(RobustTask.StatusValues),
 	task_gen_metadata_state: TranscodeTaskStateSchema,
 	task_gen_metadata_status: z.enum(RobustTask.StatusValues),
@@ -137,6 +113,11 @@ export const ValidatedUpload = Upload.required({
 	size: true,
 });
 export type ValidatedUpload = z.infer<typeof ValidatedUpload>;
+
+export const ValidatedUploadWithMetadata = ValidatedUpload.required({
+	metadata_metadata: true,
+});
+export type ValidatedUploadWithMetadata = z.infer<typeof ValidatedUploadWithMetadata>;
 
 export const DbDtoFromUpload = Upload.transform((upload: Upload) => {
 	return {
@@ -180,43 +161,43 @@ export const DbDtoToUpload = z.object({
 })
 .transform((dto, ctx): Upload => {
 	const s3_metadata_result = !dto.s3_metadata
-		? { success: true, data: undefined }
-		: jsonSafeParser(S3Metadata).safeParse(dto.s3_metadata);
+		? { success: true, data: undefined, error: undefined }
+		: jsonSafeParser(CompleteMultipartUploadResponse).safeParse(dto.s3_metadata);
 	if(!s3_metadata_result.success) {
 		ctx.addIssue({
 			code: "custom",
-			message: 'Invalid S3 metadata',
+			message: `Invalid S3 metadata: ${z.prettifyError(s3_metadata_result.error as z.ZodError)}`,
 			fatal: true,
 		});
 		return z.NEVER;
 	}
 	const s3_parts_result = !dto.s3_parts
-		? { success: true, data: undefined }
+		? { success: true, data: undefined, error: undefined }
 		: jsonSafeParser(z.array(S3Part)).safeParse(dto.s3_parts);
 	if(!s3_parts_result.success) {
 		ctx.addIssue({
 			code: "custom",
-			message: 'Invalid S3 parts',
+			message: `Invalid S3 parts: ${z.prettifyError(s3_parts_result.error as z.ZodError)}`,
 			fatal: true,
 		});
 		return z.NEVER;
 	}
 	const metadata_metadata_result = !dto.metadata_metadata
-		? { success: true, data: undefined }
+		? { success: true, data: undefined, error: undefined }
 		: jsonSafeParser(MetadataMetadata).safeParse(dto.metadata_metadata);
 	if(!metadata_metadata_result.success) {
 		ctx.addIssue({
 			code: "custom",
-			message: 'Invalid metadata-metadata',
+			message: `Invalid metadata-metadata: ${z.prettifyError(metadata_metadata_result.error as z.ZodError)}`,
 			fatal: true,
 		});
 		return z.NEVER;
 	}
-	const task_s3_complete_state_result = jsonSafeParser(TranscodeTaskStateSchema).safeParse(dto.task_s3_complete_state);
+	const task_s3_complete_state_result = jsonSafeParser(S3CompleteTaskStateSchema).safeParse(dto.task_s3_complete_state);
 	if(!task_s3_complete_state_result.success) {
 		ctx.addIssue({
 			code: "custom",
-			message: 'Invalid s3_complete task state',
+			message: `Invalid s3_complete task state: ${z.prettifyError(task_s3_complete_state_result.error)}`,
 			fatal: true,
 		});
 		return z.NEVER;
@@ -225,7 +206,7 @@ export const DbDtoToUpload = z.object({
 	if(!task_gen_metadata_state_result.success) {
 		ctx.addIssue({
 			code: "custom",
-			message: 'Invalid gen_metadata task state',
+			message: `Invalid gen_metadata task state: ${z.prettifyError(task_gen_metadata_state_result.error)}`,
 			fatal: true,
 		});
 		return z.NEVER;
@@ -234,7 +215,7 @@ export const DbDtoToUpload = z.object({
 	if(!user_tags_result.success) {
 		ctx.addIssue({
 			code: "custom",
-			message: 'Invalid tags',
+			message: `Invalid tags: ${z.prettifyError(user_tags_result.error)}`,
 			fatal: true,
 		});
 		return z.NEVER;
@@ -243,7 +224,7 @@ export const DbDtoToUpload = z.object({
 	if(!system_tags_result.success) {
 		ctx.addIssue({
 			code: "custom",
-			message: 'Invalid system tags',
+			message: `Invalid system tags: ${z.prettifyError(system_tags_result.error)}`,
 			fatal: true,
 		});
 		return z.NEVER;

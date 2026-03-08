@@ -1496,10 +1496,12 @@ export declare const AssetBase: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -1507,6 +1509,11 @@ export declare const AssetBase: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -1683,10 +1690,12 @@ export declare const AssetBase: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_metadata_status: z.ZodEnum<{
         pending: "pending";
@@ -1694,10 +1703,12 @@ export declare const AssetBase: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_poster_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -1706,10 +1717,12 @@ export declare const AssetBase: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -1717,6 +1730,11 @@ export declare const AssetBase: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -1893,10 +1911,12 @@ export declare const AssetBase: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_poster_status: z.ZodEnum<{
         pending: "pending";
@@ -1904,10 +1924,12 @@ export declare const AssetBase: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_animated_poster_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -1916,10 +1938,12 @@ export declare const AssetBase: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -1927,6 +1951,11 @@ export declare const AssetBase: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -2103,10 +2132,12 @@ export declare const AssetBase: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_animated_poster_status: z.ZodEnum<{
         pending: "pending";
@@ -2114,10 +2145,12 @@ export declare const AssetBase: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_poster_series_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -2126,10 +2159,12 @@ export declare const AssetBase: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -2137,6 +2172,11 @@ export declare const AssetBase: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -2313,10 +2353,12 @@ export declare const AssetBase: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_poster_series_status: z.ZodEnum<{
         pending: "pending";
@@ -2324,10 +2366,12 @@ export declare const AssetBase: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_tile_series_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -2336,10 +2380,12 @@ export declare const AssetBase: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -2347,6 +2393,11 @@ export declare const AssetBase: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -2523,10 +2574,12 @@ export declare const AssetBase: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_tile_series_status: z.ZodEnum<{
         pending: "pending";
@@ -2534,10 +2587,12 @@ export declare const AssetBase: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_prevue_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -2546,10 +2601,12 @@ export declare const AssetBase: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -2557,6 +2614,11 @@ export declare const AssetBase: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -2733,10 +2795,12 @@ export declare const AssetBase: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_prevue_status: z.ZodEnum<{
         pending: "pending";
@@ -2744,10 +2808,12 @@ export declare const AssetBase: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     is_settled: z.ZodBoolean;
     user_tags: z.ZodArray<z.ZodString>;
@@ -4455,10 +4521,12 @@ export declare const Asset: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -4466,6 +4534,11 @@ export declare const Asset: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -4642,10 +4715,12 @@ export declare const Asset: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_metadata_status: z.ZodEnum<{
         pending: "pending";
@@ -4653,10 +4728,12 @@ export declare const Asset: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_poster_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -4665,10 +4742,12 @@ export declare const Asset: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -4676,6 +4755,11 @@ export declare const Asset: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -4852,10 +4936,12 @@ export declare const Asset: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_poster_status: z.ZodEnum<{
         pending: "pending";
@@ -4863,10 +4949,12 @@ export declare const Asset: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_animated_poster_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -4875,10 +4963,12 @@ export declare const Asset: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -4886,6 +4976,11 @@ export declare const Asset: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -5062,10 +5157,12 @@ export declare const Asset: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_animated_poster_status: z.ZodEnum<{
         pending: "pending";
@@ -5073,10 +5170,12 @@ export declare const Asset: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_poster_series_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -5085,10 +5184,12 @@ export declare const Asset: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -5096,6 +5197,11 @@ export declare const Asset: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -5272,10 +5378,12 @@ export declare const Asset: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_poster_series_status: z.ZodEnum<{
         pending: "pending";
@@ -5283,10 +5391,12 @@ export declare const Asset: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_tile_series_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -5295,10 +5405,12 @@ export declare const Asset: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -5306,6 +5418,11 @@ export declare const Asset: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -5482,10 +5599,12 @@ export declare const Asset: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_tile_series_status: z.ZodEnum<{
         pending: "pending";
@@ -5493,10 +5612,12 @@ export declare const Asset: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_prevue_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -5505,10 +5626,12 @@ export declare const Asset: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -5516,6 +5639,11 @@ export declare const Asset: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -5692,10 +5820,12 @@ export declare const Asset: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_prevue_status: z.ZodEnum<{
         pending: "pending";
@@ -5703,10 +5833,12 @@ export declare const Asset: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     is_settled: z.ZodBoolean;
     user_tags: z.ZodArray<z.ZodString>;
@@ -7406,10 +7538,12 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -7417,6 +7551,11 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -7593,10 +7732,12 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_metadata_status: z.ZodEnum<{
         pending: "pending";
@@ -7604,10 +7745,12 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_poster_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -7616,10 +7759,12 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -7627,6 +7772,11 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -7803,10 +7953,12 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_poster_status: z.ZodEnum<{
         pending: "pending";
@@ -7814,10 +7966,12 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_animated_poster_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -7826,10 +7980,12 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -7837,6 +7993,11 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -8013,10 +8174,12 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_animated_poster_status: z.ZodEnum<{
         pending: "pending";
@@ -8024,10 +8187,12 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_poster_series_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -8036,10 +8201,12 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -8047,6 +8214,11 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -8223,10 +8395,12 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_poster_series_status: z.ZodEnum<{
         pending: "pending";
@@ -8234,10 +8408,12 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_tile_series_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -8246,10 +8422,12 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -8257,6 +8435,11 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -8433,10 +8616,12 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_tile_series_status: z.ZodEnum<{
         pending: "pending";
@@ -8444,10 +8629,12 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_prevue_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -8456,10 +8643,12 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -8467,6 +8656,11 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -8643,10 +8837,12 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_prevue_status: z.ZodEnum<{
         pending: "pending";
@@ -8654,10 +8850,12 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     is_settled: z.ZodBoolean;
     user_tags: z.ZodArray<z.ZodString>;
@@ -8866,18 +9064,18 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
     tags: string;
     tenant_id: string;
     name: string;
-    task_gen_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_gen_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_gen_animated_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_animated_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_gen_poster_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_poster_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_gen_tile_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_tile_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_gen_prevue_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_prevue_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_gen_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_gen_animated_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_animated_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_gen_poster_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_poster_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_gen_tile_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_tile_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_gen_prevue_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_prevue_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     is_settled: boolean;
     poster_metadata?: {
         type: "poster";
@@ -9801,13 +9999,18 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
         tags?: string[] | undefined;
     };
     task_gen_metadata_state: {
-        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
         createdAt: string;
         attempts: number;
         startedAt?: string | undefined;
         updatedAt?: string | undefined;
         finishedAt?: string | undefined;
         runtimeToken?: string | undefined;
+        data?: unknown;
+        config?: {
+            timeoutMs: number;
+            maxAttempts: number;
+        } | undefined;
         error?: {
             message: string;
             timestamp: string;
@@ -9970,16 +10173,21 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
             };
         } | undefined;
     };
-    task_gen_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     task_gen_poster_state: {
-        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
         createdAt: string;
         attempts: number;
         startedAt?: string | undefined;
         updatedAt?: string | undefined;
         finishedAt?: string | undefined;
         runtimeToken?: string | undefined;
+        data?: unknown;
+        config?: {
+            timeoutMs: number;
+            maxAttempts: number;
+        } | undefined;
         error?: {
             message: string;
             timestamp: string;
@@ -10142,16 +10350,21 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
             };
         } | undefined;
     };
-    task_gen_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     task_gen_animated_poster_state: {
-        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
         createdAt: string;
         attempts: number;
         startedAt?: string | undefined;
         updatedAt?: string | undefined;
         finishedAt?: string | undefined;
         runtimeToken?: string | undefined;
+        data?: unknown;
+        config?: {
+            timeoutMs: number;
+            maxAttempts: number;
+        } | undefined;
         error?: {
             message: string;
             timestamp: string;
@@ -10314,16 +10527,21 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
             };
         } | undefined;
     };
-    task_gen_animated_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_animated_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_animated_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_animated_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     task_gen_poster_series_state: {
-        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
         createdAt: string;
         attempts: number;
         startedAt?: string | undefined;
         updatedAt?: string | undefined;
         finishedAt?: string | undefined;
         runtimeToken?: string | undefined;
+        data?: unknown;
+        config?: {
+            timeoutMs: number;
+            maxAttempts: number;
+        } | undefined;
         error?: {
             message: string;
             timestamp: string;
@@ -10486,16 +10704,21 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
             };
         } | undefined;
     };
-    task_gen_poster_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_poster_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_poster_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_poster_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     task_gen_tile_series_state: {
-        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
         createdAt: string;
         attempts: number;
         startedAt?: string | undefined;
         updatedAt?: string | undefined;
         finishedAt?: string | undefined;
         runtimeToken?: string | undefined;
+        data?: unknown;
+        config?: {
+            timeoutMs: number;
+            maxAttempts: number;
+        } | undefined;
         error?: {
             message: string;
             timestamp: string;
@@ -10658,16 +10881,21 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
             };
         } | undefined;
     };
-    task_gen_tile_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_tile_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_tile_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_tile_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     task_gen_prevue_state: {
-        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
         createdAt: string;
         attempts: number;
         startedAt?: string | undefined;
         updatedAt?: string | undefined;
         finishedAt?: string | undefined;
         runtimeToken?: string | undefined;
+        data?: unknown;
+        config?: {
+            timeoutMs: number;
+            maxAttempts: number;
+        } | undefined;
         error?: {
             message: string;
             timestamp: string;
@@ -10830,8 +11058,8 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
             };
         } | undefined;
     };
-    task_gen_prevue_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_prevue_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_prevue_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_prevue_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     is_settled: boolean;
     user_tags: string[];
     system_tags: string[];
@@ -12654,10 +12882,12 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -12665,6 +12895,11 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -12841,10 +13076,12 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_metadata_status: z.ZodEnum<{
         pending: "pending";
@@ -12852,10 +13089,12 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_poster_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -12864,10 +13103,12 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -12875,6 +13116,11 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -13051,10 +13297,12 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_poster_status: z.ZodEnum<{
         pending: "pending";
@@ -13062,10 +13310,12 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_animated_poster_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -13074,10 +13324,12 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -13085,6 +13337,11 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -13261,10 +13518,12 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_animated_poster_status: z.ZodEnum<{
         pending: "pending";
@@ -13272,10 +13531,12 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_poster_series_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -13284,10 +13545,12 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -13295,6 +13558,11 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -13471,10 +13739,12 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_poster_series_status: z.ZodEnum<{
         pending: "pending";
@@ -13482,10 +13752,12 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_tile_series_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -13494,10 +13766,12 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -13505,6 +13779,11 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -13681,10 +13960,12 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_tile_series_status: z.ZodEnum<{
         pending: "pending";
@@ -13692,10 +13973,12 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_prevue_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -13704,10 +13987,12 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -13715,6 +14000,11 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -13891,10 +14181,12 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_prevue_status: z.ZodEnum<{
         pending: "pending";
@@ -13902,10 +14194,12 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     is_settled: z.ZodBoolean;
     user_tags: z.ZodArray<z.ZodString>;
@@ -14128,18 +14422,18 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
     tags: string;
     tenant_id: string;
     name: string;
-    task_gen_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_gen_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_gen_animated_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_animated_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_gen_poster_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_poster_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_gen_tile_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_tile_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_gen_prevue_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_prevue_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_gen_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_gen_animated_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_animated_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_gen_poster_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_poster_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_gen_tile_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_tile_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_gen_prevue_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_prevue_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     is_settled: boolean;
     asset_id: string;
     create_timestamp: string;
@@ -14930,13 +15224,18 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
         tags?: string[] | undefined;
     };
     task_gen_metadata_state: {
-        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
         createdAt: string;
         attempts: number;
         startedAt?: string | undefined;
         updatedAt?: string | undefined;
         finishedAt?: string | undefined;
         runtimeToken?: string | undefined;
+        data?: unknown;
+        config?: {
+            timeoutMs: number;
+            maxAttempts: number;
+        } | undefined;
         error?: {
             message: string;
             timestamp: string;
@@ -15099,16 +15398,21 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
             };
         } | undefined;
     };
-    task_gen_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     task_gen_poster_state: {
-        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
         createdAt: string;
         attempts: number;
         startedAt?: string | undefined;
         updatedAt?: string | undefined;
         finishedAt?: string | undefined;
         runtimeToken?: string | undefined;
+        data?: unknown;
+        config?: {
+            timeoutMs: number;
+            maxAttempts: number;
+        } | undefined;
         error?: {
             message: string;
             timestamp: string;
@@ -15271,16 +15575,21 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
             };
         } | undefined;
     };
-    task_gen_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     task_gen_animated_poster_state: {
-        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
         createdAt: string;
         attempts: number;
         startedAt?: string | undefined;
         updatedAt?: string | undefined;
         finishedAt?: string | undefined;
         runtimeToken?: string | undefined;
+        data?: unknown;
+        config?: {
+            timeoutMs: number;
+            maxAttempts: number;
+        } | undefined;
         error?: {
             message: string;
             timestamp: string;
@@ -15443,16 +15752,21 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
             };
         } | undefined;
     };
-    task_gen_animated_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_animated_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_animated_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_animated_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     task_gen_poster_series_state: {
-        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
         createdAt: string;
         attempts: number;
         startedAt?: string | undefined;
         updatedAt?: string | undefined;
         finishedAt?: string | undefined;
         runtimeToken?: string | undefined;
+        data?: unknown;
+        config?: {
+            timeoutMs: number;
+            maxAttempts: number;
+        } | undefined;
         error?: {
             message: string;
             timestamp: string;
@@ -15615,16 +15929,21 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
             };
         } | undefined;
     };
-    task_gen_poster_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_poster_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_poster_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_poster_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     task_gen_tile_series_state: {
-        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
         createdAt: string;
         attempts: number;
         startedAt?: string | undefined;
         updatedAt?: string | undefined;
         finishedAt?: string | undefined;
         runtimeToken?: string | undefined;
+        data?: unknown;
+        config?: {
+            timeoutMs: number;
+            maxAttempts: number;
+        } | undefined;
         error?: {
             message: string;
             timestamp: string;
@@ -15787,16 +16106,21 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
             };
         } | undefined;
     };
-    task_gen_tile_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_tile_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_tile_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_tile_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     task_gen_prevue_state: {
-        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
         createdAt: string;
         attempts: number;
         startedAt?: string | undefined;
         updatedAt?: string | undefined;
         finishedAt?: string | undefined;
         runtimeToken?: string | undefined;
+        data?: unknown;
+        config?: {
+            timeoutMs: number;
+            maxAttempts: number;
+        } | undefined;
         error?: {
             message: string;
             timestamp: string;
@@ -15959,8 +16283,8 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
             };
         } | undefined;
     };
-    task_gen_prevue_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_prevue_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_prevue_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_prevue_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     is_settled: boolean;
     user_tags: string[];
     system_tags: string[];
@@ -16312,10 +16636,12 @@ export declare const DbDtoToAssetBase: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_metadata_status: z.ZodEnum<{
         pending: "pending";
@@ -16323,10 +16649,12 @@ export declare const DbDtoToAssetBase: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_poster_state: z.ZodString;
     task_gen_poster_status: z.ZodEnum<{
@@ -16335,10 +16663,12 @@ export declare const DbDtoToAssetBase: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_poster_status: z.ZodEnum<{
         pending: "pending";
@@ -16346,10 +16676,12 @@ export declare const DbDtoToAssetBase: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_animated_poster_state: z.ZodString;
     task_gen_animated_poster_status: z.ZodEnum<{
@@ -16358,10 +16690,12 @@ export declare const DbDtoToAssetBase: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_animated_poster_status: z.ZodEnum<{
         pending: "pending";
@@ -16369,10 +16703,12 @@ export declare const DbDtoToAssetBase: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_poster_series_state: z.ZodString;
     task_gen_poster_series_status: z.ZodEnum<{
@@ -16381,10 +16717,12 @@ export declare const DbDtoToAssetBase: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_poster_series_status: z.ZodEnum<{
         pending: "pending";
@@ -16392,10 +16730,12 @@ export declare const DbDtoToAssetBase: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_tile_series_state: z.ZodString;
     task_gen_tile_series_status: z.ZodEnum<{
@@ -16404,10 +16744,12 @@ export declare const DbDtoToAssetBase: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_tile_series_status: z.ZodEnum<{
         pending: "pending";
@@ -16415,10 +16757,12 @@ export declare const DbDtoToAssetBase: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_prevue_state: z.ZodString;
     task_gen_prevue_status: z.ZodEnum<{
@@ -16427,10 +16771,12 @@ export declare const DbDtoToAssetBase: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_prevue_status: z.ZodEnum<{
         pending: "pending";
@@ -16438,10 +16784,12 @@ export declare const DbDtoToAssetBase: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     is_settled: z.ZodNumber;
     user_tags: z.ZodString;
@@ -17230,13 +17578,18 @@ export declare const DbDtoToAssetBase: z.ZodPipe<z.ZodObject<{
         tags?: string[] | undefined;
     };
     task_gen_metadata_state: {
-        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
         createdAt: string;
         attempts: number;
         startedAt?: string | undefined;
         updatedAt?: string | undefined;
         finishedAt?: string | undefined;
         runtimeToken?: string | undefined;
+        data?: unknown;
+        config?: {
+            timeoutMs: number;
+            maxAttempts: number;
+        } | undefined;
         error?: {
             message: string;
             timestamp: string;
@@ -17399,16 +17752,21 @@ export declare const DbDtoToAssetBase: z.ZodPipe<z.ZodObject<{
             };
         } | undefined;
     };
-    task_gen_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     task_gen_poster_state: {
-        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
         createdAt: string;
         attempts: number;
         startedAt?: string | undefined;
         updatedAt?: string | undefined;
         finishedAt?: string | undefined;
         runtimeToken?: string | undefined;
+        data?: unknown;
+        config?: {
+            timeoutMs: number;
+            maxAttempts: number;
+        } | undefined;
         error?: {
             message: string;
             timestamp: string;
@@ -17571,16 +17929,21 @@ export declare const DbDtoToAssetBase: z.ZodPipe<z.ZodObject<{
             };
         } | undefined;
     };
-    task_gen_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     task_gen_animated_poster_state: {
-        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
         createdAt: string;
         attempts: number;
         startedAt?: string | undefined;
         updatedAt?: string | undefined;
         finishedAt?: string | undefined;
         runtimeToken?: string | undefined;
+        data?: unknown;
+        config?: {
+            timeoutMs: number;
+            maxAttempts: number;
+        } | undefined;
         error?: {
             message: string;
             timestamp: string;
@@ -17743,16 +18106,21 @@ export declare const DbDtoToAssetBase: z.ZodPipe<z.ZodObject<{
             };
         } | undefined;
     };
-    task_gen_animated_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_animated_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_animated_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_animated_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     task_gen_poster_series_state: {
-        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
         createdAt: string;
         attempts: number;
         startedAt?: string | undefined;
         updatedAt?: string | undefined;
         finishedAt?: string | undefined;
         runtimeToken?: string | undefined;
+        data?: unknown;
+        config?: {
+            timeoutMs: number;
+            maxAttempts: number;
+        } | undefined;
         error?: {
             message: string;
             timestamp: string;
@@ -17915,16 +18283,21 @@ export declare const DbDtoToAssetBase: z.ZodPipe<z.ZodObject<{
             };
         } | undefined;
     };
-    task_gen_poster_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_poster_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_poster_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_poster_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     task_gen_tile_series_state: {
-        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
         createdAt: string;
         attempts: number;
         startedAt?: string | undefined;
         updatedAt?: string | undefined;
         finishedAt?: string | undefined;
         runtimeToken?: string | undefined;
+        data?: unknown;
+        config?: {
+            timeoutMs: number;
+            maxAttempts: number;
+        } | undefined;
         error?: {
             message: string;
             timestamp: string;
@@ -18087,16 +18460,21 @@ export declare const DbDtoToAssetBase: z.ZodPipe<z.ZodObject<{
             };
         } | undefined;
     };
-    task_gen_tile_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_tile_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_tile_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_tile_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     task_gen_prevue_state: {
-        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
         createdAt: string;
         attempts: number;
         startedAt?: string | undefined;
         updatedAt?: string | undefined;
         finishedAt?: string | undefined;
         runtimeToken?: string | undefined;
+        data?: unknown;
+        config?: {
+            timeoutMs: number;
+            maxAttempts: number;
+        } | undefined;
         error?: {
             message: string;
             timestamp: string;
@@ -18259,8 +18637,8 @@ export declare const DbDtoToAssetBase: z.ZodPipe<z.ZodObject<{
             };
         } | undefined;
     };
-    task_gen_prevue_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_prevue_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_prevue_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_prevue_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     is_settled: boolean;
     user_tags: string[];
     system_tags: string[];
@@ -18598,23 +18976,23 @@ export declare const DbDtoToAssetBase: z.ZodPipe<z.ZodObject<{
     tile_series_metadata: string | null;
     prevue_metadata: string | null;
     task_gen_metadata_state: string;
-    task_gen_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     task_gen_poster_state: string;
-    task_gen_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     task_gen_animated_poster_state: string;
-    task_gen_animated_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_animated_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_animated_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_animated_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     task_gen_poster_series_state: string;
-    task_gen_poster_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_poster_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_poster_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_poster_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     task_gen_tile_series_state: string;
-    task_gen_tile_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_tile_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_tile_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_tile_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     task_gen_prevue_state: string;
-    task_gen_prevue_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_prevue_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_prevue_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_prevue_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     is_settled: number;
     user_tags: string;
     system_tags: string;
@@ -18641,10 +19019,12 @@ export declare const DbDtoToAsset: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_metadata_status: z.ZodEnum<{
         pending: "pending";
@@ -18652,10 +19032,12 @@ export declare const DbDtoToAsset: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_poster_state: z.ZodString;
     task_gen_poster_status: z.ZodEnum<{
@@ -18664,10 +19046,12 @@ export declare const DbDtoToAsset: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_poster_status: z.ZodEnum<{
         pending: "pending";
@@ -18675,10 +19059,12 @@ export declare const DbDtoToAsset: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_animated_poster_state: z.ZodString;
     task_gen_animated_poster_status: z.ZodEnum<{
@@ -18687,10 +19073,12 @@ export declare const DbDtoToAsset: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_animated_poster_status: z.ZodEnum<{
         pending: "pending";
@@ -18698,10 +19086,12 @@ export declare const DbDtoToAsset: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_poster_series_state: z.ZodString;
     task_gen_poster_series_status: z.ZodEnum<{
@@ -18710,10 +19100,12 @@ export declare const DbDtoToAsset: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_poster_series_status: z.ZodEnum<{
         pending: "pending";
@@ -18721,10 +19113,12 @@ export declare const DbDtoToAsset: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_tile_series_state: z.ZodString;
     task_gen_tile_series_status: z.ZodEnum<{
@@ -18733,10 +19127,12 @@ export declare const DbDtoToAsset: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_tile_series_status: z.ZodEnum<{
         pending: "pending";
@@ -18744,10 +19140,12 @@ export declare const DbDtoToAsset: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_prevue_state: z.ZodString;
     task_gen_prevue_status: z.ZodEnum<{
@@ -18756,10 +19154,12 @@ export declare const DbDtoToAsset: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_prevue_status: z.ZodEnum<{
         pending: "pending";
@@ -18767,10 +19167,12 @@ export declare const DbDtoToAsset: z.ZodPipe<z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     is_settled: z.ZodNumber;
     user_tags: z.ZodString;
@@ -19562,13 +19964,18 @@ export declare const DbDtoToAsset: z.ZodPipe<z.ZodObject<{
         tags?: string[] | undefined;
     };
     task_gen_metadata_state: {
-        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
         createdAt: string;
         attempts: number;
         startedAt?: string | undefined;
         updatedAt?: string | undefined;
         finishedAt?: string | undefined;
         runtimeToken?: string | undefined;
+        data?: unknown;
+        config?: {
+            timeoutMs: number;
+            maxAttempts: number;
+        } | undefined;
         error?: {
             message: string;
             timestamp: string;
@@ -19731,16 +20138,21 @@ export declare const DbDtoToAsset: z.ZodPipe<z.ZodObject<{
             };
         } | undefined;
     };
-    task_gen_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     task_gen_poster_state: {
-        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
         createdAt: string;
         attempts: number;
         startedAt?: string | undefined;
         updatedAt?: string | undefined;
         finishedAt?: string | undefined;
         runtimeToken?: string | undefined;
+        data?: unknown;
+        config?: {
+            timeoutMs: number;
+            maxAttempts: number;
+        } | undefined;
         error?: {
             message: string;
             timestamp: string;
@@ -19903,16 +20315,21 @@ export declare const DbDtoToAsset: z.ZodPipe<z.ZodObject<{
             };
         } | undefined;
     };
-    task_gen_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     task_gen_animated_poster_state: {
-        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
         createdAt: string;
         attempts: number;
         startedAt?: string | undefined;
         updatedAt?: string | undefined;
         finishedAt?: string | undefined;
         runtimeToken?: string | undefined;
+        data?: unknown;
+        config?: {
+            timeoutMs: number;
+            maxAttempts: number;
+        } | undefined;
         error?: {
             message: string;
             timestamp: string;
@@ -20075,16 +20492,21 @@ export declare const DbDtoToAsset: z.ZodPipe<z.ZodObject<{
             };
         } | undefined;
     };
-    task_gen_animated_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_animated_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_animated_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_animated_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     task_gen_poster_series_state: {
-        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
         createdAt: string;
         attempts: number;
         startedAt?: string | undefined;
         updatedAt?: string | undefined;
         finishedAt?: string | undefined;
         runtimeToken?: string | undefined;
+        data?: unknown;
+        config?: {
+            timeoutMs: number;
+            maxAttempts: number;
+        } | undefined;
         error?: {
             message: string;
             timestamp: string;
@@ -20247,16 +20669,21 @@ export declare const DbDtoToAsset: z.ZodPipe<z.ZodObject<{
             };
         } | undefined;
     };
-    task_gen_poster_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_poster_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_poster_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_poster_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     task_gen_tile_series_state: {
-        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
         createdAt: string;
         attempts: number;
         startedAt?: string | undefined;
         updatedAt?: string | undefined;
         finishedAt?: string | undefined;
         runtimeToken?: string | undefined;
+        data?: unknown;
+        config?: {
+            timeoutMs: number;
+            maxAttempts: number;
+        } | undefined;
         error?: {
             message: string;
             timestamp: string;
@@ -20419,16 +20846,21 @@ export declare const DbDtoToAsset: z.ZodPipe<z.ZodObject<{
             };
         } | undefined;
     };
-    task_gen_tile_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_tile_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_tile_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_tile_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     task_gen_prevue_state: {
-        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+        status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
         createdAt: string;
         attempts: number;
         startedAt?: string | undefined;
         updatedAt?: string | undefined;
         finishedAt?: string | undefined;
         runtimeToken?: string | undefined;
+        data?: unknown;
+        config?: {
+            timeoutMs: number;
+            maxAttempts: number;
+        } | undefined;
         error?: {
             message: string;
             timestamp: string;
@@ -20591,8 +21023,8 @@ export declare const DbDtoToAsset: z.ZodPipe<z.ZodObject<{
             };
         } | undefined;
     };
-    task_gen_prevue_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_prevue_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_prevue_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_prevue_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     is_settled: boolean;
     user_tags: string[];
     system_tags: string[];
@@ -20938,23 +21370,23 @@ export declare const DbDtoToAsset: z.ZodPipe<z.ZodObject<{
     tile_series_metadata: string | null;
     prevue_metadata: string | null;
     task_gen_metadata_state: string;
-    task_gen_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_metadata_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     task_gen_poster_state: string;
-    task_gen_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     task_gen_animated_poster_state: string;
-    task_gen_animated_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_animated_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_animated_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_animated_poster_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     task_gen_poster_series_state: string;
-    task_gen_poster_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_poster_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_poster_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_poster_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     task_gen_tile_series_state: string;
-    task_gen_tile_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_tile_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_tile_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_tile_series_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     task_gen_prevue_state: string;
-    task_gen_prevue_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
-    task_save_prevue_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked" | "skipped" | "pending-paused" | "blocked-paused";
+    task_gen_prevue_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
+    task_save_prevue_status: "pending" | "running" | "succeeded" | "failed" | "rejected" | "blocked-dependency" | "blocked-input" | "skipped" | "pending-paused" | "blocked-dependency-paused" | "blocked-input-paused";
     is_settled: number;
     user_tags: string;
     system_tags: string;

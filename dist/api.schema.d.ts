@@ -1499,10 +1499,12 @@ export declare const ListAssetsResponse: z.ZodObject<{
                 succeeded: "succeeded";
                 failed: "failed";
                 rejected: "rejected";
-                blocked: "blocked";
+                "blocked-dependency": "blocked-dependency";
+                "blocked-input": "blocked-input";
                 skipped: "skipped";
                 "pending-paused": "pending-paused";
-                "blocked-paused": "blocked-paused";
+                "blocked-dependency-paused": "blocked-dependency-paused";
+                "blocked-input-paused": "blocked-input-paused";
             }>;
             createdAt: z.ZodISODateTime;
             startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -1510,6 +1512,11 @@ export declare const ListAssetsResponse: z.ZodObject<{
             finishedAt: z.ZodOptional<z.ZodISODateTime>;
             attempts: z.ZodNumber;
             runtimeToken: z.ZodOptional<z.ZodString>;
+            data: z.ZodOptional<z.ZodUnknown>;
+            config: z.ZodOptional<z.ZodObject<{
+                timeoutMs: z.ZodNumber;
+                maxAttempts: z.ZodNumber;
+            }, z.core.$strip>>;
             error: z.ZodOptional<z.ZodObject<{
                 message: z.ZodString;
                 code: z.ZodOptional<z.ZodString>;
@@ -1686,10 +1693,12 @@ export declare const ListAssetsResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_save_metadata_status: z.ZodEnum<{
             pending: "pending";
@@ -1697,10 +1706,12 @@ export declare const ListAssetsResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_gen_poster_state: z.ZodObject<{
             status: z.ZodEnum<{
@@ -1709,10 +1720,12 @@ export declare const ListAssetsResponse: z.ZodObject<{
                 succeeded: "succeeded";
                 failed: "failed";
                 rejected: "rejected";
-                blocked: "blocked";
+                "blocked-dependency": "blocked-dependency";
+                "blocked-input": "blocked-input";
                 skipped: "skipped";
                 "pending-paused": "pending-paused";
-                "blocked-paused": "blocked-paused";
+                "blocked-dependency-paused": "blocked-dependency-paused";
+                "blocked-input-paused": "blocked-input-paused";
             }>;
             createdAt: z.ZodISODateTime;
             startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -1720,6 +1733,11 @@ export declare const ListAssetsResponse: z.ZodObject<{
             finishedAt: z.ZodOptional<z.ZodISODateTime>;
             attempts: z.ZodNumber;
             runtimeToken: z.ZodOptional<z.ZodString>;
+            data: z.ZodOptional<z.ZodUnknown>;
+            config: z.ZodOptional<z.ZodObject<{
+                timeoutMs: z.ZodNumber;
+                maxAttempts: z.ZodNumber;
+            }, z.core.$strip>>;
             error: z.ZodOptional<z.ZodObject<{
                 message: z.ZodString;
                 code: z.ZodOptional<z.ZodString>;
@@ -1896,10 +1914,12 @@ export declare const ListAssetsResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_save_poster_status: z.ZodEnum<{
             pending: "pending";
@@ -1907,10 +1927,12 @@ export declare const ListAssetsResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_gen_animated_poster_state: z.ZodObject<{
             status: z.ZodEnum<{
@@ -1919,10 +1941,12 @@ export declare const ListAssetsResponse: z.ZodObject<{
                 succeeded: "succeeded";
                 failed: "failed";
                 rejected: "rejected";
-                blocked: "blocked";
+                "blocked-dependency": "blocked-dependency";
+                "blocked-input": "blocked-input";
                 skipped: "skipped";
                 "pending-paused": "pending-paused";
-                "blocked-paused": "blocked-paused";
+                "blocked-dependency-paused": "blocked-dependency-paused";
+                "blocked-input-paused": "blocked-input-paused";
             }>;
             createdAt: z.ZodISODateTime;
             startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -1930,6 +1954,11 @@ export declare const ListAssetsResponse: z.ZodObject<{
             finishedAt: z.ZodOptional<z.ZodISODateTime>;
             attempts: z.ZodNumber;
             runtimeToken: z.ZodOptional<z.ZodString>;
+            data: z.ZodOptional<z.ZodUnknown>;
+            config: z.ZodOptional<z.ZodObject<{
+                timeoutMs: z.ZodNumber;
+                maxAttempts: z.ZodNumber;
+            }, z.core.$strip>>;
             error: z.ZodOptional<z.ZodObject<{
                 message: z.ZodString;
                 code: z.ZodOptional<z.ZodString>;
@@ -2106,10 +2135,12 @@ export declare const ListAssetsResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_save_animated_poster_status: z.ZodEnum<{
             pending: "pending";
@@ -2117,10 +2148,12 @@ export declare const ListAssetsResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_gen_poster_series_state: z.ZodObject<{
             status: z.ZodEnum<{
@@ -2129,10 +2162,12 @@ export declare const ListAssetsResponse: z.ZodObject<{
                 succeeded: "succeeded";
                 failed: "failed";
                 rejected: "rejected";
-                blocked: "blocked";
+                "blocked-dependency": "blocked-dependency";
+                "blocked-input": "blocked-input";
                 skipped: "skipped";
                 "pending-paused": "pending-paused";
-                "blocked-paused": "blocked-paused";
+                "blocked-dependency-paused": "blocked-dependency-paused";
+                "blocked-input-paused": "blocked-input-paused";
             }>;
             createdAt: z.ZodISODateTime;
             startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -2140,6 +2175,11 @@ export declare const ListAssetsResponse: z.ZodObject<{
             finishedAt: z.ZodOptional<z.ZodISODateTime>;
             attempts: z.ZodNumber;
             runtimeToken: z.ZodOptional<z.ZodString>;
+            data: z.ZodOptional<z.ZodUnknown>;
+            config: z.ZodOptional<z.ZodObject<{
+                timeoutMs: z.ZodNumber;
+                maxAttempts: z.ZodNumber;
+            }, z.core.$strip>>;
             error: z.ZodOptional<z.ZodObject<{
                 message: z.ZodString;
                 code: z.ZodOptional<z.ZodString>;
@@ -2316,10 +2356,12 @@ export declare const ListAssetsResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_save_poster_series_status: z.ZodEnum<{
             pending: "pending";
@@ -2327,10 +2369,12 @@ export declare const ListAssetsResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_gen_tile_series_state: z.ZodObject<{
             status: z.ZodEnum<{
@@ -2339,10 +2383,12 @@ export declare const ListAssetsResponse: z.ZodObject<{
                 succeeded: "succeeded";
                 failed: "failed";
                 rejected: "rejected";
-                blocked: "blocked";
+                "blocked-dependency": "blocked-dependency";
+                "blocked-input": "blocked-input";
                 skipped: "skipped";
                 "pending-paused": "pending-paused";
-                "blocked-paused": "blocked-paused";
+                "blocked-dependency-paused": "blocked-dependency-paused";
+                "blocked-input-paused": "blocked-input-paused";
             }>;
             createdAt: z.ZodISODateTime;
             startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -2350,6 +2396,11 @@ export declare const ListAssetsResponse: z.ZodObject<{
             finishedAt: z.ZodOptional<z.ZodISODateTime>;
             attempts: z.ZodNumber;
             runtimeToken: z.ZodOptional<z.ZodString>;
+            data: z.ZodOptional<z.ZodUnknown>;
+            config: z.ZodOptional<z.ZodObject<{
+                timeoutMs: z.ZodNumber;
+                maxAttempts: z.ZodNumber;
+            }, z.core.$strip>>;
             error: z.ZodOptional<z.ZodObject<{
                 message: z.ZodString;
                 code: z.ZodOptional<z.ZodString>;
@@ -2526,10 +2577,12 @@ export declare const ListAssetsResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_save_tile_series_status: z.ZodEnum<{
             pending: "pending";
@@ -2537,10 +2590,12 @@ export declare const ListAssetsResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_gen_prevue_state: z.ZodObject<{
             status: z.ZodEnum<{
@@ -2549,10 +2604,12 @@ export declare const ListAssetsResponse: z.ZodObject<{
                 succeeded: "succeeded";
                 failed: "failed";
                 rejected: "rejected";
-                blocked: "blocked";
+                "blocked-dependency": "blocked-dependency";
+                "blocked-input": "blocked-input";
                 skipped: "skipped";
                 "pending-paused": "pending-paused";
-                "blocked-paused": "blocked-paused";
+                "blocked-dependency-paused": "blocked-dependency-paused";
+                "blocked-input-paused": "blocked-input-paused";
             }>;
             createdAt: z.ZodISODateTime;
             startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -2560,6 +2617,11 @@ export declare const ListAssetsResponse: z.ZodObject<{
             finishedAt: z.ZodOptional<z.ZodISODateTime>;
             attempts: z.ZodNumber;
             runtimeToken: z.ZodOptional<z.ZodString>;
+            data: z.ZodOptional<z.ZodUnknown>;
+            config: z.ZodOptional<z.ZodObject<{
+                timeoutMs: z.ZodNumber;
+                maxAttempts: z.ZodNumber;
+            }, z.core.$strip>>;
             error: z.ZodOptional<z.ZodObject<{
                 message: z.ZodString;
                 code: z.ZodOptional<z.ZodString>;
@@ -2736,10 +2798,12 @@ export declare const ListAssetsResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_save_prevue_status: z.ZodEnum<{
             pending: "pending";
@@ -2747,10 +2811,12 @@ export declare const ListAssetsResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         is_settled: z.ZodBoolean;
         user_tags: z.ZodArray<z.ZodString>;
@@ -4455,10 +4521,12 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                 succeeded: "succeeded";
                 failed: "failed";
                 rejected: "rejected";
-                blocked: "blocked";
+                "blocked-dependency": "blocked-dependency";
+                "blocked-input": "blocked-input";
                 skipped: "skipped";
                 "pending-paused": "pending-paused";
-                "blocked-paused": "blocked-paused";
+                "blocked-dependency-paused": "blocked-dependency-paused";
+                "blocked-input-paused": "blocked-input-paused";
             }>;
             createdAt: z.ZodISODateTime;
             startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -4466,6 +4534,11 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
             finishedAt: z.ZodOptional<z.ZodISODateTime>;
             attempts: z.ZodNumber;
             runtimeToken: z.ZodOptional<z.ZodString>;
+            data: z.ZodOptional<z.ZodUnknown>;
+            config: z.ZodOptional<z.ZodObject<{
+                timeoutMs: z.ZodNumber;
+                maxAttempts: z.ZodNumber;
+            }, z.core.$strip>>;
             error: z.ZodOptional<z.ZodObject<{
                 message: z.ZodString;
                 code: z.ZodOptional<z.ZodString>;
@@ -4642,10 +4715,12 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_save_metadata_status: z.ZodEnum<{
             pending: "pending";
@@ -4653,10 +4728,12 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_gen_poster_state: z.ZodObject<{
             status: z.ZodEnum<{
@@ -4665,10 +4742,12 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                 succeeded: "succeeded";
                 failed: "failed";
                 rejected: "rejected";
-                blocked: "blocked";
+                "blocked-dependency": "blocked-dependency";
+                "blocked-input": "blocked-input";
                 skipped: "skipped";
                 "pending-paused": "pending-paused";
-                "blocked-paused": "blocked-paused";
+                "blocked-dependency-paused": "blocked-dependency-paused";
+                "blocked-input-paused": "blocked-input-paused";
             }>;
             createdAt: z.ZodISODateTime;
             startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -4676,6 +4755,11 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
             finishedAt: z.ZodOptional<z.ZodISODateTime>;
             attempts: z.ZodNumber;
             runtimeToken: z.ZodOptional<z.ZodString>;
+            data: z.ZodOptional<z.ZodUnknown>;
+            config: z.ZodOptional<z.ZodObject<{
+                timeoutMs: z.ZodNumber;
+                maxAttempts: z.ZodNumber;
+            }, z.core.$strip>>;
             error: z.ZodOptional<z.ZodObject<{
                 message: z.ZodString;
                 code: z.ZodOptional<z.ZodString>;
@@ -4852,10 +4936,12 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_save_poster_status: z.ZodEnum<{
             pending: "pending";
@@ -4863,10 +4949,12 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_gen_animated_poster_state: z.ZodObject<{
             status: z.ZodEnum<{
@@ -4875,10 +4963,12 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                 succeeded: "succeeded";
                 failed: "failed";
                 rejected: "rejected";
-                blocked: "blocked";
+                "blocked-dependency": "blocked-dependency";
+                "blocked-input": "blocked-input";
                 skipped: "skipped";
                 "pending-paused": "pending-paused";
-                "blocked-paused": "blocked-paused";
+                "blocked-dependency-paused": "blocked-dependency-paused";
+                "blocked-input-paused": "blocked-input-paused";
             }>;
             createdAt: z.ZodISODateTime;
             startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -4886,6 +4976,11 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
             finishedAt: z.ZodOptional<z.ZodISODateTime>;
             attempts: z.ZodNumber;
             runtimeToken: z.ZodOptional<z.ZodString>;
+            data: z.ZodOptional<z.ZodUnknown>;
+            config: z.ZodOptional<z.ZodObject<{
+                timeoutMs: z.ZodNumber;
+                maxAttempts: z.ZodNumber;
+            }, z.core.$strip>>;
             error: z.ZodOptional<z.ZodObject<{
                 message: z.ZodString;
                 code: z.ZodOptional<z.ZodString>;
@@ -5062,10 +5157,12 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_save_animated_poster_status: z.ZodEnum<{
             pending: "pending";
@@ -5073,10 +5170,12 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_gen_poster_series_state: z.ZodObject<{
             status: z.ZodEnum<{
@@ -5085,10 +5184,12 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                 succeeded: "succeeded";
                 failed: "failed";
                 rejected: "rejected";
-                blocked: "blocked";
+                "blocked-dependency": "blocked-dependency";
+                "blocked-input": "blocked-input";
                 skipped: "skipped";
                 "pending-paused": "pending-paused";
-                "blocked-paused": "blocked-paused";
+                "blocked-dependency-paused": "blocked-dependency-paused";
+                "blocked-input-paused": "blocked-input-paused";
             }>;
             createdAt: z.ZodISODateTime;
             startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -5096,6 +5197,11 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
             finishedAt: z.ZodOptional<z.ZodISODateTime>;
             attempts: z.ZodNumber;
             runtimeToken: z.ZodOptional<z.ZodString>;
+            data: z.ZodOptional<z.ZodUnknown>;
+            config: z.ZodOptional<z.ZodObject<{
+                timeoutMs: z.ZodNumber;
+                maxAttempts: z.ZodNumber;
+            }, z.core.$strip>>;
             error: z.ZodOptional<z.ZodObject<{
                 message: z.ZodString;
                 code: z.ZodOptional<z.ZodString>;
@@ -5272,10 +5378,12 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_save_poster_series_status: z.ZodEnum<{
             pending: "pending";
@@ -5283,10 +5391,12 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_gen_tile_series_state: z.ZodObject<{
             status: z.ZodEnum<{
@@ -5295,10 +5405,12 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                 succeeded: "succeeded";
                 failed: "failed";
                 rejected: "rejected";
-                blocked: "blocked";
+                "blocked-dependency": "blocked-dependency";
+                "blocked-input": "blocked-input";
                 skipped: "skipped";
                 "pending-paused": "pending-paused";
-                "blocked-paused": "blocked-paused";
+                "blocked-dependency-paused": "blocked-dependency-paused";
+                "blocked-input-paused": "blocked-input-paused";
             }>;
             createdAt: z.ZodISODateTime;
             startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -5306,6 +5418,11 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
             finishedAt: z.ZodOptional<z.ZodISODateTime>;
             attempts: z.ZodNumber;
             runtimeToken: z.ZodOptional<z.ZodString>;
+            data: z.ZodOptional<z.ZodUnknown>;
+            config: z.ZodOptional<z.ZodObject<{
+                timeoutMs: z.ZodNumber;
+                maxAttempts: z.ZodNumber;
+            }, z.core.$strip>>;
             error: z.ZodOptional<z.ZodObject<{
                 message: z.ZodString;
                 code: z.ZodOptional<z.ZodString>;
@@ -5482,10 +5599,12 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_save_tile_series_status: z.ZodEnum<{
             pending: "pending";
@@ -5493,10 +5612,12 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_gen_prevue_state: z.ZodObject<{
             status: z.ZodEnum<{
@@ -5505,10 +5626,12 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
                 succeeded: "succeeded";
                 failed: "failed";
                 rejected: "rejected";
-                blocked: "blocked";
+                "blocked-dependency": "blocked-dependency";
+                "blocked-input": "blocked-input";
                 skipped: "skipped";
                 "pending-paused": "pending-paused";
-                "blocked-paused": "blocked-paused";
+                "blocked-dependency-paused": "blocked-dependency-paused";
+                "blocked-input-paused": "blocked-input-paused";
             }>;
             createdAt: z.ZodISODateTime;
             startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -5516,6 +5639,11 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
             finishedAt: z.ZodOptional<z.ZodISODateTime>;
             attempts: z.ZodNumber;
             runtimeToken: z.ZodOptional<z.ZodString>;
+            data: z.ZodOptional<z.ZodUnknown>;
+            config: z.ZodOptional<z.ZodObject<{
+                timeoutMs: z.ZodNumber;
+                maxAttempts: z.ZodNumber;
+            }, z.core.$strip>>;
             error: z.ZodOptional<z.ZodObject<{
                 message: z.ZodString;
                 code: z.ZodOptional<z.ZodString>;
@@ -5692,10 +5820,12 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_save_prevue_status: z.ZodEnum<{
             pending: "pending";
@@ -5703,10 +5833,12 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         is_settled: z.ZodBoolean;
         user_tags: z.ZodArray<z.ZodString>;
@@ -7423,10 +7555,12 @@ export declare const GetAssetResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -7434,6 +7568,11 @@ export declare const GetAssetResponse: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -7610,10 +7749,12 @@ export declare const GetAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_metadata_status: z.ZodEnum<{
         pending: "pending";
@@ -7621,10 +7762,12 @@ export declare const GetAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_poster_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -7633,10 +7776,12 @@ export declare const GetAssetResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -7644,6 +7789,11 @@ export declare const GetAssetResponse: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -7820,10 +7970,12 @@ export declare const GetAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_poster_status: z.ZodEnum<{
         pending: "pending";
@@ -7831,10 +7983,12 @@ export declare const GetAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_animated_poster_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -7843,10 +7997,12 @@ export declare const GetAssetResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -7854,6 +8010,11 @@ export declare const GetAssetResponse: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -8030,10 +8191,12 @@ export declare const GetAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_animated_poster_status: z.ZodEnum<{
         pending: "pending";
@@ -8041,10 +8204,12 @@ export declare const GetAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_poster_series_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -8053,10 +8218,12 @@ export declare const GetAssetResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -8064,6 +8231,11 @@ export declare const GetAssetResponse: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -8240,10 +8412,12 @@ export declare const GetAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_poster_series_status: z.ZodEnum<{
         pending: "pending";
@@ -8251,10 +8425,12 @@ export declare const GetAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_tile_series_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -8263,10 +8439,12 @@ export declare const GetAssetResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -8274,6 +8452,11 @@ export declare const GetAssetResponse: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -8450,10 +8633,12 @@ export declare const GetAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_tile_series_status: z.ZodEnum<{
         pending: "pending";
@@ -8461,10 +8646,12 @@ export declare const GetAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_prevue_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -8473,10 +8660,12 @@ export declare const GetAssetResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -8484,6 +8673,11 @@ export declare const GetAssetResponse: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -8660,10 +8854,12 @@ export declare const GetAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_prevue_status: z.ZodEnum<{
         pending: "pending";
@@ -8671,10 +8867,12 @@ export declare const GetAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     is_settled: z.ZodBoolean;
     user_tags: z.ZodArray<z.ZodString>;
@@ -10380,10 +10578,12 @@ export declare const RecoverAssetResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -10391,6 +10591,11 @@ export declare const RecoverAssetResponse: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -10567,10 +10772,12 @@ export declare const RecoverAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_metadata_status: z.ZodEnum<{
         pending: "pending";
@@ -10578,10 +10785,12 @@ export declare const RecoverAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_poster_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -10590,10 +10799,12 @@ export declare const RecoverAssetResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -10601,6 +10812,11 @@ export declare const RecoverAssetResponse: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -10777,10 +10993,12 @@ export declare const RecoverAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_poster_status: z.ZodEnum<{
         pending: "pending";
@@ -10788,10 +11006,12 @@ export declare const RecoverAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_animated_poster_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -10800,10 +11020,12 @@ export declare const RecoverAssetResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -10811,6 +11033,11 @@ export declare const RecoverAssetResponse: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -10987,10 +11214,12 @@ export declare const RecoverAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_animated_poster_status: z.ZodEnum<{
         pending: "pending";
@@ -10998,10 +11227,12 @@ export declare const RecoverAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_poster_series_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -11010,10 +11241,12 @@ export declare const RecoverAssetResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -11021,6 +11254,11 @@ export declare const RecoverAssetResponse: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -11197,10 +11435,12 @@ export declare const RecoverAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_poster_series_status: z.ZodEnum<{
         pending: "pending";
@@ -11208,10 +11448,12 @@ export declare const RecoverAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_tile_series_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -11220,10 +11462,12 @@ export declare const RecoverAssetResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -11231,6 +11475,11 @@ export declare const RecoverAssetResponse: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -11407,10 +11656,12 @@ export declare const RecoverAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_tile_series_status: z.ZodEnum<{
         pending: "pending";
@@ -11418,10 +11669,12 @@ export declare const RecoverAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_prevue_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -11430,10 +11683,12 @@ export declare const RecoverAssetResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -11441,6 +11696,11 @@ export declare const RecoverAssetResponse: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -11617,10 +11877,12 @@ export declare const RecoverAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_prevue_status: z.ZodEnum<{
         pending: "pending";
@@ -11628,10 +11890,12 @@ export declare const RecoverAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     is_settled: z.ZodBoolean;
     user_tags: z.ZodArray<z.ZodString>;
@@ -13364,10 +13628,12 @@ export declare const PatchAssetResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -13375,6 +13641,11 @@ export declare const PatchAssetResponse: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -13551,10 +13822,12 @@ export declare const PatchAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_metadata_status: z.ZodEnum<{
         pending: "pending";
@@ -13562,10 +13835,12 @@ export declare const PatchAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_poster_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -13574,10 +13849,12 @@ export declare const PatchAssetResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -13585,6 +13862,11 @@ export declare const PatchAssetResponse: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -13761,10 +14043,12 @@ export declare const PatchAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_poster_status: z.ZodEnum<{
         pending: "pending";
@@ -13772,10 +14056,12 @@ export declare const PatchAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_animated_poster_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -13784,10 +14070,12 @@ export declare const PatchAssetResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -13795,6 +14083,11 @@ export declare const PatchAssetResponse: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -13971,10 +14264,12 @@ export declare const PatchAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_animated_poster_status: z.ZodEnum<{
         pending: "pending";
@@ -13982,10 +14277,12 @@ export declare const PatchAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_poster_series_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -13994,10 +14291,12 @@ export declare const PatchAssetResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -14005,6 +14304,11 @@ export declare const PatchAssetResponse: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -14181,10 +14485,12 @@ export declare const PatchAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_poster_series_status: z.ZodEnum<{
         pending: "pending";
@@ -14192,10 +14498,12 @@ export declare const PatchAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_tile_series_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -14204,10 +14512,12 @@ export declare const PatchAssetResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -14215,6 +14525,11 @@ export declare const PatchAssetResponse: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -14391,10 +14706,12 @@ export declare const PatchAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_tile_series_status: z.ZodEnum<{
         pending: "pending";
@@ -14402,10 +14719,12 @@ export declare const PatchAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_prevue_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -14414,10 +14733,12 @@ export declare const PatchAssetResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -14425,6 +14746,11 @@ export declare const PatchAssetResponse: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -14601,10 +14927,12 @@ export declare const PatchAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_prevue_status: z.ZodEnum<{
         pending: "pending";
@@ -14612,10 +14940,12 @@ export declare const PatchAssetResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     is_settled: z.ZodBoolean;
     user_tags: z.ZodArray<z.ZodString>;
@@ -14847,17 +15177,26 @@ export declare const ListUploadsResponse: z.ZodObject<{
         asset_id: z.ZodUUID;
         s3_upload_id: z.ZodOptional<z.ZodString>;
         s3_metadata: z.ZodOptional<z.ZodObject<{
-            $metadata: z.ZodObject<{
-                attempts: z.ZodNumber;
-                httpStatusCode: z.ZodNumber;
-                requestId: z.ZodString;
-                totalRetryDelay: z.ZodNumber;
-            }, z.core.$strip>;
-            Bucket: z.ZodString;
-            ETag: z.ZodString;
-            Key: z.ZodString;
             Location: z.ZodString;
-            VersionId: z.ZodString;
+            Bucket: z.ZodString;
+            Key: z.ZodString;
+            Expiration: z.ZodOptional<z.ZodString>;
+            ETag: z.ZodString;
+            ChecksumCRC32: z.ZodOptional<z.ZodString>;
+            ChecksumCRC32C: z.ZodOptional<z.ZodString>;
+            ChecksumSHA1: z.ZodOptional<z.ZodString>;
+            ChecksumSHA256: z.ZodOptional<z.ZodString>;
+            ServerSideEncryption: z.ZodOptional<z.ZodEnum<{
+                AES256: "AES256";
+                "aws:kms": "aws:kms";
+                "aws:kms:dsse": "aws:kms:dsse";
+            }>>;
+            VersionId: z.ZodOptional<z.ZodString>;
+            SSEKMSKeyId: z.ZodOptional<z.ZodString>;
+            BucketKeyEnabled: z.ZodOptional<z.ZodBoolean>;
+            RequestCharged: z.ZodOptional<z.ZodEnum<{
+                requester: "requester";
+            }>>;
         }, z.core.$strip>>;
         s3_version_id: z.ZodOptional<z.ZodString>;
         s3_etag: z.ZodOptional<z.ZodString>;
@@ -14897,10 +15236,12 @@ export declare const ListUploadsResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_s3_complete_state: z.ZodObject<{
             status: z.ZodEnum<{
@@ -14909,10 +15250,12 @@ export declare const ListUploadsResponse: z.ZodObject<{
                 succeeded: "succeeded";
                 failed: "failed";
                 rejected: "rejected";
-                blocked: "blocked";
+                "blocked-dependency": "blocked-dependency";
+                "blocked-input": "blocked-input";
                 skipped: "skipped";
                 "pending-paused": "pending-paused";
-                "blocked-paused": "blocked-paused";
+                "blocked-dependency-paused": "blocked-dependency-paused";
+                "blocked-input-paused": "blocked-input-paused";
             }>;
             createdAt: z.ZodISODateTime;
             startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -14920,6 +15263,11 @@ export declare const ListUploadsResponse: z.ZodObject<{
             finishedAt: z.ZodOptional<z.ZodISODateTime>;
             attempts: z.ZodNumber;
             runtimeToken: z.ZodOptional<z.ZodString>;
+            data: z.ZodOptional<z.ZodUnknown>;
+            config: z.ZodOptional<z.ZodObject<{
+                timeoutMs: z.ZodNumber;
+                maxAttempts: z.ZodNumber;
+            }, z.core.$strip>>;
             error: z.ZodOptional<z.ZodObject<{
                 message: z.ZodString;
                 code: z.ZodOptional<z.ZodString>;
@@ -14931,163 +15279,30 @@ export declare const ListUploadsResponse: z.ZodObject<{
                 issues: z.ZodOptional<z.ZodArray<z.ZodString>>;
                 timestamp: z.ZodISODateTime;
             }, z.core.$strip>>;
-            progress: z.ZodOptional<z.ZodNumber>;
+            progress: z.ZodOptional<z.ZodObject<{
+                elapsed_seconds: z.ZodNumber;
+            }, z.core.$strip>>;
             result: z.ZodOptional<z.ZodObject<{
-                metadata: z.ZodUnion<readonly [z.ZodObject<{
-                    type: z.ZodLiteral<"metadata">;
-                    timings: z.ZodObject<{
-                        metadata_http_duration: z.ZodNumber;
-                    }, z.core.$strip>;
-                    file: z.ZodObject<{
-                        s3_filename: z.ZodString;
-                        content_type: z.ZodString;
-                        size: z.ZodNumber;
-                        mtime: z.ZodString;
-                        md5: z.ZodString;
-                        sha256: z.ZodString;
-                        s3_uri: z.ZodString;
-                        s3_version_id: z.ZodString;
-                        s3_etag: z.ZodString;
-                        s3_parts: z.ZodArray<z.ZodNumber>;
-                    }, z.core.$strip>;
-                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-                }, z.core.$strip>, z.ZodDiscriminatedUnion<[z.ZodObject<{
-                    type: z.ZodLiteral<"poster">;
-                    poster: z.ZodArray<z.ZodObject<{
-                        type: z.ZodLiteral<"poster-image">;
-                        quality: z.ZodEnum<{
-                            medium: "medium";
-                            high: "high";
-                            sample: "sample";
-                        }>;
-                        width: z.ZodNumber;
-                        height: z.ZodNumber;
-                        blurhash: z.ZodOptional<z.ZodString>;
-                        timings: z.ZodObject<{
-                            poster_canvas_duration: z.ZodOptional<z.ZodNumber>;
-                            poster_ffmpeg_duration: z.ZodOptional<z.ZodNumber>;
-                            poster_avifenc_duration: z.ZodOptional<z.ZodNumber>;
-                            poster_sharp_duration: z.ZodOptional<z.ZodNumber>;
-                            poster_ck_duration: z.ZodNumber;
-                            poster_http_duration: z.ZodNumber;
-                        }, z.core.$strip>;
-                        file: z.ZodObject<{
-                            s3_filename: z.ZodString;
-                            content_type: z.ZodString;
-                            size: z.ZodNumber;
-                            mtime: z.ZodString;
-                            md5: z.ZodString;
-                            sha256: z.ZodString;
-                            s3_uri: z.ZodString;
-                            s3_version_id: z.ZodString;
-                            s3_etag: z.ZodString;
-                            s3_parts: z.ZodArray<z.ZodNumber>;
-                        }, z.core.$strip>;
-                        tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-                    }, z.core.$strip>>;
-                }, z.core.$strip>, z.ZodObject<{
-                    type: z.ZodLiteral<"animated-poster">;
-                    poster: z.ZodObject<{
-                        type: z.ZodLiteral<"animated-poster-image">;
-                        width: z.ZodNumber;
-                        height: z.ZodNumber;
-                        timings: z.ZodObject<{
-                            animated_poster_ffmpeg_duration: z.ZodNumber;
-                            animated_poster_ck_duration: z.ZodNumber;
-                            animated_poster_http_duration: z.ZodNumber;
-                        }, z.core.$strip>;
-                        file: z.ZodObject<{
-                            s3_filename: z.ZodString;
-                            content_type: z.ZodString;
-                            size: z.ZodNumber;
-                            mtime: z.ZodString;
-                            md5: z.ZodString;
-                            sha256: z.ZodString;
-                            s3_uri: z.ZodString;
-                            s3_version_id: z.ZodString;
-                            s3_etag: z.ZodString;
-                            s3_parts: z.ZodArray<z.ZodNumber>;
-                        }, z.core.$strip>;
-                        tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-                    }, z.core.$strip>;
-                }, z.core.$strip>, z.ZodObject<{
-                    type: z.ZodLiteral<"poster-series">;
-                    series: z.ZodArray<z.ZodObject<{
-                        type: z.ZodLiteral<"poster-series-image">;
-                        index: z.ZodNumber;
-                        quality: z.ZodEnum<{
-                            medium: "medium";
-                            high: "high";
-                            sample: "sample";
-                        }>;
-                        width: z.ZodNumber;
-                        height: z.ZodNumber;
-                        blurhash: z.ZodOptional<z.ZodString>;
-                        timings: z.ZodObject<{
-                            poster_series_ffmpeg_duration: z.ZodNumber;
-                            poster_series_avifenc_duration: z.ZodOptional<z.ZodNumber>;
-                            poster_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
-                            poster_series_ck_duration: z.ZodNumber;
-                            poster_series_http_duration: z.ZodNumber;
-                        }, z.core.$strip>;
-                        file: z.ZodObject<{
-                            s3_filename: z.ZodString;
-                            content_type: z.ZodString;
-                            size: z.ZodNumber;
-                            mtime: z.ZodString;
-                            md5: z.ZodString;
-                            sha256: z.ZodString;
-                            s3_uri: z.ZodString;
-                            s3_version_id: z.ZodString;
-                            s3_etag: z.ZodString;
-                            s3_parts: z.ZodArray<z.ZodNumber>;
-                        }, z.core.$strip>;
-                        tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-                    }, z.core.$strip>>;
-                }, z.core.$strip>, z.ZodObject<{
-                    type: z.ZodLiteral<"tile-series-metadata">;
-                    timings: z.ZodObject<{
-                        metadata_http_duration: z.ZodNumber;
-                    }, z.core.$strip>;
-                    file: z.ZodObject<{
-                        s3_filename: z.ZodString;
-                        content_type: z.ZodString;
-                        size: z.ZodNumber;
-                        mtime: z.ZodString;
-                        md5: z.ZodString;
-                        sha256: z.ZodString;
-                        s3_uri: z.ZodString;
-                        s3_version_id: z.ZodString;
-                        s3_etag: z.ZodString;
-                        s3_parts: z.ZodArray<z.ZodNumber>;
-                    }, z.core.$strip>;
-                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-                }, z.core.$strip>, z.ZodObject<{
-                    type: z.ZodLiteral<"prevue">;
-                    prevue: z.ZodObject<{
-                        type: z.ZodLiteral<"prevue-video">;
-                        width: z.ZodNumber;
-                        height: z.ZodNumber;
-                        timings: z.ZodObject<{
-                            prevue_ffmpeg_duration: z.ZodNumber;
-                            prevue_ck_duration: z.ZodNumber;
-                            prevue_http_duration: z.ZodNumber;
-                        }, z.core.$strip>;
-                        file: z.ZodObject<{
-                            s3_filename: z.ZodString;
-                            content_type: z.ZodString;
-                            size: z.ZodNumber;
-                            mtime: z.ZodString;
-                            md5: z.ZodString;
-                            sha256: z.ZodString;
-                            s3_uri: z.ZodString;
-                            s3_version_id: z.ZodString;
-                            s3_etag: z.ZodString;
-                            s3_parts: z.ZodArray<z.ZodNumber>;
-                        }, z.core.$strip>;
-                        tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-                    }, z.core.$strip>;
-                }, z.core.$strip>], "type">]>;
+                Location: z.ZodString;
+                Bucket: z.ZodString;
+                Key: z.ZodString;
+                Expiration: z.ZodOptional<z.ZodString>;
+                ETag: z.ZodString;
+                ChecksumCRC32: z.ZodOptional<z.ZodString>;
+                ChecksumCRC32C: z.ZodOptional<z.ZodString>;
+                ChecksumSHA1: z.ZodOptional<z.ZodString>;
+                ChecksumSHA256: z.ZodOptional<z.ZodString>;
+                ServerSideEncryption: z.ZodOptional<z.ZodEnum<{
+                    AES256: "AES256";
+                    "aws:kms": "aws:kms";
+                    "aws:kms:dsse": "aws:kms:dsse";
+                }>>;
+                VersionId: z.ZodOptional<z.ZodString>;
+                SSEKMSKeyId: z.ZodOptional<z.ZodString>;
+                BucketKeyEnabled: z.ZodOptional<z.ZodBoolean>;
+                RequestCharged: z.ZodOptional<z.ZodEnum<{
+                    requester: "requester";
+                }>>;
             }, z.core.$strip>>;
         }, z.core.$strip>;
         task_s3_complete_status: z.ZodEnum<{
@@ -15096,10 +15311,12 @@ export declare const ListUploadsResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_gen_metadata_state: z.ZodObject<{
             status: z.ZodEnum<{
@@ -15108,10 +15325,12 @@ export declare const ListUploadsResponse: z.ZodObject<{
                 succeeded: "succeeded";
                 failed: "failed";
                 rejected: "rejected";
-                blocked: "blocked";
+                "blocked-dependency": "blocked-dependency";
+                "blocked-input": "blocked-input";
                 skipped: "skipped";
                 "pending-paused": "pending-paused";
-                "blocked-paused": "blocked-paused";
+                "blocked-dependency-paused": "blocked-dependency-paused";
+                "blocked-input-paused": "blocked-input-paused";
             }>;
             createdAt: z.ZodISODateTime;
             startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -15119,6 +15338,11 @@ export declare const ListUploadsResponse: z.ZodObject<{
             finishedAt: z.ZodOptional<z.ZodISODateTime>;
             attempts: z.ZodNumber;
             runtimeToken: z.ZodOptional<z.ZodString>;
+            data: z.ZodOptional<z.ZodUnknown>;
+            config: z.ZodOptional<z.ZodObject<{
+                timeoutMs: z.ZodNumber;
+                maxAttempts: z.ZodNumber;
+            }, z.core.$strip>>;
             error: z.ZodOptional<z.ZodObject<{
                 message: z.ZodString;
                 code: z.ZodOptional<z.ZodString>;
@@ -15295,10 +15519,12 @@ export declare const ListUploadsResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_save_status: z.ZodEnum<{
             pending: "pending";
@@ -15306,10 +15532,12 @@ export declare const ListUploadsResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         user_tags: z.ZodArray<z.ZodString>;
         system_tags: z.ZodArray<z.ZodString>;
@@ -15339,17 +15567,26 @@ export declare const GetUploadResponse: z.ZodObject<{
     asset_id: z.ZodUUID;
     s3_upload_id: z.ZodOptional<z.ZodString>;
     s3_metadata: z.ZodOptional<z.ZodObject<{
-        $metadata: z.ZodObject<{
-            attempts: z.ZodNumber;
-            httpStatusCode: z.ZodNumber;
-            requestId: z.ZodString;
-            totalRetryDelay: z.ZodNumber;
-        }, z.core.$strip>;
-        Bucket: z.ZodString;
-        ETag: z.ZodString;
-        Key: z.ZodString;
         Location: z.ZodString;
-        VersionId: z.ZodString;
+        Bucket: z.ZodString;
+        Key: z.ZodString;
+        Expiration: z.ZodOptional<z.ZodString>;
+        ETag: z.ZodString;
+        ChecksumCRC32: z.ZodOptional<z.ZodString>;
+        ChecksumCRC32C: z.ZodOptional<z.ZodString>;
+        ChecksumSHA1: z.ZodOptional<z.ZodString>;
+        ChecksumSHA256: z.ZodOptional<z.ZodString>;
+        ServerSideEncryption: z.ZodOptional<z.ZodEnum<{
+            AES256: "AES256";
+            "aws:kms": "aws:kms";
+            "aws:kms:dsse": "aws:kms:dsse";
+        }>>;
+        VersionId: z.ZodOptional<z.ZodString>;
+        SSEKMSKeyId: z.ZodOptional<z.ZodString>;
+        BucketKeyEnabled: z.ZodOptional<z.ZodBoolean>;
+        RequestCharged: z.ZodOptional<z.ZodEnum<{
+            requester: "requester";
+        }>>;
     }, z.core.$strip>>;
     s3_version_id: z.ZodOptional<z.ZodString>;
     s3_etag: z.ZodOptional<z.ZodString>;
@@ -15389,10 +15626,12 @@ export declare const GetUploadResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_s3_complete_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -15401,10 +15640,12 @@ export declare const GetUploadResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -15412,6 +15653,11 @@ export declare const GetUploadResponse: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -15423,163 +15669,30 @@ export declare const GetUploadResponse: z.ZodObject<{
             issues: z.ZodOptional<z.ZodArray<z.ZodString>>;
             timestamp: z.ZodISODateTime;
         }, z.core.$strip>>;
-        progress: z.ZodOptional<z.ZodNumber>;
+        progress: z.ZodOptional<z.ZodObject<{
+            elapsed_seconds: z.ZodNumber;
+        }, z.core.$strip>>;
         result: z.ZodOptional<z.ZodObject<{
-            metadata: z.ZodUnion<readonly [z.ZodObject<{
-                type: z.ZodLiteral<"metadata">;
-                timings: z.ZodObject<{
-                    metadata_http_duration: z.ZodNumber;
-                }, z.core.$strip>;
-                file: z.ZodObject<{
-                    s3_filename: z.ZodString;
-                    content_type: z.ZodString;
-                    size: z.ZodNumber;
-                    mtime: z.ZodString;
-                    md5: z.ZodString;
-                    sha256: z.ZodString;
-                    s3_uri: z.ZodString;
-                    s3_version_id: z.ZodString;
-                    s3_etag: z.ZodString;
-                    s3_parts: z.ZodArray<z.ZodNumber>;
-                }, z.core.$strip>;
-                tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, z.core.$strip>, z.ZodDiscriminatedUnion<[z.ZodObject<{
-                type: z.ZodLiteral<"poster">;
-                poster: z.ZodArray<z.ZodObject<{
-                    type: z.ZodLiteral<"poster-image">;
-                    quality: z.ZodEnum<{
-                        medium: "medium";
-                        high: "high";
-                        sample: "sample";
-                    }>;
-                    width: z.ZodNumber;
-                    height: z.ZodNumber;
-                    blurhash: z.ZodOptional<z.ZodString>;
-                    timings: z.ZodObject<{
-                        poster_canvas_duration: z.ZodOptional<z.ZodNumber>;
-                        poster_ffmpeg_duration: z.ZodOptional<z.ZodNumber>;
-                        poster_avifenc_duration: z.ZodOptional<z.ZodNumber>;
-                        poster_sharp_duration: z.ZodOptional<z.ZodNumber>;
-                        poster_ck_duration: z.ZodNumber;
-                        poster_http_duration: z.ZodNumber;
-                    }, z.core.$strip>;
-                    file: z.ZodObject<{
-                        s3_filename: z.ZodString;
-                        content_type: z.ZodString;
-                        size: z.ZodNumber;
-                        mtime: z.ZodString;
-                        md5: z.ZodString;
-                        sha256: z.ZodString;
-                        s3_uri: z.ZodString;
-                        s3_version_id: z.ZodString;
-                        s3_etag: z.ZodString;
-                        s3_parts: z.ZodArray<z.ZodNumber>;
-                    }, z.core.$strip>;
-                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-                }, z.core.$strip>>;
-            }, z.core.$strip>, z.ZodObject<{
-                type: z.ZodLiteral<"animated-poster">;
-                poster: z.ZodObject<{
-                    type: z.ZodLiteral<"animated-poster-image">;
-                    width: z.ZodNumber;
-                    height: z.ZodNumber;
-                    timings: z.ZodObject<{
-                        animated_poster_ffmpeg_duration: z.ZodNumber;
-                        animated_poster_ck_duration: z.ZodNumber;
-                        animated_poster_http_duration: z.ZodNumber;
-                    }, z.core.$strip>;
-                    file: z.ZodObject<{
-                        s3_filename: z.ZodString;
-                        content_type: z.ZodString;
-                        size: z.ZodNumber;
-                        mtime: z.ZodString;
-                        md5: z.ZodString;
-                        sha256: z.ZodString;
-                        s3_uri: z.ZodString;
-                        s3_version_id: z.ZodString;
-                        s3_etag: z.ZodString;
-                        s3_parts: z.ZodArray<z.ZodNumber>;
-                    }, z.core.$strip>;
-                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-                }, z.core.$strip>;
-            }, z.core.$strip>, z.ZodObject<{
-                type: z.ZodLiteral<"poster-series">;
-                series: z.ZodArray<z.ZodObject<{
-                    type: z.ZodLiteral<"poster-series-image">;
-                    index: z.ZodNumber;
-                    quality: z.ZodEnum<{
-                        medium: "medium";
-                        high: "high";
-                        sample: "sample";
-                    }>;
-                    width: z.ZodNumber;
-                    height: z.ZodNumber;
-                    blurhash: z.ZodOptional<z.ZodString>;
-                    timings: z.ZodObject<{
-                        poster_series_ffmpeg_duration: z.ZodNumber;
-                        poster_series_avifenc_duration: z.ZodOptional<z.ZodNumber>;
-                        poster_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
-                        poster_series_ck_duration: z.ZodNumber;
-                        poster_series_http_duration: z.ZodNumber;
-                    }, z.core.$strip>;
-                    file: z.ZodObject<{
-                        s3_filename: z.ZodString;
-                        content_type: z.ZodString;
-                        size: z.ZodNumber;
-                        mtime: z.ZodString;
-                        md5: z.ZodString;
-                        sha256: z.ZodString;
-                        s3_uri: z.ZodString;
-                        s3_version_id: z.ZodString;
-                        s3_etag: z.ZodString;
-                        s3_parts: z.ZodArray<z.ZodNumber>;
-                    }, z.core.$strip>;
-                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-                }, z.core.$strip>>;
-            }, z.core.$strip>, z.ZodObject<{
-                type: z.ZodLiteral<"tile-series-metadata">;
-                timings: z.ZodObject<{
-                    metadata_http_duration: z.ZodNumber;
-                }, z.core.$strip>;
-                file: z.ZodObject<{
-                    s3_filename: z.ZodString;
-                    content_type: z.ZodString;
-                    size: z.ZodNumber;
-                    mtime: z.ZodString;
-                    md5: z.ZodString;
-                    sha256: z.ZodString;
-                    s3_uri: z.ZodString;
-                    s3_version_id: z.ZodString;
-                    s3_etag: z.ZodString;
-                    s3_parts: z.ZodArray<z.ZodNumber>;
-                }, z.core.$strip>;
-                tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, z.core.$strip>, z.ZodObject<{
-                type: z.ZodLiteral<"prevue">;
-                prevue: z.ZodObject<{
-                    type: z.ZodLiteral<"prevue-video">;
-                    width: z.ZodNumber;
-                    height: z.ZodNumber;
-                    timings: z.ZodObject<{
-                        prevue_ffmpeg_duration: z.ZodNumber;
-                        prevue_ck_duration: z.ZodNumber;
-                        prevue_http_duration: z.ZodNumber;
-                    }, z.core.$strip>;
-                    file: z.ZodObject<{
-                        s3_filename: z.ZodString;
-                        content_type: z.ZodString;
-                        size: z.ZodNumber;
-                        mtime: z.ZodString;
-                        md5: z.ZodString;
-                        sha256: z.ZodString;
-                        s3_uri: z.ZodString;
-                        s3_version_id: z.ZodString;
-                        s3_etag: z.ZodString;
-                        s3_parts: z.ZodArray<z.ZodNumber>;
-                    }, z.core.$strip>;
-                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-                }, z.core.$strip>;
-            }, z.core.$strip>], "type">]>;
+            Location: z.ZodString;
+            Bucket: z.ZodString;
+            Key: z.ZodString;
+            Expiration: z.ZodOptional<z.ZodString>;
+            ETag: z.ZodString;
+            ChecksumCRC32: z.ZodOptional<z.ZodString>;
+            ChecksumCRC32C: z.ZodOptional<z.ZodString>;
+            ChecksumSHA1: z.ZodOptional<z.ZodString>;
+            ChecksumSHA256: z.ZodOptional<z.ZodString>;
+            ServerSideEncryption: z.ZodOptional<z.ZodEnum<{
+                AES256: "AES256";
+                "aws:kms": "aws:kms";
+                "aws:kms:dsse": "aws:kms:dsse";
+            }>>;
+            VersionId: z.ZodOptional<z.ZodString>;
+            SSEKMSKeyId: z.ZodOptional<z.ZodString>;
+            BucketKeyEnabled: z.ZodOptional<z.ZodBoolean>;
+            RequestCharged: z.ZodOptional<z.ZodEnum<{
+                requester: "requester";
+            }>>;
         }, z.core.$strip>>;
     }, z.core.$strip>;
     task_s3_complete_status: z.ZodEnum<{
@@ -15588,10 +15701,12 @@ export declare const GetUploadResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_metadata_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -15600,10 +15715,12 @@ export declare const GetUploadResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -15611,6 +15728,11 @@ export declare const GetUploadResponse: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -15787,10 +15909,12 @@ export declare const GetUploadResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_status: z.ZodEnum<{
         pending: "pending";
@@ -15798,10 +15922,12 @@ export declare const GetUploadResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     user_tags: z.ZodArray<z.ZodString>;
     system_tags: z.ZodArray<z.ZodString>;
@@ -17376,10 +17502,12 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -17387,6 +17515,11 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -17563,10 +17696,12 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_metadata_status: z.ZodEnum<{
         pending: "pending";
@@ -17574,10 +17709,12 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_poster_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -17586,10 +17723,12 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -17597,6 +17736,11 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -17773,10 +17917,12 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_poster_status: z.ZodEnum<{
         pending: "pending";
@@ -17784,10 +17930,12 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_animated_poster_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -17796,10 +17944,12 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -17807,6 +17957,11 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -17983,10 +18138,12 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_animated_poster_status: z.ZodEnum<{
         pending: "pending";
@@ -17994,10 +18151,12 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_poster_series_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -18006,10 +18165,12 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -18017,6 +18178,11 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -18193,10 +18359,12 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_poster_series_status: z.ZodEnum<{
         pending: "pending";
@@ -18204,10 +18372,12 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_tile_series_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -18216,10 +18386,12 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -18227,6 +18399,11 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -18403,10 +18580,12 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_tile_series_status: z.ZodEnum<{
         pending: "pending";
@@ -18414,10 +18593,12 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_prevue_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -18426,10 +18607,12 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -18437,6 +18620,11 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -18613,10 +18801,12 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_prevue_status: z.ZodEnum<{
         pending: "pending";
@@ -18624,10 +18814,12 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     is_settled: z.ZodBoolean;
     user_tags: z.ZodArray<z.ZodString>;
@@ -20329,10 +20521,12 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -20340,6 +20534,11 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -20516,10 +20715,12 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_metadata_status: z.ZodEnum<{
         pending: "pending";
@@ -20527,10 +20728,12 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_poster_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -20539,10 +20742,12 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -20550,6 +20755,11 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -20726,10 +20936,12 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_poster_status: z.ZodEnum<{
         pending: "pending";
@@ -20737,10 +20949,12 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_animated_poster_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -20749,10 +20963,12 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -20760,6 +20976,11 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -20936,10 +21157,12 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_animated_poster_status: z.ZodEnum<{
         pending: "pending";
@@ -20947,10 +21170,12 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_poster_series_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -20959,10 +21184,12 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -20970,6 +21197,11 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -21146,10 +21378,12 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_poster_series_status: z.ZodEnum<{
         pending: "pending";
@@ -21157,10 +21391,12 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_tile_series_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -21169,10 +21405,12 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -21180,6 +21418,11 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -21356,10 +21599,12 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_tile_series_status: z.ZodEnum<{
         pending: "pending";
@@ -21367,10 +21612,12 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_prevue_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -21379,10 +21626,12 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -21390,6 +21639,11 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -21566,10 +21820,12 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_prevue_status: z.ZodEnum<{
         pending: "pending";
@@ -21577,10 +21833,12 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     is_settled: z.ZodBoolean;
     user_tags: z.ZodArray<z.ZodString>;
@@ -23407,10 +23665,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
                 succeeded: "succeeded";
                 failed: "failed";
                 rejected: "rejected";
-                blocked: "blocked";
+                "blocked-dependency": "blocked-dependency";
+                "blocked-input": "blocked-input";
                 skipped: "skipped";
                 "pending-paused": "pending-paused";
-                "blocked-paused": "blocked-paused";
+                "blocked-dependency-paused": "blocked-dependency-paused";
+                "blocked-input-paused": "blocked-input-paused";
             }>;
             createdAt: z.ZodISODateTime;
             startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -23418,6 +23678,11 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             finishedAt: z.ZodOptional<z.ZodISODateTime>;
             attempts: z.ZodNumber;
             runtimeToken: z.ZodOptional<z.ZodString>;
+            data: z.ZodOptional<z.ZodUnknown>;
+            config: z.ZodOptional<z.ZodObject<{
+                timeoutMs: z.ZodNumber;
+                maxAttempts: z.ZodNumber;
+            }, z.core.$strip>>;
             error: z.ZodOptional<z.ZodObject<{
                 message: z.ZodString;
                 code: z.ZodOptional<z.ZodString>;
@@ -23594,10 +23859,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_save_metadata_status: z.ZodEnum<{
             pending: "pending";
@@ -23605,10 +23872,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_gen_poster_state: z.ZodObject<{
             status: z.ZodEnum<{
@@ -23617,10 +23886,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
                 succeeded: "succeeded";
                 failed: "failed";
                 rejected: "rejected";
-                blocked: "blocked";
+                "blocked-dependency": "blocked-dependency";
+                "blocked-input": "blocked-input";
                 skipped: "skipped";
                 "pending-paused": "pending-paused";
-                "blocked-paused": "blocked-paused";
+                "blocked-dependency-paused": "blocked-dependency-paused";
+                "blocked-input-paused": "blocked-input-paused";
             }>;
             createdAt: z.ZodISODateTime;
             startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -23628,6 +23899,11 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             finishedAt: z.ZodOptional<z.ZodISODateTime>;
             attempts: z.ZodNumber;
             runtimeToken: z.ZodOptional<z.ZodString>;
+            data: z.ZodOptional<z.ZodUnknown>;
+            config: z.ZodOptional<z.ZodObject<{
+                timeoutMs: z.ZodNumber;
+                maxAttempts: z.ZodNumber;
+            }, z.core.$strip>>;
             error: z.ZodOptional<z.ZodObject<{
                 message: z.ZodString;
                 code: z.ZodOptional<z.ZodString>;
@@ -23804,10 +24080,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_save_poster_status: z.ZodEnum<{
             pending: "pending";
@@ -23815,10 +24093,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_gen_animated_poster_state: z.ZodObject<{
             status: z.ZodEnum<{
@@ -23827,10 +24107,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
                 succeeded: "succeeded";
                 failed: "failed";
                 rejected: "rejected";
-                blocked: "blocked";
+                "blocked-dependency": "blocked-dependency";
+                "blocked-input": "blocked-input";
                 skipped: "skipped";
                 "pending-paused": "pending-paused";
-                "blocked-paused": "blocked-paused";
+                "blocked-dependency-paused": "blocked-dependency-paused";
+                "blocked-input-paused": "blocked-input-paused";
             }>;
             createdAt: z.ZodISODateTime;
             startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -23838,6 +24120,11 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             finishedAt: z.ZodOptional<z.ZodISODateTime>;
             attempts: z.ZodNumber;
             runtimeToken: z.ZodOptional<z.ZodString>;
+            data: z.ZodOptional<z.ZodUnknown>;
+            config: z.ZodOptional<z.ZodObject<{
+                timeoutMs: z.ZodNumber;
+                maxAttempts: z.ZodNumber;
+            }, z.core.$strip>>;
             error: z.ZodOptional<z.ZodObject<{
                 message: z.ZodString;
                 code: z.ZodOptional<z.ZodString>;
@@ -24014,10 +24301,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_save_animated_poster_status: z.ZodEnum<{
             pending: "pending";
@@ -24025,10 +24314,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_gen_poster_series_state: z.ZodObject<{
             status: z.ZodEnum<{
@@ -24037,10 +24328,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
                 succeeded: "succeeded";
                 failed: "failed";
                 rejected: "rejected";
-                blocked: "blocked";
+                "blocked-dependency": "blocked-dependency";
+                "blocked-input": "blocked-input";
                 skipped: "skipped";
                 "pending-paused": "pending-paused";
-                "blocked-paused": "blocked-paused";
+                "blocked-dependency-paused": "blocked-dependency-paused";
+                "blocked-input-paused": "blocked-input-paused";
             }>;
             createdAt: z.ZodISODateTime;
             startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -24048,6 +24341,11 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             finishedAt: z.ZodOptional<z.ZodISODateTime>;
             attempts: z.ZodNumber;
             runtimeToken: z.ZodOptional<z.ZodString>;
+            data: z.ZodOptional<z.ZodUnknown>;
+            config: z.ZodOptional<z.ZodObject<{
+                timeoutMs: z.ZodNumber;
+                maxAttempts: z.ZodNumber;
+            }, z.core.$strip>>;
             error: z.ZodOptional<z.ZodObject<{
                 message: z.ZodString;
                 code: z.ZodOptional<z.ZodString>;
@@ -24224,10 +24522,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_save_poster_series_status: z.ZodEnum<{
             pending: "pending";
@@ -24235,10 +24535,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_gen_tile_series_state: z.ZodObject<{
             status: z.ZodEnum<{
@@ -24247,10 +24549,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
                 succeeded: "succeeded";
                 failed: "failed";
                 rejected: "rejected";
-                blocked: "blocked";
+                "blocked-dependency": "blocked-dependency";
+                "blocked-input": "blocked-input";
                 skipped: "skipped";
                 "pending-paused": "pending-paused";
-                "blocked-paused": "blocked-paused";
+                "blocked-dependency-paused": "blocked-dependency-paused";
+                "blocked-input-paused": "blocked-input-paused";
             }>;
             createdAt: z.ZodISODateTime;
             startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -24258,6 +24562,11 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             finishedAt: z.ZodOptional<z.ZodISODateTime>;
             attempts: z.ZodNumber;
             runtimeToken: z.ZodOptional<z.ZodString>;
+            data: z.ZodOptional<z.ZodUnknown>;
+            config: z.ZodOptional<z.ZodObject<{
+                timeoutMs: z.ZodNumber;
+                maxAttempts: z.ZodNumber;
+            }, z.core.$strip>>;
             error: z.ZodOptional<z.ZodObject<{
                 message: z.ZodString;
                 code: z.ZodOptional<z.ZodString>;
@@ -24434,10 +24743,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_save_tile_series_status: z.ZodEnum<{
             pending: "pending";
@@ -24445,10 +24756,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_gen_prevue_state: z.ZodObject<{
             status: z.ZodEnum<{
@@ -24457,10 +24770,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
                 succeeded: "succeeded";
                 failed: "failed";
                 rejected: "rejected";
-                blocked: "blocked";
+                "blocked-dependency": "blocked-dependency";
+                "blocked-input": "blocked-input";
                 skipped: "skipped";
                 "pending-paused": "pending-paused";
-                "blocked-paused": "blocked-paused";
+                "blocked-dependency-paused": "blocked-dependency-paused";
+                "blocked-input-paused": "blocked-input-paused";
             }>;
             createdAt: z.ZodISODateTime;
             startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -24468,6 +24783,11 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             finishedAt: z.ZodOptional<z.ZodISODateTime>;
             attempts: z.ZodNumber;
             runtimeToken: z.ZodOptional<z.ZodString>;
+            data: z.ZodOptional<z.ZodUnknown>;
+            config: z.ZodOptional<z.ZodObject<{
+                timeoutMs: z.ZodNumber;
+                maxAttempts: z.ZodNumber;
+            }, z.core.$strip>>;
             error: z.ZodOptional<z.ZodObject<{
                 message: z.ZodString;
                 code: z.ZodOptional<z.ZodString>;
@@ -24644,10 +24964,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_save_prevue_status: z.ZodEnum<{
             pending: "pending";
@@ -24655,10 +24977,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         is_settled: z.ZodBoolean;
         user_tags: z.ZodArray<z.ZodString>;
@@ -26359,10 +26683,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
                 succeeded: "succeeded";
                 failed: "failed";
                 rejected: "rejected";
-                blocked: "blocked";
+                "blocked-dependency": "blocked-dependency";
+                "blocked-input": "blocked-input";
                 skipped: "skipped";
                 "pending-paused": "pending-paused";
-                "blocked-paused": "blocked-paused";
+                "blocked-dependency-paused": "blocked-dependency-paused";
+                "blocked-input-paused": "blocked-input-paused";
             }>;
             createdAt: z.ZodISODateTime;
             startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -26370,6 +26696,11 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             finishedAt: z.ZodOptional<z.ZodISODateTime>;
             attempts: z.ZodNumber;
             runtimeToken: z.ZodOptional<z.ZodString>;
+            data: z.ZodOptional<z.ZodUnknown>;
+            config: z.ZodOptional<z.ZodObject<{
+                timeoutMs: z.ZodNumber;
+                maxAttempts: z.ZodNumber;
+            }, z.core.$strip>>;
             error: z.ZodOptional<z.ZodObject<{
                 message: z.ZodString;
                 code: z.ZodOptional<z.ZodString>;
@@ -26546,10 +26877,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_save_metadata_status: z.ZodEnum<{
             pending: "pending";
@@ -26557,10 +26890,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_gen_poster_state: z.ZodObject<{
             status: z.ZodEnum<{
@@ -26569,10 +26904,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
                 succeeded: "succeeded";
                 failed: "failed";
                 rejected: "rejected";
-                blocked: "blocked";
+                "blocked-dependency": "blocked-dependency";
+                "blocked-input": "blocked-input";
                 skipped: "skipped";
                 "pending-paused": "pending-paused";
-                "blocked-paused": "blocked-paused";
+                "blocked-dependency-paused": "blocked-dependency-paused";
+                "blocked-input-paused": "blocked-input-paused";
             }>;
             createdAt: z.ZodISODateTime;
             startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -26580,6 +26917,11 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             finishedAt: z.ZodOptional<z.ZodISODateTime>;
             attempts: z.ZodNumber;
             runtimeToken: z.ZodOptional<z.ZodString>;
+            data: z.ZodOptional<z.ZodUnknown>;
+            config: z.ZodOptional<z.ZodObject<{
+                timeoutMs: z.ZodNumber;
+                maxAttempts: z.ZodNumber;
+            }, z.core.$strip>>;
             error: z.ZodOptional<z.ZodObject<{
                 message: z.ZodString;
                 code: z.ZodOptional<z.ZodString>;
@@ -26756,10 +27098,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_save_poster_status: z.ZodEnum<{
             pending: "pending";
@@ -26767,10 +27111,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_gen_animated_poster_state: z.ZodObject<{
             status: z.ZodEnum<{
@@ -26779,10 +27125,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
                 succeeded: "succeeded";
                 failed: "failed";
                 rejected: "rejected";
-                blocked: "blocked";
+                "blocked-dependency": "blocked-dependency";
+                "blocked-input": "blocked-input";
                 skipped: "skipped";
                 "pending-paused": "pending-paused";
-                "blocked-paused": "blocked-paused";
+                "blocked-dependency-paused": "blocked-dependency-paused";
+                "blocked-input-paused": "blocked-input-paused";
             }>;
             createdAt: z.ZodISODateTime;
             startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -26790,6 +27138,11 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             finishedAt: z.ZodOptional<z.ZodISODateTime>;
             attempts: z.ZodNumber;
             runtimeToken: z.ZodOptional<z.ZodString>;
+            data: z.ZodOptional<z.ZodUnknown>;
+            config: z.ZodOptional<z.ZodObject<{
+                timeoutMs: z.ZodNumber;
+                maxAttempts: z.ZodNumber;
+            }, z.core.$strip>>;
             error: z.ZodOptional<z.ZodObject<{
                 message: z.ZodString;
                 code: z.ZodOptional<z.ZodString>;
@@ -26966,10 +27319,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_save_animated_poster_status: z.ZodEnum<{
             pending: "pending";
@@ -26977,10 +27332,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_gen_poster_series_state: z.ZodObject<{
             status: z.ZodEnum<{
@@ -26989,10 +27346,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
                 succeeded: "succeeded";
                 failed: "failed";
                 rejected: "rejected";
-                blocked: "blocked";
+                "blocked-dependency": "blocked-dependency";
+                "blocked-input": "blocked-input";
                 skipped: "skipped";
                 "pending-paused": "pending-paused";
-                "blocked-paused": "blocked-paused";
+                "blocked-dependency-paused": "blocked-dependency-paused";
+                "blocked-input-paused": "blocked-input-paused";
             }>;
             createdAt: z.ZodISODateTime;
             startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -27000,6 +27359,11 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             finishedAt: z.ZodOptional<z.ZodISODateTime>;
             attempts: z.ZodNumber;
             runtimeToken: z.ZodOptional<z.ZodString>;
+            data: z.ZodOptional<z.ZodUnknown>;
+            config: z.ZodOptional<z.ZodObject<{
+                timeoutMs: z.ZodNumber;
+                maxAttempts: z.ZodNumber;
+            }, z.core.$strip>>;
             error: z.ZodOptional<z.ZodObject<{
                 message: z.ZodString;
                 code: z.ZodOptional<z.ZodString>;
@@ -27176,10 +27540,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_save_poster_series_status: z.ZodEnum<{
             pending: "pending";
@@ -27187,10 +27553,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_gen_tile_series_state: z.ZodObject<{
             status: z.ZodEnum<{
@@ -27199,10 +27567,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
                 succeeded: "succeeded";
                 failed: "failed";
                 rejected: "rejected";
-                blocked: "blocked";
+                "blocked-dependency": "blocked-dependency";
+                "blocked-input": "blocked-input";
                 skipped: "skipped";
                 "pending-paused": "pending-paused";
-                "blocked-paused": "blocked-paused";
+                "blocked-dependency-paused": "blocked-dependency-paused";
+                "blocked-input-paused": "blocked-input-paused";
             }>;
             createdAt: z.ZodISODateTime;
             startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -27210,6 +27580,11 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             finishedAt: z.ZodOptional<z.ZodISODateTime>;
             attempts: z.ZodNumber;
             runtimeToken: z.ZodOptional<z.ZodString>;
+            data: z.ZodOptional<z.ZodUnknown>;
+            config: z.ZodOptional<z.ZodObject<{
+                timeoutMs: z.ZodNumber;
+                maxAttempts: z.ZodNumber;
+            }, z.core.$strip>>;
             error: z.ZodOptional<z.ZodObject<{
                 message: z.ZodString;
                 code: z.ZodOptional<z.ZodString>;
@@ -27386,10 +27761,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_save_tile_series_status: z.ZodEnum<{
             pending: "pending";
@@ -27397,10 +27774,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_gen_prevue_state: z.ZodObject<{
             status: z.ZodEnum<{
@@ -27409,10 +27788,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
                 succeeded: "succeeded";
                 failed: "failed";
                 rejected: "rejected";
-                blocked: "blocked";
+                "blocked-dependency": "blocked-dependency";
+                "blocked-input": "blocked-input";
                 skipped: "skipped";
                 "pending-paused": "pending-paused";
-                "blocked-paused": "blocked-paused";
+                "blocked-dependency-paused": "blocked-dependency-paused";
+                "blocked-input-paused": "blocked-input-paused";
             }>;
             createdAt: z.ZodISODateTime;
             startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -27420,6 +27801,11 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             finishedAt: z.ZodOptional<z.ZodISODateTime>;
             attempts: z.ZodNumber;
             runtimeToken: z.ZodOptional<z.ZodString>;
+            data: z.ZodOptional<z.ZodUnknown>;
+            config: z.ZodOptional<z.ZodObject<{
+                timeoutMs: z.ZodNumber;
+                maxAttempts: z.ZodNumber;
+            }, z.core.$strip>>;
             error: z.ZodOptional<z.ZodObject<{
                 message: z.ZodString;
                 code: z.ZodOptional<z.ZodString>;
@@ -27596,10 +27982,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_save_prevue_status: z.ZodEnum<{
             pending: "pending";
@@ -27607,10 +27995,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         is_settled: z.ZodBoolean;
         user_tags: z.ZodArray<z.ZodString>;
@@ -29315,10 +29705,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -29326,6 +29718,11 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -29502,10 +29899,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_metadata_status: z.ZodEnum<{
         pending: "pending";
@@ -29513,10 +29912,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_poster_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -29525,10 +29926,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -29536,6 +29939,11 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -29712,10 +30120,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_poster_status: z.ZodEnum<{
         pending: "pending";
@@ -29723,10 +30133,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_animated_poster_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -29735,10 +30147,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -29746,6 +30160,11 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -29922,10 +30341,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_animated_poster_status: z.ZodEnum<{
         pending: "pending";
@@ -29933,10 +30354,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_poster_series_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -29945,10 +30368,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -29956,6 +30381,11 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -30132,10 +30562,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_poster_series_status: z.ZodEnum<{
         pending: "pending";
@@ -30143,10 +30575,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_tile_series_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -30155,10 +30589,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -30166,6 +30602,11 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -30342,10 +30783,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_tile_series_status: z.ZodEnum<{
         pending: "pending";
@@ -30353,10 +30796,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_prevue_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -30365,10 +30810,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -30376,6 +30823,11 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -30552,10 +31004,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_prevue_status: z.ZodEnum<{
         pending: "pending";
@@ -30563,10 +31017,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     is_settled: z.ZodBoolean;
     user_tags: z.ZodArray<z.ZodString>;
@@ -32264,10 +32720,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -32275,6 +32733,11 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -32451,10 +32914,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_metadata_status: z.ZodEnum<{
         pending: "pending";
@@ -32462,10 +32927,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_poster_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -32474,10 +32941,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -32485,6 +32954,11 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -32661,10 +33135,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_poster_status: z.ZodEnum<{
         pending: "pending";
@@ -32672,10 +33148,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_animated_poster_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -32684,10 +33162,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -32695,6 +33175,11 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -32871,10 +33356,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_animated_poster_status: z.ZodEnum<{
         pending: "pending";
@@ -32882,10 +33369,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_poster_series_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -32894,10 +33383,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -32905,6 +33396,11 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -33081,10 +33577,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_poster_series_status: z.ZodEnum<{
         pending: "pending";
@@ -33092,10 +33590,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_tile_series_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -33104,10 +33604,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -33115,6 +33617,11 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -33291,10 +33798,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_tile_series_status: z.ZodEnum<{
         pending: "pending";
@@ -33302,10 +33811,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_prevue_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -33314,10 +33825,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -33325,6 +33838,11 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -33501,10 +34019,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_prevue_status: z.ZodEnum<{
         pending: "pending";
@@ -33512,10 +34032,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     is_settled: z.ZodBoolean;
     user_tags: z.ZodArray<z.ZodString>;
@@ -35216,10 +35738,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -35227,6 +35751,11 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -35403,10 +35932,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_metadata_status: z.ZodEnum<{
         pending: "pending";
@@ -35414,10 +35945,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_poster_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -35426,10 +35959,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -35437,6 +35972,11 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -35613,10 +36153,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_poster_status: z.ZodEnum<{
         pending: "pending";
@@ -35624,10 +36166,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_animated_poster_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -35636,10 +36180,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -35647,6 +36193,11 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -35823,10 +36374,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_animated_poster_status: z.ZodEnum<{
         pending: "pending";
@@ -35834,10 +36387,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_poster_series_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -35846,10 +36401,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -35857,6 +36414,11 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -36033,10 +36595,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_poster_series_status: z.ZodEnum<{
         pending: "pending";
@@ -36044,10 +36608,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_tile_series_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -36056,10 +36622,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -36067,6 +36635,11 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -36243,10 +36816,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_tile_series_status: z.ZodEnum<{
         pending: "pending";
@@ -36254,10 +36829,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_prevue_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -36266,10 +36843,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -36277,6 +36856,11 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -36453,10 +37037,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_prevue_status: z.ZodEnum<{
         pending: "pending";
@@ -36464,10 +37050,12 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     is_settled: z.ZodBoolean;
     user_tags: z.ZodArray<z.ZodString>;
@@ -36686,17 +37274,26 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         asset_id: z.ZodUUID;
         s3_upload_id: z.ZodOptional<z.ZodString>;
         s3_metadata: z.ZodOptional<z.ZodObject<{
-            $metadata: z.ZodObject<{
-                attempts: z.ZodNumber;
-                httpStatusCode: z.ZodNumber;
-                requestId: z.ZodString;
-                totalRetryDelay: z.ZodNumber;
-            }, z.core.$strip>;
-            Bucket: z.ZodString;
-            ETag: z.ZodString;
-            Key: z.ZodString;
             Location: z.ZodString;
-            VersionId: z.ZodString;
+            Bucket: z.ZodString;
+            Key: z.ZodString;
+            Expiration: z.ZodOptional<z.ZodString>;
+            ETag: z.ZodString;
+            ChecksumCRC32: z.ZodOptional<z.ZodString>;
+            ChecksumCRC32C: z.ZodOptional<z.ZodString>;
+            ChecksumSHA1: z.ZodOptional<z.ZodString>;
+            ChecksumSHA256: z.ZodOptional<z.ZodString>;
+            ServerSideEncryption: z.ZodOptional<z.ZodEnum<{
+                AES256: "AES256";
+                "aws:kms": "aws:kms";
+                "aws:kms:dsse": "aws:kms:dsse";
+            }>>;
+            VersionId: z.ZodOptional<z.ZodString>;
+            SSEKMSKeyId: z.ZodOptional<z.ZodString>;
+            BucketKeyEnabled: z.ZodOptional<z.ZodBoolean>;
+            RequestCharged: z.ZodOptional<z.ZodEnum<{
+                requester: "requester";
+            }>>;
         }, z.core.$strip>>;
         s3_version_id: z.ZodOptional<z.ZodString>;
         s3_etag: z.ZodOptional<z.ZodString>;
@@ -36736,10 +37333,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_s3_complete_state: z.ZodObject<{
             status: z.ZodEnum<{
@@ -36748,10 +37347,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
                 succeeded: "succeeded";
                 failed: "failed";
                 rejected: "rejected";
-                blocked: "blocked";
+                "blocked-dependency": "blocked-dependency";
+                "blocked-input": "blocked-input";
                 skipped: "skipped";
                 "pending-paused": "pending-paused";
-                "blocked-paused": "blocked-paused";
+                "blocked-dependency-paused": "blocked-dependency-paused";
+                "blocked-input-paused": "blocked-input-paused";
             }>;
             createdAt: z.ZodISODateTime;
             startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -36759,6 +37360,11 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
             finishedAt: z.ZodOptional<z.ZodISODateTime>;
             attempts: z.ZodNumber;
             runtimeToken: z.ZodOptional<z.ZodString>;
+            data: z.ZodOptional<z.ZodUnknown>;
+            config: z.ZodOptional<z.ZodObject<{
+                timeoutMs: z.ZodNumber;
+                maxAttempts: z.ZodNumber;
+            }, z.core.$strip>>;
             error: z.ZodOptional<z.ZodObject<{
                 message: z.ZodString;
                 code: z.ZodOptional<z.ZodString>;
@@ -36770,163 +37376,30 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
                 issues: z.ZodOptional<z.ZodArray<z.ZodString>>;
                 timestamp: z.ZodISODateTime;
             }, z.core.$strip>>;
-            progress: z.ZodOptional<z.ZodNumber>;
+            progress: z.ZodOptional<z.ZodObject<{
+                elapsed_seconds: z.ZodNumber;
+            }, z.core.$strip>>;
             result: z.ZodOptional<z.ZodObject<{
-                metadata: z.ZodUnion<readonly [z.ZodObject<{
-                    type: z.ZodLiteral<"metadata">;
-                    timings: z.ZodObject<{
-                        metadata_http_duration: z.ZodNumber;
-                    }, z.core.$strip>;
-                    file: z.ZodObject<{
-                        s3_filename: z.ZodString;
-                        content_type: z.ZodString;
-                        size: z.ZodNumber;
-                        mtime: z.ZodString;
-                        md5: z.ZodString;
-                        sha256: z.ZodString;
-                        s3_uri: z.ZodString;
-                        s3_version_id: z.ZodString;
-                        s3_etag: z.ZodString;
-                        s3_parts: z.ZodArray<z.ZodNumber>;
-                    }, z.core.$strip>;
-                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-                }, z.core.$strip>, z.ZodDiscriminatedUnion<[z.ZodObject<{
-                    type: z.ZodLiteral<"poster">;
-                    poster: z.ZodArray<z.ZodObject<{
-                        type: z.ZodLiteral<"poster-image">;
-                        quality: z.ZodEnum<{
-                            medium: "medium";
-                            high: "high";
-                            sample: "sample";
-                        }>;
-                        width: z.ZodNumber;
-                        height: z.ZodNumber;
-                        blurhash: z.ZodOptional<z.ZodString>;
-                        timings: z.ZodObject<{
-                            poster_canvas_duration: z.ZodOptional<z.ZodNumber>;
-                            poster_ffmpeg_duration: z.ZodOptional<z.ZodNumber>;
-                            poster_avifenc_duration: z.ZodOptional<z.ZodNumber>;
-                            poster_sharp_duration: z.ZodOptional<z.ZodNumber>;
-                            poster_ck_duration: z.ZodNumber;
-                            poster_http_duration: z.ZodNumber;
-                        }, z.core.$strip>;
-                        file: z.ZodObject<{
-                            s3_filename: z.ZodString;
-                            content_type: z.ZodString;
-                            size: z.ZodNumber;
-                            mtime: z.ZodString;
-                            md5: z.ZodString;
-                            sha256: z.ZodString;
-                            s3_uri: z.ZodString;
-                            s3_version_id: z.ZodString;
-                            s3_etag: z.ZodString;
-                            s3_parts: z.ZodArray<z.ZodNumber>;
-                        }, z.core.$strip>;
-                        tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-                    }, z.core.$strip>>;
-                }, z.core.$strip>, z.ZodObject<{
-                    type: z.ZodLiteral<"animated-poster">;
-                    poster: z.ZodObject<{
-                        type: z.ZodLiteral<"animated-poster-image">;
-                        width: z.ZodNumber;
-                        height: z.ZodNumber;
-                        timings: z.ZodObject<{
-                            animated_poster_ffmpeg_duration: z.ZodNumber;
-                            animated_poster_ck_duration: z.ZodNumber;
-                            animated_poster_http_duration: z.ZodNumber;
-                        }, z.core.$strip>;
-                        file: z.ZodObject<{
-                            s3_filename: z.ZodString;
-                            content_type: z.ZodString;
-                            size: z.ZodNumber;
-                            mtime: z.ZodString;
-                            md5: z.ZodString;
-                            sha256: z.ZodString;
-                            s3_uri: z.ZodString;
-                            s3_version_id: z.ZodString;
-                            s3_etag: z.ZodString;
-                            s3_parts: z.ZodArray<z.ZodNumber>;
-                        }, z.core.$strip>;
-                        tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-                    }, z.core.$strip>;
-                }, z.core.$strip>, z.ZodObject<{
-                    type: z.ZodLiteral<"poster-series">;
-                    series: z.ZodArray<z.ZodObject<{
-                        type: z.ZodLiteral<"poster-series-image">;
-                        index: z.ZodNumber;
-                        quality: z.ZodEnum<{
-                            medium: "medium";
-                            high: "high";
-                            sample: "sample";
-                        }>;
-                        width: z.ZodNumber;
-                        height: z.ZodNumber;
-                        blurhash: z.ZodOptional<z.ZodString>;
-                        timings: z.ZodObject<{
-                            poster_series_ffmpeg_duration: z.ZodNumber;
-                            poster_series_avifenc_duration: z.ZodOptional<z.ZodNumber>;
-                            poster_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
-                            poster_series_ck_duration: z.ZodNumber;
-                            poster_series_http_duration: z.ZodNumber;
-                        }, z.core.$strip>;
-                        file: z.ZodObject<{
-                            s3_filename: z.ZodString;
-                            content_type: z.ZodString;
-                            size: z.ZodNumber;
-                            mtime: z.ZodString;
-                            md5: z.ZodString;
-                            sha256: z.ZodString;
-                            s3_uri: z.ZodString;
-                            s3_version_id: z.ZodString;
-                            s3_etag: z.ZodString;
-                            s3_parts: z.ZodArray<z.ZodNumber>;
-                        }, z.core.$strip>;
-                        tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-                    }, z.core.$strip>>;
-                }, z.core.$strip>, z.ZodObject<{
-                    type: z.ZodLiteral<"tile-series-metadata">;
-                    timings: z.ZodObject<{
-                        metadata_http_duration: z.ZodNumber;
-                    }, z.core.$strip>;
-                    file: z.ZodObject<{
-                        s3_filename: z.ZodString;
-                        content_type: z.ZodString;
-                        size: z.ZodNumber;
-                        mtime: z.ZodString;
-                        md5: z.ZodString;
-                        sha256: z.ZodString;
-                        s3_uri: z.ZodString;
-                        s3_version_id: z.ZodString;
-                        s3_etag: z.ZodString;
-                        s3_parts: z.ZodArray<z.ZodNumber>;
-                    }, z.core.$strip>;
-                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-                }, z.core.$strip>, z.ZodObject<{
-                    type: z.ZodLiteral<"prevue">;
-                    prevue: z.ZodObject<{
-                        type: z.ZodLiteral<"prevue-video">;
-                        width: z.ZodNumber;
-                        height: z.ZodNumber;
-                        timings: z.ZodObject<{
-                            prevue_ffmpeg_duration: z.ZodNumber;
-                            prevue_ck_duration: z.ZodNumber;
-                            prevue_http_duration: z.ZodNumber;
-                        }, z.core.$strip>;
-                        file: z.ZodObject<{
-                            s3_filename: z.ZodString;
-                            content_type: z.ZodString;
-                            size: z.ZodNumber;
-                            mtime: z.ZodString;
-                            md5: z.ZodString;
-                            sha256: z.ZodString;
-                            s3_uri: z.ZodString;
-                            s3_version_id: z.ZodString;
-                            s3_etag: z.ZodString;
-                            s3_parts: z.ZodArray<z.ZodNumber>;
-                        }, z.core.$strip>;
-                        tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-                    }, z.core.$strip>;
-                }, z.core.$strip>], "type">]>;
+                Location: z.ZodString;
+                Bucket: z.ZodString;
+                Key: z.ZodString;
+                Expiration: z.ZodOptional<z.ZodString>;
+                ETag: z.ZodString;
+                ChecksumCRC32: z.ZodOptional<z.ZodString>;
+                ChecksumCRC32C: z.ZodOptional<z.ZodString>;
+                ChecksumSHA1: z.ZodOptional<z.ZodString>;
+                ChecksumSHA256: z.ZodOptional<z.ZodString>;
+                ServerSideEncryption: z.ZodOptional<z.ZodEnum<{
+                    AES256: "AES256";
+                    "aws:kms": "aws:kms";
+                    "aws:kms:dsse": "aws:kms:dsse";
+                }>>;
+                VersionId: z.ZodOptional<z.ZodString>;
+                SSEKMSKeyId: z.ZodOptional<z.ZodString>;
+                BucketKeyEnabled: z.ZodOptional<z.ZodBoolean>;
+                RequestCharged: z.ZodOptional<z.ZodEnum<{
+                    requester: "requester";
+                }>>;
             }, z.core.$strip>>;
         }, z.core.$strip>;
         task_s3_complete_status: z.ZodEnum<{
@@ -36935,10 +37408,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_gen_metadata_state: z.ZodObject<{
             status: z.ZodEnum<{
@@ -36947,10 +37422,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
                 succeeded: "succeeded";
                 failed: "failed";
                 rejected: "rejected";
-                blocked: "blocked";
+                "blocked-dependency": "blocked-dependency";
+                "blocked-input": "blocked-input";
                 skipped: "skipped";
                 "pending-paused": "pending-paused";
-                "blocked-paused": "blocked-paused";
+                "blocked-dependency-paused": "blocked-dependency-paused";
+                "blocked-input-paused": "blocked-input-paused";
             }>;
             createdAt: z.ZodISODateTime;
             startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -36958,6 +37435,11 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
             finishedAt: z.ZodOptional<z.ZodISODateTime>;
             attempts: z.ZodNumber;
             runtimeToken: z.ZodOptional<z.ZodString>;
+            data: z.ZodOptional<z.ZodUnknown>;
+            config: z.ZodOptional<z.ZodObject<{
+                timeoutMs: z.ZodNumber;
+                maxAttempts: z.ZodNumber;
+            }, z.core.$strip>>;
             error: z.ZodOptional<z.ZodObject<{
                 message: z.ZodString;
                 code: z.ZodOptional<z.ZodString>;
@@ -37134,10 +37616,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         task_save_status: z.ZodEnum<{
             pending: "pending";
@@ -37145,10 +37629,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         user_tags: z.ZodArray<z.ZodString>;
         system_tags: z.ZodArray<z.ZodString>;
@@ -37166,17 +37652,26 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
     asset_id: z.ZodUUID;
     s3_upload_id: z.ZodOptional<z.ZodString>;
     s3_metadata: z.ZodOptional<z.ZodObject<{
-        $metadata: z.ZodObject<{
-            attempts: z.ZodNumber;
-            httpStatusCode: z.ZodNumber;
-            requestId: z.ZodString;
-            totalRetryDelay: z.ZodNumber;
-        }, z.core.$strip>;
-        Bucket: z.ZodString;
-        ETag: z.ZodString;
-        Key: z.ZodString;
         Location: z.ZodString;
-        VersionId: z.ZodString;
+        Bucket: z.ZodString;
+        Key: z.ZodString;
+        Expiration: z.ZodOptional<z.ZodString>;
+        ETag: z.ZodString;
+        ChecksumCRC32: z.ZodOptional<z.ZodString>;
+        ChecksumCRC32C: z.ZodOptional<z.ZodString>;
+        ChecksumSHA1: z.ZodOptional<z.ZodString>;
+        ChecksumSHA256: z.ZodOptional<z.ZodString>;
+        ServerSideEncryption: z.ZodOptional<z.ZodEnum<{
+            AES256: "AES256";
+            "aws:kms": "aws:kms";
+            "aws:kms:dsse": "aws:kms:dsse";
+        }>>;
+        VersionId: z.ZodOptional<z.ZodString>;
+        SSEKMSKeyId: z.ZodOptional<z.ZodString>;
+        BucketKeyEnabled: z.ZodOptional<z.ZodBoolean>;
+        RequestCharged: z.ZodOptional<z.ZodEnum<{
+            requester: "requester";
+        }>>;
     }, z.core.$strip>>;
     s3_version_id: z.ZodOptional<z.ZodString>;
     s3_etag: z.ZodOptional<z.ZodString>;
@@ -37216,10 +37711,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_s3_complete_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -37228,10 +37725,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -37239,6 +37738,11 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -37250,163 +37754,30 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
             issues: z.ZodOptional<z.ZodArray<z.ZodString>>;
             timestamp: z.ZodISODateTime;
         }, z.core.$strip>>;
-        progress: z.ZodOptional<z.ZodNumber>;
+        progress: z.ZodOptional<z.ZodObject<{
+            elapsed_seconds: z.ZodNumber;
+        }, z.core.$strip>>;
         result: z.ZodOptional<z.ZodObject<{
-            metadata: z.ZodUnion<readonly [z.ZodObject<{
-                type: z.ZodLiteral<"metadata">;
-                timings: z.ZodObject<{
-                    metadata_http_duration: z.ZodNumber;
-                }, z.core.$strip>;
-                file: z.ZodObject<{
-                    s3_filename: z.ZodString;
-                    content_type: z.ZodString;
-                    size: z.ZodNumber;
-                    mtime: z.ZodString;
-                    md5: z.ZodString;
-                    sha256: z.ZodString;
-                    s3_uri: z.ZodString;
-                    s3_version_id: z.ZodString;
-                    s3_etag: z.ZodString;
-                    s3_parts: z.ZodArray<z.ZodNumber>;
-                }, z.core.$strip>;
-                tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, z.core.$strip>, z.ZodDiscriminatedUnion<[z.ZodObject<{
-                type: z.ZodLiteral<"poster">;
-                poster: z.ZodArray<z.ZodObject<{
-                    type: z.ZodLiteral<"poster-image">;
-                    quality: z.ZodEnum<{
-                        medium: "medium";
-                        high: "high";
-                        sample: "sample";
-                    }>;
-                    width: z.ZodNumber;
-                    height: z.ZodNumber;
-                    blurhash: z.ZodOptional<z.ZodString>;
-                    timings: z.ZodObject<{
-                        poster_canvas_duration: z.ZodOptional<z.ZodNumber>;
-                        poster_ffmpeg_duration: z.ZodOptional<z.ZodNumber>;
-                        poster_avifenc_duration: z.ZodOptional<z.ZodNumber>;
-                        poster_sharp_duration: z.ZodOptional<z.ZodNumber>;
-                        poster_ck_duration: z.ZodNumber;
-                        poster_http_duration: z.ZodNumber;
-                    }, z.core.$strip>;
-                    file: z.ZodObject<{
-                        s3_filename: z.ZodString;
-                        content_type: z.ZodString;
-                        size: z.ZodNumber;
-                        mtime: z.ZodString;
-                        md5: z.ZodString;
-                        sha256: z.ZodString;
-                        s3_uri: z.ZodString;
-                        s3_version_id: z.ZodString;
-                        s3_etag: z.ZodString;
-                        s3_parts: z.ZodArray<z.ZodNumber>;
-                    }, z.core.$strip>;
-                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-                }, z.core.$strip>>;
-            }, z.core.$strip>, z.ZodObject<{
-                type: z.ZodLiteral<"animated-poster">;
-                poster: z.ZodObject<{
-                    type: z.ZodLiteral<"animated-poster-image">;
-                    width: z.ZodNumber;
-                    height: z.ZodNumber;
-                    timings: z.ZodObject<{
-                        animated_poster_ffmpeg_duration: z.ZodNumber;
-                        animated_poster_ck_duration: z.ZodNumber;
-                        animated_poster_http_duration: z.ZodNumber;
-                    }, z.core.$strip>;
-                    file: z.ZodObject<{
-                        s3_filename: z.ZodString;
-                        content_type: z.ZodString;
-                        size: z.ZodNumber;
-                        mtime: z.ZodString;
-                        md5: z.ZodString;
-                        sha256: z.ZodString;
-                        s3_uri: z.ZodString;
-                        s3_version_id: z.ZodString;
-                        s3_etag: z.ZodString;
-                        s3_parts: z.ZodArray<z.ZodNumber>;
-                    }, z.core.$strip>;
-                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-                }, z.core.$strip>;
-            }, z.core.$strip>, z.ZodObject<{
-                type: z.ZodLiteral<"poster-series">;
-                series: z.ZodArray<z.ZodObject<{
-                    type: z.ZodLiteral<"poster-series-image">;
-                    index: z.ZodNumber;
-                    quality: z.ZodEnum<{
-                        medium: "medium";
-                        high: "high";
-                        sample: "sample";
-                    }>;
-                    width: z.ZodNumber;
-                    height: z.ZodNumber;
-                    blurhash: z.ZodOptional<z.ZodString>;
-                    timings: z.ZodObject<{
-                        poster_series_ffmpeg_duration: z.ZodNumber;
-                        poster_series_avifenc_duration: z.ZodOptional<z.ZodNumber>;
-                        poster_series_sharp_duration: z.ZodOptional<z.ZodNumber>;
-                        poster_series_ck_duration: z.ZodNumber;
-                        poster_series_http_duration: z.ZodNumber;
-                    }, z.core.$strip>;
-                    file: z.ZodObject<{
-                        s3_filename: z.ZodString;
-                        content_type: z.ZodString;
-                        size: z.ZodNumber;
-                        mtime: z.ZodString;
-                        md5: z.ZodString;
-                        sha256: z.ZodString;
-                        s3_uri: z.ZodString;
-                        s3_version_id: z.ZodString;
-                        s3_etag: z.ZodString;
-                        s3_parts: z.ZodArray<z.ZodNumber>;
-                    }, z.core.$strip>;
-                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-                }, z.core.$strip>>;
-            }, z.core.$strip>, z.ZodObject<{
-                type: z.ZodLiteral<"tile-series-metadata">;
-                timings: z.ZodObject<{
-                    metadata_http_duration: z.ZodNumber;
-                }, z.core.$strip>;
-                file: z.ZodObject<{
-                    s3_filename: z.ZodString;
-                    content_type: z.ZodString;
-                    size: z.ZodNumber;
-                    mtime: z.ZodString;
-                    md5: z.ZodString;
-                    sha256: z.ZodString;
-                    s3_uri: z.ZodString;
-                    s3_version_id: z.ZodString;
-                    s3_etag: z.ZodString;
-                    s3_parts: z.ZodArray<z.ZodNumber>;
-                }, z.core.$strip>;
-                tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-            }, z.core.$strip>, z.ZodObject<{
-                type: z.ZodLiteral<"prevue">;
-                prevue: z.ZodObject<{
-                    type: z.ZodLiteral<"prevue-video">;
-                    width: z.ZodNumber;
-                    height: z.ZodNumber;
-                    timings: z.ZodObject<{
-                        prevue_ffmpeg_duration: z.ZodNumber;
-                        prevue_ck_duration: z.ZodNumber;
-                        prevue_http_duration: z.ZodNumber;
-                    }, z.core.$strip>;
-                    file: z.ZodObject<{
-                        s3_filename: z.ZodString;
-                        content_type: z.ZodString;
-                        size: z.ZodNumber;
-                        mtime: z.ZodString;
-                        md5: z.ZodString;
-                        sha256: z.ZodString;
-                        s3_uri: z.ZodString;
-                        s3_version_id: z.ZodString;
-                        s3_etag: z.ZodString;
-                        s3_parts: z.ZodArray<z.ZodNumber>;
-                    }, z.core.$strip>;
-                    tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
-                }, z.core.$strip>;
-            }, z.core.$strip>], "type">]>;
+            Location: z.ZodString;
+            Bucket: z.ZodString;
+            Key: z.ZodString;
+            Expiration: z.ZodOptional<z.ZodString>;
+            ETag: z.ZodString;
+            ChecksumCRC32: z.ZodOptional<z.ZodString>;
+            ChecksumCRC32C: z.ZodOptional<z.ZodString>;
+            ChecksumSHA1: z.ZodOptional<z.ZodString>;
+            ChecksumSHA256: z.ZodOptional<z.ZodString>;
+            ServerSideEncryption: z.ZodOptional<z.ZodEnum<{
+                AES256: "AES256";
+                "aws:kms": "aws:kms";
+                "aws:kms:dsse": "aws:kms:dsse";
+            }>>;
+            VersionId: z.ZodOptional<z.ZodString>;
+            SSEKMSKeyId: z.ZodOptional<z.ZodString>;
+            BucketKeyEnabled: z.ZodOptional<z.ZodBoolean>;
+            RequestCharged: z.ZodOptional<z.ZodEnum<{
+                requester: "requester";
+            }>>;
         }, z.core.$strip>>;
     }, z.core.$strip>;
     task_s3_complete_status: z.ZodEnum<{
@@ -37415,10 +37786,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_metadata_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -37427,10 +37800,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -37438,6 +37813,11 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -37614,10 +37994,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_status: z.ZodEnum<{
         pending: "pending";
@@ -37625,10 +38007,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     user_tags: z.ZodArray<z.ZodString>;
     system_tags: z.ZodArray<z.ZodString>;
@@ -39143,10 +39527,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -39154,6 +39540,11 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -39330,10 +39721,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_metadata_status: z.ZodEnum<{
         pending: "pending";
@@ -39341,10 +39734,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_poster_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -39353,10 +39748,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -39364,6 +39761,11 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -39540,10 +39942,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_poster_status: z.ZodEnum<{
         pending: "pending";
@@ -39551,10 +39955,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_animated_poster_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -39563,10 +39969,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -39574,6 +39982,11 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -39750,10 +40163,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_animated_poster_status: z.ZodEnum<{
         pending: "pending";
@@ -39761,10 +40176,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_poster_series_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -39773,10 +40190,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -39784,6 +40203,11 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -39960,10 +40384,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_poster_series_status: z.ZodEnum<{
         pending: "pending";
@@ -39971,10 +40397,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_tile_series_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -39983,10 +40411,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -39994,6 +40424,11 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -40170,10 +40605,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_tile_series_status: z.ZodEnum<{
         pending: "pending";
@@ -40181,10 +40618,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_prevue_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -40193,10 +40632,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -40204,6 +40645,11 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -40380,10 +40826,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_prevue_status: z.ZodEnum<{
         pending: "pending";
@@ -40391,10 +40839,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     is_settled: z.ZodBoolean;
     user_tags: z.ZodArray<z.ZodString>;
@@ -42092,10 +42542,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -42103,6 +42555,11 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -42279,10 +42736,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_metadata_status: z.ZodEnum<{
         pending: "pending";
@@ -42290,10 +42749,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_poster_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -42302,10 +42763,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -42313,6 +42776,11 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -42489,10 +42957,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_poster_status: z.ZodEnum<{
         pending: "pending";
@@ -42500,10 +42970,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_animated_poster_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -42512,10 +42984,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -42523,6 +42997,11 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -42699,10 +43178,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_animated_poster_status: z.ZodEnum<{
         pending: "pending";
@@ -42710,10 +43191,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_poster_series_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -42722,10 +43205,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -42733,6 +43218,11 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -42909,10 +43399,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_poster_series_status: z.ZodEnum<{
         pending: "pending";
@@ -42920,10 +43412,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_tile_series_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -42932,10 +43426,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -42943,6 +43439,11 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -43119,10 +43620,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_tile_series_status: z.ZodEnum<{
         pending: "pending";
@@ -43130,10 +43633,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_gen_prevue_state: z.ZodObject<{
         status: z.ZodEnum<{
@@ -43142,10 +43647,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
             succeeded: "succeeded";
             failed: "failed";
             rejected: "rejected";
-            blocked: "blocked";
+            "blocked-dependency": "blocked-dependency";
+            "blocked-input": "blocked-input";
             skipped: "skipped";
             "pending-paused": "pending-paused";
-            "blocked-paused": "blocked-paused";
+            "blocked-dependency-paused": "blocked-dependency-paused";
+            "blocked-input-paused": "blocked-input-paused";
         }>;
         createdAt: z.ZodISODateTime;
         startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -43153,6 +43660,11 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         finishedAt: z.ZodOptional<z.ZodISODateTime>;
         attempts: z.ZodNumber;
         runtimeToken: z.ZodOptional<z.ZodString>;
+        data: z.ZodOptional<z.ZodUnknown>;
+        config: z.ZodOptional<z.ZodObject<{
+            timeoutMs: z.ZodNumber;
+            maxAttempts: z.ZodNumber;
+        }, z.core.$strip>>;
         error: z.ZodOptional<z.ZodObject<{
             message: z.ZodString;
             code: z.ZodOptional<z.ZodString>;
@@ -43329,10 +43841,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     task_save_prevue_status: z.ZodEnum<{
         pending: "pending";
@@ -43340,10 +43854,12 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     is_settled: z.ZodBoolean;
     user_tags: z.ZodArray<z.ZodString>;

@@ -758,10 +758,12 @@ export declare const TranscodeTaskStateSchema: z.ZodObject<{
         succeeded: "succeeded";
         failed: "failed";
         rejected: "rejected";
-        blocked: "blocked";
+        "blocked-dependency": "blocked-dependency";
+        "blocked-input": "blocked-input";
         skipped: "skipped";
         "pending-paused": "pending-paused";
-        "blocked-paused": "blocked-paused";
+        "blocked-dependency-paused": "blocked-dependency-paused";
+        "blocked-input-paused": "blocked-input-paused";
     }>;
     createdAt: z.ZodISODateTime;
     startedAt: z.ZodOptional<z.ZodISODateTime>;
@@ -769,6 +771,11 @@ export declare const TranscodeTaskStateSchema: z.ZodObject<{
     finishedAt: z.ZodOptional<z.ZodISODateTime>;
     attempts: z.ZodNumber;
     runtimeToken: z.ZodOptional<z.ZodString>;
+    data: z.ZodOptional<z.ZodUnknown>;
+    config: z.ZodOptional<z.ZodObject<{
+        timeoutMs: z.ZodNumber;
+        maxAttempts: z.ZodNumber;
+    }, z.core.$strip>>;
     error: z.ZodOptional<z.ZodObject<{
         message: z.ZodString;
         code: z.ZodOptional<z.ZodString>;
@@ -939,5 +946,8 @@ export declare const TranscodeTaskStateSchema: z.ZodObject<{
         }, z.core.$strip>], "type">]>;
     }, z.core.$strip>>;
 }, z.core.$strip>;
-export type TranscodeTaskState = RobustTask.TaskState<TranscodeProgress, TranscodeResponse>;
+export type TranscodeTaskState = RobustTask.TaskState<TranscodeRequest, RobustTask.TaskConfig, TranscodeProgress, TranscodeResponse> & {
+    progress?: TranscodeProgress;
+    result?: TranscodeResponse;
+};
 //# sourceMappingURL=transcode.schema.d.ts.map

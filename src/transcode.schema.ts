@@ -164,4 +164,8 @@ export const TranscodeTaskStateSchema = RobustTask.TaskStateSchema.extend({
 	result: TranscodeResponse.optional(),
 })
 	.describe('The state of the transcode task');
-export type TranscodeTaskState = RobustTask.TaskState<TranscodeProgress, TranscodeResponse>;
+export type TranscodeTaskState =
+	RobustTask.TaskState<TranscodeRequest, RobustTask.TaskConfig, TranscodeProgress, TranscodeResponse> & {
+		progress? : TranscodeProgress,
+		result?: TranscodeResponse,
+	};
