@@ -7,7 +7,7 @@ import {
         WebhookResponse,
 } from "@dsbunny/webhook-schema";
 
-export const DamWebhookClass = z.enum(['asset'])
+export const DamWebhookClass = z.enum(['asset', 'upload'])
         .describe('The class of the webhook event related to DAM operations');
 export type DamWebhookClass = z.infer<typeof DamWebhookClass>;
 

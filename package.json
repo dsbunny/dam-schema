@@ -8,6 +8,12 @@
 	"author": "Steve-o <fnjordy@gmail.com>",
 	"license": "MIT",
 	"private": false,
+	"allowScripts": {
+		"@dsbunny/error-schema": true,
+		"@dsbunny/metadata-schema": true,
+		"@dsbunny/robust-task-schema": true,
+		"@dsbunny/webhook-schema": true
+	},
 	"scripts": {
 		"build": "tsc",
 		"clean": "rm -rf dist node_modules package-lock.json",
@@ -17,7 +23,7 @@
 	},
 	"devDependencies": {
 		"@dsbunny/error-schema": "github:dsbunny/error-schema#be4645d",
-		"@dsbunny/metadata-schema": "github:dsbunny/metadata-schema#1a3fd37",
+		"@dsbunny/metadata-schema": "github:dsbunny/metadata-schema#cd06bd8",
 		"@dsbunny/robust-task-schema": "github:dsbunny/robust-task-schema#fe32ee4",
 		"@dsbunny/webhook-schema": "github:dsbunny/webhook-schema#4178b06",
 		"typescript": "^5.9.3",

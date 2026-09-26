@@ -1,6 +1,7 @@
 import * as z from "zod";
 export declare const DamWebhookClass: z.ZodEnum<{
     asset: "asset";
+    upload: "upload";
 }>;
 export type DamWebhookClass = z.infer<typeof DamWebhookClass>;
 export declare const DamWebhookType: z.ZodEnum<{
@@ -15,6 +16,7 @@ export declare const DamWebhookRequest: z.ZodObject<{
     trace_id: z.ZodOptional<z.ZodString>;
     class: z.ZodEnum<{
         asset: "asset";
+        upload: "upload";
     }>;
     type: z.ZodEnum<{
         new: "new";
