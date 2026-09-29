@@ -2,7 +2,7 @@
 
 import * as z from "zod";
 
-export const PosterAnalysis = z.object({
+export const PosterAnalysisSchema = z.object({
 	description: z.string()
 		.describe('Generated description for the poster image'),
 	tags: z.array(z.string())
@@ -12,4 +12,4 @@ export const PosterAnalysis = z.object({
 	generated_at: z.iso.datetime()
 	  	.describe('ISO datetime when the analysis was generated')
 });
-export type PosterAnalysis = z.infer<typeof PosterAnalysis>;
+export type PosterAnalysis = z.infer<typeof PosterAnalysisSchema>;

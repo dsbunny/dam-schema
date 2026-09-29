@@ -1,13 +1,13 @@
 // vim: tabstop=8 softtabstop=0 noexpandtab shiftwidth=8 nosmarttab
 import * as z from "zod";
-import { MetadataMetadata } from '@dsbunny/metadata-schema';
+import { MetadataMetadataSchema } from '@dsbunny/metadata-schema';
 import { RobustTask } from "@dsbunny/robust-task-schema";
-import { sqliteDateSchema } from './sqlite-date.schema.js';
+import { SqliteDateSchema } from './sqlite-date.schema.js';
 import { jsonSafeParser } from './json-safe-parser.js';
-import { CompleteMultipartUploadResponse, S3CompleteTaskStateSchema } from './s3-complete.schema.js';
+import { CompleteMultipartUploadResponseSchema, S3CompleteTaskStateSchema } from './s3-complete.schema.js';
 import { TranscodeTaskStateSchema } from "./transcode.schema.js";
-import { S3URI } from './uri.schema.js';
-export const CanSaveStatus = z.object({
+import { S3URISchema } from './uri.schema.js';
+export const CanSaveStatusSchema = z.object({
     upload_id: z.uuid(),
     can_save: z.boolean(),
     is_rejected: z.boolean(),
@@ -16,14 +16,14 @@ export const CanSaveStatus = z.object({
     is_processing: z.boolean(),
     modify_timestamp: z.iso.datetime(),
 });
-export const DbDtoToCanSaveStatus = z.object({
+export const DbDtoToCanSaveStatusSchema = z.object({
     upload_id: z.uuid(),
     can_save: z.number(),
     is_rejected: z.number(),
     has_error: z.number(),
     is_pending: z.number(),
     is_processing: z.number(),
-    modify_timestamp: sqliteDateSchema,
+    modify_timestamp: SqliteDateSchema,
 })
     .transform((dto) => {
     return {
@@ -35,7 +35,7 @@ export const DbDtoToCanSaveStatus = z.object({
         is_processing: Boolean(dto.is_processing),
     };
 });
-export const S3Part = z.object({
+export const S3PartSchema = z.object({
     part_number: z.number().min(1).max(10000)
         .describe('The part number of the part. This is a positive integer between 1 and 10,000.'),
     etag: z.string().min(2).max(2048)
@@ -43,8 +43,8 @@ export const S3Part = z.object({
     size: z.number().min(20).max(5497558138880) // 5TB
         .describe('The size of the part in bytes.'),
 });
-export const UploadMetadata = z.record(z.string(), z.string().max(255));
-export const Upload = z.object({
+export const UploadMetadataSchema = z.record(z.string(), z.string().max(255));
+export const UploadSchema = z.object({
     upload_id: z.uuid()
         .describe('The upload ID'),
     tenant_id: z.uuid()
@@ -53,13 +53,13 @@ export const Upload = z.object({
         .describe('The asset ID of the upload'),
     s3_upload_id: z.string().min(2).max(2048).optional()
         .describe('The S3 upload ID of the upload'),
-    s3_metadata: CompleteMultipartUploadResponse.optional()
+    s3_metadata: CompleteMultipartUploadResponseSchema.optional()
         .describe('The S3 metadata of the upload'),
     s3_version_id: z.string().min(2).max(255).optional()
         .describe('The S3 version ID of the upload'),
     s3_etag: z.string().min(2).max(2048).optional()
         .describe('The S3 ETag of the upload'),
-    s3_parts: z.array(S3Part).optional()
+    s3_parts: z.array(S3PartSchema).optional()
         .describe('The S3 parts of the upload'),
     size: z.number().min(20).max(5497558138880).optional() // 5TB
         .describe('The size of the upload in bytes'),
@@ -69,11 +69,11 @@ export const Upload = z.object({
         .describe('The normalized filename of the upload'),
     content_type: z.string().min(5).max(255)
         .describe('The content type of the upload'),
-    s3_uri: S3URI.min(20).max(2048)
+    s3_uri: S3URISchema.min(20).max(2048)
         .describe('The S3 URI of the upload'),
     asset_name: z.string().min(1).max(255)
         .describe('The asset name of the upload'),
-    metadata_metadata: MetadataMetadata.optional()
+    metadata_metadata: MetadataMetadataSchema.optional()
         .describe('The metadata of the upload'),
     // `upload` is a client driven state machine
     task_upload_status: z.enum(RobustTask.StatusValues),
@@ -95,16 +95,16 @@ export const Upload = z.object({
     is_deleted: z.boolean().default(false)
         .describe('Whether the upload is deleted'),
 });
-export const ValidatedUpload = Upload.required({
+export const ValidatedUploadSchema = UploadSchema.required({
     s3_version_id: true,
     s3_etag: true,
     s3_parts: true,
     size: true,
 });
-export const ValidatedUploadWithMetadata = ValidatedUpload.required({
+export const ValidatedUploadWithMetadataSchema = ValidatedUploadSchema.required({
     metadata_metadata: true,
 });
-export const DbDtoFromUpload = Upload.transform((upload) => {
+export const DbDtoFromUploadSchema = UploadSchema.transform((upload) => {
     return {
         ...upload,
         s3_metadata: JSON.stringify(upload.s3_metadata),
@@ -116,7 +116,7 @@ export const DbDtoFromUpload = Upload.transform((upload) => {
         system_tags: JSON.stringify(upload.system_tags),
     };
 });
-export const DbDtoToUpload = z.object({
+export const DbDtoToUploadSchema = z.object({
     upload_id: z.uuid(),
     tenant_id: z.uuid(),
     asset_id: z.uuid(),
@@ -129,7 +129,7 @@ export const DbDtoToUpload = z.object({
     origin_filename: z.string().min(1).max(255),
     s3_filename: z.string().min(1).max(255),
     content_type: z.string().min(5).max(255),
-    s3_uri: S3URI.min(20).max(2048),
+    s3_uri: S3URISchema.min(20).max(2048),
     asset_name: z.string().min(1).max(255),
     metadata_metadata: z.string().max(65535).nullable(),
     task_upload_status: z.enum(RobustTask.StatusValues),
@@ -140,14 +140,14 @@ export const DbDtoToUpload = z.object({
     task_save_status: z.enum(RobustTask.StatusValues),
     user_tags: z.string().max(65535),
     system_tags: z.string().max(65535),
-    create_timestamp: sqliteDateSchema,
-    modify_timestamp: sqliteDateSchema,
+    create_timestamp: SqliteDateSchema,
+    modify_timestamp: SqliteDateSchema,
     is_deleted: z.number().default(0),
 })
     .transform((dto, ctx) => {
     const s3_metadata_result = !dto.s3_metadata
         ? { success: true, data: undefined, error: undefined }
-        : jsonSafeParser(CompleteMultipartUploadResponse).safeParse(dto.s3_metadata);
+        : jsonSafeParser(CompleteMultipartUploadResponseSchema).safeParse(dto.s3_metadata);
     if (!s3_metadata_result.success) {
         ctx.addIssue({
             code: "custom",
@@ -158,7 +158,7 @@ export const DbDtoToUpload = z.object({
     }
     const s3_parts_result = !dto.s3_parts
         ? { success: true, data: undefined, error: undefined }
-        : jsonSafeParser(z.array(S3Part)).safeParse(dto.s3_parts);
+        : jsonSafeParser(z.array(S3PartSchema)).safeParse(dto.s3_parts);
     if (!s3_parts_result.success) {
         ctx.addIssue({
             code: "custom",
@@ -169,7 +169,7 @@ export const DbDtoToUpload = z.object({
     }
     const metadata_metadata_result = !dto.metadata_metadata
         ? { success: true, data: undefined, error: undefined }
-        : jsonSafeParser(MetadataMetadata).safeParse(dto.metadata_metadata);
+        : jsonSafeParser(MetadataMetadataSchema).safeParse(dto.metadata_metadata);
     if (!metadata_metadata_result.success) {
         ctx.addIssue({
             code: "custom",

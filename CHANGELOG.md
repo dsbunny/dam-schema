@@ -1,4 +1,7 @@
 # Changelog
+## v17.0.16
+- Split schema definitions to separate Schema suffix to resolve vsCode and tooling confusion.
+
 ## v16.0.15
 - Bump to `zod@4.3.6`.
 - Add `@dsbunny/robust-task-schema` dependency for task state and status.

@@ -1,11 +1,11 @@
 import * as z from "zod";
-export declare const CurrentVersionMetadata: z.ZodObject<{
+export declare const CurrentVersionMetadataSchema: z.ZodObject<{
     is_current: z.ZodLiteral<true>;
     version: z.ZodNumber;
     origin_name: z.ZodString;
 }, z.core.$strip>;
-export type CurrentVersionMetadata = z.infer<typeof CurrentVersionMetadata>;
-export declare const OldVersionMetadata: z.ZodObject<{
+export type CurrentVersionMetadata = z.infer<typeof CurrentVersionMetadataSchema>;
+export declare const OldVersionMetadataSchema: z.ZodObject<{
     is_current: z.ZodLiteral<false>;
     version: z.ZodNumber;
     origin_name: z.ZodString;
@@ -189,8 +189,8 @@ export declare const OldVersionMetadata: z.ZodObject<{
         }, z.core.$strip>;
     }, z.core.$strip>>;
 }, z.core.$strip>;
-export type OldVersionMetadata = z.infer<typeof OldVersionMetadata>;
-export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
+export type OldVersionMetadata = z.infer<typeof OldVersionMetadataSchema>;
+export declare const VersionMetadataSchema: z.ZodUnion<[z.ZodObject<{
     is_current: z.ZodLiteral<true>;
     version: z.ZodNumber;
     origin_name: z.ZodString;
@@ -378,5 +378,5 @@ export declare const VersionMetadata: z.ZodUnion<[z.ZodObject<{
         }, z.core.$strip>;
     }, z.core.$strip>>;
 }, z.core.$strip>]>;
-export type VersionMetadata = z.infer<typeof VersionMetadata>;
+export type VersionMetadata = z.infer<typeof VersionMetadataSchema>;
 //# sourceMappingURL=versions.schema.d.ts.map

@@ -11,18 +11,18 @@
 import * as z from "zod";
 import { RobustTask } from "@dsbunny/robust-task-schema";
 import { S3ClientConfigSchema } from './s3-client-config.schema.js';
-import { URI } from './uri.schema.js';
+import { URISchema } from './uri.schema.js';
 
-export const UploadPart = z.object({
+export const UploadPartSchema = z.object({
         part_number: z.number().min(1).max(10000)
                 .describe('The part number of the upload'),
 	s3_etag: z.string().min(2).max(2048)
                 .describe('The S3 ETag of the part'),
 })
         .describe('The S3 part of the upload');
-export type UploadPart = z.infer<typeof UploadPart>;
+export type UploadPart = z.infer<typeof UploadPartSchema>;
 
-export const S3CompleteRequest = z.object({
+export const S3CompleteRequestSchema = z.object({
         tenant_id: z.uuid()
                 .describe('The tenant ID of the upload'),
         reference_id: z.uuid()
@@ -33,24 +33,24 @@ export const S3CompleteRequest = z.object({
                 .describe('The S3 client configuration for accessing the asset'),
         s3_upload_id: z.string().min(2).max(2048)
                 .describe('The S3 upload ID of the upload'),
-        s3_uri: URI.min(20).max(2048)
+        s3_uri: URISchema.min(20).max(2048)
                 .describe('The S3 URI of the upload'),
-        s3_parts: z.array(UploadPart)
+        s3_parts: z.array(UploadPartSchema)
                 .describe('The S3 parts of the upload'),
 });
-export type S3CompleteRequest = z.infer<typeof S3CompleteRequest>;
+export type S3CompleteRequest = z.infer<typeof S3CompleteRequestSchema>;
 
-export const S3CompleteProgress = z.object({
+export const S3CompleteProgressSchema = z.object({
         elapsed_seconds: z.number().min(0)
                 .describe('The elapsed seconds of the upload completion job'),
 })
         .describe('The progress of the upload completion job');
-export type S3CompleteProgress = z.infer<typeof S3CompleteProgress>;
+export type S3CompleteProgress = z.infer<typeof S3CompleteProgressSchema>;
 
 // REF: https://docs.aws.amazon.com/AmazonS3/latest/API/API_CompleteMultipartUpload.html#API_CompleteMultipartUpload_ResponseSyntax
 // REF: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-aws-sdk-client-s3/Interface/CompleteMultipartUploadCommandOutput/
 // Schema to validate multipart upload response from S3.
-export const CompleteMultipartUploadResponse = z.object({
+export const CompleteMultipartUploadResponseSchema = z.object({
         Location: z.string(),
         Bucket: z.string(),
         Key: z.string(),
@@ -66,13 +66,13 @@ export const CompleteMultipartUploadResponse = z.object({
         BucketKeyEnabled: z.boolean().optional(),
         RequestCharged: z.enum(["requester"]).optional(),
 });
-export type CompleteMultipartUploadResponse = z.infer<typeof CompleteMultipartUploadResponse>;
+export type CompleteMultipartUploadResponse = z.infer<typeof CompleteMultipartUploadResponseSchema>;
 
-export const S3CompleteResponse = CompleteMultipartUploadResponse
+export const S3CompleteResponseSchema = CompleteMultipartUploadResponseSchema
         .describe('The output of the upload completion job');
-export type S3CompleteResponse = z.infer<typeof S3CompleteResponse>;
+export type S3CompleteResponse = z.infer<typeof S3CompleteResponseSchema>;
 
-export const S3MetadataResponse = z.object({
+export const S3MetadataResponseSchema = z.object({
         "$metadata": z.object({
                 attempts: z.number()
                         .describe('The number of times this operation was attempted.'),
@@ -95,11 +95,11 @@ export const S3MetadataResponse = z.object({
         VersionId: z.string()
                 .describe('Version ID of the newly created object, in case the bucket has versioning turned on.'),
 });
-export type S3MetadataResponse = z.infer<typeof S3MetadataResponse>;
+export type S3MetadataResponse = z.infer<typeof S3MetadataResponseSchema>;
 
 export const S3CompleteTaskStateSchema = RobustTask.TaskStateSchema.extend({
-        progress: S3CompleteProgress.optional(),
-        result: S3CompleteResponse.optional(),
+        progress: S3CompleteProgressSchema.optional(),
+        result: S3CompleteResponseSchema.optional(),
 })
         .describe('The state of the S3 complete task');
 export type S3CompleteTaskState = RobustTask.TaskState<S3CompleteRequest, RobustTask.TaskConfig, S3CompleteProgress, S3CompleteResponse>;

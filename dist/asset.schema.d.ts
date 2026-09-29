@@ -1,5 +1,5 @@
 import * as z from "zod";
-export declare const AssetBase: z.ZodObject<{
+export declare const AssetBaseSchema: z.ZodObject<{
     tenant_id: z.ZodUUID;
     name: z.ZodString;
     metadata: z.ZodDiscriminatedUnion<[z.ZodObject<{
@@ -3013,23 +3013,23 @@ export declare const AssetBase: z.ZodObject<{
     }, z.core.$strip>]>>;
     tags: z.ZodArray<z.ZodString>;
 }, z.core.$strip>;
-export type AssetBase = z.infer<typeof AssetBase>;
-export declare const AssetMetadata: z.ZodObject<{
+export type AssetBase = z.infer<typeof AssetBaseSchema>;
+export declare const AssetMetadataSchema: z.ZodObject<{
     asset_id: z.ZodUUID;
     create_timestamp: z.ZodISODateTime;
     modify_timestamp: z.ZodISODateTime;
     is_deleted: z.ZodDefault<z.ZodBoolean>;
 }, z.core.$strip>;
-export declare const AssetPoster: z.ZodObject<{
+export declare const AssetPosterSchema: z.ZodObject<{
     poster_url: z.ZodOptional<z.ZodURL>;
 }, z.core.$strip>;
-export declare const AssetAnimatedPoster: z.ZodObject<{
+export declare const AssetAnimatedPosterSchema: z.ZodObject<{
     animated_poster_url: z.ZodOptional<z.ZodURL>;
 }, z.core.$strip>;
-export declare const AssetPrevue: z.ZodObject<{
+export declare const AssetPrevueSchema: z.ZodObject<{
     prevue_url: z.ZodOptional<z.ZodURL>;
 }, z.core.$strip>;
-export declare const Asset: z.ZodObject<{
+export declare const AssetSchema: z.ZodObject<{
     tenant_id: z.ZodUUID;
     name: z.ZodString;
     metadata: z.ZodDiscriminatedUnion<[z.ZodObject<{
@@ -6050,8 +6050,8 @@ export declare const Asset: z.ZodObject<{
     animated_poster_url: z.ZodOptional<z.ZodURL>;
     prevue_url: z.ZodOptional<z.ZodURL>;
 }, z.core.$strip>;
-export type Asset = z.infer<typeof Asset>;
-export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
+export type Asset = z.infer<typeof AssetSchema>;
+export declare const DbDtoFromAssetBaseSchema: z.ZodPipe<z.ZodObject<{
     tenant_id: z.ZodUUID;
     name: z.ZodString;
     metadata: z.ZodDiscriminatedUnion<[z.ZodObject<{
@@ -11407,7 +11407,7 @@ export declare const DbDtoFromAssetBase: z.ZodPipe<z.ZodObject<{
         };
     } | undefined;
 }>>;
-export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
+export declare const DbDtoFromAssetSchema: z.ZodPipe<z.ZodObject<{
     tenant_id: z.ZodUUID;
     name: z.ZodString;
     metadata: z.ZodDiscriminatedUnion<[z.ZodObject<{
@@ -16651,7 +16651,7 @@ export declare const DbDtoFromAsset: z.ZodPipe<z.ZodObject<{
     animated_poster_url?: string | undefined;
     prevue_url?: string | undefined;
 }>>;
-export declare const DbDtoToAssetBase: z.ZodPipe<z.ZodObject<{
+export declare const DbDtoToAssetBaseSchema: z.ZodPipe<z.ZodObject<{
     tenant_id: z.ZodUUID;
     name: z.ZodString;
     metadata: z.ZodString;
@@ -19040,7 +19040,7 @@ export declare const DbDtoToAssetBase: z.ZodPipe<z.ZodObject<{
     versions: string;
     tags: string;
 }>>;
-export declare const DbDtoToAsset: z.ZodPipe<z.ZodObject<{
+export declare const DbDtoToAssetSchema: z.ZodPipe<z.ZodObject<{
     asset_id: z.ZodUUID;
     tenant_id: z.ZodUUID;
     name: z.ZodString;

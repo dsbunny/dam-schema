@@ -1,5 +1,5 @@
 import * as z from "zod";
-export declare const Part: z.ZodObject<{
+export declare const PartSchema: z.ZodObject<{
     tenant_id: z.ZodUUID;
     upload_id: z.ZodUUID;
     part_number: z.ZodNumber;
@@ -9,8 +9,8 @@ export declare const Part: z.ZodObject<{
     modify_timestamp: z.ZodString;
     is_deleted: z.ZodBoolean;
 }, z.core.$strip>;
-export type Part = z.infer<typeof Part>;
-export declare const DbDtoFromPart: z.ZodPipe<z.ZodObject<{
+export type Part = z.infer<typeof PartSchema>;
+export declare const DbDtoFromPartSchema: z.ZodPipe<z.ZodObject<{
     tenant_id: z.ZodUUID;
     upload_id: z.ZodUUID;
     part_number: z.ZodNumber;
@@ -38,7 +38,7 @@ export declare const DbDtoFromPart: z.ZodPipe<z.ZodObject<{
     modify_timestamp: string;
     is_deleted: boolean;
 }>>;
-export declare const DbDtoToPart: z.ZodPipe<z.ZodObject<{
+export declare const DbDtoToPartSchema: z.ZodPipe<z.ZodObject<{
     tenant_id: z.ZodUUID;
     upload_id: z.ZodUUID;
     part_number: z.ZodNumber;

@@ -1,6 +1,6 @@
 {
 	"name": "@dsbunny/dam-schema",
-	"version": "16.0.15",
+	"version": "17.0.16",
 	"description": "Schema for the DAM",
 	"type": "module",
 	"main": "dist/index.js",
@@ -22,10 +22,10 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"devDependencies": {
-		"@dsbunny/error-schema": "github:dsbunny/error-schema#be4645d",
-		"@dsbunny/metadata-schema": "github:dsbunny/metadata-schema#cd06bd8",
+		"@dsbunny/error-schema": "github:dsbunny/error-schema#86d038b",
+		"@dsbunny/metadata-schema": "github:dsbunny/metadata-schema#81b827c",
 		"@dsbunny/robust-task-schema": "github:dsbunny/robust-task-schema#fe32ee4",
-		"@dsbunny/webhook-schema": "github:dsbunny/webhook-schema#4178b06",
+		"@dsbunny/webhook-schema": "github:dsbunny/webhook-schema#de1d05d",
 		"typescript": "^5.9.3",
 		"zod": "^4.3.6"
 	},

@@ -2,13 +2,13 @@
 
 import * as z from "zod";
 
-export const PresignedUrl = z.object({
+export const PresignedUrlSchema = z.object({
 	url: z.string(),
 	expires: z.string(),
 });
-export type PresignedUrl = z.infer<typeof PresignedUrl>;
+export type PresignedUrl = z.infer<typeof PresignedUrlSchema>;
 
-export const PresignedIndexedUrl = PresignedUrl.extend({
+export const PresignedIndexedUrlSchema = PresignedUrlSchema.extend({
 	index: z.number().int().nonnegative(),
 });
-export type PresignedIndexedUrl = z.infer<typeof PresignedIndexedUrl>;
+export type PresignedIndexedUrl = z.infer<typeof PresignedIndexedUrlSchema>;

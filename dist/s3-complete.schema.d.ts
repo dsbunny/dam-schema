@@ -1,11 +1,11 @@
 import * as z from "zod";
 import { RobustTask } from "@dsbunny/robust-task-schema";
-export declare const UploadPart: z.ZodObject<{
+export declare const UploadPartSchema: z.ZodObject<{
     part_number: z.ZodNumber;
     s3_etag: z.ZodString;
 }, z.core.$strip>;
-export type UploadPart = z.infer<typeof UploadPart>;
-export declare const S3CompleteRequest: z.ZodObject<{
+export type UploadPart = z.infer<typeof UploadPartSchema>;
+export declare const S3CompleteRequestSchema: z.ZodObject<{
     tenant_id: z.ZodUUID;
     reference_id: z.ZodUUID;
     asset_id: z.ZodUUID;
@@ -25,12 +25,12 @@ export declare const S3CompleteRequest: z.ZodObject<{
         s3_etag: z.ZodString;
     }, z.core.$strip>>;
 }, z.core.$strip>;
-export type S3CompleteRequest = z.infer<typeof S3CompleteRequest>;
-export declare const S3CompleteProgress: z.ZodObject<{
+export type S3CompleteRequest = z.infer<typeof S3CompleteRequestSchema>;
+export declare const S3CompleteProgressSchema: z.ZodObject<{
     elapsed_seconds: z.ZodNumber;
 }, z.core.$strip>;
-export type S3CompleteProgress = z.infer<typeof S3CompleteProgress>;
-export declare const CompleteMultipartUploadResponse: z.ZodObject<{
+export type S3CompleteProgress = z.infer<typeof S3CompleteProgressSchema>;
+export declare const CompleteMultipartUploadResponseSchema: z.ZodObject<{
     Location: z.ZodString;
     Bucket: z.ZodString;
     Key: z.ZodString;
@@ -52,8 +52,8 @@ export declare const CompleteMultipartUploadResponse: z.ZodObject<{
         requester: "requester";
     }>>;
 }, z.core.$strip>;
-export type CompleteMultipartUploadResponse = z.infer<typeof CompleteMultipartUploadResponse>;
-export declare const S3CompleteResponse: z.ZodObject<{
+export type CompleteMultipartUploadResponse = z.infer<typeof CompleteMultipartUploadResponseSchema>;
+export declare const S3CompleteResponseSchema: z.ZodObject<{
     Location: z.ZodString;
     Bucket: z.ZodString;
     Key: z.ZodString;
@@ -75,8 +75,8 @@ export declare const S3CompleteResponse: z.ZodObject<{
         requester: "requester";
     }>>;
 }, z.core.$strip>;
-export type S3CompleteResponse = z.infer<typeof S3CompleteResponse>;
-export declare const S3MetadataResponse: z.ZodObject<{
+export type S3CompleteResponse = z.infer<typeof S3CompleteResponseSchema>;
+export declare const S3MetadataResponseSchema: z.ZodObject<{
     $metadata: z.ZodObject<{
         attempts: z.ZodNumber;
         httpStatusCode: z.ZodNumber;
@@ -89,7 +89,7 @@ export declare const S3MetadataResponse: z.ZodObject<{
     Location: z.ZodString;
     VersionId: z.ZodString;
 }, z.core.$strip>;
-export type S3MetadataResponse = z.infer<typeof S3MetadataResponse>;
+export type S3MetadataResponse = z.infer<typeof S3MetadataResponseSchema>;
 export declare const S3CompleteTaskStateSchema: z.ZodObject<{
     status: z.ZodEnum<{
         pending: "pending";

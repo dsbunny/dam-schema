@@ -1,7 +1,7 @@
 import * as z from "zod";
-export declare const ListAssetsRequest: z.ZodObject<{}, z.core.$strip>;
-export type ListAssetsRequest = z.infer<typeof ListAssetsRequest>;
-export declare const ListAssetsResponse: z.ZodObject<{
+export declare const ListAssetsRequestSchema: z.ZodObject<{}, z.core.$strip>;
+export type ListAssetsRequest = z.infer<typeof ListAssetsRequestSchema>;
+export declare const ListAssetsResponseSchema: z.ZodObject<{
     assets: z.ZodArray<z.ZodObject<{
         tenant_id: z.ZodUUID;
         name: z.ZodString;
@@ -3025,10 +3025,10 @@ export declare const ListAssetsResponse: z.ZodObject<{
     }, z.core.$strip>>;
     next_token: z.ZodNullable<z.ZodString>;
 }, z.core.$strip>;
-export type ListAssetsResponse = z.infer<typeof ListAssetsResponse>;
-export declare const ListDeletedAssetsRequest: z.ZodObject<{}, z.core.$strip>;
-export type ListDeletedAssetsRequest = z.infer<typeof ListDeletedAssetsRequest>;
-export declare const ListDeletedAssetsResponse: z.ZodObject<{
+export type ListAssetsResponse = z.infer<typeof ListAssetsResponseSchema>;
+export declare const ListDeletedAssetsRequestSchema: z.ZodObject<{}, z.core.$strip>;
+export type ListDeletedAssetsRequest = z.infer<typeof ListDeletedAssetsRequestSchema>;
+export declare const ListDeletedAssetsResponseSchema: z.ZodObject<{
     assets: z.ZodArray<z.ZodObject<{
         tenant_id: z.ZodUUID;
         name: z.ZodString;
@@ -6052,23 +6052,23 @@ export declare const ListDeletedAssetsResponse: z.ZodObject<{
     }, z.core.$strip>>;
     next_token: z.ZodNullable<z.ZodString>;
 }, z.core.$strip>;
-export type ListDeletedAssetsResponse = z.infer<typeof ListDeletedAssetsResponse>;
-export declare const GetAssetSuggestionsRequest: z.ZodObject<{}, z.core.$strip>;
-export type GetAssetSuggestionsRequest = z.infer<typeof GetAssetSuggestionsRequest>;
-export declare const GetAssetSuggestionsResponse: z.ZodObject<{
+export type ListDeletedAssetsResponse = z.infer<typeof ListDeletedAssetsResponseSchema>;
+export declare const GetAssetSuggestionsRequestSchema: z.ZodObject<{}, z.core.$strip>;
+export type GetAssetSuggestionsRequest = z.infer<typeof GetAssetSuggestionsRequestSchema>;
+export declare const GetAssetSuggestionsResponseSchema: z.ZodObject<{
     c: z.ZodString;
     s: z.ZodArray<z.ZodString>;
 }, z.core.$strip>;
-export type GetAssetSuggestionsResponse = z.infer<typeof GetAssetSuggestionsResponse>;
-export declare const GetAssetAvailabilityRequest: z.ZodObject<{}, z.core.$strip>;
-export type GetAssetAvailabilityRequest = z.infer<typeof GetAssetAvailabilityRequest>;
-export declare const GetAssetAvailabilityResponse: z.ZodObject<{
+export type GetAssetSuggestionsResponse = z.infer<typeof GetAssetSuggestionsResponseSchema>;
+export declare const GetAssetAvailabilityRequestSchema: z.ZodObject<{}, z.core.$strip>;
+export type GetAssetAvailabilityRequest = z.infer<typeof GetAssetAvailabilityRequestSchema>;
+export declare const GetAssetAvailabilityResponseSchema: z.ZodObject<{
     is_available: z.ZodBoolean;
 }, z.core.$strip>;
-export type GetAssetAvailabilityResponse = z.infer<typeof GetAssetAvailabilityResponse>;
-export declare const GetAssetRequest: z.ZodObject<{}, z.core.$strip>;
-export type GetAssetRequest = z.infer<typeof GetAssetRequest>;
-export declare const GetAssetResponse: z.ZodObject<{
+export type GetAssetAvailabilityResponse = z.infer<typeof GetAssetAvailabilityResponseSchema>;
+export declare const GetAssetRequestSchema: z.ZodObject<{}, z.core.$strip>;
+export type GetAssetRequest = z.infer<typeof GetAssetRequestSchema>;
+export declare const GetAssetResponseSchema: z.ZodObject<{
     tenant_id: z.ZodUUID;
     name: z.ZodString;
     metadata: z.ZodDiscriminatedUnion<[z.ZodObject<{
@@ -9089,14 +9089,14 @@ export declare const GetAssetResponse: z.ZodObject<{
     animated_poster_url: z.ZodOptional<z.ZodURL>;
     prevue_url: z.ZodOptional<z.ZodURL>;
 }, z.core.$strip>;
-export type GetAssetResponse = z.infer<typeof GetAssetResponse>;
-export declare const DeleteAssetRequest: z.ZodObject<{}, z.core.$strip>;
-export type DeleteAssetRequest = z.infer<typeof DeleteAssetRequest>;
-export declare const DeleteAssetResponse: z.ZodObject<{}, z.core.$strip>;
-export type DeleteAssetResponse = z.infer<typeof DeleteAssetResponse>;
-export declare const RecoverAssetRequest: z.ZodObject<{}, z.core.$strip>;
-export type RecoverAssetRequest = z.infer<typeof RecoverAssetRequest>;
-export declare const RecoverAssetResponse: z.ZodObject<{
+export type GetAssetResponse = z.infer<typeof GetAssetResponseSchema>;
+export declare const DeleteAssetRequestSchema: z.ZodObject<{}, z.core.$strip>;
+export type DeleteAssetRequest = z.infer<typeof DeleteAssetRequestSchema>;
+export declare const DeleteAssetResponseSchema: z.ZodObject<{}, z.core.$strip>;
+export type DeleteAssetResponse = z.infer<typeof DeleteAssetResponseSchema>;
+export declare const RecoverAssetRequestSchema: z.ZodObject<{}, z.core.$strip>;
+export type RecoverAssetRequest = z.infer<typeof RecoverAssetRequestSchema>;
+export declare const RecoverAssetResponseSchema: z.ZodObject<{
     tenant_id: z.ZodUUID;
     name: z.ZodString;
     metadata: z.ZodDiscriminatedUnion<[z.ZodObject<{
@@ -12117,15 +12117,15 @@ export declare const RecoverAssetResponse: z.ZodObject<{
     animated_poster_url: z.ZodOptional<z.ZodURL>;
     prevue_url: z.ZodOptional<z.ZodURL>;
 }, z.core.$strip>;
-export type RecoverAssetResponse = z.infer<typeof RecoverAssetResponse>;
-export declare const GetAssetDownloadLocationRequest: z.ZodObject<{}, z.core.$strip>;
-export type GetAssetDownloadLocationRequest = z.infer<typeof GetAssetDownloadLocationRequest>;
-export declare const GetAssetDownloadLocationResponse: z.ZodObject<{
+export type RecoverAssetResponse = z.infer<typeof RecoverAssetResponseSchema>;
+export declare const GetAssetDownloadLocationRequestSchema: z.ZodObject<{}, z.core.$strip>;
+export type GetAssetDownloadLocationRequest = z.infer<typeof GetAssetDownloadLocationRequestSchema>;
+export declare const GetAssetDownloadLocationResponseSchema: z.ZodObject<{
     url: z.ZodURL;
     expires: z.ZodISODateTime;
 }, z.core.$strip>;
-export type GetAssetDownloadLocationResponse = z.infer<typeof GetAssetDownloadLocationResponse>;
-export declare const PatchAssetRequest: z.ZodArray<z.ZodDiscriminatedUnion<[z.ZodObject<{
+export type GetAssetDownloadLocationResponse = z.infer<typeof GetAssetDownloadLocationResponseSchema>;
+export declare const PatchAssetRequestSchema: z.ZodArray<z.ZodDiscriminatedUnion<[z.ZodObject<{
     path: z.ZodString;
     op: z.ZodLiteral<"add">;
     value: z.ZodAny;
@@ -12150,8 +12150,8 @@ export declare const PatchAssetRequest: z.ZodArray<z.ZodDiscriminatedUnion<[z.Zo
     value: z.ZodAny;
     not: z.ZodOptional<z.ZodBoolean>;
 }, z.core.$strip>], "op">>;
-export type PatchAssetRequest = z.infer<typeof PatchAssetRequest>;
-export declare const PatchAssetResponse: z.ZodObject<{
+export type PatchAssetRequest = z.infer<typeof PatchAssetRequestSchema>;
+export declare const PatchAssetResponseSchema: z.ZodObject<{
     tenant_id: z.ZodUUID;
     name: z.ZodString;
     metadata: z.ZodDiscriminatedUnion<[z.ZodObject<{
@@ -15172,30 +15172,30 @@ export declare const PatchAssetResponse: z.ZodObject<{
     animated_poster_url: z.ZodOptional<z.ZodURL>;
     prevue_url: z.ZodOptional<z.ZodURL>;
 }, z.core.$strip>;
-export type PatchAssetResponse = z.infer<typeof PatchAssetResponse>;
-export declare const ListAssetPostersRequest: z.ZodObject<{}, z.core.$strip>;
-export type ListAssetPostersRequest = z.infer<typeof ListAssetPostersRequest>;
-export declare const ListAssetPostersResponse: z.ZodArray<z.ZodObject<{
+export type PatchAssetResponse = z.infer<typeof PatchAssetResponseSchema>;
+export declare const ListAssetPostersRequestSchema: z.ZodObject<{}, z.core.$strip>;
+export type ListAssetPostersRequest = z.infer<typeof ListAssetPostersRequestSchema>;
+export declare const ListAssetPostersResponseSchema: z.ZodArray<z.ZodObject<{
     url: z.ZodString;
     expires: z.ZodString;
     index: z.ZodNumber;
 }, z.core.$strip>>;
-export type ListAssetPostersResponse = z.infer<typeof ListAssetPostersResponse>;
-export declare const UpdateAssetPosterRequest: z.ZodCoercedNumber<unknown>;
-export type UpdateAssetPosterRequest = z.infer<typeof UpdateAssetPosterRequest>;
-export declare const UpdateAssetPosterResponse: z.ZodObject<{}, z.core.$strip>;
-export type UpdateAssetPosterResponse = z.infer<typeof UpdateAssetPosterResponse>;
-export declare const GetAssetPosterRequest: z.ZodObject<{}, z.core.$strip>;
-export type GetAssetPosterRequest = z.infer<typeof GetAssetPosterRequest>;
-export declare const GetAssetPosterResponse: z.ZodURL;
-export type GetAssetPosterResponse = z.infer<typeof GetAssetPosterResponse>;
-export declare const GetAssetThumbnailRequest: z.ZodObject<{}, z.core.$strip>;
-export type GetAssetThumbnailRequest = z.infer<typeof GetAssetThumbnailRequest>;
-export declare const GetAssetThumbnailResponse: z.ZodURL;
-export type GetAssetThumbnailResponse = z.infer<typeof GetAssetThumbnailResponse>;
-export declare const ListUploadsRequest: z.ZodObject<{}, z.core.$strip>;
-export type ListUploadsRequest = z.infer<typeof ListUploadsRequest>;
-export declare const ListUploadsResponse: z.ZodObject<{
+export type ListAssetPostersResponse = z.infer<typeof ListAssetPostersResponseSchema>;
+export declare const UpdateAssetPosterRequestSchema: z.ZodCoercedNumber<unknown>;
+export type UpdateAssetPosterRequest = z.infer<typeof UpdateAssetPosterRequestSchema>;
+export declare const UpdateAssetPosterResponseSchema: z.ZodObject<{}, z.core.$strip>;
+export type UpdateAssetPosterResponse = z.infer<typeof UpdateAssetPosterResponseSchema>;
+export declare const GetAssetPosterRequestSchema: z.ZodObject<{}, z.core.$strip>;
+export type GetAssetPosterRequest = z.infer<typeof GetAssetPosterRequestSchema>;
+export declare const GetAssetPosterResponseSchema: z.ZodURL;
+export type GetAssetPosterResponse = z.infer<typeof GetAssetPosterResponseSchema>;
+export declare const GetAssetThumbnailRequestSchema: z.ZodObject<{}, z.core.$strip>;
+export type GetAssetThumbnailRequest = z.infer<typeof GetAssetThumbnailRequestSchema>;
+export declare const GetAssetThumbnailResponseSchema: z.ZodURL;
+export type GetAssetThumbnailResponse = z.infer<typeof GetAssetThumbnailResponseSchema>;
+export declare const ListUploadsRequestSchema: z.ZodObject<{}, z.core.$strip>;
+export type ListUploadsRequest = z.infer<typeof ListUploadsRequestSchema>;
+export declare const ListUploadsResponseSchema: z.ZodObject<{
     uploads: z.ZodArray<z.ZodObject<{
         upload_id: z.ZodUUID;
         tenant_id: z.ZodUUID;
@@ -15572,21 +15572,21 @@ export declare const ListUploadsResponse: z.ZodObject<{
     }, z.core.$strip>>;
     next_token: z.ZodNullable<z.ZodString>;
 }, z.core.$strip>;
-export type ListUploadsResponse = z.infer<typeof ListUploadsResponse>;
-export declare const CreateUploadRequest: z.ZodObject<{
+export type ListUploadsResponse = z.infer<typeof ListUploadsResponseSchema>;
+export declare const CreateUploadRequestSchema: z.ZodObject<{
     filename: z.ZodString;
     user_tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
     system_tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
 }, z.core.$strip>;
-export type CreateUploadRequest = z.infer<typeof CreateUploadRequest>;
-export declare const CreateUploadResponse: z.ZodObject<{
+export type CreateUploadRequest = z.infer<typeof CreateUploadRequestSchema>;
+export declare const CreateUploadResponseSchema: z.ZodObject<{
     uploadId: z.ZodString;
     assetName: z.ZodString;
 }, z.core.$strip>;
-export type CreateUploadResponse = z.infer<typeof CreateUploadResponse>;
-export declare const GetUploadRequest: z.ZodObject<{}, z.core.$strip>;
-export type GetUploadRequest = z.infer<typeof GetUploadRequest>;
-export declare const GetUploadResponse: z.ZodObject<{
+export type CreateUploadResponse = z.infer<typeof CreateUploadResponseSchema>;
+export declare const GetUploadRequestSchema: z.ZodObject<{}, z.core.$strip>;
+export type GetUploadRequest = z.infer<typeof GetUploadRequestSchema>;
+export declare const GetUploadResponseSchema: z.ZodObject<{
     upload_id: z.ZodUUID;
     tenant_id: z.ZodUUID;
     asset_id: z.ZodUUID;
@@ -15960,34 +15960,34 @@ export declare const GetUploadResponse: z.ZodObject<{
     modify_timestamp: z.ZodISODateTime;
     is_deleted: z.ZodDefault<z.ZodBoolean>;
 }, z.core.$strip>;
-export type GetUploadResponse = z.infer<typeof GetUploadResponse>;
-export declare const CreateUploadVersionRequest: z.ZodObject<{
+export type GetUploadResponse = z.infer<typeof GetUploadResponseSchema>;
+export declare const CreateUploadVersionRequestSchema: z.ZodObject<{
     filename: z.ZodString;
 }, z.core.$strip>;
-export type CreateUploadVersionRequest = z.infer<typeof CreateUploadVersionRequest>;
-export declare const CreateUploadVersionResponse: z.ZodObject<{
+export type CreateUploadVersionRequest = z.infer<typeof CreateUploadVersionRequestSchema>;
+export declare const CreateUploadVersionResponseSchema: z.ZodObject<{
     uploadId: z.ZodString;
     assetName: z.ZodString;
 }, z.core.$strip>;
-export type CreateUploadVersionResponse = z.infer<typeof CreateUploadVersionResponse>;
-export declare const CreateUploadUrlRequest: z.ZodObject<{
+export type CreateUploadVersionResponse = z.infer<typeof CreateUploadVersionResponseSchema>;
+export declare const CreateUploadUrlRequestSchema: z.ZodObject<{
     partNumber: z.ZodNumber;
 }, z.core.$strip>;
-export type CreateUploadUrlRequest = z.infer<typeof CreateUploadUrlRequest>;
-export declare const CreateUploadUrlResponse: z.ZodObject<{
+export type CreateUploadUrlRequest = z.infer<typeof CreateUploadUrlRequestSchema>;
+export declare const CreateUploadUrlResponseSchema: z.ZodObject<{
     url: z.ZodString;
     expires: z.ZodISODateTime;
 }, z.core.$strip>;
-export type CreateUploadUrlResponse = z.infer<typeof CreateUploadUrlResponse>;
-export declare const UploadPartRequest: z.ZodObject<{
+export type CreateUploadUrlResponse = z.infer<typeof CreateUploadUrlResponseSchema>;
+export declare const UploadPartRequestSchema: z.ZodObject<{
     partNumber: z.ZodNumber;
     ETag: z.ZodString;
     size: z.ZodNumber;
 }, z.core.$strip>;
-export type UploadPartRequest = z.infer<typeof UploadPartRequest>;
-export declare const UploadPartResponse: z.ZodObject<{}, z.core.$strip>;
-export type UploadPartResponse = z.infer<typeof UploadPartResponse>;
-export declare const PatchUploadRequest: z.ZodArray<z.ZodDiscriminatedUnion<[z.ZodObject<{
+export type UploadPartRequest = z.infer<typeof UploadPartRequestSchema>;
+export declare const UploadPartResponseSchema: z.ZodObject<{}, z.core.$strip>;
+export type UploadPartResponse = z.infer<typeof UploadPartResponseSchema>;
+export declare const PatchUploadRequestSchema: z.ZodArray<z.ZodDiscriminatedUnion<[z.ZodObject<{
     path: z.ZodString;
     op: z.ZodLiteral<"add">;
     value: z.ZodAny;
@@ -16012,25 +16012,25 @@ export declare const PatchUploadRequest: z.ZodArray<z.ZodDiscriminatedUnion<[z.Z
     value: z.ZodAny;
     not: z.ZodOptional<z.ZodBoolean>;
 }, z.core.$strip>], "op">>;
-export type PatchUploadRequest = z.infer<typeof PatchUploadRequest>;
-export declare const PatchUploadResponse: z.ZodObject<{}, z.core.$strip>;
-export type PatchUploadResponse = z.infer<typeof PatchUploadResponse>;
-export declare const UploadCompleteRequest: z.ZodObject<{}, z.core.$strip>;
-export type UploadCompleteRequest = z.infer<typeof UploadCompleteRequest>;
-export declare const UploadCompleteResponse: z.ZodObject<{}, z.core.$strip>;
-export type UploadCompleteResponse = z.infer<typeof UploadCompleteResponse>;
-export declare const UploadPollRequest: z.ZodObject<{}, z.core.$strip>;
-export type UploadPollRequest = z.infer<typeof UploadPollRequest>;
-export declare const UploadPollResponse: z.ZodObject<{
+export type PatchUploadRequest = z.infer<typeof PatchUploadRequestSchema>;
+export declare const PatchUploadResponseSchema: z.ZodObject<{}, z.core.$strip>;
+export type PatchUploadResponse = z.infer<typeof PatchUploadResponseSchema>;
+export declare const UploadCompleteRequestSchema: z.ZodObject<{}, z.core.$strip>;
+export type UploadCompleteRequest = z.infer<typeof UploadCompleteRequestSchema>;
+export declare const UploadCompleteResponseSchema: z.ZodObject<{}, z.core.$strip>;
+export type UploadCompleteResponse = z.infer<typeof UploadCompleteResponseSchema>;
+export declare const UploadPollRequestSchema: z.ZodObject<{}, z.core.$strip>;
+export type UploadPollRequest = z.infer<typeof UploadPollRequestSchema>;
+export declare const UploadPollResponseSchema: z.ZodObject<{
     itemsDone: z.ZodArray<z.ZodString>;
     itemsFailed: z.ZodArray<z.ZodString>;
     itemsRejected: z.ZodArray<z.ZodString>;
     itemsProgress: z.ZodArray<z.ZodString>;
 }, z.core.$strip>;
-export type UploadPollResponse = z.infer<typeof UploadPollResponse>;
-export declare const CreateAssetFromUploadRequest: z.ZodObject<{}, z.core.$strip>;
-export type CreateAssetFromUploadRequest = z.infer<typeof CreateAssetFromUploadRequest>;
-export declare const CreateAssetFromUploadResponse: z.ZodObject<{
+export type UploadPollResponse = z.infer<typeof UploadPollResponseSchema>;
+export declare const CreateAssetFromUploadRequestSchema: z.ZodObject<{}, z.core.$strip>;
+export type CreateAssetFromUploadRequest = z.infer<typeof CreateAssetFromUploadRequestSchema>;
+export declare const CreateAssetFromUploadResponseSchema: z.ZodObject<{
     tenant_id: z.ZodUUID;
     name: z.ZodString;
     metadata: z.ZodDiscriminatedUnion<[z.ZodObject<{
@@ -19051,10 +19051,10 @@ export declare const CreateAssetFromUploadResponse: z.ZodObject<{
     animated_poster_url: z.ZodOptional<z.ZodURL>;
     prevue_url: z.ZodOptional<z.ZodURL>;
 }, z.core.$strip>;
-export type CreateAssetFromUploadResponse = z.infer<typeof CreateAssetFromUploadResponse>;
-export declare const CreateAssetFromUploadVersionRequest: z.ZodObject<{}, z.core.$strip>;
-export type CreateAssetFromUploadVersionRequest = z.infer<typeof CreateAssetFromUploadVersionRequest>;
-export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
+export type CreateAssetFromUploadResponse = z.infer<typeof CreateAssetFromUploadResponseSchema>;
+export declare const CreateAssetFromUploadVersionRequestSchema: z.ZodObject<{}, z.core.$strip>;
+export type CreateAssetFromUploadVersionRequest = z.infer<typeof CreateAssetFromUploadVersionRequestSchema>;
+export declare const CreateAssetFromUploadVersionResponseSchema: z.ZodObject<{
     tenant_id: z.ZodUUID;
     name: z.ZodString;
     metadata: z.ZodDiscriminatedUnion<[z.ZodObject<{
@@ -22075,8 +22075,8 @@ export declare const CreateAssetFromUploadVersionResponse: z.ZodObject<{
     animated_poster_url: z.ZodOptional<z.ZodURL>;
     prevue_url: z.ZodOptional<z.ZodURL>;
 }, z.core.$strip>;
-export type CreateAssetFromUploadVersionResponse = z.infer<typeof CreateAssetFromUploadVersionResponse>;
-export declare const DamAssetRequest: z.ZodUnion<readonly [z.ZodObject<{}, z.core.$strip>, z.ZodObject<{}, z.core.$strip>, z.ZodObject<{}, z.core.$strip>, z.ZodObject<{}, z.core.$strip>, z.ZodObject<{}, z.core.$strip>, z.ZodObject<{}, z.core.$strip>, z.ZodObject<{}, z.core.$strip>, z.ZodObject<{}, z.core.$strip>, z.ZodArray<z.ZodDiscriminatedUnion<[z.ZodObject<{
+export type CreateAssetFromUploadVersionResponse = z.infer<typeof CreateAssetFromUploadVersionResponseSchema>;
+export declare const DamAssetRequestSchema: z.ZodUnion<readonly [z.ZodObject<{}, z.core.$strip>, z.ZodObject<{}, z.core.$strip>, z.ZodObject<{}, z.core.$strip>, z.ZodObject<{}, z.core.$strip>, z.ZodObject<{}, z.core.$strip>, z.ZodObject<{}, z.core.$strip>, z.ZodObject<{}, z.core.$strip>, z.ZodObject<{}, z.core.$strip>, z.ZodArray<z.ZodDiscriminatedUnion<[z.ZodObject<{
     path: z.ZodString;
     op: z.ZodLiteral<"add">;
     value: z.ZodAny;
@@ -22101,8 +22101,8 @@ export declare const DamAssetRequest: z.ZodUnion<readonly [z.ZodObject<{}, z.cor
     value: z.ZodAny;
     not: z.ZodOptional<z.ZodBoolean>;
 }, z.core.$strip>], "op">>, z.ZodObject<{}, z.core.$strip>, z.ZodCoercedNumber<unknown>, z.ZodObject<{}, z.core.$strip>, z.ZodObject<{}, z.core.$strip>]>;
-export type DamAssetRequest = z.infer<typeof DamAssetRequest>;
-export declare const DamUploadRequest: z.ZodUnion<readonly [z.ZodObject<{}, z.core.$strip>, z.ZodObject<{
+export type DamAssetRequest = z.infer<typeof DamAssetRequestSchema>;
+export declare const DamUploadRequestSchema: z.ZodUnion<readonly [z.ZodObject<{}, z.core.$strip>, z.ZodObject<{
     filename: z.ZodString;
     user_tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
     system_tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
@@ -22139,8 +22139,8 @@ export declare const DamUploadRequest: z.ZodUnion<readonly [z.ZodObject<{}, z.co
     value: z.ZodAny;
     not: z.ZodOptional<z.ZodBoolean>;
 }, z.core.$strip>], "op">>, z.ZodObject<{}, z.core.$strip>, z.ZodObject<{}, z.core.$strip>, z.ZodObject<{}, z.core.$strip>, z.ZodObject<{}, z.core.$strip>]>;
-export type DamUploadRequest = z.infer<typeof DamUploadRequest>;
-export declare const DamRequest: z.ZodUnion<readonly [z.ZodUnion<readonly [z.ZodObject<{}, z.core.$strip>, z.ZodObject<{}, z.core.$strip>, z.ZodObject<{}, z.core.$strip>, z.ZodObject<{}, z.core.$strip>, z.ZodObject<{}, z.core.$strip>, z.ZodObject<{}, z.core.$strip>, z.ZodObject<{}, z.core.$strip>, z.ZodObject<{}, z.core.$strip>, z.ZodArray<z.ZodDiscriminatedUnion<[z.ZodObject<{
+export type DamUploadRequest = z.infer<typeof DamUploadRequestSchema>;
+export declare const DamRequestSchema: z.ZodUnion<readonly [z.ZodUnion<readonly [z.ZodObject<{}, z.core.$strip>, z.ZodObject<{}, z.core.$strip>, z.ZodObject<{}, z.core.$strip>, z.ZodObject<{}, z.core.$strip>, z.ZodObject<{}, z.core.$strip>, z.ZodObject<{}, z.core.$strip>, z.ZodObject<{}, z.core.$strip>, z.ZodObject<{}, z.core.$strip>, z.ZodArray<z.ZodDiscriminatedUnion<[z.ZodObject<{
     path: z.ZodString;
     op: z.ZodLiteral<"add">;
     value: z.ZodAny;
@@ -22201,8 +22201,8 @@ export declare const DamRequest: z.ZodUnion<readonly [z.ZodUnion<readonly [z.Zod
     value: z.ZodAny;
     not: z.ZodOptional<z.ZodBoolean>;
 }, z.core.$strip>], "op">>, z.ZodObject<{}, z.core.$strip>, z.ZodObject<{}, z.core.$strip>, z.ZodObject<{}, z.core.$strip>, z.ZodObject<{}, z.core.$strip>]>]>;
-export type DamRequest = z.infer<typeof DamRequest>;
-export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
+export type DamRequest = z.infer<typeof DamRequestSchema>;
+export declare const DamAssetResponseSchema: z.ZodUnion<readonly [z.ZodObject<{
     assets: z.ZodArray<z.ZodObject<{
         tenant_id: z.ZodUUID;
         name: z.ZodString;
@@ -37326,8 +37326,8 @@ export declare const DamAssetResponse: z.ZodUnion<readonly [z.ZodObject<{
     detail: z.ZodString;
     timestamp: z.ZodISODateTime;
 }, z.core.$strip>]>;
-export type DamAssetResponse = z.infer<typeof DamAssetResponse>;
-export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
+export type DamAssetResponse = z.infer<typeof DamAssetResponseSchema>;
+export declare const DamUploadResponseSchema: z.ZodUnion<readonly [z.ZodObject<{
     uploads: z.ZodArray<z.ZodObject<{
         upload_id: z.ZodUUID;
         tenant_id: z.ZodUUID;
@@ -44136,6 +44136,6 @@ export declare const DamUploadResponse: z.ZodUnion<readonly [z.ZodObject<{
     detail: z.ZodString;
     timestamp: z.ZodISODateTime;
 }, z.core.$strip>]>;
-export type DamUploadResponse = z.infer<typeof DamUploadResponse>;
+export type DamUploadResponse = z.infer<typeof DamUploadResponseSchema>;
 export type DamResponse = DamAssetResponse | DamUploadResponse;
 //# sourceMappingURL=api.schema.d.ts.map

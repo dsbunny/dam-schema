@@ -1,5 +1,5 @@
 import * as z from "zod";
-export declare const CanSaveStatus: z.ZodObject<{
+export declare const CanSaveStatusSchema: z.ZodObject<{
     upload_id: z.ZodUUID;
     can_save: z.ZodBoolean;
     is_rejected: z.ZodBoolean;
@@ -8,8 +8,8 @@ export declare const CanSaveStatus: z.ZodObject<{
     is_processing: z.ZodBoolean;
     modify_timestamp: z.ZodISODateTime;
 }, z.core.$strip>;
-export type CanSaveStatus = z.infer<typeof CanSaveStatus>;
-export declare const DbDtoToCanSaveStatus: z.ZodPipe<z.ZodObject<{
+export type CanSaveStatus = z.infer<typeof CanSaveStatusSchema>;
+export declare const DbDtoToCanSaveStatusSchema: z.ZodPipe<z.ZodObject<{
     upload_id: z.ZodUUID;
     can_save: z.ZodNumber;
     is_rejected: z.ZodNumber;
@@ -34,15 +34,15 @@ export declare const DbDtoToCanSaveStatus: z.ZodPipe<z.ZodObject<{
     is_processing: number;
     modify_timestamp: string;
 }>>;
-export declare const S3Part: z.ZodObject<{
+export declare const S3PartSchema: z.ZodObject<{
     part_number: z.ZodNumber;
     etag: z.ZodString;
     size: z.ZodNumber;
 }, z.core.$strip>;
-export type S3Part = z.infer<typeof S3Part>;
-export declare const UploadMetadata: z.ZodRecord<z.ZodString, z.ZodString>;
-export type UploadMetadata = z.infer<typeof UploadMetadata>;
-export declare const Upload: z.ZodObject<{
+export type S3Part = z.infer<typeof S3PartSchema>;
+export declare const UploadMetadataSchema: z.ZodRecord<z.ZodString, z.ZodString>;
+export type UploadMetadata = z.infer<typeof UploadMetadataSchema>;
+export declare const UploadSchema: z.ZodObject<{
     upload_id: z.ZodUUID;
     tenant_id: z.ZodUUID;
     asset_id: z.ZodUUID;
@@ -416,8 +416,8 @@ export declare const Upload: z.ZodObject<{
     modify_timestamp: z.ZodISODateTime;
     is_deleted: z.ZodDefault<z.ZodBoolean>;
 }, z.core.$strip>;
-export type Upload = z.infer<typeof Upload>;
-export declare const ValidatedUpload: z.ZodObject<{
+export type Upload = z.infer<typeof UploadSchema>;
+export declare const ValidatedUploadSchema: z.ZodObject<{
     upload_id: z.ZodUUID;
     tenant_id: z.ZodUUID;
     asset_id: z.ZodUUID;
@@ -791,8 +791,8 @@ export declare const ValidatedUpload: z.ZodObject<{
     modify_timestamp: z.ZodISODateTime;
     is_deleted: z.ZodDefault<z.ZodBoolean>;
 }, z.core.$strip>;
-export type ValidatedUpload = z.infer<typeof ValidatedUpload>;
-export declare const ValidatedUploadWithMetadata: z.ZodObject<{
+export type ValidatedUpload = z.infer<typeof ValidatedUploadSchema>;
+export declare const ValidatedUploadWithMetadataSchema: z.ZodObject<{
     upload_id: z.ZodUUID;
     tenant_id: z.ZodUUID;
     asset_id: z.ZodUUID;
@@ -1166,8 +1166,8 @@ export declare const ValidatedUploadWithMetadata: z.ZodObject<{
     modify_timestamp: z.ZodISODateTime;
     is_deleted: z.ZodDefault<z.ZodBoolean>;
 }, z.core.$strip>;
-export type ValidatedUploadWithMetadata = z.infer<typeof ValidatedUploadWithMetadata>;
-export declare const DbDtoFromUpload: z.ZodPipe<z.ZodObject<{
+export type ValidatedUploadWithMetadata = z.infer<typeof ValidatedUploadWithMetadataSchema>;
+export declare const DbDtoFromUploadSchema: z.ZodPipe<z.ZodObject<{
     upload_id: z.ZodUUID;
     tenant_id: z.ZodUUID;
     asset_id: z.ZodUUID;
@@ -1849,7 +1849,7 @@ export declare const DbDtoFromUpload: z.ZodPipe<z.ZodObject<{
         tags?: string[] | undefined;
     } | undefined;
 }>>;
-export declare const DbDtoToUpload: z.ZodPipe<z.ZodObject<{
+export declare const DbDtoToUploadSchema: z.ZodPipe<z.ZodObject<{
     upload_id: z.ZodUUID;
     tenant_id: z.ZodUUID;
     asset_id: z.ZodUUID;

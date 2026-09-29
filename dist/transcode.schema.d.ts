@@ -1,12 +1,12 @@
 import * as z from "zod";
 import { RobustTask } from "@dsbunny/robust-task-schema";
-export declare const ReturnResource: z.ZodObject<{
+export declare const ReturnResourceSchema: z.ZodObject<{
     content_type: z.ZodString;
     s3_uri: z.ZodString;
     s3_filename: z.ZodString;
 }, z.core.$strip>;
-export type ReturnResource = z.infer<typeof ReturnResource>;
-export declare const RequestBase: z.ZodObject<{
+export type ReturnResource = z.infer<typeof ReturnResourceSchema>;
+export declare const RequestBaseSchema: z.ZodObject<{
     tenant_id: z.ZodUUID;
     reference_id: z.ZodUUID;
     asset_id: z.ZodUUID;
@@ -27,8 +27,8 @@ export declare const RequestBase: z.ZodObject<{
     content_type: z.ZodString;
     content_length: z.ZodNumber;
 }, z.core.$strip>;
-export type RequestBase = z.infer<typeof RequestBase>;
-export declare const MetadataRequest: z.ZodObject<{
+export type RequestBase = z.infer<typeof RequestBaseSchema>;
+export declare const MetadataRequestSchema: z.ZodObject<{
     tenant_id: z.ZodUUID;
     reference_id: z.ZodUUID;
     asset_id: z.ZodUUID;
@@ -55,8 +55,8 @@ export declare const MetadataRequest: z.ZodObject<{
         s3_filename: z.ZodString;
     }, z.core.$strip>;
 }, z.core.$strip>;
-export type MetadataRequest = z.infer<typeof MetadataRequest>;
-export declare const PosterRequestEntry: z.ZodObject<{
+export type MetadataRequest = z.infer<typeof MetadataRequestSchema>;
+export declare const PosterRequestEntrySchema: z.ZodObject<{
     quality: z.ZodEnum<{
         medium: "medium";
         high: "high";
@@ -68,8 +68,8 @@ export declare const PosterRequestEntry: z.ZodObject<{
         s3_filename: z.ZodString;
     }, z.core.$strip>;
 }, z.core.$strip>;
-export type PosterRequestEntry = z.infer<typeof PosterRequestEntry>;
-export declare const PosterRequest: z.ZodObject<{
+export type PosterRequestEntry = z.infer<typeof PosterRequestEntrySchema>;
+export declare const PosterRequestSchema: z.ZodObject<{
     tenant_id: z.ZodUUID;
     reference_id: z.ZodUUID;
     asset_id: z.ZodUUID;
@@ -103,8 +103,8 @@ export declare const PosterRequest: z.ZodObject<{
         }, z.core.$strip>;
     }, z.core.$strip>>;
 }, z.core.$strip>;
-export type PosterRequest = z.infer<typeof PosterRequest>;
-export declare const AnimatedPosterRequest: z.ZodObject<{
+export type PosterRequest = z.infer<typeof PosterRequestSchema>;
+export declare const AnimatedPosterRequestSchema: z.ZodObject<{
     tenant_id: z.ZodUUID;
     reference_id: z.ZodUUID;
     asset_id: z.ZodUUID;
@@ -131,8 +131,8 @@ export declare const AnimatedPosterRequest: z.ZodObject<{
         s3_filename: z.ZodString;
     }, z.core.$strip>;
 }, z.core.$strip>;
-export type AnimatedPosterRequest = z.infer<typeof AnimatedPosterRequest>;
-export declare const PosterSeriesRequestEntry: z.ZodObject<{
+export type AnimatedPosterRequest = z.infer<typeof AnimatedPosterRequestSchema>;
+export declare const PosterSeriesRequestEntrySchema: z.ZodObject<{
     index: z.ZodNumber;
     quality: z.ZodEnum<{
         medium: "medium";
@@ -145,8 +145,8 @@ export declare const PosterSeriesRequestEntry: z.ZodObject<{
         s3_filename: z.ZodString;
     }, z.core.$strip>;
 }, z.core.$strip>;
-export type PosterSeriesRequestEntry = z.infer<typeof PosterSeriesRequestEntry>;
-export declare const PosterSeriesRequest: z.ZodObject<{
+export type PosterSeriesRequestEntry = z.infer<typeof PosterSeriesRequestEntrySchema>;
+export declare const PosterSeriesRequestSchema: z.ZodObject<{
     tenant_id: z.ZodUUID;
     reference_id: z.ZodUUID;
     asset_id: z.ZodUUID;
@@ -181,8 +181,8 @@ export declare const PosterSeriesRequest: z.ZodObject<{
         }, z.core.$strip>;
     }, z.core.$strip>>;
 }, z.core.$strip>;
-export type PosterSeriesRequest = z.infer<typeof PosterSeriesRequest>;
-export declare const TileSeriesRequestEntry: z.ZodObject<{
+export type PosterSeriesRequest = z.infer<typeof PosterSeriesRequestSchema>;
+export declare const TileSeriesRequestEntrySchema: z.ZodObject<{
     content_type: z.ZodString;
     quality: z.ZodEnum<{
         low: "low";
@@ -193,8 +193,8 @@ export declare const TileSeriesRequestEntry: z.ZodObject<{
     metadata_s3_uri: z.ZodString;
     metadata_content_type: z.ZodString;
 }, z.core.$strip>;
-export type TileSeriesRequestEntry = z.infer<typeof TileSeriesRequestEntry>;
-export declare const TileSeriesRequest: z.ZodObject<{
+export type TileSeriesRequestEntry = z.infer<typeof TileSeriesRequestEntrySchema>;
+export declare const TileSeriesRequestSchema: z.ZodObject<{
     tenant_id: z.ZodUUID;
     reference_id: z.ZodUUID;
     asset_id: z.ZodUUID;
@@ -227,8 +227,8 @@ export declare const TileSeriesRequest: z.ZodObject<{
         metadata_content_type: z.ZodString;
     }, z.core.$strip>;
 }, z.core.$strip>;
-export type TileSeriesRequest = z.infer<typeof TileSeriesRequest>;
-export declare const PrevueRequest: z.ZodObject<{
+export type TileSeriesRequest = z.infer<typeof TileSeriesRequestSchema>;
+export declare const PrevueRequestSchema: z.ZodObject<{
     tenant_id: z.ZodUUID;
     reference_id: z.ZodUUID;
     asset_id: z.ZodUUID;
@@ -255,8 +255,8 @@ export declare const PrevueRequest: z.ZodObject<{
         s3_filename: z.ZodString;
     }, z.core.$strip>;
 }, z.core.$strip>;
-export type PrevueRequest = z.infer<typeof PrevueRequest>;
-export declare const TranscodeRequest: z.ZodDiscriminatedUnion<[z.ZodObject<{
+export type PrevueRequest = z.infer<typeof PrevueRequestSchema>;
+export declare const TranscodeRequestSchema: z.ZodDiscriminatedUnion<[z.ZodObject<{
     tenant_id: z.ZodUUID;
     reference_id: z.ZodUUID;
     asset_id: z.ZodUUID;
@@ -434,8 +434,8 @@ export declare const TranscodeRequest: z.ZodDiscriminatedUnion<[z.ZodObject<{
         s3_filename: z.ZodString;
     }, z.core.$strip>;
 }, z.core.$strip>], "type">;
-export type TranscodeRequest = z.infer<typeof TranscodeRequest>;
-export declare const TranscodeOutputMetadata: z.ZodUnion<readonly [z.ZodObject<{
+export type TranscodeRequest = z.infer<typeof TranscodeRequestSchema>;
+export declare const TranscodeOutputMetadataSchema: z.ZodUnion<readonly [z.ZodObject<{
     type: z.ZodLiteral<"metadata">;
     timings: z.ZodObject<{
         metadata_http_duration: z.ZodNumber;
@@ -590,10 +590,10 @@ export declare const TranscodeOutputMetadata: z.ZodUnion<readonly [z.ZodObject<{
         tags: z.ZodOptional<z.ZodArray<z.ZodString>>;
     }, z.core.$strip>;
 }, z.core.$strip>], "type">]>;
-export type TranscodeOutputMetadata = z.infer<typeof TranscodeOutputMetadata>;
-export declare const TranscodeProgress: z.ZodNumber;
-export type TranscodeProgress = z.infer<typeof TranscodeProgress>;
-export declare const TranscodeResponse: z.ZodObject<{
+export type TranscodeOutputMetadata = z.infer<typeof TranscodeOutputMetadataSchema>;
+export declare const TranscodeProgressSchema: z.ZodNumber;
+export type TranscodeProgress = z.infer<typeof TranscodeProgressSchema>;
+export declare const TranscodeResponseSchema: z.ZodObject<{
     metadata: z.ZodUnion<readonly [z.ZodObject<{
         type: z.ZodLiteral<"metadata">;
         timings: z.ZodObject<{
@@ -750,7 +750,7 @@ export declare const TranscodeResponse: z.ZodObject<{
         }, z.core.$strip>;
     }, z.core.$strip>], "type">]>;
 }, z.core.$strip>;
-export type TranscodeResponse = z.infer<typeof TranscodeResponse>;
+export type TranscodeResponse = z.infer<typeof TranscodeResponseSchema>;
 export declare const TranscodeTaskStateSchema: z.ZodObject<{
     status: z.ZodEnum<{
         pending: "pending";

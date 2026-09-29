@@ -1,1 +1,1 @@
-{"version":3,"file":"poster-analysis.schema.d.ts","sourceRoot":"","sources":["../src/poster-analysis.schema.ts"],"names":[],"mappings":"AAEA,OAAO,KAAK,CAAC,MAAM,KAAK,CAAC;AAEzB,eAAO,MAAM,cAAc;;;;;iBASzB,CAAC;AACH,MAAM,MAAM,cAAc,GAAG,CAAC,CAAC,KAAK,CAAC,OAAO,cAAc,CAAC,CAAC"}
+{"version":3,"file":"poster-analysis.schema.d.ts","sourceRoot":"","sources":["../src/poster-analysis.schema.ts"],"names":[],"mappings":"AAEA,OAAO,KAAK,CAAC,MAAM,KAAK,CAAC;AAEzB,eAAO,MAAM,oBAAoB;;;;;iBAS/B,CAAC;AACH,MAAM,MAAM,cAAc,GAAG,CAAC,CAAC,KAAK,CAAC,OAAO,oBAAoB,CAAC,CAAC"}

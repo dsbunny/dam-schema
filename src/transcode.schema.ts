@@ -8,23 +8,23 @@
 //			      │		    │	  └────────────────┘
 //			      └─────────────┘
 import * as z from "zod";
-import { AllMetadata } from '@dsbunny/metadata-schema';
+import { AllMetadataSchema } from '@dsbunny/metadata-schema';
 import { RobustTask } from "@dsbunny/robust-task-schema";
 import { S3ClientConfigSchema } from './s3-client-config.schema.js';
-import { S3URI } from './uri.schema.js';
+import { S3URISchema } from './uri.schema.js';
 
-export const ReturnResource = z.object({
+export const ReturnResourceSchema = z.object({
 	content_type: z.string().min(5).max(255)
 		.describe('Content type of the resource'),
-	s3_uri: S3URI.min(20).max(2048)
+	s3_uri: S3URISchema.min(20).max(2048)
 		.describe('S3 URI of the resource'),
 	s3_filename: z.string().min(2).max(255)
 		.describe('Name of the resource'),
 })
 	.describe('The return resource');
-export type ReturnResource = z.infer<typeof ReturnResource>;
+export type ReturnResource = z.infer<typeof ReturnResourceSchema>;
 
-export const RequestBase = z.object({
+export const RequestBaseSchema = z.object({
 	tenant_id: z.uuid()
 		.describe('The tenant ID of the asset'),
 	reference_id: z.uuid()
@@ -33,7 +33,7 @@ export const RequestBase = z.object({
 		.describe('The asset ID'),
 	s3_client_config: S3ClientConfigSchema
 		.describe('The S3 client configuration for accessing the asset'),
-	s3_uri: S3URI.min(20).max(2048)
+	s3_uri: S3URISchema.min(20).max(2048)
 		.describe('The S3 URI of the asset'),
 	s3_version_id: z.string().min(2).max(255)
 		.describe('The version ID of the file in S3.'),
@@ -48,120 +48,120 @@ export const RequestBase = z.object({
 	content_length: z.number().max(5497558138880)  // 5TB
 		.describe('The content length of the asset'),
 });
-export type RequestBase = z.infer<typeof RequestBase>;
+export type RequestBase = z.infer<typeof RequestBaseSchema>;
 
-export const MetadataRequest = RequestBase.extend({
+export const MetadataRequestSchema = RequestBaseSchema.extend({
 	type: z.literal('metadata'),
-	metadata: ReturnResource
+	metadata: ReturnResourceSchema
 		.describe('The metadata of the asset'),
 })
 	.describe('Metadata job for an asset.');
-export type MetadataRequest = z.infer<typeof MetadataRequest>;
+export type MetadataRequest = z.infer<typeof MetadataRequestSchema>;
 
-export const PosterRequestEntry = z.object({
+export const PosterRequestEntrySchema = z.object({
 	quality: z.enum(['medium', 'high', 'sample'])
 		.describe('The quality of the poster'),
-	poster: ReturnResource,
+	poster: ReturnResourceSchema,
 })
 	.describe('The poster entry of the asset');
-export type PosterRequestEntry = z.infer<typeof PosterRequestEntry>;
+export type PosterRequestEntry = z.infer<typeof PosterRequestEntrySchema>;
 
-export const PosterRequest = RequestBase.extend({
+export const PosterRequestSchema = RequestBaseSchema.extend({
 	type: z.literal('poster'),
-	poster: z.array(PosterRequestEntry)
+	poster: z.array(PosterRequestEntrySchema)
 		.describe('The poster entries of the asset'),
 })
 	.describe('Poster job for an asset.');
-export type PosterRequest = z.infer<typeof PosterRequest>;
+export type PosterRequest = z.infer<typeof PosterRequestSchema>;
 
-export const AnimatedPosterRequest = RequestBase.extend({
+export const AnimatedPosterRequestSchema = RequestBaseSchema.extend({
 	type: z.literal('animated-poster'),
-	'animated-poster': ReturnResource
+	'animated-poster': ReturnResourceSchema
 		.describe('The poster of the asset'),
 })
 	.describe('Animated poster job for an asset.');
-export type AnimatedPosterRequest = z.infer<typeof AnimatedPosterRequest>;
+export type AnimatedPosterRequest = z.infer<typeof AnimatedPosterRequestSchema>;
 
-export const PosterSeriesRequestEntry = z.object({
+export const PosterSeriesRequestEntrySchema = z.object({
 	index: z.number().int().min(1).max(3)
 		.describe('The index of the poster'),
 	quality: z.enum(['medium', 'high', 'sample'])
 		.describe('The quality of the poster'),
-	poster: ReturnResource,
+	poster: ReturnResourceSchema,
 })
 	.describe('The poster entry of the asset');
-export type PosterSeriesRequestEntry = z.infer<typeof PosterSeriesRequestEntry>;
+export type PosterSeriesRequestEntry = z.infer<typeof PosterSeriesRequestEntrySchema>;
 
-export const PosterSeriesRequest = RequestBase.extend({
+export const PosterSeriesRequestSchema = RequestBaseSchema.extend({
 	type: z.literal('poster-series'),
-	'poster-series': z.array(PosterSeriesRequestEntry)
+	'poster-series': z.array(PosterSeriesRequestEntrySchema)
 		.describe('The poster entries of the asset'),
 })
 	.describe('Poster series job for an asset.');
-export type PosterSeriesRequest = z.infer<typeof PosterSeriesRequest>;
+export type PosterSeriesRequest = z.infer<typeof PosterSeriesRequestSchema>;
 
-export const TileSeriesRequestEntry = z.object({
+export const TileSeriesRequestEntrySchema = z.object({
 	content_type: z.string().min(5).max(255)
 		.describe('The content type of the tile series'),
 	quality: z.enum(['low'])
 		.describe('The quality of the tile series'),
-	s3_base_uri: S3URI.min(20).max(2048)
+	s3_base_uri: S3URISchema.min(20).max(2048)
 		.describe('The S3 base URI of the tile series'),
 	s3_filename_format: z.string().min(2).max(255)
 		.describe('The name format of the tile series'),
 	metadata_s3_filename: z.string().min(2).max(255)
 		.describe('Name of the metadata file'),
-	metadata_s3_uri: S3URI.min(2).max(2048)
+	metadata_s3_uri: S3URISchema.min(2).max(2048)
 		.describe('S3 URI of the metadata file'),
 	metadata_content_type: z.string().min(5).max(255)
 		.describe('Content type of the metadata file'),
 })
 	.describe('The tile series entry of the asset');
-export type TileSeriesRequestEntry = z.infer<typeof TileSeriesRequestEntry>;
+export type TileSeriesRequestEntry = z.infer<typeof TileSeriesRequestEntrySchema>;
 
-export const TileSeriesRequest = RequestBase.extend({
+export const TileSeriesRequestSchema = RequestBaseSchema.extend({
 	type: z.literal('tile-series'),
-	'tile-series': TileSeriesRequestEntry,
+	'tile-series': TileSeriesRequestEntrySchema,
 })
 	.describe('Tile series job for an asset.');
-export type TileSeriesRequest = z.infer<typeof TileSeriesRequest>;
+export type TileSeriesRequest = z.infer<typeof TileSeriesRequestSchema>;
 
-export const PrevueRequest = RequestBase.extend({
+export const PrevueRequestSchema = RequestBaseSchema.extend({
 	type: z.literal('prevue'),
-	prevue: ReturnResource
+	prevue: ReturnResourceSchema
 		.describe('The prevue of the asset'),
 })
 	.describe('Prevue job for an asset.');
-export type PrevueRequest = z.infer<typeof PrevueRequest>;
+export type PrevueRequest = z.infer<typeof PrevueRequestSchema>;
 
-export const TranscodeRequest = z.discriminatedUnion("type", [
-	MetadataRequest,
-	PosterRequest,
-	AnimatedPosterRequest,
-	PosterSeriesRequest,
-	TileSeriesRequest,
-	PrevueRequest,
+export const TranscodeRequestSchema = z.discriminatedUnion("type", [
+	MetadataRequestSchema,
+	PosterRequestSchema,
+	AnimatedPosterRequestSchema,
+	PosterSeriesRequestSchema,
+	TileSeriesRequestSchema,
+	PrevueRequestSchema,
 ])
 	.describe('The transcode request');
-export type TranscodeRequest = z.infer<typeof TranscodeRequest>;
+export type TranscodeRequest = z.infer<typeof TranscodeRequestSchema>;
 
-export const TranscodeOutputMetadata = AllMetadata
+export const TranscodeOutputMetadataSchema = AllMetadataSchema
 	.describe('The output metadata of the transcode');
-export type TranscodeOutputMetadata = z.infer<typeof TranscodeOutputMetadata>;
+export type TranscodeOutputMetadata = z.infer<typeof TranscodeOutputMetadataSchema>;
 
-export const TranscodeProgress = z.number().min(0).max(100)
+export const TranscodeProgressSchema = z.number().min(0).max(100)
 	.describe('The status of the transcode');
-export type TranscodeProgress = z.infer<typeof TranscodeProgress>;
+export type TranscodeProgress = z.infer<typeof TranscodeProgressSchema>;
 
-export const TranscodeResponse = z.object({
-	metadata: TranscodeOutputMetadata
+export const TranscodeResponseSchema = z.object({
+	metadata: TranscodeOutputMetadataSchema
 })
 	.describe('The output of the transcode');
-export type TranscodeResponse = z.infer<typeof TranscodeResponse>;
+export type TranscodeResponse = z.infer<typeof TranscodeResponseSchema>;
 
 export const TranscodeTaskStateSchema = RobustTask.TaskStateSchema.extend({
-	progress: TranscodeProgress.optional(),
-	result: TranscodeResponse.optional(),
+	progress: TranscodeProgressSchema.optional(),
+	result: TranscodeResponseSchema.optional(),
 })
 	.describe('The state of the transcode task');
 export type TranscodeTaskState =

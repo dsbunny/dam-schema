@@ -1,6 +1,6 @@
 // vim: tabstop=8 softtabstop=0 noexpandtab shiftwidth=8 nosmarttab
 import * as z from "zod";
-export const JsonPatchOperation = z.discriminatedUnion("op", [
+export const JsonPatchOperationSchema = z.discriminatedUnion("op", [
     z.object({ path: z.string(), op: z.literal('add'), value: z.any() }),
     z.object({ path: z.string(), op: z.literal('remove') }),
     z.object({ path: z.string(), op: z.literal('replace'), value: z.any() }),

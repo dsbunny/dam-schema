@@ -2,41 +2,42 @@
 
 import * as z from "zod";
 import {
-	AnimatedPosterMetadata,
-	Metadata,
-	MetadataMetadata,
-	PosterMetadata,
-	PosterSeriesMetadata,
-	PrevueMetadata,
-	TileSeriesMetadataMetadata,
+	AnimatedPosterMetadataSchema,
+	MetadataSchema,
+	MetadataMetadataSchema,
+	PosterMetadataSchema,
+	PosterSeriesMetadataSchema,
+	PrevueMetadataSchema,
+	TileSeriesMetadataMetadataSchema,
 } from '@dsbunny/metadata-schema';
 import { RobustTask } from "@dsbunny/robust-task-schema";
 import { jsonSafeParser } from './json-safe-parser.js';
-import { PosterAnalysis } from './poster-analysis.schema.js';
+import { PosterAnalysisSchema } from './poster-analysis.schema.js';
+import { SqliteDateSchema } from './sqlite-date.schema.js';
 import { TranscodeTaskStateSchema } from "./transcode.schema.js";
-import { VersionMetadata } from './versions.schema.js';
+import { VersionMetadataSchema } from './versions.schema.js';
 
-export const AssetBase = z.object({
+export const AssetBaseSchema = z.object({
 	tenant_id: z.uuid()
 		.describe('The tenant ID of the asset'),
 	name: z.string().min(1).max(100)
 		.describe('The name of the asset'),
-	metadata: Metadata,
-	metadata_metadata: MetadataMetadata
+	metadata: MetadataSchema,
+	metadata_metadata: MetadataMetadataSchema
 		.describe('The metadata of the asset'),
-	poster_metadata: PosterMetadata.optional()
+	poster_metadata: PosterMetadataSchema.optional()
 		.describe('The poster entry of the asset'),
-	poster_analysis: PosterAnalysis.optional()
+	poster_analysis: PosterAnalysisSchema.optional()
     		.describe('Generated analysis of the poster including caption and tags'),
-	animated_poster_metadata: AnimatedPosterMetadata.optional()
+	animated_poster_metadata: AnimatedPosterMetadataSchema.optional()
 		.describe('The animated poster entry of the asset'),
-	poster_series_metadata: PosterSeriesMetadata.optional()
+	poster_series_metadata: PosterSeriesMetadataSchema.optional()
 		.describe('The poster entries of the asset'),
 	poster_series_selected_index: z.number().int().min(1).max(3).optional()
 		.describe('The selected index of the poster series'),
-	tile_series_metadata: TileSeriesMetadataMetadata.optional()
+	tile_series_metadata: TileSeriesMetadataMetadataSchema.optional()
 		.describe('The tile entries of the asset'),
-	prevue_metadata: PrevueMetadata.optional()
+	prevue_metadata: PrevueMetadataSchema.optional()
 		.describe('The prevue entry of the asset'),
 	// Re-generation tasks
 	task_gen_metadata_state: TranscodeTaskStateSchema
@@ -87,14 +88,14 @@ export const AssetBase = z.object({
 		.describe('The user tags of the asset'),
 	system_tags: z.array(z.string().max(64))
 		.describe('The system tags of the asset'),
-	versions: z.array(VersionMetadata)
+	versions: z.array(VersionMetadataSchema)
 		.describe('The versions of the asset'),
 	tags: z.array(z.string().max(64))
 		.describe('The tags of the asset'),
 });
-export type AssetBase = z.infer<typeof AssetBase>;
+export type AssetBase = z.infer<typeof AssetBaseSchema>;
 
-export const AssetMetadata = z.object({
+export const AssetMetadataSchema = z.object({
 	asset_id: z.uuid()
 		.describe('The UUID of the asset'),
 	create_timestamp: z.iso.datetime()  // ISO 8601
@@ -106,37 +107,31 @@ export const AssetMetadata = z.object({
 });
 
 // projection=poster
-export const AssetPoster = z.object({
+export const AssetPosterSchema = z.object({
 	poster_url: z.url().min(20).max(65535).optional()
 		.describe('The URL of the asset poster'),
 });
 
 // projection=animated_poster
-export const AssetAnimatedPoster = z.object({
+export const AssetAnimatedPosterSchema = z.object({
 	animated_poster_url: z.url().min(20).max(2048).optional()
 		.describe('The URL of the asset animated poster'),
 });
 
 // projection=prevue
-export const AssetPrevue = z.object({
+export const AssetPrevueSchema = z.object({
 	prevue_url: z.url().min(20).max(65535).optional()
 		.describe('The URL of the asset prevue'),
 });
 
-export const Asset =
-	AssetBase.extend(AssetMetadata.shape)
-		.extend(AssetPoster.shape)
-		.extend(AssetAnimatedPoster.shape)
-		.extend(AssetPrevue.shape);
-export type Asset = z.infer<typeof Asset>;
+export const AssetSchema =
+	AssetBaseSchema.extend(AssetMetadataSchema.shape)
+		.extend(AssetPosterSchema.shape)
+		.extend(AssetAnimatedPosterSchema.shape)
+		.extend(AssetPrevueSchema.shape);
+export type Asset = z.infer<typeof AssetSchema>;
 
-// SQL date string to ISO 8601,
-// e.g. "2023-10-15 15:09:50" to "2023-10-15T15:09:50.000Z"
-const sqliteDateSchema = z.string().transform((date) => {
-	return `${date.replace(' ', 'T')}.000Z`;
-});
-
-export const DbDtoFromAssetBase = AssetBase.transform((asset: AssetBase) => {
+export const DbDtoFromAssetBaseSchema = AssetBaseSchema.transform((asset: AssetBase) => {
 	return {
 		...asset,
 		metadata: JSON.stringify(asset.metadata),
@@ -153,7 +148,7 @@ export const DbDtoFromAssetBase = AssetBase.transform((asset: AssetBase) => {
 		tags: JSON.stringify(asset.tags),
 	};
 });
-export const DbDtoFromAsset = Asset.transform((asset: Asset) => {
+export const DbDtoFromAssetSchema = AssetSchema.transform((asset: Asset) => {
 	return {
 		...asset,
 		metadata: JSON.stringify(asset.metadata),
@@ -178,7 +173,7 @@ export const DbDtoFromAsset = Asset.transform((asset: Asset) => {
 	};
 });
 
-export const DbDtoToAssetBase = z.object({
+export const DbDtoToAssetBaseSchema = z.object({
 	tenant_id: z.uuid(),
 	name: z.string().min(1).max(100),
 	metadata: z.string().max(65535),
@@ -215,7 +210,7 @@ export const DbDtoToAssetBase = z.object({
 	tags: z.string().max(65535),
 })
 .transform((dto, ctx): AssetBase => {
-	const metadata_result = jsonSafeParser(Metadata).safeParse(dto.metadata);
+	const metadata_result = jsonSafeParser(MetadataSchema).safeParse(dto.metadata);
 	if(!metadata_result.success) {
 		ctx.addIssue({
 			code: "custom",
@@ -224,7 +219,7 @@ export const DbDtoToAssetBase = z.object({
 		});
 		return z.NEVER;
 	}
-	const metadata_metadata_result = jsonSafeParser(MetadataMetadata).safeParse(dto.metadata_metadata);
+	const metadata_metadata_result = jsonSafeParser(MetadataMetadataSchema).safeParse(dto.metadata_metadata);
 	if(!metadata_metadata_result.success) {
 		ctx.addIssue({
 			code: "custom",
@@ -305,7 +300,7 @@ export const DbDtoToAssetBase = z.object({
 		});
 		return z.NEVER;
 	}
-	const versions_result = jsonSafeParser(z.array(VersionMetadata)).safeParse(dto.versions);
+	const versions_result = jsonSafeParser(z.array(VersionMetadataSchema)).safeParse(dto.versions);
 	if(!versions_result.success) {
 		ctx.addIssue({
 			code: "custom",
@@ -327,7 +322,7 @@ export const DbDtoToAssetBase = z.object({
 	// The following fields are optional, so we don't need to check for success.
 	const poster_analysis_result = !dto.poster_analysis
 		? { success: true, data: undefined }
-		: jsonSafeParser(PosterAnalysis).safeParse(dto.poster_analysis);
+		: jsonSafeParser(PosterAnalysisSchema).safeParse(dto.poster_analysis);
 	if(!poster_analysis_result.success) {
 		ctx.addIssue({
 			code: "custom",
@@ -336,7 +331,7 @@ export const DbDtoToAssetBase = z.object({
 	}
 	const poster_metadata_result = !dto.poster_metadata
 		? { success: true, data: undefined }
-		: jsonSafeParser(PosterMetadata).safeParse(dto.poster_metadata);
+		: jsonSafeParser(PosterMetadataSchema).safeParse(dto.poster_metadata);
 	if(!poster_metadata_result.success) {
 		ctx.addIssue({
 			code: "custom",
@@ -345,7 +340,7 @@ export const DbDtoToAssetBase = z.object({
 	}
 	const animated_poster_metadata_result = !dto.animated_poster_metadata
 		? { success: true, data: undefined }
-		: jsonSafeParser(AnimatedPosterMetadata).safeParse(dto.animated_poster_metadata);
+		: jsonSafeParser(AnimatedPosterMetadataSchema).safeParse(dto.animated_poster_metadata);
 	if(!animated_poster_metadata_result.success) {
 		ctx.addIssue({
 			code: "custom",
@@ -354,7 +349,7 @@ export const DbDtoToAssetBase = z.object({
 	}
 	const poster_series_metadata_result = !dto.poster_series_metadata
 		? { success: true, data: undefined }
-		: jsonSafeParser(PosterSeriesMetadata).safeParse(dto.poster_series_metadata);
+		: jsonSafeParser(PosterSeriesMetadataSchema).safeParse(dto.poster_series_metadata);
 	if(!poster_series_metadata_result.success) {
 		ctx.addIssue({
 			code: "custom",
@@ -363,7 +358,7 @@ export const DbDtoToAssetBase = z.object({
 	}
 	const tile_series_metadata_result = !dto.tile_series_metadata
 		? { success: true, data: undefined }
-		: jsonSafeParser(TileSeriesMetadataMetadata).safeParse(dto.tile_series_metadata);
+		: jsonSafeParser(TileSeriesMetadataMetadataSchema).safeParse(dto.tile_series_metadata);
 	if(!tile_series_metadata_result.success) {
 		ctx.addIssue({
 			code: "custom",
@@ -372,7 +367,7 @@ export const DbDtoToAssetBase = z.object({
 	}
 	const prevue_metadata_result = !dto.prevue_metadata
 		? { success: true, data: undefined }
-		: jsonSafeParser(PrevueMetadata).safeParse(dto.prevue_metadata);
+		: jsonSafeParser(PrevueMetadataSchema).safeParse(dto.prevue_metadata);
 	if(!prevue_metadata_result.success) {
 		ctx.addIssue({
 			code: "custom",
@@ -404,7 +399,7 @@ export const DbDtoToAssetBase = z.object({
 		tags: tags_result.data,
 	};
 });
-export const DbDtoToAsset = z.object({
+export const DbDtoToAssetSchema = z.object({
 	asset_id: z.uuid(),
 	tenant_id: z.uuid(),
 	name: z.string().min(1).max(100),
@@ -440,12 +435,12 @@ export const DbDtoToAsset = z.object({
 	system_tags: z.string(),
 	versions: z.string(),
 	tags: z.string(),
-	create_timestamp: sqliteDateSchema,
-	modify_timestamp: sqliteDateSchema,
+	create_timestamp: SqliteDateSchema,
+	modify_timestamp: SqliteDateSchema,
 	is_deleted: z.number().default(0),
 })
 .transform((dto, ctx): Asset => {
-	const metadata_result = jsonSafeParser(Metadata).safeParse(dto.metadata);
+	const metadata_result = jsonSafeParser(MetadataSchema).safeParse(dto.metadata);
 	if(!metadata_result.success) {
 		ctx.addIssue({
 			code: "custom",
@@ -454,7 +449,7 @@ export const DbDtoToAsset = z.object({
 		});
 		return z.NEVER;
 	}
-	const metadata_metadata_result = jsonSafeParser(MetadataMetadata).safeParse(dto.metadata_metadata);
+	const metadata_metadata_result = jsonSafeParser(MetadataMetadataSchema).safeParse(dto.metadata_metadata);
 	if(!metadata_metadata_result.success) {
 		ctx.addIssue({
 			code: "custom",
@@ -535,7 +530,7 @@ export const DbDtoToAsset = z.object({
 		});
 		return z.NEVER;
 	}
-	const versions_result = jsonSafeParser(z.array(VersionMetadata)).safeParse(dto.versions);
+	const versions_result = jsonSafeParser(z.array(VersionMetadataSchema)).safeParse(dto.versions);
 	if(!versions_result.success) {
 		ctx.addIssue({
 			code: "custom",
@@ -557,7 +552,7 @@ export const DbDtoToAsset = z.object({
 	// The following fields are optional, so we don't need to check for success.
 	const poster_analysis_result = !dto.poster_analysis
 		? { success: true, data: undefined }
-		: jsonSafeParser(PosterAnalysis).safeParse(dto.poster_analysis);
+		: jsonSafeParser(PosterAnalysisSchema).safeParse(dto.poster_analysis);
 	if(!poster_analysis_result.success) {
 		ctx.addIssue({
 			code: "custom",
@@ -566,7 +561,7 @@ export const DbDtoToAsset = z.object({
 	}
 	const poster_metadata_result = !dto.poster_metadata
 		? { success: true, data: undefined }
-		: jsonSafeParser(PosterMetadata).safeParse(dto.poster_metadata);
+		: jsonSafeParser(PosterMetadataSchema).safeParse(dto.poster_metadata);
 	if(!poster_metadata_result.success) {
 		ctx.addIssue({
 			code: "custom",
@@ -575,7 +570,7 @@ export const DbDtoToAsset = z.object({
 	}
 	const animated_poster_metadata_result = !dto.animated_poster_metadata
 		? { success: true, data: undefined }
-		: jsonSafeParser(AnimatedPosterMetadata).safeParse(dto.animated_poster_metadata);
+		: jsonSafeParser(AnimatedPosterMetadataSchema).safeParse(dto.animated_poster_metadata);
 	if(!animated_poster_metadata_result.success) {
 		ctx.addIssue({
 			code: "custom",
@@ -584,7 +579,7 @@ export const DbDtoToAsset = z.object({
 	}
 	const poster_series_metadata_result = !dto.poster_series_metadata
 		? { success: true, data: undefined }
-		: jsonSafeParser(PosterSeriesMetadata).safeParse(dto.poster_series_metadata);
+		: jsonSafeParser(PosterSeriesMetadataSchema).safeParse(dto.poster_series_metadata);
 	if(!poster_series_metadata_result.success) {
 		ctx.addIssue({
 			code: "custom",
@@ -593,7 +588,7 @@ export const DbDtoToAsset = z.object({
 	}
 	const tile_series_metadata_result = !dto.tile_series_metadata
 		? { success: true, data: undefined }
-		: jsonSafeParser(TileSeriesMetadataMetadata).safeParse(dto.tile_series_metadata);
+		: jsonSafeParser(TileSeriesMetadataMetadataSchema).safeParse(dto.tile_series_metadata);
 	if(!tile_series_metadata_result.success) {
 		ctx.addIssue({
 			code: "custom",
@@ -602,7 +597,7 @@ export const DbDtoToAsset = z.object({
 	}
 	const prevue_metadata_result = !dto.prevue_metadata
 		? { success: true, data: undefined }
-		: jsonSafeParser(PrevueMetadata).safeParse(dto.prevue_metadata);
+		: jsonSafeParser(PrevueMetadataSchema).safeParse(dto.prevue_metadata);
 	if(!prevue_metadata_result.success) {
 		ctx.addIssue({
 			code: "custom",
