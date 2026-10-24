@@ -1,5 +1,6 @@
 // vim: tabstop=8 softtabstop=0 noexpandtab shiftwidth=8 nosmarttab
 import * as z from "zod";
+import { dsbunnyRegistry } from '@dsbunny/zod-registry';
 export const S3ClientConfigSchema = z.object({
     region: z.string().min(2).max(255)
         .describe('The AWS region of the S3 bucket'),
@@ -14,6 +15,8 @@ export const S3ClientConfigSchema = z.object({
             .describe('The secret access key for the S3 client'),
     })
         .describe('The credentials for the S3 client'),
-})
-    .describe('The configuration for the S3 client');
+}).register(dsbunnyRegistry, {
+    id: 'S3ClientConfigSchema',
+    description: 'S3 client configuration schema',
+});
 //# sourceMappingURL=s3-client-config.schema.js.map

@@ -1,6 +1,7 @@
 // vim: tabstop=8 softtabstop=0 noexpandtab shiftwidth=8 nosmarttab
 
 import * as z from "zod";
+import { dsbunnyRegistry } from '@dsbunny/zod-registry';
 import {
 	AnimatedPosterMetadataSchema,
 	MetadataSchema,
@@ -11,9 +12,7 @@ import {
 	TileSeriesMetadataMetadataSchema,
 } from '@dsbunny/metadata-schema';
 import { RobustTask } from "@dsbunny/robust-task-schema";
-import { jsonSafeParser } from './json-safe-parser.js';
 import { PosterAnalysisSchema } from './poster-analysis.schema.js';
-import { SqliteDateSchema } from './sqlite-date.schema.js';
 import { TranscodeTaskStateSchema } from "./transcode.schema.js";
 import { VersionMetadataSchema } from './versions.schema.js';
 
@@ -92,6 +91,9 @@ export const AssetBaseSchema = z.object({
 		.describe('The versions of the asset'),
 	tags: z.array(z.string().max(64))
 		.describe('The tags of the asset'),
+}).register(dsbunnyRegistry, {
+	id: 'AssetBaseSchema',
+	description: 'The base schema for an asset, including task states, statuses, tags, and versions',
 });
 export type AssetBase = z.infer<typeof AssetBaseSchema>;
 
@@ -104,529 +106,45 @@ export const AssetMetadataSchema = z.object({
 		.describe('The ISO datetime of when the asset was last modified'),
 	is_deleted: z.boolean().default(false)
 		.describe('Whether the asset is deleted'),
+}).register(dsbunnyRegistry, {
+	id: 'AssetMetadataSchema',
+	description: 'The metadata schema for an asset, including asset ID, timestamps, and deletion status',
 });
 
 // projection=poster
 export const AssetPosterSchema = z.object({
 	poster_url: z.url().min(20).max(65535).optional()
 		.describe('The URL of the asset poster'),
+}).register(dsbunnyRegistry, {
+	id: 'AssetPosterSchema',
+	description: 'The schema for the asset poster, including the poster URL',
 });
 
 // projection=animated_poster
 export const AssetAnimatedPosterSchema = z.object({
 	animated_poster_url: z.url().min(20).max(2048).optional()
 		.describe('The URL of the asset animated poster'),
+}).register(dsbunnyRegistry, {
+	id: 'AssetAnimatedPosterSchema',
+	description: 'The schema for the asset animated poster, including the animated poster URL',
 });
 
 // projection=prevue
 export const AssetPrevueSchema = z.object({
 	prevue_url: z.url().min(20).max(65535).optional()
 		.describe('The URL of the asset prevue'),
+}).register(dsbunnyRegistry, {
+	id: 'AssetPrevueSchema',
+	description: 'The schema for the asset prevue, including the prevue URL',
 });
 
 export const AssetSchema =
 	AssetBaseSchema.extend(AssetMetadataSchema.shape)
 		.extend(AssetPosterSchema.shape)
 		.extend(AssetAnimatedPosterSchema.shape)
-		.extend(AssetPrevueSchema.shape);
+		.extend(AssetPrevueSchema.shape)
+		.register(dsbunnyRegistry, {
+			id: 'AssetSchema',
+			description: 'The complete schema for an asset, including base information, metadata, poster, animated poster, and prevue',
+		});
 export type Asset = z.infer<typeof AssetSchema>;
-
-export const DbDtoFromAssetBaseSchema = AssetBaseSchema.transform((asset: AssetBase) => {
-	return {
-		...asset,
-		metadata: JSON.stringify(asset.metadata),
-		metadata_metadata: JSON.stringify(asset.metadata_metadata),
-		task_gen_metadata_state: JSON.stringify(asset.task_gen_metadata_state),
-		task_gen_poster_state: JSON.stringify(asset.task_gen_poster_state),
-		task_gen_animated_poster_state: JSON.stringify(asset.task_gen_animated_poster_state),
-		task_gen_poster_series_state: JSON.stringify(asset.task_gen_poster_series_state),
-		task_gen_tile_series_state: JSON.stringify(asset.task_gen_tile_series_state),
-		task_gen_prevue_state: JSON.stringify(asset.task_gen_prevue_state),
-		user_tags: JSON.stringify(asset.user_tags),
-		system_tags: JSON.stringify(asset.system_tags),
-		versions: JSON.stringify(asset.versions),
-		tags: JSON.stringify(asset.tags),
-	};
-});
-export const DbDtoFromAssetSchema = AssetSchema.transform((asset: Asset) => {
-	return {
-		...asset,
-		metadata: JSON.stringify(asset.metadata),
-		metadata_metadata: JSON.stringify(asset.metadata_metadata),
-		poster_metadata: JSON.stringify(asset.poster_metadata) ?? null,
-		poster_analysis: JSON.stringify(asset.poster_analysis) ?? null,
-		animated_poster_metadata: JSON.stringify(asset.animated_poster_metadata) ?? null,
-		poster_series_metadata: JSON.stringify(asset.poster_series_metadata) ?? null,
-		poster_series_selected_index: asset.poster_series_selected_index ?? null,
-		tile_series_metadata: JSON.stringify(asset.tile_series_metadata) ?? null,
-		prevue_metadata: JSON.stringify(asset.prevue_metadata) ?? null,
-		task_gen_metadata_state: JSON.stringify(asset.task_gen_metadata_state),
-		task_gen_poster_state: JSON.stringify(asset.task_gen_poster_state),
-		task_gen_animated_poster_state: JSON.stringify(asset.task_gen_animated_poster_state),
-		task_gen_poster_series_state: JSON.stringify(asset.task_gen_poster_series_state),
-		task_gen_tile_series_state: JSON.stringify(asset.task_gen_tile_series_state),
-		task_gen_prevue_state: JSON.stringify(asset.task_gen_prevue_state),
-		user_tags: JSON.stringify(asset.user_tags),
-		system_tags: JSON.stringify(asset.system_tags),
-		versions: JSON.stringify(asset.versions),
-		tags: JSON.stringify(asset.tags),
-	};
-});
-
-export const DbDtoToAssetBaseSchema = z.object({
-	tenant_id: z.uuid(),
-	name: z.string().min(1).max(100),
-	metadata: z.string().max(65535),
-	metadata_metadata: z.string().max(4096),
-	poster_metadata: z.string().max(8192).nullable(),
-	poster_analysis: z.string().max(4096).nullable(),
-	animated_poster_metadata: z.string().max(4096).nullable(),
-	poster_series_metadata: z.string().max(16384).nullable(),
-	poster_series_selected_index: z.number().int().min(1).max(3).nullable(),
-	tile_series_metadata: z.string().max(16777216).nullable(),
-	prevue_metadata: z.string().max(4096).nullable(),
-	task_gen_metadata_state: z.string().min(1).max(65535),
-	task_gen_metadata_status: z.enum(RobustTask.StatusValues),
-	task_save_metadata_status: z.enum(RobustTask.StatusValues),
-	task_gen_poster_state: z.string().min(1).max(65535),
-	task_gen_poster_status: z.enum(RobustTask.StatusValues),
-	task_save_poster_status: z.enum(RobustTask.StatusValues),
-	task_gen_animated_poster_state: z.string().min(1).max(65535),
-	task_gen_animated_poster_status: z.enum(RobustTask.StatusValues),
-	task_save_animated_poster_status: z.enum(RobustTask.StatusValues),
-	task_gen_poster_series_state: z.string().min(1).max(65535),
-	task_gen_poster_series_status: z.enum(RobustTask.StatusValues),
-	task_save_poster_series_status: z.enum(RobustTask.StatusValues),
-	task_gen_tile_series_state: z.string().min(1).max(65535),
-	task_gen_tile_series_status: z.enum(RobustTask.StatusValues),
-	task_save_tile_series_status: z.enum(RobustTask.StatusValues),
-	task_gen_prevue_state: z.string().min(1).max(65535),
-	task_gen_prevue_status: z.enum(RobustTask.StatusValues),
-	task_save_prevue_status: z.enum(RobustTask.StatusValues),
-	is_settled: z.number(),
-	user_tags: z.string().max(65535),
-	system_tags: z.string().max(65535),
-	versions: z.string().max(65535),
-	tags: z.string().max(65535),
-})
-.transform((dto, ctx): AssetBase => {
-	const metadata_result = jsonSafeParser(MetadataSchema).safeParse(dto.metadata);
-	if(!metadata_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid metadata',
-			fatal: true,
-		});
-		return z.NEVER;
-	}
-	const metadata_metadata_result = jsonSafeParser(MetadataMetadataSchema).safeParse(dto.metadata_metadata);
-	if(!metadata_metadata_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid metadata metadata',
-			fatal: true,
-		});
-		return z.NEVER;
-	}
-	const task_gen_metadata_state_result = jsonSafeParser(TranscodeTaskStateSchema).safeParse(dto.task_gen_metadata_state);
-	if(!task_gen_metadata_state_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid gen_metadata task state',
-			fatal: true,
-		});
-		return z.NEVER;
-	}
-	const task_gen_poster_state_result = jsonSafeParser(TranscodeTaskStateSchema).safeParse(dto.task_gen_poster_state);
-	if(!task_gen_poster_state_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid gen_poster task state',
-			fatal: true,
-		});
-		return z.NEVER;
-	}
-	const task_gen_animated_poster_state_result = jsonSafeParser(TranscodeTaskStateSchema).safeParse(dto.task_gen_animated_poster_state);
-	if(!task_gen_animated_poster_state_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid gen_animated_poster task state',
-			fatal: true,
-		});
-		return z.NEVER;
-	}
-	const task_gen_poster_series_state_result = jsonSafeParser(TranscodeTaskStateSchema).safeParse(dto.task_gen_poster_series_state);
-	if(!task_gen_poster_series_state_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid gen_poster_series task state',
-			fatal: true,
-		});
-		return z.NEVER;
-	}
-	const task_gen_tile_series_state_result = jsonSafeParser(TranscodeTaskStateSchema).safeParse(dto.task_gen_tile_series_state);
-	if(!task_gen_tile_series_state_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid gen_tile_series task state',
-			fatal: true,
-		});
-		return z.NEVER;
-	}
-	const task_gen_prevue_state_result = jsonSafeParser(TranscodeTaskStateSchema).safeParse(dto.task_gen_prevue_state);
-	if(!task_gen_prevue_state_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid gen_prevue task state',
-			fatal: true,
-		});
-		return z.NEVER;
-	}
-	const user_tags_result = jsonSafeParser(z.array(z.string().max(64))).safeParse(dto.user_tags);
-	if(!user_tags_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid user tags',
-			fatal: true,
-		});
-		return z.NEVER;
-	}
-	const system_tags_result = jsonSafeParser(z.array(z.string().max(64))).safeParse(dto.system_tags);
-	if(!system_tags_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid system tags',
-			fatal: true,
-		});
-		return z.NEVER;
-	}
-	const versions_result = jsonSafeParser(z.array(VersionMetadataSchema)).safeParse(dto.versions);
-	if(!versions_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid versions',
-			fatal: true,
-		});
-		return z.NEVER;
-	}
-	const tags_result = jsonSafeParser(z.array(z.string().max(64))).safeParse(dto.tags);
-	if(!tags_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid tags',
-			fatal: true,
-		});
-		return z.NEVER;
-	}
-
-	// The following fields are optional, so we don't need to check for success.
-	const poster_analysis_result = !dto.poster_analysis
-		? { success: true, data: undefined }
-		: jsonSafeParser(PosterAnalysisSchema).safeParse(dto.poster_analysis);
-	if(!poster_analysis_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid poster analysis',
-		});
-	}
-	const poster_metadata_result = !dto.poster_metadata
-		? { success: true, data: undefined }
-		: jsonSafeParser(PosterMetadataSchema).safeParse(dto.poster_metadata);
-	if(!poster_metadata_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid poster',
-		});
-	}
-	const animated_poster_metadata_result = !dto.animated_poster_metadata
-		? { success: true, data: undefined }
-		: jsonSafeParser(AnimatedPosterMetadataSchema).safeParse(dto.animated_poster_metadata);
-	if(!animated_poster_metadata_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid animated poster',
-		});
-	}
-	const poster_series_metadata_result = !dto.poster_series_metadata
-		? { success: true, data: undefined }
-		: jsonSafeParser(PosterSeriesMetadataSchema).safeParse(dto.poster_series_metadata);
-	if(!poster_series_metadata_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid poster series',
-		});
-	}
-	const tile_series_metadata_result = !dto.tile_series_metadata
-		? { success: true, data: undefined }
-		: jsonSafeParser(TileSeriesMetadataMetadataSchema).safeParse(dto.tile_series_metadata);
-	if(!tile_series_metadata_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid tile series',
-		});
-	}
-	const prevue_metadata_result = !dto.prevue_metadata
-		? { success: true, data: undefined }
-		: jsonSafeParser(PrevueMetadataSchema).safeParse(dto.prevue_metadata);
-	if(!prevue_metadata_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid prevue',
-		});
-	}
-
-	return {
-		...dto,
-		metadata: metadata_result.data,
-		metadata_metadata: metadata_metadata_result.data,
-		poster_metadata: poster_metadata_result.data,
-		poster_analysis: poster_analysis_result.data,
-		animated_poster_metadata: animated_poster_metadata_result.data,
-		poster_series_metadata: poster_series_metadata_result.data,
-		poster_series_selected_index: dto.poster_series_selected_index ?? undefined,
-		tile_series_metadata: tile_series_metadata_result.data,
-		prevue_metadata: prevue_metadata_result.data,
-		task_gen_metadata_state: task_gen_metadata_state_result.data,
-		task_gen_poster_state: task_gen_poster_state_result.data,
-		task_gen_animated_poster_state: task_gen_animated_poster_state_result.data,
-		task_gen_poster_series_state: task_gen_poster_series_state_result.data,
-		task_gen_tile_series_state: task_gen_tile_series_state_result.data,
-		task_gen_prevue_state: task_gen_prevue_state_result.data,
-		is_settled: Boolean(dto.is_settled),
-		user_tags: user_tags_result.data,
-		system_tags: system_tags_result.data,
-		versions: versions_result.data,
-		tags: tags_result.data,
-	};
-});
-export const DbDtoToAssetSchema = z.object({
-	asset_id: z.uuid(),
-	tenant_id: z.uuid(),
-	name: z.string().min(1).max(100),
-	metadata: z.string().max(65535),
-	metadata_metadata: z.string().max(4096),
-	poster_metadata: z.string().max(8192).nullable(),
-	poster_analysis: z.string().max(4096).nullable(),
-	animated_poster_metadata: z.string().max(4096).nullable(),
-	poster_series_metadata: z.string().max(16384).nullable(),
-	poster_series_selected_index: z.number().int().min(1).max(3).nullable(),
-	tile_series_metadata: z.string().max(16777216).nullable(),
-	prevue_metadata: z.string().max(4096).nullable(),
-	task_gen_metadata_state: z.string().min(1).max(65535),
-	task_gen_metadata_status: z.enum(RobustTask.StatusValues),
-	task_save_metadata_status: z.enum(RobustTask.StatusValues),
-	task_gen_poster_state: z.string().min(1).max(65535),
-	task_gen_poster_status: z.enum(RobustTask.StatusValues),
-	task_save_poster_status: z.enum(RobustTask.StatusValues),
-	task_gen_animated_poster_state: z.string().min(1).max(65535),
-	task_gen_animated_poster_status: z.enum(RobustTask.StatusValues),
-	task_save_animated_poster_status: z.enum(RobustTask.StatusValues),
-	task_gen_poster_series_state: z.string().min(1).max(65535),
-	task_gen_poster_series_status: z.enum(RobustTask.StatusValues),
-	task_save_poster_series_status: z.enum(RobustTask.StatusValues),
-	task_gen_tile_series_state: z.string().min(1).max(65535),
-	task_gen_tile_series_status: z.enum(RobustTask.StatusValues),
-	task_save_tile_series_status: z.enum(RobustTask.StatusValues),
-	task_gen_prevue_state: z.string().min(1).max(65535),
-	task_gen_prevue_status: z.enum(RobustTask.StatusValues),
-	task_save_prevue_status: z.enum(RobustTask.StatusValues),
-	is_settled: z.number(),
-	user_tags: z.string(),
-	system_tags: z.string(),
-	versions: z.string(),
-	tags: z.string(),
-	create_timestamp: SqliteDateSchema,
-	modify_timestamp: SqliteDateSchema,
-	is_deleted: z.number().default(0),
-})
-.transform((dto, ctx): Asset => {
-	const metadata_result = jsonSafeParser(MetadataSchema).safeParse(dto.metadata);
-	if(!metadata_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid metadata',
-			fatal: true,
-		});
-		return z.NEVER;
-	}
-	const metadata_metadata_result = jsonSafeParser(MetadataMetadataSchema).safeParse(dto.metadata_metadata);
-	if(!metadata_metadata_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid metadata metadata',
-			fatal: true,
-		});
-		return z.NEVER;
-	}
-	const task_gen_metadata_state_result = jsonSafeParser(TranscodeTaskStateSchema).safeParse(dto.task_gen_metadata_state);
-	if(!task_gen_metadata_state_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid gen_metadata task state',
-			fatal: true,
-		});
-		return z.NEVER;
-	}
-	const task_gen_poster_state_result = jsonSafeParser(TranscodeTaskStateSchema).safeParse(dto.task_gen_poster_state);
-	if(!task_gen_poster_state_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid gen_poster task state',
-			fatal: true,
-		});
-		return z.NEVER;
-	}
-	const task_gen_animated_poster_state_result = jsonSafeParser(TranscodeTaskStateSchema).safeParse(dto.task_gen_animated_poster_state);
-	if(!task_gen_animated_poster_state_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid gen_animated_poster task state',
-			fatal: true,
-		});
-		return z.NEVER;
-	}
-	const task_gen_poster_series_state_result = jsonSafeParser(TranscodeTaskStateSchema).safeParse(dto.task_gen_poster_series_state);
-	if(!task_gen_poster_series_state_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid gen_poster_series task state',
-			fatal: true,
-		});
-		return z.NEVER;
-	}
-	const task_gen_tile_series_state_result = jsonSafeParser(TranscodeTaskStateSchema).safeParse(dto.task_gen_tile_series_state);
-	if(!task_gen_tile_series_state_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid gen_tile_series task state',
-			fatal: true,
-		});
-		return z.NEVER;
-	}
-	const task_gen_prevue_state_result = jsonSafeParser(TranscodeTaskStateSchema).safeParse(dto.task_gen_prevue_state);
-	if(!task_gen_prevue_state_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid gen_prevue task state',
-			fatal: true,
-		});
-		return z.NEVER;
-	}
-	const user_tags_result = jsonSafeParser(z.array(z.string().max(64))).safeParse(dto.user_tags);
-	if(!user_tags_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid user tags',
-			fatal: true,
-		});
-		return z.NEVER;
-	}
-	const system_tags_result = jsonSafeParser(z.array(z.string().max(64))).safeParse(dto.system_tags);
-	if(!system_tags_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid system tags',
-			fatal: true,
-		});
-		return z.NEVER;
-	}
-	const versions_result = jsonSafeParser(z.array(VersionMetadataSchema)).safeParse(dto.versions);
-	if(!versions_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid versions',
-			fatal: true,
-		});
-		return z.NEVER;
-	}
-	const tags_result = jsonSafeParser(z.array(z.string().max(64))).safeParse(dto.tags);
-	if(!tags_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid tags',
-			fatal: true,
-		});
-		return z.NEVER;
-	}
-
-	// The following fields are optional, so we don't need to check for success.
-	const poster_analysis_result = !dto.poster_analysis
-		? { success: true, data: undefined }
-		: jsonSafeParser(PosterAnalysisSchema).safeParse(dto.poster_analysis);
-	if(!poster_analysis_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid poster analysis',
-		});
-	}
-	const poster_metadata_result = !dto.poster_metadata
-		? { success: true, data: undefined }
-		: jsonSafeParser(PosterMetadataSchema).safeParse(dto.poster_metadata);
-	if(!poster_metadata_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid poster',
-		});
-	}
-	const animated_poster_metadata_result = !dto.animated_poster_metadata
-		? { success: true, data: undefined }
-		: jsonSafeParser(AnimatedPosterMetadataSchema).safeParse(dto.animated_poster_metadata);
-	if(!animated_poster_metadata_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid animated poster',
-		});
-	}
-	const poster_series_metadata_result = !dto.poster_series_metadata
-		? { success: true, data: undefined }
-		: jsonSafeParser(PosterSeriesMetadataSchema).safeParse(dto.poster_series_metadata);
-	if(!poster_series_metadata_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid poster series',
-		});
-	}
-	const tile_series_metadata_result = !dto.tile_series_metadata
-		? { success: true, data: undefined }
-		: jsonSafeParser(TileSeriesMetadataMetadataSchema).safeParse(dto.tile_series_metadata);
-	if(!tile_series_metadata_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid tile series',
-		});
-	}
-	const prevue_metadata_result = !dto.prevue_metadata
-		? { success: true, data: undefined }
-		: jsonSafeParser(PrevueMetadataSchema).safeParse(dto.prevue_metadata);
-	if(!prevue_metadata_result.success) {
-		ctx.addIssue({
-			code: "custom",
-			message: 'Invalid prevue',
-		});
-	}
-
-	return {
-		...dto,
-		metadata: metadata_result.data,
-		metadata_metadata: metadata_metadata_result.data,
-		poster_metadata: poster_metadata_result.data,
-		poster_analysis: poster_analysis_result.data,
-		animated_poster_metadata: animated_poster_metadata_result.data,
-		poster_series_metadata: poster_series_metadata_result.data,
-		poster_series_selected_index: dto.poster_series_selected_index ?? undefined,
-		tile_series_metadata: tile_series_metadata_result.data,
-		prevue_metadata: prevue_metadata_result.data,
-		task_gen_metadata_state: task_gen_metadata_state_result.data,
-		task_gen_poster_state: task_gen_poster_state_result.data,
-		task_gen_animated_poster_state: task_gen_animated_poster_state_result.data,
-		task_gen_poster_series_state: task_gen_poster_series_state_result.data,
-		task_gen_tile_series_state: task_gen_tile_series_state_result.data,
-		task_gen_prevue_state: task_gen_prevue_state_result.data,
-		is_settled: Boolean(dto.is_settled),
-		user_tags: user_tags_result.data,
-		system_tags: system_tags_result.data,
-		versions: versions_result.data,
-		tags: tags_result.data,
-		is_deleted: Boolean(dto.is_deleted),
-	};
-});

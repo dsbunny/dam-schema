@@ -1,12 +1,11 @@
 // vim: tabstop=8 softtabstop=0 noexpandtab shiftwidth=8 nosmarttab
 import * as z from "zod";
+import { dsbunnyRegistry } from '@dsbunny/zod-registry';
 import { MetadataMetadataSchema } from '@dsbunny/metadata-schema';
+import { S3URISchema } from '@dsbunny/net-schema';
 import { RobustTask } from "@dsbunny/robust-task-schema";
-import { SqliteDateSchema } from './sqlite-date.schema.js';
-import { jsonSafeParser } from './json-safe-parser.js';
 import { CompleteMultipartUploadResponseSchema, S3CompleteTaskStateSchema } from './s3-complete.schema.js';
 import { TranscodeTaskStateSchema } from "./transcode.schema.js";
-import { S3URISchema } from './uri.schema.js';
 export const CanSaveStatusSchema = z.object({
     upload_id: z.uuid(),
     can_save: z.boolean(),
@@ -15,25 +14,9 @@ export const CanSaveStatusSchema = z.object({
     is_pending: z.boolean(),
     is_processing: z.boolean(),
     modify_timestamp: z.iso.datetime(),
-});
-export const DbDtoToCanSaveStatusSchema = z.object({
-    upload_id: z.uuid(),
-    can_save: z.number(),
-    is_rejected: z.number(),
-    has_error: z.number(),
-    is_pending: z.number(),
-    is_processing: z.number(),
-    modify_timestamp: SqliteDateSchema,
-})
-    .transform((dto) => {
-    return {
-        ...dto,
-        can_save: Boolean(dto.can_save),
-        is_rejected: Boolean(dto.is_rejected),
-        has_error: Boolean(dto.has_error),
-        is_pending: Boolean(dto.is_pending),
-        is_processing: Boolean(dto.is_processing),
-    };
+}).register(dsbunnyRegistry, {
+    id: 'CanSaveStatusSchema',
+    description: 'The schema for the can save status of an upload, including upload ID, status flags, and modification timestamp',
 });
 export const S3PartSchema = z.object({
     part_number: z.number().min(1).max(10000)
@@ -42,8 +25,14 @@ export const S3PartSchema = z.object({
         .describe('The entity tag returned when the part was uploaded.'),
     size: z.number().min(20).max(5497558138880) // 5TB
         .describe('The size of the part in bytes.'),
+}).register(dsbunnyRegistry, {
+    id: 'S3PartSchema',
+    description: 'The schema for an S3 part, including part number, ETag, and size',
 });
-export const UploadMetadataSchema = z.record(z.string(), z.string().max(255));
+export const UploadMetadataSchema = z.record(z.string(), z.string().max(255)).register(dsbunnyRegistry, {
+    id: 'UploadMetadataSchema',
+    description: 'The schema for upload metadata, including key-value pairs of strings with a maximum length of 255',
+});
 export const UploadSchema = z.object({
     upload_id: z.uuid()
         .describe('The upload ID'),
@@ -94,140 +83,23 @@ export const UploadSchema = z.object({
         .describe('The ISO datetime when the upload was last modified'),
     is_deleted: z.boolean().default(false)
         .describe('Whether the upload is deleted'),
+}).register(dsbunnyRegistry, {
+    id: 'UploadSchema',
+    description: 'The schema for an upload, including asset details, S3 information, task statuses, tags, timestamps, and deletion status',
 });
 export const ValidatedUploadSchema = UploadSchema.required({
     s3_version_id: true,
     s3_etag: true,
     s3_parts: true,
     size: true,
+}).register(dsbunnyRegistry, {
+    id: 'ValidatedUploadSchema',
+    description: 'The schema for a validated upload, requiring S3 version ID, ETag, parts, and size',
 });
 export const ValidatedUploadWithMetadataSchema = ValidatedUploadSchema.required({
     metadata_metadata: true,
-});
-export const DbDtoFromUploadSchema = UploadSchema.transform((upload) => {
-    return {
-        ...upload,
-        s3_metadata: JSON.stringify(upload.s3_metadata),
-        s3_parts: JSON.stringify(upload.s3_parts),
-        metadata_metadata: JSON.stringify(upload.metadata_metadata),
-        task_s3_complete_state: JSON.stringify(upload.task_s3_complete_state),
-        task_gen_metadata_state: JSON.stringify(upload.task_gen_metadata_state),
-        user_tags: JSON.stringify(upload.user_tags),
-        system_tags: JSON.stringify(upload.system_tags),
-    };
-});
-export const DbDtoToUploadSchema = z.object({
-    upload_id: z.uuid(),
-    tenant_id: z.uuid(),
-    asset_id: z.uuid(),
-    s3_upload_id: z.string().min(2).max(2048).nullable(),
-    s3_metadata: z.string().max(65535).nullable(),
-    s3_version_id: z.string().min(2).max(255).nullable(),
-    s3_etag: z.string().min(2).max(2048).nullable(),
-    s3_parts: z.string().max(65535).nullable(),
-    size: z.number().min(20).max(5497558138880).nullable(), // 5TB
-    origin_filename: z.string().min(1).max(255),
-    s3_filename: z.string().min(1).max(255),
-    content_type: z.string().min(5).max(255),
-    s3_uri: S3URISchema.min(20).max(2048),
-    asset_name: z.string().min(1).max(255),
-    metadata_metadata: z.string().max(65535).nullable(),
-    task_upload_status: z.enum(RobustTask.StatusValues),
-    task_s3_complete_state: z.string().max(65535).nullable(),
-    task_s3_complete_status: z.enum(RobustTask.StatusValues),
-    task_gen_metadata_state: z.string().max(65535).nullable(),
-    task_gen_metadata_status: z.enum(RobustTask.StatusValues),
-    task_save_status: z.enum(RobustTask.StatusValues),
-    user_tags: z.string().max(65535),
-    system_tags: z.string().max(65535),
-    create_timestamp: SqliteDateSchema,
-    modify_timestamp: SqliteDateSchema,
-    is_deleted: z.number().default(0),
-})
-    .transform((dto, ctx) => {
-    const s3_metadata_result = !dto.s3_metadata
-        ? { success: true, data: undefined, error: undefined }
-        : jsonSafeParser(CompleteMultipartUploadResponseSchema).safeParse(dto.s3_metadata);
-    if (!s3_metadata_result.success) {
-        ctx.addIssue({
-            code: "custom",
-            message: `Invalid S3 metadata: ${z.prettifyError(s3_metadata_result.error)}`,
-            fatal: true,
-        });
-        return z.NEVER;
-    }
-    const s3_parts_result = !dto.s3_parts
-        ? { success: true, data: undefined, error: undefined }
-        : jsonSafeParser(z.array(S3PartSchema)).safeParse(dto.s3_parts);
-    if (!s3_parts_result.success) {
-        ctx.addIssue({
-            code: "custom",
-            message: `Invalid S3 parts: ${z.prettifyError(s3_parts_result.error)}`,
-            fatal: true,
-        });
-        return z.NEVER;
-    }
-    const metadata_metadata_result = !dto.metadata_metadata
-        ? { success: true, data: undefined, error: undefined }
-        : jsonSafeParser(MetadataMetadataSchema).safeParse(dto.metadata_metadata);
-    if (!metadata_metadata_result.success) {
-        ctx.addIssue({
-            code: "custom",
-            message: `Invalid metadata-metadata: ${z.prettifyError(metadata_metadata_result.error)}`,
-            fatal: true,
-        });
-        return z.NEVER;
-    }
-    const task_s3_complete_state_result = jsonSafeParser(S3CompleteTaskStateSchema).safeParse(dto.task_s3_complete_state);
-    if (!task_s3_complete_state_result.success) {
-        ctx.addIssue({
-            code: "custom",
-            message: `Invalid s3_complete task state: ${z.prettifyError(task_s3_complete_state_result.error)}`,
-            fatal: true,
-        });
-        return z.NEVER;
-    }
-    const task_gen_metadata_state_result = jsonSafeParser(TranscodeTaskStateSchema).safeParse(dto.task_gen_metadata_state);
-    if (!task_gen_metadata_state_result.success) {
-        ctx.addIssue({
-            code: "custom",
-            message: `Invalid gen_metadata task state: ${z.prettifyError(task_gen_metadata_state_result.error)}`,
-            fatal: true,
-        });
-        return z.NEVER;
-    }
-    const user_tags_result = jsonSafeParser(z.array(z.string().max(64))).safeParse(dto.user_tags);
-    if (!user_tags_result.success) {
-        ctx.addIssue({
-            code: "custom",
-            message: `Invalid tags: ${z.prettifyError(user_tags_result.error)}`,
-            fatal: true,
-        });
-        return z.NEVER;
-    }
-    const system_tags_result = jsonSafeParser(z.array(z.string().max(64))).safeParse(dto.system_tags);
-    if (!system_tags_result.success) {
-        ctx.addIssue({
-            code: "custom",
-            message: `Invalid system tags: ${z.prettifyError(system_tags_result.error)}`,
-            fatal: true,
-        });
-        return z.NEVER;
-    }
-    return {
-        ...dto,
-        s3_upload_id: dto.s3_upload_id ?? undefined,
-        s3_metadata: s3_metadata_result.data,
-        s3_version_id: dto.s3_version_id ?? undefined,
-        s3_etag: dto.s3_etag ?? undefined,
-        s3_parts: s3_parts_result.data,
-        size: dto.size ?? undefined,
-        metadata_metadata: metadata_metadata_result.data,
-        task_s3_complete_state: task_s3_complete_state_result.data,
-        task_gen_metadata_state: task_gen_metadata_state_result.data,
-        user_tags: user_tags_result.data,
-        system_tags: system_tags_result.data,
-        is_deleted: Boolean(dto.is_deleted),
-    };
+}).register(dsbunnyRegistry, {
+    id: 'ValidatedUploadWithMetadataSchema',
+    description: 'The schema for a validated upload with metadata, requiring S3 version ID, ETag, parts, size, and metadata',
 });
 //# sourceMappingURL=upload.schema.js.map

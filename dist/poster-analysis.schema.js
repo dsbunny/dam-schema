@@ -1,5 +1,6 @@
 // vim: tabstop=8 softtabstop=0 noexpandtab shiftwidth=8 nosmarttab
 import * as z from "zod";
+import { dsbunnyRegistry } from '@dsbunny/zod-registry';
 export const PosterAnalysisSchema = z.object({
     description: z.string()
         .describe('Generated description for the poster image'),
@@ -9,5 +10,8 @@ export const PosterAnalysisSchema = z.object({
         .describe('Name or identifier of the service that generated the analysis'),
     generated_at: z.iso.datetime()
         .describe('ISO datetime when the analysis was generated')
+}).register(dsbunnyRegistry, {
+    id: 'PosterAnalysisSchema',
+    description: 'The schema for poster analysis, including description, tags, source, and generation timestamp',
 });
 //# sourceMappingURL=poster-analysis.schema.js.map

@@ -1,6 +1,7 @@
 // vim: tabstop=8 softtabstop=0 noexpandtab shiftwidth=8 nosmarttab
 
 import * as z from "zod";
+import { dsbunnyRegistry } from '@dsbunny/zod-registry';
 import {
 	AnimatedPosterMetadataSchema,
 	FileStatAndChecksumsSchema,
@@ -20,6 +21,9 @@ export const CurrentVersionMetadataSchema = z.object({
 		.describe('The version number of the asset'),
 	origin_name: z.string()
 		.describe('The name of the file at the time of upload'),
+}).register(dsbunnyRegistry, {
+	id: 'CurrentVersionMetadataSchema',
+	description: 'The metadata of the current version of the asset',
 });
 export type CurrentVersionMetadata = z.infer<typeof CurrentVersionMetadataSchema>;
 
@@ -48,9 +52,14 @@ export const OldVersionMetadataSchema = z.object({
 		.describe('The tile entries of the asset'),
 	prevue_metadata: PrevueMetadataSchema.optional()
 		.describe('The prevue entry of the asset'),
-})
-	.describe('The version metadata of an asset');
+}).register(dsbunnyRegistry, {
+	id: 'OldVersionMetadataSchema',
+	description: 'The metadata of an old version of the asset',
+});
 export type OldVersionMetadata = z.infer<typeof OldVersionMetadataSchema>;
 
-export const VersionMetadataSchema = CurrentVersionMetadataSchema.or(OldVersionMetadataSchema);
+export const VersionMetadataSchema = CurrentVersionMetadataSchema.or(OldVersionMetadataSchema).register(dsbunnyRegistry, {
+	id: 'VersionMetadataSchema',
+	description: 'The metadata of a version of the asset',
+});
 export type VersionMetadata = z.infer<typeof VersionMetadataSchema>;
