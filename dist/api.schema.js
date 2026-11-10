@@ -4,7 +4,7 @@ import { dsbunnyRegistry } from '@dsbunny/zod-registry';
 import { ErrorResponseSchema } from "@dsbunny/error-schema";
 import { JsonPatchOperationSchema } from '@dsbunny/patch-schema';
 import { AssetSchema } from './asset.schema.js';
-import { PresignedIndexedUrlSchema } from './presigned-url.schema.js';
+import { PresignedIndexedUrlSchema, PresignedUrlSchema, } from './presigned-url.schema.js';
 import { UploadSchema } from './upload.schema.js';
 // #region Assets
 export const ListAssetsRequestSchema = z.object({}).register(dsbunnyRegistry, {
@@ -116,7 +116,7 @@ export const GetAssetPosterRequestSchema = z.object({}).register(dsbunnyRegistry
     id: 'GetAssetPosterRequestSchema',
     description: 'Get asset poster request schema',
 });
-export const GetAssetPosterResponseSchema = z.url().register(dsbunnyRegistry, {
+export const GetAssetPosterResponseSchema = PresignedUrlSchema.register(dsbunnyRegistry, {
     id: 'GetAssetPosterResponseSchema',
     description: 'Get asset poster response schema',
 });
@@ -124,7 +124,7 @@ export const GetAssetThumbnailRequestSchema = z.object({}).register(dsbunnyRegis
     id: 'GetAssetThumbnailRequestSchema',
     description: 'Get asset thumbnail request schema',
 });
-export const GetAssetThumbnailResponseSchema = z.url().register(dsbunnyRegistry, {
+export const GetAssetThumbnailResponseSchema = PresignedUrlSchema.register(dsbunnyRegistry, {
     id: 'GetAssetThumbnailResponseSchema',
     description: 'Get asset thumbnail response schema',
 });

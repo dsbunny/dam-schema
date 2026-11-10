@@ -15187,11 +15187,17 @@ export declare const UpdateAssetPosterResponseSchema: z.ZodObject<{}, z.core.$st
 export type UpdateAssetPosterResponse = z.infer<typeof UpdateAssetPosterResponseSchema>;
 export declare const GetAssetPosterRequestSchema: z.ZodObject<{}, z.core.$strip>;
 export type GetAssetPosterRequest = z.infer<typeof GetAssetPosterRequestSchema>;
-export declare const GetAssetPosterResponseSchema: z.ZodURL;
+export declare const GetAssetPosterResponseSchema: z.ZodObject<{
+    url: z.ZodString;
+    expires: z.ZodString;
+}, z.core.$strip>;
 export type GetAssetPosterResponse = z.infer<typeof GetAssetPosterResponseSchema>;
 export declare const GetAssetThumbnailRequestSchema: z.ZodObject<{}, z.core.$strip>;
 export type GetAssetThumbnailRequest = z.infer<typeof GetAssetThumbnailRequestSchema>;
-export declare const GetAssetThumbnailResponseSchema: z.ZodURL;
+export declare const GetAssetThumbnailResponseSchema: z.ZodObject<{
+    url: z.ZodString;
+    expires: z.ZodString;
+}, z.core.$strip>;
 export type GetAssetThumbnailResponse = z.infer<typeof GetAssetThumbnailResponseSchema>;
 export declare const ListUploadsRequestSchema: z.ZodObject<{}, z.core.$strip>;
 export type ListUploadsRequest = z.infer<typeof ListUploadsRequestSchema>;
@@ -37320,7 +37326,13 @@ export declare const DamAssetResponseSchema: z.ZodUnion<readonly [z.ZodObject<{
     url: z.ZodString;
     expires: z.ZodString;
     index: z.ZodNumber;
-}, z.core.$strip>>, z.ZodObject<{}, z.core.$strip>, z.ZodURL, z.ZodURL, z.ZodObject<{
+}, z.core.$strip>>, z.ZodObject<{}, z.core.$strip>, z.ZodObject<{
+    url: z.ZodString;
+    expires: z.ZodString;
+}, z.core.$strip>, z.ZodObject<{
+    url: z.ZodString;
+    expires: z.ZodString;
+}, z.core.$strip>, z.ZodObject<{
     code: z.ZodString;
     message: z.ZodString;
     detail: z.ZodString;
