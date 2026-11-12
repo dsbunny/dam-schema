@@ -21,6 +21,8 @@ export const DamWebhookTypeSchema = z.enum(['new', 'change', 'delete']).register
 export type DamWebhookType = z.infer<typeof DamWebhookTypeSchema>;
 
 export const DamWebhookRequestSchema = WebhookRequestSchema.extend({
+        '@type': z.literal('DamWebhookRequest')
+                .describe('Type of the DAM webhook request'),
         class: DamWebhookClassSchema,
         type: DamWebhookTypeSchema,
 }).register(dsbunnyRegistry, {
@@ -29,13 +31,19 @@ export const DamWebhookRequestSchema = WebhookRequestSchema.extend({
 });
 export type DamWebhookRequest = z.infer<typeof DamWebhookRequestSchema>;
 
-export const DamWebhookProgressSchema = WebhookProgressSchema.register(dsbunnyRegistry, {
+export const DamWebhookProgressSchema = WebhookProgressSchema.extend({
+        '@type': z.literal('DamWebhookProgress')
+                .describe('Type of the DAM webhook progress event'),
+}).register(dsbunnyRegistry, {
 	id: 'DamWebhookProgressSchema',
 	description: 'The schema for webhook progress events sent by the DAM',
 });
 export type DamWebhookProgress = z.infer<typeof DamWebhookProgressSchema>;
 
-export const DamWebhookResponseSchema = WebhookResponseSchema.register(dsbunnyRegistry, {
+export const DamWebhookResponseSchema = WebhookResponseSchema.extend({
+        '@type': z.literal('DamWebhookResponse')
+                .describe('Type of the DAM webhook response'),
+}).register(dsbunnyRegistry, {
 	id: 'DamWebhookResponseSchema',
 	description: 'The schema for webhook responses sent by the DAM',
 });

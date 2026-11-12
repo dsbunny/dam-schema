@@ -2,14 +2,21 @@
 import * as z from "zod";
 import { dsbunnyRegistry } from '@dsbunny/zod-registry';
 export const PresignedUrlSchema = z.object({
-    url: z.string(),
-    expires: z.string(),
+    '@type': z.literal('PresignedUrl')
+        .describe('Type of the presigned URL'),
+    url: z.string()
+        .describe('The presigned URL'),
+    expires: z.string()
+        .describe('The expiration timestamp of the presigned URL'),
 }).register(dsbunnyRegistry, {
     id: 'PresignedUrlSchema',
     description: 'The schema for a presigned URL, including the URL and expiration timestamp',
 });
 export const PresignedIndexedUrlSchema = PresignedUrlSchema.extend({
-    index: z.number().int().nonnegative(),
+    '@type': z.literal('PresignedIndexedUrl')
+        .describe('Type of the presigned indexed URL'),
+    index: z.number().int().nonnegative()
+        .describe('The index of the presigned indexed URL'),
 }).register(dsbunnyRegistry, {
     id: 'PresignedIndexedUrlSchema',
     description: 'The schema for a presigned indexed URL, including the URL, expiration timestamp, and index',

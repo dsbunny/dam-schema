@@ -1,5 +1,6 @@
 import * as z from "zod";
 export declare const PartSchema: z.ZodObject<{
+    '@type': z.ZodLiteral<"Part">;
     tenant_id: z.ZodUUID;
     upload_id: z.ZodUUID;
     part_number: z.ZodNumber;

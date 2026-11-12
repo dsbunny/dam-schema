@@ -1,15 +1,18 @@
 import * as z from "zod";
 import { RobustTask } from "@dsbunny/robust-task-schema";
 export declare const UploadPartSchema: z.ZodObject<{
+    '@type': z.ZodLiteral<"UploadPart">;
     part_number: z.ZodNumber;
     s3_etag: z.ZodString;
 }, z.core.$strip>;
 export type UploadPart = z.infer<typeof UploadPartSchema>;
 export declare const S3CompleteRequestSchema: z.ZodObject<{
+    '@type': z.ZodLiteral<"S3CompleteRequest">;
     tenant_id: z.ZodUUID;
     reference_id: z.ZodUUID;
     asset_id: z.ZodUUID;
     s3_client_config: z.ZodObject<{
+        '@type': z.ZodLiteral<"S3ClientConfig">;
         region: z.ZodString;
         endpoint: z.ZodString;
         forcePathStyle: z.ZodBoolean;
@@ -21,38 +24,17 @@ export declare const S3CompleteRequestSchema: z.ZodObject<{
     s3_upload_id: z.ZodString;
     s3_uri: z.ZodString;
     s3_parts: z.ZodArray<z.ZodObject<{
+        '@type': z.ZodLiteral<"UploadPart">;
         part_number: z.ZodNumber;
         s3_etag: z.ZodString;
     }, z.core.$strip>>;
 }, z.core.$strip>;
 export type S3CompleteRequest = z.infer<typeof S3CompleteRequestSchema>;
 export declare const S3CompleteProgressSchema: z.ZodObject<{
+    '@type': z.ZodLiteral<"S3CompleteProgress">;
     elapsed_seconds: z.ZodNumber;
 }, z.core.$strip>;
 export type S3CompleteProgress = z.infer<typeof S3CompleteProgressSchema>;
-export declare const CompleteMultipartUploadResponseSchema: z.ZodObject<{
-    Location: z.ZodString;
-    Bucket: z.ZodString;
-    Key: z.ZodString;
-    Expiration: z.ZodOptional<z.ZodString>;
-    ETag: z.ZodString;
-    ChecksumCRC32: z.ZodOptional<z.ZodString>;
-    ChecksumCRC32C: z.ZodOptional<z.ZodString>;
-    ChecksumSHA1: z.ZodOptional<z.ZodString>;
-    ChecksumSHA256: z.ZodOptional<z.ZodString>;
-    ServerSideEncryption: z.ZodOptional<z.ZodEnum<{
-        AES256: "AES256";
-        "aws:kms": "aws:kms";
-        "aws:kms:dsse": "aws:kms:dsse";
-    }>>;
-    VersionId: z.ZodOptional<z.ZodString>;
-    SSEKMSKeyId: z.ZodOptional<z.ZodString>;
-    BucketKeyEnabled: z.ZodOptional<z.ZodBoolean>;
-    RequestCharged: z.ZodOptional<z.ZodEnum<{
-        requester: "requester";
-    }>>;
-}, z.core.$strip>;
-export type CompleteMultipartUploadResponse = z.infer<typeof CompleteMultipartUploadResponseSchema>;
 export declare const S3CompleteResponseSchema: z.ZodObject<{
     Location: z.ZodString;
     Bucket: z.ZodString;
@@ -76,21 +58,8 @@ export declare const S3CompleteResponseSchema: z.ZodObject<{
     }>>;
 }, z.core.$strip>;
 export type S3CompleteResponse = z.infer<typeof S3CompleteResponseSchema>;
-export declare const S3MetadataResponseSchema: z.ZodObject<{
-    $metadata: z.ZodObject<{
-        attempts: z.ZodNumber;
-        httpStatusCode: z.ZodNumber;
-        requestId: z.ZodString;
-        totalRetryDelay: z.ZodNumber;
-    }, z.core.$strip>;
-    Bucket: z.ZodString;
-    ETag: z.ZodString;
-    Key: z.ZodString;
-    Location: z.ZodString;
-    VersionId: z.ZodString;
-}, z.core.$strip>;
-export type S3MetadataResponse = z.infer<typeof S3MetadataResponseSchema>;
 export declare const S3CompleteTaskStateSchema: z.ZodObject<{
+    '@type': z.ZodLiteral<"TaskState">;
     status: z.ZodEnum<{
         pending: "pending";
         running: "running";
@@ -112,21 +81,25 @@ export declare const S3CompleteTaskStateSchema: z.ZodObject<{
     runtimeToken: z.ZodOptional<z.ZodString>;
     data: z.ZodOptional<z.ZodUnknown>;
     config: z.ZodOptional<z.ZodObject<{
+        "@type": z.ZodLiteral<"TaskConfig">;
         timeoutMs: z.ZodNumber;
         maxAttempts: z.ZodNumber;
     }, z.core.$strip>>;
     error: z.ZodOptional<z.ZodObject<{
+        "@type": z.ZodLiteral<"ErrorInfo">;
         message: z.ZodString;
         code: z.ZodOptional<z.ZodString>;
         stack: z.ZodOptional<z.ZodString>;
         timestamp: z.ZodISODateTime;
     }, z.core.$strip>>;
     rejection: z.ZodOptional<z.ZodObject<{
+        "@type": z.ZodLiteral<"RejectionInfo">;
         reason: z.ZodString;
         issues: z.ZodOptional<z.ZodArray<z.ZodString>>;
         timestamp: z.ZodISODateTime;
     }, z.core.$strip>>;
     progress: z.ZodOptional<z.ZodObject<{
+        '@type': z.ZodLiteral<"S3CompleteProgress">;
         elapsed_seconds: z.ZodNumber;
     }, z.core.$strip>>;
     result: z.ZodOptional<z.ZodObject<{

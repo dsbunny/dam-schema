@@ -1,1 +1,1 @@
-{"version":3,"file":"s3-client-config.schema.d.ts","sourceRoot":"","sources":["../src/s3-client-config.schema.ts"],"names":[],"mappings":"AAEA,OAAO,KAAK,CAAC,MAAM,KAAK,CAAC;AAGzB,eAAO,MAAM,oBAAoB;;;;;;;;iBAiB/B,CAAC;AACH,MAAM,MAAM,cAAc,GAAG,CAAC,CAAC,KAAK,CAAC,OAAO,oBAAoB,CAAC,CAAC"}
+{"version":3,"file":"s3-client-config.schema.d.ts","sourceRoot":"","sources":["../src/s3-client-config.schema.ts"],"names":[],"mappings":"AAEA,OAAO,KAAK,CAAC,MAAM,KAAK,CAAC;AAGzB,eAAO,MAAM,oBAAoB;;;;;;;;;iBAmB/B,CAAC;AACH,MAAM,MAAM,cAAc,GAAG,CAAC,CAAC,KAAK,CAAC,OAAO,oBAAoB,CAAC,CAAC"}

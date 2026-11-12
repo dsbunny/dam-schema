@@ -1,5 +1,6 @@
 import * as z from "zod";
 export declare const PosterAnalysisSchema: z.ZodObject<{
+    '@type': z.ZodLiteral<"PosterAnalysis">;
     description: z.ZodString;
     tags: z.ZodArray<z.ZodString>;
     source: z.ZodString;

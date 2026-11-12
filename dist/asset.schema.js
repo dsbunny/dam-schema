@@ -7,6 +7,8 @@ import { PosterAnalysisSchema } from './poster-analysis.schema.js';
 import { TranscodeTaskStateSchema } from "./transcode.schema.js";
 import { VersionMetadataSchema } from './versions.schema.js';
 export const AssetBaseSchema = z.object({
+    '@type': z.literal('AssetBase')
+        .describe('Type of the asset base'),
     tenant_id: z.uuid()
         .describe('The tenant ID of the asset'),
     name: z.string().min(1).max(100)
@@ -86,6 +88,8 @@ export const AssetBaseSchema = z.object({
     description: 'The base schema for an asset, including task states, statuses, tags, and versions',
 });
 export const AssetMetadataSchema = z.object({
+    '@type': z.literal('AssetMetadata')
+        .describe('Type of the asset metadata'),
     asset_id: z.uuid()
         .describe('The UUID of the asset'),
     create_timestamp: z.iso.datetime() // ISO 8601
@@ -100,6 +104,8 @@ export const AssetMetadataSchema = z.object({
 });
 // projection=poster
 export const AssetPosterSchema = z.object({
+    '@type': z.literal('AssetPoster')
+        .describe('Type of the asset poster'),
     poster_url: z.url().min(20).max(65535).optional()
         .describe('The URL of the asset poster'),
 }).register(dsbunnyRegistry, {
@@ -108,6 +114,8 @@ export const AssetPosterSchema = z.object({
 });
 // projection=animated_poster
 export const AssetAnimatedPosterSchema = z.object({
+    '@type': z.literal('AssetAnimatedPoster')
+        .describe('Type of the asset animated poster'),
     animated_poster_url: z.url().min(20).max(2048).optional()
         .describe('The URL of the asset animated poster'),
 }).register(dsbunnyRegistry, {
@@ -116,6 +124,8 @@ export const AssetAnimatedPosterSchema = z.object({
 });
 // projection=prevue
 export const AssetPrevueSchema = z.object({
+    '@type': z.literal('AssetPrevue')
+        .describe('Type of the asset prevue'),
     prevue_url: z.url().min(20).max(65535).optional()
         .describe('The URL of the asset prevue'),
 }).register(dsbunnyRegistry, {
@@ -126,6 +136,10 @@ export const AssetSchema = AssetBaseSchema.extend(AssetMetadataSchema.shape)
     .extend(AssetPosterSchema.shape)
     .extend(AssetAnimatedPosterSchema.shape)
     .extend(AssetPrevueSchema.shape)
+    .extend({
+    '@type': z.literal('Asset')
+        .describe('Type of the asset'),
+})
     .register(dsbunnyRegistry, {
     id: 'AssetSchema',
     description: 'The complete schema for an asset, including base information, metadata, poster, animated poster, and prevue',

@@ -4,6 +4,8 @@ import * as z from "zod";
 import { dsbunnyRegistry } from '@dsbunny/zod-registry';
 
 export const PartSchema = z.object({
+	'@type': z.literal('Part')
+		.describe('Type of the part'),
 	tenant_id: z.uuid()
 		.describe('The tenant ID of the upload'),
 	upload_id: z.uuid()

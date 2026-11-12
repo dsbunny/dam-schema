@@ -12,12 +12,15 @@ import {
 import { UploadSchema } from './upload.schema.js';
 
 // #region Assets
-export const ListAssetsRequestSchema = z.object({}).register(dsbunnyRegistry, {
+export const ListAssetsRequestSchema = z.object({
+	'@type': z.literal('ListAssetsRequest'),
+}).register(dsbunnyRegistry, {
 	id: 'ListAssetsRequestSchema',
 	description: 'List assets request schema',
 });
 export type ListAssetsRequest = z.infer<typeof ListAssetsRequestSchema>;
 export const ListAssetsResponseSchema = z.object({
+	'@type': z.literal('ListAssetsResponse'),
 	assets: z.array(AssetSchema),
 	next_token: z.string().nullable(),
 }).register(dsbunnyRegistry, {
@@ -26,12 +29,15 @@ export const ListAssetsResponseSchema = z.object({
 });
 export type ListAssetsResponse = z.infer<typeof ListAssetsResponseSchema>;
 
-export const ListDeletedAssetsRequestSchema = z.object({}).register(dsbunnyRegistry, {
+export const ListDeletedAssetsRequestSchema = z.object({
+	'@type': z.literal('ListDeletedAssetsRequest'),
+}).register(dsbunnyRegistry, {
 	id: 'ListDeletedAssetsRequestSchema',
 	description: 'List deleted assets request schema',
 });
 export type ListDeletedAssetsRequest = z.infer<typeof ListDeletedAssetsRequestSchema>;
 export const ListDeletedAssetsResponseSchema = z.object({
+	'@type': z.literal('ListDeletedAssetsResponse'),
 	assets: z.array(AssetSchema),
 	next_token: z.string().nullable(),
 }).register(dsbunnyRegistry, {
@@ -40,12 +46,15 @@ export const ListDeletedAssetsResponseSchema = z.object({
 });
 export type ListDeletedAssetsResponse = z.infer<typeof ListDeletedAssetsResponseSchema>;
 
-export const GetAssetSuggestionsRequestSchema = z.object({}).register(dsbunnyRegistry, {
+export const GetAssetSuggestionsRequestSchema = z.object({
+	'@type': z.literal('GetAssetSuggestionsRequest'),
+}).register(dsbunnyRegistry, {
 	id: 'GetAssetSuggestionsRequestSchema',
 	description: 'Get asset suggestions request schema',
 });
 export type GetAssetSuggestionsRequest = z.infer<typeof GetAssetSuggestionsRequestSchema>;
 export const GetAssetSuggestionsResponseSchema = z.object({
+	'@type': z.literal('GetAssetSuggestionsResponse'),
 	c: z.string()
 		.describe('Asset name auto-complete for given prefix'),
 	s: z.array(z.string())
@@ -56,12 +65,15 @@ export const GetAssetSuggestionsResponseSchema = z.object({
 });
 export type GetAssetSuggestionsResponse = z.infer<typeof GetAssetSuggestionsResponseSchema>;
 
-export const GetAssetAvailabilityRequestSchema = z.object({}).register(dsbunnyRegistry, {
+export const GetAssetAvailabilityRequestSchema = z.object({
+	'@type': z.literal('GetAssetAvailabilityRequest'),
+}).register(dsbunnyRegistry, {
 	id: 'GetAssetAvailabilityRequestSchema',
 	description: 'Get asset availability request schema',
 });
 export type GetAssetAvailabilityRequest = z.infer<typeof GetAssetAvailabilityRequestSchema>;
 export const GetAssetAvailabilityResponseSchema = z.object({
+	'@type': z.literal('GetAssetAvailabilityResponse'),
 	is_available: z.boolean()
 		.describe('Indicates if the asset name is available'),
 }).register(dsbunnyRegistry, {
@@ -70,7 +82,9 @@ export const GetAssetAvailabilityResponseSchema = z.object({
 });
 export type GetAssetAvailabilityResponse = z.infer<typeof GetAssetAvailabilityResponseSchema>;
 
-export const GetAssetRequestSchema = z.object({}).register(dsbunnyRegistry, {
+export const GetAssetRequestSchema = z.object({
+	'@type': z.literal('GetAssetRequest'),
+}).register(dsbunnyRegistry, {
 	id: 'GetAssetRequestSchema',
 	description: 'Get asset request schema',
 });
@@ -81,18 +95,24 @@ export const GetAssetResponseSchema = AssetSchema.register(dsbunnyRegistry, {
 });
 export type GetAssetResponse = z.infer<typeof GetAssetResponseSchema>;
 
-export const DeleteAssetRequestSchema = z.object({}).register(dsbunnyRegistry, {
+export const DeleteAssetRequestSchema = z.object({
+	'@type': z.literal('DeleteAssetRequest'),
+}).register(dsbunnyRegistry, {
 	id: 'DeleteAssetRequestSchema',
 	description: 'Delete asset request schema',
 });
 export type DeleteAssetRequest = z.infer<typeof DeleteAssetRequestSchema>;
-export const DeleteAssetResponseSchema = z.object({}).register(dsbunnyRegistry, {
+export const DeleteAssetResponseSchema = z.object({
+	'@type': z.literal('DeleteAssetResponse'),
+}).register(dsbunnyRegistry, {
 	id: 'DeleteAssetResponseSchema',
 	description: 'Delete asset response schema',
 });
 export type DeleteAssetResponse = z.infer<typeof DeleteAssetResponseSchema>;
 
-export const RecoverAssetRequestSchema = z.object({}).register(dsbunnyRegistry, {
+export const RecoverAssetRequestSchema = z.object({
+	'@type': z.literal('RecoverAssetRequest'),
+}).register(dsbunnyRegistry, {
 	id: 'RecoverAssetRequestSchema',
 	description: 'Recover asset request schema',
 });
@@ -103,12 +123,15 @@ export const RecoverAssetResponseSchema = AssetSchema.register(dsbunnyRegistry, 
 });
 export type RecoverAssetResponse = z.infer<typeof RecoverAssetResponseSchema>;
 
-export const GetAssetDownloadLocationRequestSchema = z.object({}).register(dsbunnyRegistry, {
+export const GetAssetDownloadLocationRequestSchema = z.object({
+	'@type': z.literal('GetAssetDownloadLocationRequest'),
+}).register(dsbunnyRegistry, {
 	id: 'GetAssetDownloadLocationRequestSchema',
 	description: 'Get download location request schema',
 });
 export type GetAssetDownloadLocationRequest = z.infer<typeof GetAssetDownloadLocationRequestSchema>;
 export const GetAssetDownloadLocationResponseSchema = z.object({
+	'@type': z.literal('GetAssetDownloadLocationResponse'),
 	url: z.url(),
 	expires: z.iso.datetime(),
 }).register(dsbunnyRegistry, {
@@ -117,7 +140,10 @@ export const GetAssetDownloadLocationResponseSchema = z.object({
 });
 export type GetAssetDownloadLocationResponse = z.infer<typeof GetAssetDownloadLocationResponseSchema>;
 
-export const PatchAssetRequestSchema = z.array(JsonPatchOperationSchema).max(50).register(dsbunnyRegistry, {
+export const PatchAssetRequestSchema = z.object({
+	'@type': z.literal('PatchAssetRequest'),
+	patch_operations: z.array(JsonPatchOperationSchema).max(50),
+}).register(dsbunnyRegistry, {
 	id: 'PatchAssetRequestSchema',
 	description: 'Patch asset request schema',
 });
@@ -128,7 +154,9 @@ export const PatchAssetResponseSchema = AssetSchema.register(dsbunnyRegistry, {
 });
 export type PatchAssetResponse = z.infer<typeof PatchAssetResponseSchema>;
 
-export const ListAssetPostersRequestSchema = z.object({}).register(dsbunnyRegistry, {
+export const ListAssetPostersRequestSchema = z.object({
+	'@type': z.literal('ListAssetPostersRequest'),
+}).register(dsbunnyRegistry, {
 	id: 'ListAssetPostersRequestSchema',
 	description: 'List asset posters request schema',
 });
@@ -144,13 +172,17 @@ export const UpdateAssetPosterRequestSchema = z.coerce.number().min(1).max(3).re
 	description: 'Update asset poster request schema',
 });
 export type UpdateAssetPosterRequest = z.infer<typeof UpdateAssetPosterRequestSchema>;
-export const UpdateAssetPosterResponseSchema = z.object({}).register(dsbunnyRegistry, {
+export const UpdateAssetPosterResponseSchema = z.object({
+	'@type': z.literal('UpdateAssetPosterResponse'),
+}).register(dsbunnyRegistry, {
 	id: 'UpdateAssetPosterResponseSchema',
 	description: 'Update asset poster response schema',
 });
 export type UpdateAssetPosterResponse = z.infer<typeof UpdateAssetPosterResponseSchema>;
 
-export const GetAssetPosterRequestSchema = z.object({}).register(dsbunnyRegistry, {
+export const GetAssetPosterRequestSchema = z.object({
+	'@type': z.literal('GetAssetPosterRequest'),
+}).register(dsbunnyRegistry, {
 	id: 'GetAssetPosterRequestSchema',
 	description: 'Get asset poster request schema',
 });
@@ -161,7 +193,9 @@ export const GetAssetPosterResponseSchema = PresignedUrlSchema.register(dsbunnyR
 });
 export type GetAssetPosterResponse = z.infer<typeof GetAssetPosterResponseSchema>;
 
-export const GetAssetThumbnailRequestSchema = z.object({}).register(dsbunnyRegistry, {
+export const GetAssetThumbnailRequestSchema = z.object({
+	'@type': z.literal('GetAssetThumbnailRequest'),
+}).register(dsbunnyRegistry, {
 	id: 'GetAssetThumbnailRequestSchema',
 	description: 'Get asset thumbnail request schema',
 });
@@ -174,12 +208,15 @@ export type GetAssetThumbnailResponse = z.infer<typeof GetAssetThumbnailResponse
 // #endregion
 
 // #region Uploads
-export const ListUploadsRequestSchema = z.object({}).register(dsbunnyRegistry, {
+export const ListUploadsRequestSchema = z.object({
+	'@type': z.literal('ListUploadsRequest'),
+}).register(dsbunnyRegistry, {
 	id: 'ListUploadsRequestSchema',
 	description: 'List uploads request schema',
 });
 export type ListUploadsRequest = z.infer<typeof ListUploadsRequestSchema>;
 export const ListUploadsResponseSchema = z.object({
+	'@type': z.literal('ListUploadsResponse'),
 	uploads: z.array(UploadSchema),
 	next_token: z.string().nullable(),
 }).register(dsbunnyRegistry, {
@@ -189,6 +226,7 @@ export const ListUploadsResponseSchema = z.object({
 export type ListUploadsResponse = z.infer<typeof ListUploadsResponseSchema>;
 
 export const CreateUploadRequestSchema = z.object({
+	'@type': z.literal('CreateUploadRequest'),
 	filename: z.string()
 		.describe('Original name of the file to be uploaded.'),
 	user_tags: z.array(z.string().max(64)).optional()
@@ -201,6 +239,7 @@ export const CreateUploadRequestSchema = z.object({
 	});
 export type CreateUploadRequest = z.infer<typeof CreateUploadRequestSchema>;
 export const CreateUploadResponseSchema = z.object({
+	'@type': z.literal('CreateUploadResponse'),
 	uploadId: z.string()
 		.describe('Unique identifier of the upload.'),
 	assetName: z.string()
@@ -211,7 +250,9 @@ export const CreateUploadResponseSchema = z.object({
 });
 export type CreateUploadResponse = z.infer<typeof CreateUploadResponseSchema>;
 
-export const GetUploadRequestSchema = z.object({}).register(dsbunnyRegistry, {
+export const GetUploadRequestSchema = z.object({
+	'@type': z.literal('GetUploadRequest'),
+}).register(dsbunnyRegistry, {
 	id: 'GetUploadRequestSchema',
 	description: 'Get upload request schema',
 });
@@ -223,6 +264,7 @@ export const GetUploadResponseSchema = UploadSchema.register(dsbunnyRegistry, {
 export type GetUploadResponse = z.infer<typeof GetUploadResponseSchema>;
 
 export const CreateUploadVersionRequestSchema = z.object({
+	'@type': z.literal('CreateUploadVersionRequest'),
 	filename: z.string()
 }).register(dsbunnyRegistry, {
 	id: 'CreateUploadVersionRequestSchema',
@@ -230,6 +272,7 @@ export const CreateUploadVersionRequestSchema = z.object({
 });
 export type CreateUploadVersionRequest = z.infer<typeof CreateUploadVersionRequestSchema>;
 export const CreateUploadVersionResponseSchema = z.object({
+	'@type': z.literal('CreateUploadVersionResponse'),
 	uploadId: z.string()
 		.describe('Unique identifier of the upload version.'),
 	assetName: z.string()
@@ -241,6 +284,7 @@ export const CreateUploadVersionResponseSchema = z.object({
 export type CreateUploadVersionResponse = z.infer<typeof CreateUploadVersionResponseSchema>;
 
 export const CreateUploadUrlRequestSchema = z.object({
+	'@type': z.literal('CreateUploadUrlRequest'),
 	partNumber: z.number()
 		.describe('Part number for the upload.'),
 }).register(dsbunnyRegistry, {
@@ -249,6 +293,7 @@ export const CreateUploadUrlRequestSchema = z.object({
 });
 export type CreateUploadUrlRequest = z.infer<typeof CreateUploadUrlRequestSchema>;
 export const CreateUploadUrlResponseSchema = z.object({
+	'@type': z.literal('CreateUploadUrlResponse'),
 	url: z.string()
 		.describe('Presigned URL for uploading the asset.'),
 	expires: z.iso.datetime()
@@ -260,6 +305,7 @@ export const CreateUploadUrlResponseSchema = z.object({
 export type CreateUploadUrlResponse = z.infer<typeof CreateUploadUrlResponseSchema>;
 
 export const UploadPartRequestSchema = z.object({
+	'@type': z.literal('UploadPartRequest'),
 	partNumber: z.number()
 		.describe('Part number for the upload.'),
 	ETag: z.string()
@@ -271,40 +317,54 @@ export const UploadPartRequestSchema = z.object({
 	description: 'Upload part request schema',
 });
 export type UploadPartRequest = z.infer<typeof UploadPartRequestSchema>;
-export const UploadPartResponseSchema = z.object({}).register(dsbunnyRegistry, {
+export const UploadPartResponseSchema = z.object({
+	'@type': z.literal('UploadPartResponse'),
+}).register(dsbunnyRegistry, {
 	id: 'UploadPartResponseSchema',
 	description: 'Upload part response schema',
 });
 export type UploadPartResponse = z.infer<typeof UploadPartResponseSchema>;
 
-export const PatchUploadRequestSchema = z.array(JsonPatchOperationSchema).max(50).register(dsbunnyRegistry, {
+export const PatchUploadRequestSchema = z.object({
+	'@type': z.literal('PatchUploadRequest'),
+	patch_operations: z.array(JsonPatchOperationSchema).max(50),
+}).register(dsbunnyRegistry, {
 	id: 'PatchUploadRequestSchema',
 	description: 'Patch upload request schema',
 });
 export type PatchUploadRequest = z.infer<typeof PatchUploadRequestSchema>;
-export const PatchUploadResponseSchema = z.object({}).register(dsbunnyRegistry, {
+export const PatchUploadResponseSchema = z.object({
+	'@type': z.literal('PatchUploadResponse'),
+}).register(dsbunnyRegistry, {
 	id: 'PatchUploadResponseSchema',
 	description: 'Patch upload response schema',
 });
 export type PatchUploadResponse = z.infer<typeof PatchUploadResponseSchema>;
 
-export const UploadCompleteRequestSchema = z.object({}).register(dsbunnyRegistry, {
+export const UploadCompleteRequestSchema = z.object({
+	'@type': z.literal('UploadCompleteRequest'),
+}).register(dsbunnyRegistry, {
 	id: 'UploadCompleteRequestSchema',
 	description: 'Upload complete request schema',
 });
 export type UploadCompleteRequest = z.infer<typeof UploadCompleteRequestSchema>;
-export const UploadCompleteResponseSchema = z.object({}).register(dsbunnyRegistry, {
+export const UploadCompleteResponseSchema = z.object({
+	'@type': z.literal('UploadCompleteResponse'),
+}).register(dsbunnyRegistry, {
 	id: 'UploadCompleteResponseSchema',
 	description: 'Upload complete response schema',
 });
 export type UploadCompleteResponse = z.infer<typeof UploadCompleteResponseSchema>;
 
-export const UploadPollRequestSchema = z.object({}).register(dsbunnyRegistry, {
+export const UploadPollRequestSchema = z.object({
+	'@type': z.literal('UploadPollRequest'),
+}).register(dsbunnyRegistry, {
 	id: 'UploadPollRequestSchema',
 	description: 'Upload poll request schema',
 });
 export type UploadPollRequest = z.infer<typeof UploadPollRequestSchema>;
 export const UploadPollResponseSchema = z.object({
+	'@type': z.literal('UploadPollResponse'),
 	itemsDone: z.array(z.string())
 		.describe('List of upload IDs that have been successfully completed.'),
 	itemsFailed: z.array(z.string())
@@ -319,7 +379,9 @@ export const UploadPollResponseSchema = z.object({
 });
 export type UploadPollResponse = z.infer<typeof UploadPollResponseSchema>;
 
-export const CreateAssetFromUploadRequestSchema = z.object({}).register(dsbunnyRegistry, {
+export const CreateAssetFromUploadRequestSchema = z.object({
+	'@type': z.literal('CreateAssetFromUploadRequest'),
+}).register(dsbunnyRegistry, {
 	id: 'CreateAssetFromUploadRequestSchema',
 	description: 'Create asset from upload request schema',
 });
@@ -330,7 +392,9 @@ export const CreateAssetFromUploadResponseSchema = AssetSchema.register(dsbunnyR
 });
 export type CreateAssetFromUploadResponse = z.infer<typeof CreateAssetFromUploadResponseSchema>;
 
-export const CreateAssetFromUploadVersionRequestSchema = z.object({}).register(dsbunnyRegistry, {
+export const CreateAssetFromUploadVersionRequestSchema = z.object({
+	'@type': z.literal('CreateAssetFromUploadVersionRequest'),
+}).register(dsbunnyRegistry, {
 	id: 'CreateAssetFromUploadVersionRequestSchema',
 	description: 'Create asset from upload version request schema',
 });

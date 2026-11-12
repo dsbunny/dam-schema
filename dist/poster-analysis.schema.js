@@ -2,6 +2,8 @@
 import * as z from "zod";
 import { dsbunnyRegistry } from '@dsbunny/zod-registry';
 export const PosterAnalysisSchema = z.object({
+    '@type': z.literal('PosterAnalysis')
+        .describe('Type of the poster analysis'),
     description: z.string()
         .describe('Generated description for the poster image'),
     tags: z.array(z.string())

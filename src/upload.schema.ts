@@ -5,10 +5,13 @@ import { dsbunnyRegistry } from '@dsbunny/zod-registry';
 import { MetadataMetadataSchema } from '@dsbunny/metadata-schema';
 import { S3URISchema } from '@dsbunny/net-schema';
 import { RobustTask } from "@dsbunny/robust-task-schema";
-import { CompleteMultipartUploadResponseSchema, S3CompleteTaskStateSchema } from './s3-complete.schema.js';
+import { AWSSchema } from "./aws.schema.js";
+import { S3CompleteTaskStateSchema } from './s3-complete.schema.js';
 import { TranscodeTaskStateSchema } from "./transcode.schema.js";
 
 export const CanSaveStatusSchema = z.object({
+	'@type': z.literal('CanSaveStatus')
+		.describe('Type of the can save status'),
 	upload_id: z.uuid(),
 	can_save: z.boolean(),
 	is_rejected: z.boolean(),
@@ -23,6 +26,8 @@ export const CanSaveStatusSchema = z.object({
 export type CanSaveStatus = z.infer<typeof CanSaveStatusSchema>;
 
 export const S3PartSchema = z.object({
+	'@type': z.literal('S3Part')
+		.describe('Type of the S3 part'),
 	part_number: z.number().min(1).max(10000)
 		.describe('The part number of the part. This is a positive integer between 1 and 10,000.'),
 	etag: z.string().min(2).max(2048)
@@ -42,6 +47,8 @@ export const UploadMetadataSchema = z.record(z.string(), z.string().max(255)).re
 export type UploadMetadata = z.infer<typeof UploadMetadataSchema>;
 
 export const UploadSchema = z.object({
+	'@type': z.literal('Upload')
+		.describe('Type of the upload'),
 	upload_id: z.uuid()
 		.describe('The upload ID'),
 	tenant_id: z.uuid()
@@ -50,7 +57,7 @@ export const UploadSchema = z.object({
 		.describe('The asset ID of the upload'),
 	s3_upload_id: z.string().min(2).max(2048).optional()
 		.describe('The S3 upload ID of the upload'),
-	s3_metadata: CompleteMultipartUploadResponseSchema.optional()
+	s3_metadata: AWSSchema.CompleteMultipartUploadResponseSchema.optional()
 		.describe('The S3 metadata of the upload'),
 	s3_version_id: z.string().min(2).max(255).optional()
 		.describe('The S3 version ID of the upload'),

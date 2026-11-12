@@ -1,5 +1,6 @@
 import * as z from "zod";
 export declare const S3ClientConfigSchema: z.ZodObject<{
+    '@type': z.ZodLiteral<"S3ClientConfig">;
     region: z.ZodString;
     endpoint: z.ZodString;
     forcePathStyle: z.ZodBoolean;

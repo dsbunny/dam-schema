@@ -4,6 +4,8 @@ import * as z from "zod";
 import { dsbunnyRegistry } from '@dsbunny/zod-registry';
 
 export const S3ClientConfigSchema = z.object({
+	'@type': z.literal('S3ClientConfig')
+		.describe('Type of the S3 client configuration'),
         region: z.string().min(2).max(255)
                 .describe('The AWS region of the S3 bucket'),
         endpoint: z.string().min(5).max(2048)

@@ -1,4 +1,7 @@
 # Changelog
+## v18.0.18
+- Add `@type` fields to all schemas to enable discovery.
+
 ## v17.1.17
 - Add `id` _ZOD_ metadata for schemas.
 

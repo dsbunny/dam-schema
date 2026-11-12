@@ -15,6 +15,8 @@ import { PosterAnalysisSchema } from './poster-analysis.schema.js';
 
 // `file` and `poster` will be present if the version is not current.
 export const CurrentVersionMetadataSchema = z.object({
+	'@type': z.literal('CurrentVersionMetadata')
+		.describe('Type of the current version metadata'),
 	is_current: z.literal(true)
 		.describe('This version is the current version'),
 	version: z.number().min(1)
@@ -28,6 +30,8 @@ export const CurrentVersionMetadataSchema = z.object({
 export type CurrentVersionMetadata = z.infer<typeof CurrentVersionMetadataSchema>;
 
 export const OldVersionMetadataSchema = z.object({
+	'@type': z.literal('OldVersionMetadata')
+		.describe('Type of the old version metadata'),
 	is_current: z.literal(false)
 		.describe('This version is not the current version'),
 	version: z.number().min(1)

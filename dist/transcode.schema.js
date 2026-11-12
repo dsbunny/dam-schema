@@ -14,6 +14,8 @@ import { S3URISchema } from '@dsbunny/net-schema';
 import { RobustTask } from "@dsbunny/robust-task-schema";
 import { S3ClientConfigSchema } from './s3-client-config.schema.js';
 export const ReturnResourceSchema = z.object({
+    '@type': z.literal('ReturnResource')
+        .describe('Type of the return resource'),
     content_type: z.string().min(5).max(255)
         .describe('Content type of the resource'),
     s3_uri: S3URISchema.min(20).max(2048)
@@ -25,6 +27,8 @@ export const ReturnResourceSchema = z.object({
     description: 'The return resource of a transcode job',
 });
 export const RequestBaseSchema = z.object({
+    '@type': z.literal('RequestBase')
+        .describe('Type of the request base'),
     tenant_id: z.uuid()
         .describe('The tenant ID of the asset'),
     reference_id: z.uuid()
@@ -52,7 +56,8 @@ export const RequestBaseSchema = z.object({
     description: 'The base schema for a transcode request, including tenant ID, reference ID, asset ID, S3 client configuration, and asset details',
 });
 export const MetadataRequestSchema = RequestBaseSchema.extend({
-    type: z.literal('metadata'),
+    '@type': z.literal('MetadataRequest')
+        .describe('Type of the metadata request'),
     metadata: ReturnResourceSchema
         .describe('The metadata of the asset'),
 }).register(dsbunnyRegistry, {
@@ -60,6 +65,8 @@ export const MetadataRequestSchema = RequestBaseSchema.extend({
     description: 'Schema for a metadata request of an asset',
 });
 export const PosterRequestEntrySchema = z.object({
+    '@type': z.literal('PosterRequestEntry')
+        .describe('Type of the poster request entry'),
     quality: z.enum(['medium', 'high', 'sample'])
         .describe('The quality of the poster'),
     poster: ReturnResourceSchema,
@@ -68,7 +75,8 @@ export const PosterRequestEntrySchema = z.object({
     description: 'The poster entry of the asset',
 });
 export const PosterRequestSchema = RequestBaseSchema.extend({
-    type: z.literal('poster'),
+    '@type': z.literal('PosterRequest')
+        .describe('Type of the poster request'),
     poster: z.array(PosterRequestEntrySchema)
         .describe('The poster entries of the asset'),
 }).register(dsbunnyRegistry, {
@@ -76,7 +84,8 @@ export const PosterRequestSchema = RequestBaseSchema.extend({
     description: 'Poster job for an asset',
 });
 export const AnimatedPosterRequestSchema = RequestBaseSchema.extend({
-    type: z.literal('animated-poster'),
+    '@type': z.literal('AnimatedPosterRequest')
+        .describe('Type of the animated poster request'),
     'animated-poster': ReturnResourceSchema
         .describe('The poster of the asset'),
 }).register(dsbunnyRegistry, {
@@ -84,6 +93,8 @@ export const AnimatedPosterRequestSchema = RequestBaseSchema.extend({
     description: 'Animated poster job for an asset',
 });
 export const PosterSeriesRequestEntrySchema = z.object({
+    '@type': z.literal('PosterSeriesRequestEntry')
+        .describe('Type of the poster series request entry'),
     index: z.number().int().min(1).max(3)
         .describe('The index of the poster'),
     quality: z.enum(['medium', 'high', 'sample'])
@@ -94,7 +105,8 @@ export const PosterSeriesRequestEntrySchema = z.object({
     description: 'The poster entry of the asset',
 });
 export const PosterSeriesRequestSchema = RequestBaseSchema.extend({
-    type: z.literal('poster-series'),
+    '@type': z.literal('PosterSeriesRequest')
+        .describe('Type of the poster series request'),
     'poster-series': z.array(PosterSeriesRequestEntrySchema)
         .describe('The poster entries of the asset'),
 }).register(dsbunnyRegistry, {
@@ -102,6 +114,8 @@ export const PosterSeriesRequestSchema = RequestBaseSchema.extend({
     description: 'Poster series job for an asset',
 });
 export const TileSeriesRequestEntrySchema = z.object({
+    '@type': z.literal('TileSeriesRequestEntry')
+        .describe('Type of the tile series request entry'),
     content_type: z.string().min(5).max(255)
         .describe('The content type of the tile series'),
     quality: z.enum(['low'])
@@ -121,21 +135,23 @@ export const TileSeriesRequestEntrySchema = z.object({
     description: 'The tile series entry of the asset',
 });
 export const TileSeriesRequestSchema = RequestBaseSchema.extend({
-    type: z.literal('tile-series'),
+    '@type': z.literal('TileSeriesRequest')
+        .describe('Type of the tile series request'),
     'tile-series': TileSeriesRequestEntrySchema,
 }).register(dsbunnyRegistry, {
     id: 'TileSeriesRequestSchema',
     description: 'Tile series job for an asset',
 });
 export const PrevueRequestSchema = RequestBaseSchema.extend({
-    type: z.literal('prevue'),
+    '@type': z.literal('PrevueRequest')
+        .describe('Type of the prevue request'),
     prevue: ReturnResourceSchema
         .describe('The prevue of the asset'),
 }).register(dsbunnyRegistry, {
     id: 'PrevueRequestSchema',
     description: 'Prevue job for an asset',
 });
-export const TranscodeRequestSchema = z.discriminatedUnion("type", [
+export const TranscodeRequestSchema = z.discriminatedUnion("@type", [
     MetadataRequestSchema,
     PosterRequestSchema,
     AnimatedPosterRequestSchema,
@@ -155,6 +171,8 @@ export const TranscodeProgressSchema = z.number().min(0).max(100).register(dsbun
     description: 'The status of the transcode',
 });
 export const TranscodeResponseSchema = z.object({
+    '@type': z.literal('TranscodeResponse')
+        .describe('Type of the transcode response'),
     metadata: TranscodeOutputMetadataSchema
 }).register(dsbunnyRegistry, {
     id: 'TranscodeResponseSchema',

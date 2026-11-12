@@ -14,6 +14,7 @@ export declare const DamWebhookRequestSchema: z.ZodObject<{
     tenant_id: z.ZodUUID;
     ref_id: z.ZodUUID;
     trace_id: z.ZodOptional<z.ZodString>;
+    '@type': z.ZodLiteral<"DamWebhookRequest">;
     class: z.ZodEnum<{
         asset: "asset";
         upload: "upload";
@@ -25,8 +26,12 @@ export declare const DamWebhookRequestSchema: z.ZodObject<{
     }>;
 }, z.core.$strip>;
 export type DamWebhookRequest = z.infer<typeof DamWebhookRequestSchema>;
-export declare const DamWebhookProgressSchema: z.ZodNull;
+export declare const DamWebhookProgressSchema: z.ZodObject<{
+    '@type': z.ZodLiteral<"DamWebhookProgress">;
+}, z.core.$strip>;
 export type DamWebhookProgress = z.infer<typeof DamWebhookProgressSchema>;
-export declare const DamWebhookResponseSchema: z.ZodObject<{}, z.core.$strip>;
+export declare const DamWebhookResponseSchema: z.ZodObject<{
+    '@type': z.ZodLiteral<"DamWebhookResponse">;
+}, z.core.$strip>;
 export type DamWebhookResponse = z.infer<typeof DamWebhookResponseSchema>;
 //# sourceMappingURL=webhook.schema.d.ts.map

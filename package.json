@@ -1,6 +1,6 @@
 {
 	"name": "@dsbunny/dam-schema",
-	"version": "17.1.17",
+	"version": "18.0.18",
 	"description": "Schema for the DAM",
 	"type": "module",
 	"main": "dist/index.js",
@@ -22,12 +22,12 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"devDependencies": {
-		"@dsbunny/error-schema": "github:dsbunny/error-schema#5308be6",
-		"@dsbunny/metadata-schema": "github:dsbunny/metadata-schema#5a1f172",
+		"@dsbunny/error-schema": "github:dsbunny/error-schema#ee6c4fe",
+		"@dsbunny/metadata-schema": "github:dsbunny/metadata-schema#bd41b46",
 		"@dsbunny/net-schema": "github:dsbunny/net-schema#7b9cf74",
 		"@dsbunny/patch-schema": "github:dsbunny/patch-schema#97d7952",
-		"@dsbunny/robust-task-schema": "github:dsbunny/robust-task-schema#a383eeb",
-		"@dsbunny/webhook-schema": "github:dsbunny/webhook-schema#f6b8e49",
+		"@dsbunny/robust-task-schema": "github:dsbunny/robust-task-schema#06596e4",
+		"@dsbunny/webhook-schema": "github:dsbunny/webhook-schema#cbda3b5",
 		"@dsbunny/zod-registry": "github:dsbunny/zod-registry#35c7ef6",
 		"typescript": "^5.9.3",
 		"zod": "^4.3.6"
