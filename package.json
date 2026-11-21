@@ -26,8 +26,8 @@
 		"@dsbunny/metadata-schema": "github:dsbunny/metadata-schema#bd41b46",
 		"@dsbunny/net-schema": "github:dsbunny/net-schema#7b9cf74",
 		"@dsbunny/patch-schema": "github:dsbunny/patch-schema#97d7952",
-		"@dsbunny/robust-task-schema": "github:dsbunny/robust-task-schema#06596e4",
-		"@dsbunny/webhook-schema": "github:dsbunny/webhook-schema#c68f458",
+		"@dsbunny/robust-task-schema": "github:dsbunny/robust-task-schema#21f2df5",
+		"@dsbunny/webhook-schema": "github:dsbunny/webhook-schema#dcc50dc",
 		"@dsbunny/zod-registry": "github:dsbunny/zod-registry#35c7ef6",
 		"typescript": "^5.9.3",
 		"zod": "^4.3.6"
