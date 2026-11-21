@@ -4,12 +4,6 @@ export declare const DamWebhookClassSchema: z.ZodEnum<{
     upload: "upload";
 }>;
 export type DamWebhookClass = z.infer<typeof DamWebhookClassSchema>;
-export declare const DamWebhookTypeSchema: z.ZodEnum<{
-    new: "new";
-    change: "change";
-    delete: "delete";
-}>;
-export type DamWebhookType = z.infer<typeof DamWebhookTypeSchema>;
 export declare const DamWebhookRequestSchema: z.ZodObject<{
     tenant_id: z.ZodUUID;
     ref_id: z.ZodUUID;
@@ -18,11 +12,6 @@ export declare const DamWebhookRequestSchema: z.ZodObject<{
     class: z.ZodEnum<{
         asset: "asset";
         upload: "upload";
-    }>;
-    type: z.ZodEnum<{
-        new: "new";
-        change: "change";
-        delete: "delete";
     }>;
 }, z.core.$strip>;
 export type DamWebhookRequest = z.infer<typeof DamWebhookRequestSchema>;

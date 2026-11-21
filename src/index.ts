@@ -2,6 +2,7 @@
 
 export * from './api.schema.js';
 export * from './asset.schema.js';
+export * from './aws.schema.js';
 export * from './part.schema.js';
 export * from './poster-analysis.schema.js';
 export * from './presigned-url.schema.js';

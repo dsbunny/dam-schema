@@ -6,15 +6,10 @@ export const DamWebhookClassSchema = z.enum(['asset', 'upload']).register(dsbunn
     id: 'DamWebhookClassSchema',
     description: 'The class of the webhook event related to DAM operations',
 });
-export const DamWebhookTypeSchema = z.enum(['new', 'change', 'delete']).register(dsbunnyRegistry, {
-    id: 'DamWebhookTypeSchema',
-    description: 'The type of the webhook event related to DAM operations',
-});
 export const DamWebhookRequestSchema = WebhookRequestSchema.extend({
     '@type': z.literal('DamWebhookRequest')
         .describe('Type of the DAM webhook request'),
     class: DamWebhookClassSchema,
-    type: DamWebhookTypeSchema,
 }).register(dsbunnyRegistry, {
     id: 'DamWebhookRequestSchema',
     description: 'The schema for webhook requests sent by the DAM',

@@ -62,7 +62,12 @@ export const S3CompleteProgressSchema = z.object({
 });
 export type S3CompleteProgress = z.infer<typeof S3CompleteProgressSchema>;
 
-export const S3CompleteResponseSchema = AWSSchema.CompleteMultipartUploadResponseSchema.register(dsbunnyRegistry, {
+export const S3CompleteResponseSchema = z.object({
+        '@type': z.literal('S3CompleteResponse')
+                .describe('Type of the S3 complete response'),
+        s3_response: AWSSchema.CompleteMultipartUploadResponseSchema
+                .describe('The S3 complete response'),
+}).register(dsbunnyRegistry, {
         id: 'S3CompleteResponseSchema',
         description: 'The output of the upload completion job',
 });

@@ -16255,26 +16255,29 @@ export declare const ListUploadsResponseSchema: z.ZodObject<{
                 elapsed_seconds: z.ZodNumber;
             }, z.core.$strip>>;
             result: z.ZodOptional<z.ZodObject<{
-                Location: z.ZodString;
-                Bucket: z.ZodString;
-                Key: z.ZodString;
-                Expiration: z.ZodOptional<z.ZodString>;
-                ETag: z.ZodString;
-                ChecksumCRC32: z.ZodOptional<z.ZodString>;
-                ChecksumCRC32C: z.ZodOptional<z.ZodString>;
-                ChecksumSHA1: z.ZodOptional<z.ZodString>;
-                ChecksumSHA256: z.ZodOptional<z.ZodString>;
-                ServerSideEncryption: z.ZodOptional<z.ZodEnum<{
-                    AES256: "AES256";
-                    "aws:kms": "aws:kms";
-                    "aws:kms:dsse": "aws:kms:dsse";
-                }>>;
-                VersionId: z.ZodOptional<z.ZodString>;
-                SSEKMSKeyId: z.ZodOptional<z.ZodString>;
-                BucketKeyEnabled: z.ZodOptional<z.ZodBoolean>;
-                RequestCharged: z.ZodOptional<z.ZodEnum<{
-                    requester: "requester";
-                }>>;
+                '@type': z.ZodLiteral<"S3CompleteResponse">;
+                s3_response: z.ZodObject<{
+                    Location: z.ZodString;
+                    Bucket: z.ZodString;
+                    Key: z.ZodString;
+                    Expiration: z.ZodOptional<z.ZodString>;
+                    ETag: z.ZodString;
+                    ChecksumCRC32: z.ZodOptional<z.ZodString>;
+                    ChecksumCRC32C: z.ZodOptional<z.ZodString>;
+                    ChecksumSHA1: z.ZodOptional<z.ZodString>;
+                    ChecksumSHA256: z.ZodOptional<z.ZodString>;
+                    ServerSideEncryption: z.ZodOptional<z.ZodEnum<{
+                        AES256: "AES256";
+                        "aws:kms": "aws:kms";
+                        "aws:kms:dsse": "aws:kms:dsse";
+                    }>>;
+                    VersionId: z.ZodOptional<z.ZodString>;
+                    SSEKMSKeyId: z.ZodOptional<z.ZodString>;
+                    BucketKeyEnabled: z.ZodOptional<z.ZodBoolean>;
+                    RequestCharged: z.ZodOptional<z.ZodEnum<{
+                        requester: "requester";
+                    }>>;
+                }, z.core.$strip>;
             }, z.core.$strip>>;
         }, z.core.$strip>;
         task_s3_complete_status: z.ZodEnum<{
@@ -16677,26 +16680,29 @@ export declare const GetUploadResponseSchema: z.ZodObject<{
                 elapsed_seconds: z.ZodNumber;
             }, z.core.$strip>>;
             result: z.ZodOptional<z.ZodObject<{
-                Location: z.ZodString;
-                Bucket: z.ZodString;
-                Key: z.ZodString;
-                Expiration: z.ZodOptional<z.ZodString>;
-                ETag: z.ZodString;
-                ChecksumCRC32: z.ZodOptional<z.ZodString>;
-                ChecksumCRC32C: z.ZodOptional<z.ZodString>;
-                ChecksumSHA1: z.ZodOptional<z.ZodString>;
-                ChecksumSHA256: z.ZodOptional<z.ZodString>;
-                ServerSideEncryption: z.ZodOptional<z.ZodEnum<{
-                    AES256: "AES256";
-                    "aws:kms": "aws:kms";
-                    "aws:kms:dsse": "aws:kms:dsse";
-                }>>;
-                VersionId: z.ZodOptional<z.ZodString>;
-                SSEKMSKeyId: z.ZodOptional<z.ZodString>;
-                BucketKeyEnabled: z.ZodOptional<z.ZodBoolean>;
-                RequestCharged: z.ZodOptional<z.ZodEnum<{
-                    requester: "requester";
-                }>>;
+                '@type': z.ZodLiteral<"S3CompleteResponse">;
+                s3_response: z.ZodObject<{
+                    Location: z.ZodString;
+                    Bucket: z.ZodString;
+                    Key: z.ZodString;
+                    Expiration: z.ZodOptional<z.ZodString>;
+                    ETag: z.ZodString;
+                    ChecksumCRC32: z.ZodOptional<z.ZodString>;
+                    ChecksumCRC32C: z.ZodOptional<z.ZodString>;
+                    ChecksumSHA1: z.ZodOptional<z.ZodString>;
+                    ChecksumSHA256: z.ZodOptional<z.ZodString>;
+                    ServerSideEncryption: z.ZodOptional<z.ZodEnum<{
+                        AES256: "AES256";
+                        "aws:kms": "aws:kms";
+                        "aws:kms:dsse": "aws:kms:dsse";
+                    }>>;
+                    VersionId: z.ZodOptional<z.ZodString>;
+                    SSEKMSKeyId: z.ZodOptional<z.ZodString>;
+                    BucketKeyEnabled: z.ZodOptional<z.ZodBoolean>;
+                    RequestCharged: z.ZodOptional<z.ZodEnum<{
+                        requester: "requester";
+                    }>>;
+                }, z.core.$strip>;
             }, z.core.$strip>>;
         }, z.core.$strip>;
         task_s3_complete_status: z.ZodEnum<{
@@ -17146,26 +17152,29 @@ export declare const PatchUploadResponseSchema: z.ZodObject<{
                 elapsed_seconds: z.ZodNumber;
             }, z.core.$strip>>;
             result: z.ZodOptional<z.ZodObject<{
-                Location: z.ZodString;
-                Bucket: z.ZodString;
-                Key: z.ZodString;
-                Expiration: z.ZodOptional<z.ZodString>;
-                ETag: z.ZodString;
-                ChecksumCRC32: z.ZodOptional<z.ZodString>;
-                ChecksumCRC32C: z.ZodOptional<z.ZodString>;
-                ChecksumSHA1: z.ZodOptional<z.ZodString>;
-                ChecksumSHA256: z.ZodOptional<z.ZodString>;
-                ServerSideEncryption: z.ZodOptional<z.ZodEnum<{
-                    AES256: "AES256";
-                    "aws:kms": "aws:kms";
-                    "aws:kms:dsse": "aws:kms:dsse";
-                }>>;
-                VersionId: z.ZodOptional<z.ZodString>;
-                SSEKMSKeyId: z.ZodOptional<z.ZodString>;
-                BucketKeyEnabled: z.ZodOptional<z.ZodBoolean>;
-                RequestCharged: z.ZodOptional<z.ZodEnum<{
-                    requester: "requester";
-                }>>;
+                '@type': z.ZodLiteral<"S3CompleteResponse">;
+                s3_response: z.ZodObject<{
+                    Location: z.ZodString;
+                    Bucket: z.ZodString;
+                    Key: z.ZodString;
+                    Expiration: z.ZodOptional<z.ZodString>;
+                    ETag: z.ZodString;
+                    ChecksumCRC32: z.ZodOptional<z.ZodString>;
+                    ChecksumCRC32C: z.ZodOptional<z.ZodString>;
+                    ChecksumSHA1: z.ZodOptional<z.ZodString>;
+                    ChecksumSHA256: z.ZodOptional<z.ZodString>;
+                    ServerSideEncryption: z.ZodOptional<z.ZodEnum<{
+                        AES256: "AES256";
+                        "aws:kms": "aws:kms";
+                        "aws:kms:dsse": "aws:kms:dsse";
+                    }>>;
+                    VersionId: z.ZodOptional<z.ZodString>;
+                    SSEKMSKeyId: z.ZodOptional<z.ZodString>;
+                    BucketKeyEnabled: z.ZodOptional<z.ZodBoolean>;
+                    RequestCharged: z.ZodOptional<z.ZodEnum<{
+                        requester: "requester";
+                    }>>;
+                }, z.core.$strip>;
             }, z.core.$strip>>;
         }, z.core.$strip>;
         task_s3_complete_status: z.ZodEnum<{
@@ -40161,26 +40170,29 @@ export declare const DamUploadResponseSchema: z.ZodUnion<readonly [z.ZodObject<{
                 elapsed_seconds: z.ZodNumber;
             }, z.core.$strip>>;
             result: z.ZodOptional<z.ZodObject<{
-                Location: z.ZodString;
-                Bucket: z.ZodString;
-                Key: z.ZodString;
-                Expiration: z.ZodOptional<z.ZodString>;
-                ETag: z.ZodString;
-                ChecksumCRC32: z.ZodOptional<z.ZodString>;
-                ChecksumCRC32C: z.ZodOptional<z.ZodString>;
-                ChecksumSHA1: z.ZodOptional<z.ZodString>;
-                ChecksumSHA256: z.ZodOptional<z.ZodString>;
-                ServerSideEncryption: z.ZodOptional<z.ZodEnum<{
-                    AES256: "AES256";
-                    "aws:kms": "aws:kms";
-                    "aws:kms:dsse": "aws:kms:dsse";
-                }>>;
-                VersionId: z.ZodOptional<z.ZodString>;
-                SSEKMSKeyId: z.ZodOptional<z.ZodString>;
-                BucketKeyEnabled: z.ZodOptional<z.ZodBoolean>;
-                RequestCharged: z.ZodOptional<z.ZodEnum<{
-                    requester: "requester";
-                }>>;
+                '@type': z.ZodLiteral<"S3CompleteResponse">;
+                s3_response: z.ZodObject<{
+                    Location: z.ZodString;
+                    Bucket: z.ZodString;
+                    Key: z.ZodString;
+                    Expiration: z.ZodOptional<z.ZodString>;
+                    ETag: z.ZodString;
+                    ChecksumCRC32: z.ZodOptional<z.ZodString>;
+                    ChecksumCRC32C: z.ZodOptional<z.ZodString>;
+                    ChecksumSHA1: z.ZodOptional<z.ZodString>;
+                    ChecksumSHA256: z.ZodOptional<z.ZodString>;
+                    ServerSideEncryption: z.ZodOptional<z.ZodEnum<{
+                        AES256: "AES256";
+                        "aws:kms": "aws:kms";
+                        "aws:kms:dsse": "aws:kms:dsse";
+                    }>>;
+                    VersionId: z.ZodOptional<z.ZodString>;
+                    SSEKMSKeyId: z.ZodOptional<z.ZodString>;
+                    BucketKeyEnabled: z.ZodOptional<z.ZodBoolean>;
+                    RequestCharged: z.ZodOptional<z.ZodEnum<{
+                        requester: "requester";
+                    }>>;
+                }, z.core.$strip>;
             }, z.core.$strip>>;
         }, z.core.$strip>;
         task_s3_complete_status: z.ZodEnum<{
@@ -40568,26 +40580,29 @@ export declare const DamUploadResponseSchema: z.ZodUnion<readonly [z.ZodObject<{
                 elapsed_seconds: z.ZodNumber;
             }, z.core.$strip>>;
             result: z.ZodOptional<z.ZodObject<{
-                Location: z.ZodString;
-                Bucket: z.ZodString;
-                Key: z.ZodString;
-                Expiration: z.ZodOptional<z.ZodString>;
-                ETag: z.ZodString;
-                ChecksumCRC32: z.ZodOptional<z.ZodString>;
-                ChecksumCRC32C: z.ZodOptional<z.ZodString>;
-                ChecksumSHA1: z.ZodOptional<z.ZodString>;
-                ChecksumSHA256: z.ZodOptional<z.ZodString>;
-                ServerSideEncryption: z.ZodOptional<z.ZodEnum<{
-                    AES256: "AES256";
-                    "aws:kms": "aws:kms";
-                    "aws:kms:dsse": "aws:kms:dsse";
-                }>>;
-                VersionId: z.ZodOptional<z.ZodString>;
-                SSEKMSKeyId: z.ZodOptional<z.ZodString>;
-                BucketKeyEnabled: z.ZodOptional<z.ZodBoolean>;
-                RequestCharged: z.ZodOptional<z.ZodEnum<{
-                    requester: "requester";
-                }>>;
+                '@type': z.ZodLiteral<"S3CompleteResponse">;
+                s3_response: z.ZodObject<{
+                    Location: z.ZodString;
+                    Bucket: z.ZodString;
+                    Key: z.ZodString;
+                    Expiration: z.ZodOptional<z.ZodString>;
+                    ETag: z.ZodString;
+                    ChecksumCRC32: z.ZodOptional<z.ZodString>;
+                    ChecksumCRC32C: z.ZodOptional<z.ZodString>;
+                    ChecksumSHA1: z.ZodOptional<z.ZodString>;
+                    ChecksumSHA256: z.ZodOptional<z.ZodString>;
+                    ServerSideEncryption: z.ZodOptional<z.ZodEnum<{
+                        AES256: "AES256";
+                        "aws:kms": "aws:kms";
+                        "aws:kms:dsse": "aws:kms:dsse";
+                    }>>;
+                    VersionId: z.ZodOptional<z.ZodString>;
+                    SSEKMSKeyId: z.ZodOptional<z.ZodString>;
+                    BucketKeyEnabled: z.ZodOptional<z.ZodBoolean>;
+                    RequestCharged: z.ZodOptional<z.ZodEnum<{
+                        requester: "requester";
+                    }>>;
+                }, z.core.$strip>;
             }, z.core.$strip>>;
         }, z.core.$strip>;
         task_s3_complete_status: z.ZodEnum<{
@@ -40983,26 +40998,29 @@ export declare const DamUploadResponseSchema: z.ZodUnion<readonly [z.ZodObject<{
                 elapsed_seconds: z.ZodNumber;
             }, z.core.$strip>>;
             result: z.ZodOptional<z.ZodObject<{
-                Location: z.ZodString;
-                Bucket: z.ZodString;
-                Key: z.ZodString;
-                Expiration: z.ZodOptional<z.ZodString>;
-                ETag: z.ZodString;
-                ChecksumCRC32: z.ZodOptional<z.ZodString>;
-                ChecksumCRC32C: z.ZodOptional<z.ZodString>;
-                ChecksumSHA1: z.ZodOptional<z.ZodString>;
-                ChecksumSHA256: z.ZodOptional<z.ZodString>;
-                ServerSideEncryption: z.ZodOptional<z.ZodEnum<{
-                    AES256: "AES256";
-                    "aws:kms": "aws:kms";
-                    "aws:kms:dsse": "aws:kms:dsse";
-                }>>;
-                VersionId: z.ZodOptional<z.ZodString>;
-                SSEKMSKeyId: z.ZodOptional<z.ZodString>;
-                BucketKeyEnabled: z.ZodOptional<z.ZodBoolean>;
-                RequestCharged: z.ZodOptional<z.ZodEnum<{
-                    requester: "requester";
-                }>>;
+                '@type': z.ZodLiteral<"S3CompleteResponse">;
+                s3_response: z.ZodObject<{
+                    Location: z.ZodString;
+                    Bucket: z.ZodString;
+                    Key: z.ZodString;
+                    Expiration: z.ZodOptional<z.ZodString>;
+                    ETag: z.ZodString;
+                    ChecksumCRC32: z.ZodOptional<z.ZodString>;
+                    ChecksumCRC32C: z.ZodOptional<z.ZodString>;
+                    ChecksumSHA1: z.ZodOptional<z.ZodString>;
+                    ChecksumSHA256: z.ZodOptional<z.ZodString>;
+                    ServerSideEncryption: z.ZodOptional<z.ZodEnum<{
+                        AES256: "AES256";
+                        "aws:kms": "aws:kms";
+                        "aws:kms:dsse": "aws:kms:dsse";
+                    }>>;
+                    VersionId: z.ZodOptional<z.ZodString>;
+                    SSEKMSKeyId: z.ZodOptional<z.ZodString>;
+                    BucketKeyEnabled: z.ZodOptional<z.ZodBoolean>;
+                    RequestCharged: z.ZodOptional<z.ZodEnum<{
+                        requester: "requester";
+                    }>>;
+                }, z.core.$strip>;
             }, z.core.$strip>>;
         }, z.core.$strip>;
         task_s3_complete_status: z.ZodEnum<{
