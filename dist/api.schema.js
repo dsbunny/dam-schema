@@ -7,6 +7,13 @@ import { JsonPatchOperationSchema } from '@dsbunny/patch-schema';
 import { AssetSchema } from './asset.schema.js';
 import { PresignedIndexedUrlSchema, PresignedUrlSchema, } from './presigned-url.schema.js';
 import { UploadSchema } from './upload.schema.js';
+export const DamPingResponseSchema = z.object({
+    ping: z.literal('pong'),
+    timestamp: z.iso.datetime(),
+}).register(dsbunnyRegistry, {
+    id: 'DamPingResponseSchema',
+    description: 'DAM ping response schema',
+});
 // #region Assets
 export const ListAssetsRequestSchema = z.object({
     '@type': z.literal('ListAssetsRequest'),

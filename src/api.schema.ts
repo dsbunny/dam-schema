@@ -12,6 +12,15 @@ import {
 } from './presigned-url.schema.js';
 import { UploadSchema } from './upload.schema.js';
 
+export const DamPingResponseSchema = z.object({
+	ping: z.literal('pong'),
+	timestamp: z.iso.datetime(),
+}).register(dsbunnyRegistry, {
+	id: 'DamPingResponseSchema',
+	description: 'DAM ping response schema',
+});
+export type DamPingResponse = z.infer<typeof DamPingResponseSchema>;
+
 // #region Assets
 export const ListAssetsRequestSchema = z.object({
 	'@type': z.literal('ListAssetsRequest'),

@@ -1,4 +1,9 @@
 import * as z from "zod";
+export declare const DamPingResponseSchema: z.ZodObject<{
+    ping: z.ZodLiteral<"pong">;
+    timestamp: z.ZodISODateTime;
+}, z.core.$strip>;
+export type DamPingResponse = z.infer<typeof DamPingResponseSchema>;
 export declare const ListAssetsRequestSchema: z.ZodOptional<z.ZodObject<{
     '@type': z.ZodLiteral<"ListAssetsRequest">;
 }, z.core.$strip>>;
